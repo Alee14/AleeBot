@@ -38,4 +38,4 @@ client.on('message', message => {
 
 client.on("ready", () => client.user.setGame("aleebot:help")) 
 
- client.login ('')
+ client.login ('token')
