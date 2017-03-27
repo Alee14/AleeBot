@@ -10,7 +10,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'aleebot:updates'){
-        message ('https://github.com/Alee14/AleeBot');
+        message.channel.sendMessage ('https://github.com/Alee14/AleeBot');
     }
 
 });
@@ -31,7 +31,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'aleebot:help'){
-        message ('aleebot:profile\naleebot:updates\naleebot:ping\naleebot:pong');
+        message.channel.sendMessage ('aleebot:profile\naleebot:updates\naleebot:ping\naleebot:pong');
     }
 
 });
