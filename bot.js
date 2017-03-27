@@ -39,3 +39,4 @@ client.on('message', message => {
 client.on("ready", () => client.user.setGame("aleebot:help")) 
 
  client.login ('token')
+ console.log('[INFO] Success! Bot is running')
