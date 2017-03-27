@@ -31,7 +31,14 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'aleebot:help'){
-        message.channel.sendMessage ('aleebot:profile\naleebot:updates\naleebot:ping\naleebot:pong');
+        message.channel.sendMessage ('aleebot:profile\naleebot:updates\naleebot:ping\naleebot:pong\naleebot:owner');
+    }
+
+});
+
+client.on('message', message => {
+    if(message.content === 'aleebot:owner'){
+        message.reply('The person who made this is Alee14!');
     }
 
 });
