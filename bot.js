@@ -2,48 +2,48 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('message', message => {
-    if(message.content === 'aleebot:profile'){
+    if(message.content === 'ab:profile'){
         message.reply(message.author.avatarURL);
     }
 
  });
 
 client.on('message', message => {
-    if(message.content === 'aleebot:updates'){
+    if(message.content === 'ab:updates'){
         message.channel.sendMessage ('https://github.com/Alee14/AleeBot');
     }
 
 });
 
 client.on('message', message => {
-    if(message.content === 'aleebot:ping'){
+    if(message.content === 'ab:ping'){
         message.reply('Pong! :ping_pong:');
     }
 
 });
 
 client.on('message', message => {
-    if(message.content === 'aleebot:pong'){
+    if(message.content === 'ab:pong'){
         message.reply('Ping! :ping_pong:');
     }
 
 });
 
 client.on('message', message => {
-    if(message.content === 'aleebot:help'){
-        message.channel.sendMessage ('aleebot:profile\naleebot:updates\naleebot:ping\naleebot:pong\naleebot:owner');
+    if(message.content === 'ab:help'){
+        message.channel.sendMessage ('ab:profile\nab:updates\nab:ping\nab:pong\nab:owner');
     }
 
 });
 
 client.on('message', message => {
-    if(message.content === 'aleebot:owner'){
+    if(message.content === 'ab:owner'){
         message.reply('The person who made this is Alee14!');
     }
 
 });
 
-client.on("ready", () => client.user.setGame("For help: aleebot:help")) 
+client.on("ready", () => client.user.setGame("For help: ab:help")) 
 
  client.login ('token')
  console.log('[INFO] Success! Bot is running')
