@@ -38,7 +38,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:owner'){
-        message.reply('The person who made this is Alee14!');
+		message.channel.sendMessage ('The person who made this is Alee14!');
     }
 
 });
