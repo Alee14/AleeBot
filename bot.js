@@ -31,7 +31,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:help'){
-        message.channel.sendMessage ('ab:profile\nab:updates\nab:ping\nab:pong\nab:owner');
+        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:updates\nab:ping\nab:pong\nab:owner```');
     }
 
 });
