@@ -9,8 +9,8 @@ client.on('message', message => {
  });
 
 client.on('message', message => {
-    if(message.content === 'ab:updates'){
-        message.channel.sendMessage ('https://github.com/Alee14/AleeBot');
+    if(message.content === 'ab:git'){
+        message.channel.sendMessage ('Here is the github repo: https://github.com/Alee14/AleeBot');
     }
 
 });
@@ -31,7 +31,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:help'){
-        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:updates\nab:ping\nab:pong\nab:owner```');
+        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:git\nab:ping\nab:pong\nab:owner```');
     }
 
 });
