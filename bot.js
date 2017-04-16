@@ -46,4 +46,4 @@ client.on('message', message => {
 client.on("ready", () => client.user.setGame("For help: ab:help")) 
 
  client.login ('token')
- console.log('[INFO] Success! Bot is running')
+ console.log('[INFO] Success! Bot is running, Logged in as ${client.user.username}!')
