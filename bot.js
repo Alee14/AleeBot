@@ -47,3 +47,4 @@ client.on("ready", () => client.user.setGame("For help: ab:help"))
 
  client.login ('token')
  console.log('[INFO] Success! Bot is running, Logged in as ${client.user.username}!')
+// WE NEED DEVELOPERS!!!!!!!!!!
