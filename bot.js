@@ -45,6 +45,6 @@ client.on('message', message => {
 
 client.on("ready", () => client.user.setGame("For help: ab:help")) 
 
- client.login ('MjgyNTQ3MDI0NTQ3NTQ1MTA5.C_Tj-A.KbyWE4ZshBO0ubHEQgeMdHtQ1Ro')
+ client.login ('token')
  console.log('[INFO] Success! Bot is running, Logged in as ${client.user.username}!')
 // WE NEED DEVELOPERS!!!!!!!!!!
