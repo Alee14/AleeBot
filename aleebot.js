@@ -43,10 +43,12 @@ client.on('message', message => {
 
 });
 
-client.on("ready", () => console.log("AleeBot is now ready!");
+  client.on('ready', () => {
+       console.log("AleeBot is now ready!");
     client.setInterval(setGame, 300000);
     setGame();
-   }); 
+   });
+   
 	function setGame() {
     var presence = {};
     presence.game = {};
@@ -130,7 +132,7 @@ client.on("ready", () => console.log("AleeBot is now ready!");
             presence.game.name = "AleeChat";
             break;
         case 25:
-            presence.game.name = "harking tiem";
+            presence.game.name = "For help ab:help";
             break;
 		case 26:
 			presence.game.name = "trying to DJ";
