@@ -218,9 +218,8 @@ const Discord = require('discord.js');
 			break;
     }
 client.user.setPresence(presence);
-    client.user.setPresence(presence);
 }
 
-   client.login('token').catch(function() {
+   client.login('MzE5MTI2ODI2NDczNzUwNTI4.DBCzVA.KBWzC3KgWOfOMhJQm8wC8n-kNLA').catch(function() {
        console.log("[ERROR] Login failed.");
    });
