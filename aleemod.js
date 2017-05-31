@@ -71,62 +71,7 @@ const Discord = require('discord.js');
            }
        }
        
-       if (msg.startsWith("mod:")) {
-           //Check for moderator/admin permission
-           
-           //Moderator ID: 285427075043819530
-           //Admin ID:     259877121793458179
-           if (message.member.roles.find("name", "Admin") || message.member.roles.find("name", "Moderators")) { 
-               var command = msg.substr(4);
-               switch (command) {
-                   case "ping":
-                       message.channel.send('<:vtBoshyTime:280178631886635008> PONG! I want to play pong too... :\'(');
-                       break;
-                   case "pong":
-                       message.channel.send('<:vtBoshyTime:280178631886635008> PING!');
-                       break;
-                   case "filter":
-                       if (expletiveFilter) {
-                           message.channel.send(':arrow_forward: Expletive Filter: on');
-                       } else {
-                           message.channel.send(':arrow_forward: Expletive Filter: off');
-                       }
-                       message.delete();
-                       break;
-                   case "filter on":
-                       if (expletiveFilter) {
-                           message.channel.send(':arrow_forward: Expletive Filter is already on.');
-                       } else {
-                           expletiveFilter = true;
-                           message.channel.send(':white_check_mark: Expletive Filter is now turned on.');
-                           console.log("Expletive Filter is now on.");
-                       }
-                       message.delete();
-                       break;
-                   case "filter off":
-                       if (expletiveFilter) {
-                           expletiveFilter = false;
-                           message.channel.send(':white_check_mark: Expletive Filter is now turned off.');
-                           console.log("Expletive Filter is now off.");
-                       } else {
-                           message.channel.send(':arrow_forward: Expletive Filter is already off.');
-                       }
-                       message.delete();
-                       break;
-                   default:
-                       if (command.startsWith("uinfo")) {
-                           if (message.channel.id == 277923386959855626) {
-                               message.channel.send(':no_entry_sign: Not ready yet. Check back soon!');
-                           } else {
-                               message.channel.send(':no_entry_sign: NO: Unable to use this command in this channel.');
-                           }
-                       }
-               }
-           } else {
-               message.reply(':no_entry_sign: NO: What? You\'re not an admin! Why would you be allowed to type that!?');
-           }
-       }
-       
+     
        //Spam limiting
        if (lastMessages[message.author.id] != msg) {
            sameMessageCount[message.author.id] = 0;
