@@ -48,7 +48,6 @@ const Discord = require('discord.js');
        if (expletiveFilter) {
            var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword)(\s|$)/i);
            if (exp != -1) { //Gah! They're not supposed to say that!
-
                switch (Math.floor(Math.random() * 1000) % 5) {
                    case 0:
                        message.reply("Hey! This is not your time to swear.");
@@ -72,8 +71,7 @@ const Discord = require('discord.js');
        }
 
        //No Caps
-               if (msg.match(/[A-Z]/gm) != null && msg.match(/[A-Z]/gm).length > (parseFloat(msg.length) * 0.8)) {
-                        console.log("[FILTER] Caps caught from " + getUserString(message.author));
+       /*    if (msg.match(/[A-Z]/gm) != null && msg.match(/[A-Z]/gm).length > (parseFloat(msg.length) * 0.8)) {
                         switch (Math.floor(Math.random() * 1000) % 6) {
                             case 0:
                                 message.reply("Shh...");
@@ -99,7 +97,7 @@ const Discord = require('discord.js');
                     }
                 }
             }
-            
+	} */
      
        //Spam limiting
        if (lastMessages[message.author.id] != msg) {
