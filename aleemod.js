@@ -220,6 +220,6 @@ const Discord = require('discord.js');
 client.user.setPresence(presence);
 }
 
-   client.login('MzE5MTI2ODI2NDczNzUwNTI4.DBCzVA.KBWzC3KgWOfOMhJQm8wC8n-kNLA').catch(function() {
+   client.login('token').catch(function() {
        console.log("[ERROR] Login failed.");
    });
