@@ -33,7 +33,7 @@ const Discord = require('discord.js');
        }
        
        if (expletiveFilter) {
-           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|:middle_finger:)(\s|$)/i);
+           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|cock)(\s|$)/i);
            if (exp != -1) { //Gah! They're not supposed to say that!
 
                switch (Math.floor(Math.random() * 1000) % 5) {
