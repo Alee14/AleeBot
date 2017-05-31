@@ -21,7 +21,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:git'){
-        message.channel.sendMessage ('Here is the github repo: https://github.com/Alee14/AleeBot');
+        message.channel.sendMessage ('Here is the github repo: https://github.com/AleeCorp/AleeBot');
     }
 
 });
@@ -42,17 +42,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:help'){
-        message.channel.sendMessage ('   "Here are some things you can try:\n```\n" +
-                        "git               Displays the link to the github page of AleeBot.\n" + 
-                        "profile           Shows your profile picture.\n" +
-                        "owner             Tells you who made the bot\n" + 
-                        "about             Tells you about AleeBot\n" + 
-                        "copyright         Tells you about AleeBot\n" + 
-                        "license           Tells you about AleeBot\n" + 
-                        "warranty          Tells you about AleeBot\n\n" + 
-                        "ping|pong         Asks AleeBot to reply with a message\n\n" +
-                        "These commands need to be prefixed with ab:\n" +
-                        "```"');
+        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:git\nab:ping\nab:pong\nab:owner```');
     }
 
 });
