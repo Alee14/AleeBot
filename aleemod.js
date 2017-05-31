@@ -70,7 +70,36 @@ const Discord = require('discord.js');
                return;
            }
        }
-       
+
+       //No Caps
+               if (msg.match(/[A-Z]/gm) != null && msg.match(/[A-Z]/gm).length > (parseFloat(msg.length) * 0.8)) {
+                        console.log("[FILTER] Caps caught from " + getUserString(message.author));
+                        switch (Math.floor(Math.random() * 1000) % 6) {
+                            case 0:
+                                message.reply("Shh...");
+                                break;
+                            case 1:
+                                message.reply("The community likes peace and quiet.");
+                                break;
+                            case 2:
+                                message.reply("Isn't it weird when you're reading... and then you see a bunch of caps?");
+                                break;
+                            case 3:
+                                message.reply("If you're going to type that, why not get out a pen and paper and do it yourself or shout in your head please!");
+                                break;
+                            case 4:
+                                message.reply("DON'T SHOUT IN HERE K THIS IS ME :angry:");
+                                break;
+                            case 5:
+                                message.reply("Whoa whoa, slow down, my friend! No need for raised voices!");
+                                break;
+                        }
+                        message.delete();
+                        return;
+                    }
+                }
+            }
+            
      
        //Spam limiting
        if (lastMessages[message.author.id] != msg) {
