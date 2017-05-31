@@ -89,7 +89,7 @@ client.on('message', message => {
             presence.game.name = "with binary code";
             break;
         case 7:
-            presence.game.name = "being a moderator";
+            presence.game.name = "being very cool";
             break;
         case 8:
             presence.game.name = "with supa weapon";
