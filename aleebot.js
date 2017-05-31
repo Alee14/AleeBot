@@ -152,7 +152,7 @@ client.on('message', message => {
 client.user.setPresence(presence);
 }
 
- client.login ('MjgyNTQ3MDI0NTQ3NTQ1MTA5.DBCmJw.mkoy6ZVvK2QJTmXQzqyxnbnJfw4').catch(function() {
+ client.login ('token').catch(function() {
        console.log("[ERROR] Login failed.");
    });
 // WE NEED DEVELOPERS!!!!!!!!!!
