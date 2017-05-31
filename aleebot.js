@@ -42,7 +42,17 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:help'){
-        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:git\nab:ping\nab:pong\nab:owner```');
+        message.channel.sendMessage ('   "Here are some things you can try:\n```\n" +
+                        "git               Displays the link to the github page of AleeBot.\n" + 
+                        "profile           Shows your profile picture.\n" +
+                        "owner             Tells you who made the bot\n" + 
+                        "about             Tells you about AleeBot\n" + 
+                        "copyright         Tells you about AleeBot\n" + 
+                        "license           Tells you about AleeBot\n" + 
+                        "warranty          Tells you about AleeBot\n\n" + 
+                        "ping|pong         Asks AleeBot to reply with a message\n\n" +
+                        "These commands need to be prefixed with ab:\n" +
+                        "```"');
     }
 
 });
@@ -152,7 +162,7 @@ client.on('message', message => {
 client.user.setPresence(presence);
 }
 
- client.login ('token').catch(function() {
+ client.login ('MjgyNTQ3MDI0NTQ3NTQ1MTA5.DBCmJw.mkoy6ZVvK2QJTmXQzqyxnbnJfw4').catch(function() {
        console.log("[ERROR] Login failed.");
    });
 // WE NEED DEVELOPERS!!!!!!!!!!
