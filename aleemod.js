@@ -1,3 +1,14 @@
+/****************************************
+ * 
+ *   AleeBot and AleeMod for AleeArmy Community
+ *   Copyright (C) 2017 Alee14
+ *
+ *   This script is made by Alee14 and other people.
+ *   Some stuff was made by Victor Tran (vicr123) and swawesome95 (no longer a dev).
+ *   Please say thanks to swawesome95 to laying the basics of this bot and thanks for vicr123 for
+ *   letting me use some of his source code.
+ *   
+ * *************************************/
 const Discord = require('discord.js');
  const client = new Discord.Client();
    
