@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const api = require('./aleemodkey.js');
  const client = new Discord.Client();
    
    var expletiveFilter = true;
@@ -35,7 +36,7 @@ const Discord = require('discord.js');
        }
        
        if (expletiveFilter) {
-           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|cock)(\s|$)/i);
+           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword)(\s|$)/i);
            if (exp != -1) { //Gah! They're not supposed to say that!
 
                switch (Math.floor(Math.random() * 1000) % 5) {
@@ -221,6 +222,6 @@ const Discord = require('discord.js');
 }
 
    client.login('token').catch(
-     function() {
+function() {
        console.log("[ERROR] Login failed.");
    });
