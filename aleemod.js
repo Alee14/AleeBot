@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const api = require('./aleemodkey.js');
  const client = new Discord.Client();
    
    var expletiveFilter = true;
