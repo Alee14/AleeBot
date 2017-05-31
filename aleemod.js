@@ -148,16 +148,16 @@ const Discord = require('discord.js');
             presence.game.name = "with an internal bug";
             break;
         case 4:
-            presence.game.name = "around";
+            presence.game.name = "in the forest";
             break;
         case 5:
             presence.game.name = "bot games";
             break;
         case 6:
-            presence.game.name = "with ones and zeroes";
+            presence.game.name = "with binary code";
             break;
         case 7:
-            presence.game.name = "being a stepswitcher";
+            presence.game.name = "being a moderator";
             break;
         case 8:
             presence.game.name = "with supa weapon";
@@ -205,10 +205,10 @@ const Discord = require('discord.js');
             presence.game.name = "being awesome";
             break;
         case 23:
-            presence.game.name = "TimeHACK";
+            presence.game.name = "AleeCraft";
             break;
         case 24:
-            presence.game.name = "TiemHARK";
+            presence.game.name = "AleeChat";
             break;
         case 25:
             presence.game.name = "harking tiem";
