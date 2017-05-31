@@ -21,7 +21,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if(message.content === 'ab:git'){
-        message.channel.sendMessage ('Here is the github repo: https://github.com/AleeCorp/AleeBot');
+        message.channel.sendMessage ('Here is the github repo: https://github.com/AleeCorp/AleeBot-AleeMod');
     }
 
 });
