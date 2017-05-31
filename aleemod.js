@@ -221,6 +221,6 @@ client.user.setPresence(presence);
     client.user.setPresence(presence);
 }
 
-   client.login('MzE5MTI2ODI2NDczNzUwNTI4.DBCmKg.VGHbwB3-1GiDuybYi-rIam6LDoM').catch(function() {
+   client.login('token').catch(function() {
        console.log("[ERROR] Login failed.");
    });
