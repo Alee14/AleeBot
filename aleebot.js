@@ -57,7 +57,7 @@ client.on('message', message => {
 });
 
   client.on('ready', () => {
-       console.log("AleeBot is now ready!");
+       console.log("[SUCCESS] AleeBot is now ready!");
     client.setInterval(setGame, 300000);
     setGame();
    });

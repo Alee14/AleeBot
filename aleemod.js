@@ -20,7 +20,7 @@ const config = require('./amtoken.json');
    
 
    client.on('ready', () => {
-       console.log("AleeMod is now ready!");
+       console.log("[SUCCESS] AleeMod is now ready!");
     client.setInterval(setGame, 300000);
     setGame();
    });
