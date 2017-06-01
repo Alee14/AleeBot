@@ -25,94 +25,6 @@ const config = require('./amtoken.json');
     setGame();
    });
    
-   client.on('message', message => {
-       var msg = message.content;
-       if (lastMessages[message.author.id] == msg && sameMessageCount[message.author.id] > 3) {
-           console.log("Spam limits kicking in!");
-           switch (Math.floor(Math.random() * 1000) % 4) {
-               case 0:
-                   message.reply("Well... We all heard you.");
-                   break;
-               case 1:
-                   message.reply("Stop typing the same thing! You're like a broken record!");
-                   break;
-               case 2:
-                   message.reply("Hmm... Not sure if you'd actually say the same thing more than three times in public.");
-                   break;
-               case 3:
-                   message.reply("Is that the only phrase you know? Can you try typing something else?");
-                   break;
-           }
-           message.delete();
-           return;
-       }
-       
-       if (expletiveFilter) {
-           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesuckshentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon)(\s|$)/i);
-           if (exp != -1) { //Gah! They're not supposed to say that!
-               switch (Math.floor(Math.random() * 1000) % 5) {
-                   case 0:
-                       message.reply("Hey! This is not your time to swear.");
-                       break;
-                   case 1:
-                       message.reply("Hey! Let's not have any of that please.");
-                       break;
-                   case 2:
-                       message.reply("Did you just...");
-                       break;
-                   case 3:
-                       message.reply("Cool. Now let's not forget the rules.");
-                       break;
-                   case 4:
-                       message.reply("If I'm not going to delete it, a mod will. Let's save them some work.");
-                       break;
-               }
-               message.delete();
-               return;
-           }
-       }
-
-       //No Caps
-       /*    if (msg.match(/[A-Z]/gm) != null && msg.match(/[A-Z]/gm).length > (parseFloat(msg.length) * 0.8)) {
-                        switch (Math.floor(Math.random() * 1000) % 6) {
-                            case 0:
-                                message.reply("Shh...");
-                                break;
-                            case 1:
-                                message.reply("The community likes peace and quiet.");
-                                break;
-                            case 2:
-                                message.reply("Isn't it weird when you're reading... and then you see a bunch of caps?");
-                                break;
-                            case 3:
-                                message.reply("If you're going to type that, why not get out a pen and paper and do it yourself or shout in your head please!");
-                                break;
-                            case 4:
-                                message.reply("DON'T SHOUT IN HERE K THIS IS ME :angry:");
-                                break;
-                            case 5:
-                                message.reply("Whoa whoa, slow down, my friend! No need for raised voices!");
-                                break;
-                        }
-                        message.delete();
-                        return;
-                    }
-                }
-            }
-	} */
-     
-       //Spam limiting
-       if (lastMessages[message.author.id] != msg) {
-           sameMessageCount[message.author.id] = 0;
-       }
-       lastMessages[message.author.id] = msg
-       sameMessageCount[message.author.id]   = 1;
-   });
-   
-   client.on('guildMemberAdd', usr => {
-   });
-   
-
 	function setGame() {
     var presence = {};
     presence.game = {};
@@ -204,7 +116,93 @@ const config = require('./amtoken.json');
     }
 client.user.setPresence(presence);
 }
+   client.on('message', message => {
+       var msg = message.content;
+       if (lastMessages[message.author.id] == msg && sameMessageCount[message.author.id] > 3) {
+           console.log("Spam limits kicking in!");
+           switch (Math.floor(Math.random() * 1000) % 4) {
+               case 0:
+                   message.reply("Well... We all heard you.");
+                   break;
+               case 1:
+                   message.reply("Stop typing the same thing! You're like a broken record!");
+                   break;
+               case 2:
+                   message.reply("Hmm... Not sure if you'd actually say the same thing more than three times in public.");
+                   break;
+               case 3:
+                   message.reply("Is that the only phrase you know? Can you try typing something else?");
+                   break;
+           }
+           message.delete();
+           return;
+       }
+       
+       if (expletiveFilter) {
+           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesuckshentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon)(\s|$)/i);
+           if (exp != -1) { //Gah! They're not supposed to say that!
+               switch (Math.floor(Math.random() * 1000) % 5) {
+                   case 0:
+                       message.reply("Hey! This is not your time to swear.");
+                       break;
+                   case 1:
+                       message.reply("Hey! Let's not have any of that please.");
+                       break;
+                   case 2:
+                       message.reply("Did you just...");
+                       break;
+                   case 3:
+                       message.reply("Cool. Now let's not forget the rules.");
+                       break;
+                   case 4:
+                       message.reply("If I'm not going to delete it, a mod will. Let's save them some work.");
+                       break;
+               }
+               message.delete();
+               return;
+           }
+       }
 
+       //No Caps
+       /*    if (msg.match(/[A-Z]/gm) != null && msg.match(/[A-Z]/gm).length > (parseFloat(msg.length) * 0.8)) {
+                        switch (Math.floor(Math.random() * 1000) % 6) {
+                            case 0:
+                                message.reply("Shh...");
+                                break;
+                            case 1:
+                                message.reply("The community likes peace and quiet.");
+                                break;
+                            case 2:
+                                message.reply("Isn't it weird when you're reading... and then you see a bunch of caps?");
+                                break;
+                            case 3:
+                                message.reply("If you're going to type that, why not get out a pen and paper and do it yourself or shout in your head please!");
+                                break;
+                            case 4:
+                                message.reply("DON'T SHOUT IN HERE K THIS IS ME :angry:");
+                                break;
+                            case 5:
+                                message.reply("Whoa whoa, slow down, my friend! No need for raised voices!");
+                                break;
+                        }
+                        message.delete();
+                        return;
+                    }
+                }
+            }
+	} */
+     
+       //Spam limiting
+       if (lastMessages[message.author.id] != msg) {
+           sameMessageCount[message.author.id] = 0;
+       }
+       lastMessages[message.author.id] = msg
+       sameMessageCount[message.author.id]   = 1;
+   });
+   
+   client.on('guildMemberAdd', usr => {
+   });
+   
    client.login(config.token).catch(function() {
        console.log("[ERROR] Login failed.");
    });
