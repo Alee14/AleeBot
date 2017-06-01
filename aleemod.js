@@ -11,6 +11,8 @@
  * *************************************/
 const Discord = require('discord.js');
  const client = new Discord.Client();
+const config = require('./amtoken.json');
+
    
    var expletiveFilter = true;
    var lastMessages = {};
@@ -203,6 +205,6 @@ const Discord = require('discord.js');
 client.user.setPresence(presence);
 }
 
-   client.login('token').catch(function() {
+   client.login(config.token).catch(function() {
        console.log("[ERROR] Login failed.");
    });
