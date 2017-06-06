@@ -5,7 +5,7 @@ Also **PLEASE** don't claim it as yours.
 
 If you want to become a dev email me at alee14498@gmail.com.
 
-#LICENSE
+# LICENSE
 
 **MIT License**
 
