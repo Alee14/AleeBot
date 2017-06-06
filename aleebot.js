@@ -154,6 +154,12 @@ client.on('message', message => {
 
 });
 
+client.on('message', message => {
+    if(message.content === 'ab:suggest'){
+        message.reply('Sorry this feature is still being worked on :(');
+    }
+
+ });
 
  client.login (config.token).catch(function() {
        console.log("[ERROR] Login failed.");
