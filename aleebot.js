@@ -78,7 +78,7 @@ const config = require('./abtoken.json');
             presence.game.name = "the waiting game";
             break;
         case 17:
-            presence.game.name = "bending space";
+            presence.game.name = "da VMware World!";
             break;
         case 18:
             presence.game.name = "with hexagons";
