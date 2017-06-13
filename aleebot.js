@@ -161,6 +161,10 @@ client.on('message', message => {
 
  });
 
+ process.on('unhandledRejection', function(err, p) {
+    console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
+});
+ 
  client.login (config.token).catch(function() {
        console.log("[ERROR] Login failed.");
    });

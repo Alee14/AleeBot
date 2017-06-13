@@ -139,7 +139,7 @@ client.user.setPresence(presence);
        }
        
        if (expletiveFilter) {
-           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesucks|hentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon|horny|porn|wtf|masturbating|raping|fucked|kys)(\s|$)/i);
+           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesucks|hentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon|horny|porn|wtf|masturbating|raping|fucked|kys|fucks)(\s|$)/i);
            if (exp != -1) { //Gah! They're not supposed to say that!
                switch (Math.floor(Math.random() * 1000) % 5) {
                    case 0:
@@ -157,6 +157,8 @@ client.user.setPresence(presence);
                    case 4:
                        message.reply("Stop flipping breaking the rules. THIS IS ME: :angry:");
                        break;
+				   case 5:
+					   message.reply("AleeBot says to stop swearing/being gross or else trouble!");
                }
                message.delete();
                return;
@@ -202,6 +204,10 @@ client.user.setPresence(presence);
    
    client.on('guildMemberAdd', usr => {
    });
+   
+   process.on('unhandledRejection', function(err, p) {
+    console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
+});
    
    client.login(config.token).catch(function() {
        console.log("[ERROR] Login failed.");
