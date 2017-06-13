@@ -139,7 +139,7 @@ client.user.setPresence(presence);
        }
        
        if (expletiveFilter) {
-           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesucks|hentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon|horny|porn)(\s|$)/i);
+           var exp = msg.search(/(\s|^)(shit|shite|shitty|bullshit|fuck|fucking|ass|penis|cunt|faggot|damn|wank|wanker|nigger|bastard|piss|vagina|thisisnotarealwordbutatestword|aleesucks|hentai|asl|a55|anal|ballsack|bong|cocaine|cum|dick|dp|pedo|pube|rape|scat|semen|testes|tits|anus|arse|bitch|b1tch|b17ch|boob|cock|foreskin|hardon|horny|porn|wtf|masturbating)(\s|$)/i);
            if (exp != -1) { //Gah! They're not supposed to say that!
                switch (Math.floor(Math.random() * 1000) % 5) {
                    case 0:
