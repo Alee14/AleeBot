@@ -155,7 +155,7 @@ client.user.setPresence(presence);
                        message.reply("Cool. Now let's not forget the rules.");
                        break;
                    case 4:
-                       message.reply("Stop flipping breaking the rules. :angry:");
+                       message.reply("Stop flipping breaking the rules. THIS IS ME: :angry:");
                        break;
                }
                message.delete();
