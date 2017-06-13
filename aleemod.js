@@ -149,13 +149,13 @@ client.user.setPresence(presence);
                        message.reply("Hey! Let's not have any of that please.");
                        break;
                    case 2:
-                       message.reply("Did you just...");
+                       message.reply("AleeMod says to stop swearing or saying weird stuff pls");
                        break;
                    case 3:
                        message.reply("Cool. Now let's not forget the rules.");
                        break;
                    case 4:
-                       message.reply("If I'm not going to delete it, a mod will. Let's save them some work.");
+                       message.reply("Stop flipping breaking the rules. :angry:");
                        break;
                }
                message.delete();
