@@ -1,0 +1,10 @@
+Here is a timer you could add to aleebot
+
+newCommand("Timer", 0, "timer", "Times a thing", function(args, msgo) {
+var interval;
+function toRun() {
+msgo.reply("You wanted me to remind you to do: " + args[2]);
+clearInterval(interval)
+}
+setInterval(toRun, args[1]*60*1000);
+});
