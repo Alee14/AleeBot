@@ -1,7 +1,7 @@
-# AleeBot & AleeMod
-A Discord Bot where it can do anything and a moderation bot and made in discord.js!!!!
+# AleeBot
+A Discord Bot where it can do anything (I have no idea what's going to be so don't judge me :P)!!!!
 
-If you want to become a dev email me at alee14498@gmail.com.
+If you want to become a dev email me at andrew@alee14.ga.
 Get gource at: https://gource.io
 
 # LICENSE
