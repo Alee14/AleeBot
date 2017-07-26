@@ -168,4 +168,4 @@ client.on('message', message => {
  client.login (config.token).catch(function() {
        console.log("[ERROR] Login failed.");
    });
-// WE NEED DEVELOPERS!!!!!!!!!!
+   
