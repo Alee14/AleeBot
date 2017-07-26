@@ -1,7 +1,7 @@
 /****************************************
  * 
- *   AleeBot and AleeMod for AleeArmy Community
- *   Copyright (C) 2017 Alee14
+ *   AleeBot for AleeArmy Community and other servers
+ *   Copyright (C) 2017 AleeCorp
  *
  *   This script is made by Alee14 and other people.
  *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), and Rain.
@@ -145,10 +145,6 @@ client.on("message", function(message){
 
     if(message.content === prefix + 'ping'){
         message.reply('Pong! :ping_pong:');
-    }
-
-    if(message.content === prefix + 'pong'){ //Future reference, I don't recommend using a pong command, as they are very useless.
-        message.reply('Ping! :ping_pong:');
     }
 
     if(message.content === prefix + 'help'){
