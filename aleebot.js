@@ -4,9 +4,9 @@
  *   Copyright (C) 2017 Alee14
  *
  *   This script is made by Alee14 and other people.
- *   Some stuff was made by Victor Tran (vicr123) and swawesome95 (no longer a dev).
- *   Please say thanks to swawesome95 to laying the basics of this bot and thanks for vicr123 for
- *   letting me use some of his source code.
+ *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), and Rain.
+ *   Please say thanks to swawesome95 to laying the basics of this bot, thanks to vicr123 for
+ *   letting me use some of his source code, and Rain for improving some of the code.
  *   
  * *************************************/
 const Discord = require('discord.js');
@@ -19,6 +19,10 @@ const config = require('./abtoken.json');
     setGame();
    });
    
+var prefix = "ab:";
+var ver = "1.0.4";
+var logsChannel = "318874545593384970";
+
 	function setGame() {
     var presence = {};
     presence.game = {};
@@ -104,59 +108,70 @@ const config = require('./abtoken.json');
         case 25:
             presence.game.name = "For help ab:help";
             break;
-		case 26:
-			presence.game.name = "trying to DJ";
-			break;
+	case 26:
+	    presence.game.name = "trying to DJ";
+	    break;
     }
 client.user.setPresence(presence);
 }
 
+function wordFilter(content) {
+    var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
+    
+    if (word != -1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-client.on('message', message => {
-    if(message.content === 'ab:profile'){
+client.on("message", function(message){
+	if (wordFilter(message.content))
+	{
+		message.delete();
+		client.channels.get('318874545593384970').sendMessage(":information_source: " + message.author.username + " just swore!");
+		console.log("[INFO] " + message.author.username + " just swore!");
+		switch (Math.floor(Math.random() * 1000) % 3) {
+		message.reply("You have been caught swearing.");
+		message.author.send("You have been caught swearing in AleeArmy Community.");
+	}
+    if(message.content === prefix + 'profile'){
         message.reply(message.author.avatarURL);
     }
 
- });
-
-client.on('message', message => {
-    if(message.content === 'ab:git'){
-        message.channel.sendMessage ('Here is the github repo: https://github.com/AleeCorp/AleeBot-AleeMod');
+    if(message.content === prefix + 'git'){
+        message.channel.send ('Here is the github repo: https://github.com/AleeCorp/AleeBot-AleeMod');
     }
 
-});
-
-client.on('message', message => {
-    if(message.content === 'ab:ping'){
+    if(message.content === prefix + 'ping'){
         message.reply('Pong! :ping_pong:');
     }
 
-});
-
-client.on('message', message => {
-    if(message.content === 'ab:pong'){
+    if(message.content === prefix + 'pong'){ //Future reference, I don't recommend using a pong command, as they are very useless.
         message.reply('Ping! :ping_pong:');
     }
 
-});
-
-client.on('message', message => {
-    if(message.content === 'ab:help'){
-        message.channel.sendMessage ('```Commands for AleeBot!\n\nab:profile\nab:git\nab:ping\nab:pong\nab:owner\nab:suggest```');
+    if(message.content === prefix + 'help'){
+        message.channel.send ('```Commands for AleeBot!\n\n' +
+			      'ab:profile\n' +
+			      'ab:git\n' +
+			      'ab:ping\n' +
+			      'ab:pong\n' +
+			      'ab:owner\n' +
+			      'ab:suggest```');
     }
 
-});
-
-client.on('message', message => {
-    if(message.content === 'ab:owner'){
-		message.channel.sendMessage ('The person who made this is Alee14#9928!');
+    if(message.content === prefix + 'owner'){
+		message.channel.send ('The person who made this is Alee14#9928!');
     }
 
-});
 
-client.on('message', message => {
-    if(message.content === 'ab:suggest'){
+    if(message.content === prefix + 'suggest'){
         message.reply('Sorry this feature is still being worked on :(');
+    }
+
+    if(message.content === prefix + 'version') {
+	message.channel.send("AleeBot's version is " + ver + ".");    
     }
 
  });
@@ -168,4 +183,3 @@ client.on('message', message => {
  client.login (config.token).catch(function() {
        console.log("[ERROR] Login failed.");
    });
-   
