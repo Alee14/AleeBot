@@ -154,7 +154,8 @@ client.on("message", function(message){
 			      'ab:ping\n' +
 			      'ab:pong\n' +
 			      'ab:owner\n' +
-			      'ab:suggest```');
+			      'ab:suggest\n' +
+				  'ab:version ```');
     }
 
     if(message.content === prefix + 'owner'){
