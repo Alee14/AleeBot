@@ -114,7 +114,7 @@ var logsChannel = "318874545593384970";
     }
 client.user.setPresence(presence);
 }
-
+/*
 function wordFilter(content) {
     var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
     
@@ -123,10 +123,10 @@ function wordFilter(content) {
     } else {
         return false;
     }
-}
+} */
 
 client.on("message", function(message){
-	if (wordFilter(message.content))
+/*	if (wordFilter(message.content))
 	{
 		message.delete();
 		client.channels.get('318874545593384970').sendMessage(":information_source: " + message.author.username + " just swore!");
@@ -134,7 +134,7 @@ client.on("message", function(message){
 		switch (Math.floor(Math.random() * 1000) % 3) {
 		message.reply("You have been caught swearing.");
 		message.author.send("You have been caught swearing in AleeArmy Community.");
-	}
+	} */
     if(message.content === prefix + 'profile'){
         message.reply(message.author.avatarURL);
     }
