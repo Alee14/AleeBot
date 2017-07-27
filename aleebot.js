@@ -140,7 +140,7 @@ client.on("message", function(message){
     }
 
     if(message.content === prefix + 'git'){
-        message.channel.send ('Here is the github repo: https://github.com/AleeCorp/AleeBot-AleeMod');
+        message.channel.send ('Here is the github repo: https://github.com/AleeCorp/AleeBot');
     }
 
     if(message.content === prefix + 'ping'){
