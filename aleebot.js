@@ -4,7 +4,7 @@
  *   Copyright (C) 2017 AleeCorp
  *
  *   This script is made by Alee14 and other people.
- *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), and Rain.
+ *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), Rain and AKidFromTheUK.
  *   Please say thanks to swawesome95 to laying the basics of this bot, thanks to vicr123 for
  *   letting me use some of his source code, and Rain for improving some of the code.
  *   
