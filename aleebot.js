@@ -12,16 +12,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./abtoken.json');
-
-  client.on('ready', () => {
-       console.log("[SUCCESS] AleeBot is now ready!");
-    client.setInterval(setGame, 300000);
-    setGame();
-   });
    
 var prefix = "ab:";
 var ver = "1.0.4";
 var logsChannel = "318874545593384970";
+
+client.on('ready', () => {
+       console.log("[SUCCESS] AleeBot is now ready! Running version "+ ver +"!");
+    client.setInterval(setGame, 300000);
+    setGame();
+   });
 
 	function setGame() {
     var presence = {};
