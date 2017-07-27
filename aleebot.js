@@ -14,7 +14,7 @@ const client = new Discord.Client();
 const config = require('./abtoken.json');
    
 var prefix = "ab:";
-var ver = "1.0.4";
+var ver = "1.0.5";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -153,8 +153,8 @@ client.on("message", function(message){
 			      'ab:git\n' +
 			      'ab:ping\n' +
 			      'ab:owner\n' +
-			      'ab:suggest\n' +
-				  'ab:version ```');
+			      'ab:suggest\n\n' +
+				  "The version that AleeBot's running is " + ver + "!```");
     }
 
     if(message.content === prefix + 'owner'){
@@ -166,9 +166,6 @@ client.on("message", function(message){
         message.reply('Sorry this feature is still being worked on :(');
     }
 
-    if(message.content === prefix + 'version') {
-	message.channel.send("AleeBot's version is " + ver + ".");    
-    }
 
  });
 
