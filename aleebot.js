@@ -135,6 +135,17 @@ client.on("message", function(message){
 		message.reply("You have been caught swearing.");
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
+	
+	 if(message.content === prefix + 'help'){
+        message.channel.send ('```Commands for AleeBot!\n\n' +
+			      'ab:profile\n' +
+			      'ab:git\n' +
+			      'ab:ping\n' +
+			      'ab:owner\n' +
+			      'ab:suggest\n\n' +
+				  "The version that AleeBot's running is " + ver + "!```");
+    }
+	
     if(message.content === prefix + 'profile'){
         message.reply(message.author.avatarURL);
     }
@@ -145,16 +156,6 @@ client.on("message", function(message){
 
     if(message.content === prefix + 'ping'){
         message.reply('Pong! :ping_pong:');
-    }
-
-    if(message.content === prefix + 'help'){
-        message.channel.send ('```Commands for AleeBot!\n\n' +
-			      'ab:profile\n' +
-			      'ab:git\n' +
-			      'ab:ping\n' +
-			      'ab:owner\n' +
-			      'ab:suggest\n\n' +
-				  "The version that AleeBot's running is " + ver + "!```");
     }
 
     if(message.content === prefix + 'owner'){
