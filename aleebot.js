@@ -174,5 +174,5 @@ client.on("message", function(message){
 });
  
  client.login (config.token).catch(function() {
-       console.log("[ERROR] Login failed.");
+       console.log("[ERROR] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
    });
