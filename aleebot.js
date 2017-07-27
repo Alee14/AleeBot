@@ -152,7 +152,6 @@ client.on("message", function(message){
 			      'ab:profile\n' +
 			      'ab:git\n' +
 			      'ab:ping\n' +
-			      'ab:pong\n' +
 			      'ab:owner\n' +
 			      'ab:suggest\n' +
 				  'ab:version ```');
