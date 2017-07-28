@@ -5,8 +5,7 @@
  *
  *   This script is made by Alee14 and other people.
  *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), Rain and AKidFromTheUK.
- *   Please say thanks to swawesome95 to laying the basics of this bot, thanks to vicr123 for
- *   letting me use some of his source code, and Rain for improving some of the code.
+ *   Please say thanks to swawesome95 to laying the basics of this bot, and Rain for improving some of the code.
  *   
  * *************************************/
 const Discord = require('discord.js');
@@ -32,7 +31,7 @@ client.on('ready', () => {
     switch (Math.floor(Math.random() * 1000) % 27) {
         case 0:
             presence.game.name = "with ban buttons";
-            break; //SCRUATCHO
+            break;
         case 1:
             presence.game.name = "AleeOS or ShiftOS";
             break;
