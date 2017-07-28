@@ -142,7 +142,8 @@ client.on("message", function(message){
 			      'ab:ping\n' +
 			      'ab:owner\n' +
 			      'ab:suggest\n\n' +
-				  "The version that AleeBot's running is " + ver + "!```");
+				  "The version that AleeBot's running is " + ver + "!\n" +
+				  'Coming soon this command is going to have a rewrite!!!```');
     }
 	
     if(message.content === prefix + 'profile'){
