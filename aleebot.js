@@ -152,7 +152,7 @@ client.on("message", function(message){
 			'**ab:owner** Shows who made this bot\n' +
 			'**ab:suggest** You suggest things (working progress)\n\n' + 
 			"**The version that AleeBot's running is " + ver + "!**", true)
-			.setColor(0x00FFFF)
+			.setColor(03208d)
 			message.channel.sendEmbed(embed);
 	}
 	
