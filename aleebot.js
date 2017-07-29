@@ -12,7 +12,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./abtoken.json');
 
-var prefix = "ab:";
+var prefix = "a:";
 var ver = "1.0.6";
 var logsChannel = "318874545593384970";
 
@@ -150,7 +150,7 @@ client.on("message", function(message){
 			'**'+prefix+'git** Shows the repo of AleeBot\n' +
 			"**"+prefix+"ping** Type this command and you'll see ;)\n" +
 			'**'+prefix+'owner** Shows who made this bot\n' +
-			'**'+prefix+'suggest** You suggest things (working progress)\n\n' + 
+			'**'+prefix+'suggest** You suggest things (working progress)\n\n' +
 			"**The version that AleeBot's running is " + ver + "!**", true)
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
