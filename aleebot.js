@@ -152,7 +152,8 @@ client.on("message", function(message){
 			      'ab:suggest You suggest things (working progress)\n\n' +
 				  "The version that AleeBot's running is " + ver + "!\n" +
 				  'Coming soon this command is going to have a rewrite!!!```');
-    }
+    //Hint hint the new help system will have embed
+	}
 	
     if(message.content === prefix + 'profile'){
         message.reply(message.author.avatarURL);
@@ -175,11 +176,6 @@ client.on("message", function(message){
         message.reply('Sorry this feature is still being worked on :(');
     }
 	
-	if(message.content === prefix + 'totallynotasecreteggwinkwink')
-	message.channel.send({embed: {
-  color: 3447003,
-  description: "Hint hint the new help system will have embed"
-}});
 
  });
 
