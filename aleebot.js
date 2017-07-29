@@ -12,7 +12,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./abtoken.json');
 
-var prefix = "a:";
+var prefix = "ab:";
 var ver = "1.0.6";
 var logsChannel = "318874545593384970";
 
