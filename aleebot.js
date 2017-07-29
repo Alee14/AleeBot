@@ -21,7 +21,15 @@ client.on('ready', () => {
     client.setInterval(setGame, 300000);
     setGame();
    });
+//Only works for AleeAmry Community
+client.on("guildMemberAdd", function(member) {
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Welcome to the AleeArmy!");
+});
 
+client.on("guildMemberRemove", function(member) {
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
+});
+   
 	function setGame() {
     var presence = {};
     presence.game = {};
