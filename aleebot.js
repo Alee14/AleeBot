@@ -133,6 +133,13 @@ function wordFilter(content) {
 } */
 
 client.on("message", function(message){
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
 /*	if (wordFilter(message.content))
 	{
 		message.delete();
@@ -143,7 +150,7 @@ client.on("message", function(message){
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
 
-	 if (message.content === prefix + 'help'){
+	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
 			.addField('Commands for AleeBot!\n\n',
 			'**'+prefix+'profile** Shows your profile pic in a image\n' +
@@ -156,24 +163,24 @@ client.on("message", function(message){
 			message.channel.sendEmbed(embed);
 	}
 
-    if(message.content === prefix + 'profile'){
+    if(command === 'profile'){
         message.reply(message.author.avatarURL);
     }
 
-    if(message.content === prefix + 'git'){
+    if(command === 'git'){
         message.channel.send ('Here is the github repo: https://github.com/AleeCorp/AleeBot');
     }
 
-    if(message.content === prefix + 'ping'){
+    if(command === 'ping'){
         message.reply('Pong! :ping_pong:');
     }
 
-    if(message.content === prefix + 'owner'){
+    if(command === 'owner'){
 		message.channel.send ('The person who made this is Alee14#9928!');
     }
 
 
-    if(message.content === prefix + 'suggest'){
+    if(command === 'suggest'){
         message.reply('Sorry this feature is still being worked on :(');
     }
 
