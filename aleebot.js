@@ -10,7 +10,7 @@
  * *************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require('./abtoken.json');
+const config = require('./absettings.json');
 
 const prefix = "ab:";
 var ver = "1.0.6";
