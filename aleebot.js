@@ -137,11 +137,11 @@ client.on("message", function(message){
 	
 	 if(message.content === prefix + 'help'){
         message.channel.send ('```Commands for AleeBot!\n\n' +
-			      'ab:profile\n' +
-			      'ab:git\n' +
-			      'ab:ping\n' +
-			      'ab:owner\n' +
-			      'ab:suggest\n\n' +
+			      'ab:profile Shows your profile pic in a image\n' +
+			      'ab:git Shows the repo of AleeBot\n' +
+			      "ab:ping Type this command and you'll see ;)\n" +
+			      'ab:owner Shows who made this bot\n' +
+			      'ab:suggest You suggest things (working progress)\n\n' +
 				  "The version that AleeBot's running is " + ver + "!\n" +
 				  'Coming soon this command is going to have a rewrite!!!```');
     }
@@ -166,7 +166,12 @@ client.on("message", function(message){
     if(message.content === prefix + 'suggest'){
         message.reply('Sorry this feature is still being worked on :(');
     }
-
+	
+	if(message.content === prefix + 'testembed')
+	message.channel.send({embed: {
+  color: 3447003,
+  description: "A very simple Embed!"
+}});
 
  });
 
