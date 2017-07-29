@@ -143,7 +143,6 @@ client.on("message", function(message){
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
 	
-	}
 	 if (message.content === prefix + 'help'){
 		 var embed = new Discord.RichEmbed()
 			.addField('Commands for AleeBot!\n\n', 
