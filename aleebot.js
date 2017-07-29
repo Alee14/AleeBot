@@ -175,10 +175,10 @@ client.on("message", function(message){
         message.reply('Sorry this feature is still being worked on :(');
     }
 	
-	if(message.content === prefix + 'testembed')
+	if(message.content === prefix + 'totallynotasecreteggwinkwink')
 	message.channel.send({embed: {
   color: 3447003,
-  description: "A very simple Embed!"
+  description: "Hint hint the new help system will have embed"
 }});
 
  });
