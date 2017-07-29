@@ -1,17 +1,17 @@
 /****************************************
- * 
+ *
  *   AleeBot for AleeArmy Community and other servers
  *   Copyright (C) 2017 AleeCorp
  *
  *   This script is made by Alee14 and other people.
  *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), Rain and AKidFromTheUK.
  *   Please say thanks to swawesome95 to laying the basics of this bot, and Rain for improving some of the code.
- *   
+ *
  * *************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./abtoken.json');
-   
+
 var prefix = "ab:";
 var ver = "1.0.6";
 var logsChannel = "318874545593384970";
@@ -29,13 +29,13 @@ client.on('ready', () => {
 client.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
 });*/
-   
+
 	function setGame() {
     var presence = {};
     presence.game = {};
     presence.status = "online";
     presence.afk = false;
-	
+
     switch (Math.floor(Math.random() * 1000) % 27) {
         case 0:
             presence.game.name = "with ban buttons";
@@ -124,7 +124,7 @@ client.user.setPresence(presence);
 /*
 function wordFilter(content) {
     var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
-    
+
     if (word != -1) {
         return true;
     } else {
@@ -142,20 +142,20 @@ client.on("message", function(message){
 		message.reply("You have been caught swearing.");
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
-	
+
 	 if (message.content === prefix + 'help'){
 		 var embed = new Discord.RichEmbed()
-			.addField('Commands for AleeBot!\n\n', 
-			'**ab:profile** Shows your profile pic in a image\n' +
-			'**ab:git** Shows the repo of AleeBot\n' +
-			"**ab:ping** Type this command and you'll see ;)\n" +
-			'**ab:owner** Shows who made this bot\n' +
-			'**ab:suggest** You suggest things (working progress)\n\n' + 
+			.addField('Commands for AleeBot!\n\n',
+			'**'+prefix+'profile** Shows your profile pic in a image\n' +
+			'**'+prefix+'git** Shows the repo of AleeBot\n' +
+			"**"+prefix+"ping** Type this command and you'll see ;)\n" +
+			'**'+prefix+'owner** Shows who made this bot\n' +
+			'**'+prefix+'suggest** You suggest things (working progress)\n\n' + 
 			"**The version that AleeBot's running is " + ver + "!**", true)
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
 	}
-	
+
     if(message.content === prefix + 'profile'){
         message.reply(message.author.avatarURL);
     }
@@ -176,11 +176,11 @@ client.on("message", function(message){
     if(message.content === prefix + 'suggest'){
         message.reply('Sorry this feature is still being worked on :(');
     }
-	
+
 
  });
 
- 
+
  client.login (config.token).catch(function() {
        console.log("[ERROR] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
    });
