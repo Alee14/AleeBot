@@ -1,0 +1,28 @@
+{
+  "name": "aleebot",
+  "version": "1.0.6",
+  "description": "A Discord Bot where it can do anything!!!!",
+  "main": "aleebot.js",
+  "dependencies": {
+    "discord.js": "^11.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleeCorp/AleeBot.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "javascript"
+  ],
+  "author": "AleeCorp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AleeCorp/AleeBot/issues"
+  },
+  "homepage": "https://github.com/AleeCorp/AleeBot#readme"
+}
