@@ -13,7 +13,7 @@ const client = new Discord.Client();
 const config = require('./abtoken.json');
    
 var prefix = "ab:";
-var ver = "1.0.5";
+var ver = "1.0.6";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -143,16 +143,18 @@ client.on("message", function(message){
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
 	
-	 if(message.content === prefix + 'help'){
-        message.channel.send ('```Commands for AleeBot!\n\n' +
-			      'ab:profile Shows your profile pic in a image\n' +
-			      'ab:git Shows the repo of AleeBot\n' +
-			      "ab:ping Type this command and you'll see ;)\n" +
-			      'ab:owner Shows who made this bot\n' +
-			      'ab:suggest You suggest things (working progress)\n\n' +
-				  "The version that AleeBot's running is " + ver + "!\n" +
-				  'Coming soon this command is going to have a rewrite!!!```');
-    //Hint hint the new help system will have embed
+	}
+	 if (message.content === prefix + 'help'){
+		 var embed = new Discord.RichEmbed()
+			.addField('Commands for AleeBot!\n\n', 
+			'**ab:profile** Shows your profile pic in a image\n' +
+			'**ab:git** Shows the repo of AleeBot\n' +
+			"**ab:ping** Type this command and you'll see ;)\n" +
+			'**ab:owner** Shows who made this bot\n' +
+			'**ab:suggest** You suggest things (working progress)\n\n' + 
+			"**The version that AleeBot's running is " + ver + "!**", true)
+			.setColor(0x00FFFF)
+			message.channel.sendEmbed(embed);
 	}
 	
     if(message.content === prefix + 'profile'){
