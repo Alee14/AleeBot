@@ -153,12 +153,13 @@ client.on("message", function(message){
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
 			.addField('Commands for AleeBot!\n\n',
-			'**'+prefix+'profile** Shows your profile pic in a image\n' +
-			'**'+prefix+'git** Shows the repo of AleeBot\n' +
-			"**"+prefix+"ping** Type this command and you'll see ;)\n" +
-			'**'+prefix+'owner** Shows who made this bot\n' +
-			'**'+prefix+'suggest** You suggest things (working progress)\n\n' +
-			"**The version that AleeBot's running is " + ver + "!**", true)
+			'**'+prefix+'profile** Shows your profile pic in a image.\n' +
+			'**'+prefix+'git** Shows the repo of AleeBot.\n' +
+			"**"+prefix+"ping** Type this command and you'll see ;).\n" +
+			'**'+prefix+'owner** Shows who made this bot.\n' +
+			'**'+prefix+'suggest** You suggest things (working progress).\n' +
+      '**'+prefix+'userinfo** Tells you your info about you.', true)
+      .setFooter("**The version that AleeBot's running is " + ver + "!**")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
 	}
@@ -179,12 +180,28 @@ client.on("message", function(message){
 		message.channel.send ('The person who made this is Alee14#9928!');
     }
 
-
     if(command === 'suggest'){
         message.reply('Sorry this feature is still being worked on :(');
     }
 
+    if(command === 'userinfo'){
+         var embed = new Discord.RichEmbed()
+         .setAuthor(message.author.username)
+         .setDescription("This is your user info!")
+         .setColor(0x00FFFF)
+         .addField("Username", `${message.author.username}#${message.author.discriminator}`)
+         .addField("Created At", message.author.createdAt)
+         .setFooter("Requested by", ${message.author.username}#${message.author.discriminator)
+   			 message.channel.sendEmbed(embed);
 
+    }
+
+    if(command === 'serverinfo'){
+      var embed = new Discord.RichEmbed()
+      .addField("Coming soon!")
+      .setColor(0x00FFFF)
+      message.channel.sendEmbed(embed);
+    }
  });
 
 
