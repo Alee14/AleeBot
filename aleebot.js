@@ -13,7 +13,7 @@ const client = new Discord.Client();
 const config = require('./absettings.json');
 
 const prefix = "ab:";
-var ver = "1.0.6";
+var ver = "1.0.7";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
