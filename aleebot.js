@@ -191,7 +191,6 @@ client.on("message", function(message){
          .setColor(0x00FFFF)
          .addField("Username", `${message.author.username}#${message.author.discriminator}`)
          .addField("Created At", message.author.createdAt)
-         .setFooter("Requested by", ${message.author.username}#${message.author.discriminator)
    			 message.channel.sendEmbed(embed);
 
     }
