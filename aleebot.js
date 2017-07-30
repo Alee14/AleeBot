@@ -159,7 +159,7 @@ client.on("message", function(message){
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'userinfo** Tells you your info about you.', true)
-      .setFooter("**The version that AleeBot's running is " + ver + "!**")
+      .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
 	}
