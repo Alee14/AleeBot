@@ -177,7 +177,7 @@ client.on("message", function(message){
     }
 
     if(command === 'owner'){
-		message.channel.send ('The person who made this is Alee14#9928!');
+		message.channel.send ('The person who made this bot is Alee14#9928!');
     }
 
     if(command === 'suggest'){
