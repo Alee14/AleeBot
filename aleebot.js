@@ -204,7 +204,7 @@ client.on("message", function(message){
     }
 
     if (command === 'abinvite'){
-      message.reply('Look at your DMs.');
+      message.reply(':arrow_left: Look at your DMs.');
       message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp")
     }
  });
