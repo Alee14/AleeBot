@@ -18,7 +18,7 @@ var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
        console.log("[SUCCESS] AleeBot is now ready! Running version "+ abversion +"!");
-       client.user.setGame(`on ${client.guilds.size} servers and on version `+ abversion +``);
+       client.user.setGame(`on ${client.guilds.size} servers`);
    });
 //Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
 /*client.on("guildMemberAdd", function(member) {
@@ -156,7 +156,7 @@ client.on("message", function(message){
                   'ab:kick Kicks people\n' +
                   'ab:ban Bans People\n' +
                   "ab:rm Removes the message with a amount\n" +
-                  'Please note that we are still working on this feature!```');
+                  'Please note that we are still working on this feature! If you want to help do ab:git then go to the site and start a pull request```');
     }
 
  });
