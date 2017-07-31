@@ -92,7 +92,8 @@ client.on("message", function(message){
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'userinfo** Tells you your info about you.\n' +
       '**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
-      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.', true)
+      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
+      '**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
@@ -160,8 +161,6 @@ client.on("message", function(message){
                   'ab:kick Kicks people\n' +
                   'ab:ban Bans People\n' +
                   "ab:rm Removes the message with a amount\n" +
-                  'ab:ya Working on this\n' +
-                  'ab:suggest You suggest things (working progress)\n\n' +
                   'Please note that we are still working on this feature!```');
     }
 
