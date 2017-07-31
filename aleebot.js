@@ -158,7 +158,8 @@ client.on("message", function(message){
 			"**"+prefix+"ping** Type this command and you'll see ;).\n" +
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
-      '**'+prefix+'userinfo** Tells you your info about you.', true)
+      '**'+prefix+'userinfo** Tells you your info about you.\n' +
+      '**'+prefix+'abinvite** Lets you bring AleeBot to your server.', true)
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
@@ -201,9 +202,14 @@ client.on("message", function(message){
       .setColor(0x00FFFF)
       message.channel.sendEmbed(embed);
     }
+
+    if (command === 'abinvite'){
+      message.reply('Look at your DMs.');
+      message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp")
+    }
  });
 
- process.on('unhandledRejection', function(err, p) { 
+ process.on('unhandledRejection', function(err, p) {
    console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
 });
 
