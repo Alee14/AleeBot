@@ -149,11 +149,6 @@ client.on("message", function(message){
 
     }
 
-    if(command === 'rm'){
-      message.reply('Coming soon');
-
-    }
-
     if(command === 'mod'){
       if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner"].includes(r.name)) )
       return message.reply("Hey! Your not a Co-Owner/Admin/Moderator");
