@@ -13,12 +13,12 @@ const client = new Discord.Client();
 const config = require('./absettings.json');
 
 const prefix = "ab:";
-var ver = "1.0.8";
+var abversion = "1.0.8";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
-       console.log("[SUCCESS] AleeBot is now ready! Running version "+ ver +"!");
-       client.user.setGame(`on ${client.guilds.size} servers`);
+       console.log("[SUCCESS] AleeBot is now ready! Running version "+ abversion +"!");
+       client.user.setGame(`on ${client.guilds.size} servers and on version `+ abversion +``);
    });
 //Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
 /*client.on("guildMemberAdd", function(member) {
@@ -94,7 +94,7 @@ client.on("message", function(message){
       '**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
       '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
       '**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
-      .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
+      .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + abversion + "!")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
