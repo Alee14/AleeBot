@@ -95,7 +95,7 @@ client.on("message", function(message){
       '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
       '**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
-			.setColor(0x00FFFF)
+			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
 	}
@@ -124,7 +124,7 @@ client.on("message", function(message){
          var embed = new Discord.RichEmbed()
          .setAuthor(message.author.username)
          .setDescription("This is your user info!")
-         .setColor(0x00FFFF)
+         .setColor("#7af442")
          .addField("Username", `${message.author.username}#${message.author.discriminator}`)
          .addField("Created At", message.author.createdAt)
    			 message.channel.sendEmbed(embed);
@@ -134,7 +134,7 @@ client.on("message", function(message){
     if(command === 'serverinfo'){
       var embed = new Discord.RichEmbed()
       .addField("Coming soon!")
-      .setColor(0x00FFFF)
+      .setColor("#7af442")
       message.channel.sendEmbed(embed);
     }
 
