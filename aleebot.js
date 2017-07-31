@@ -150,13 +150,14 @@ client.on("message", function(message){
     }
 
     if(command === 'mod'){
-      if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner"].includes(r.name)) )
-      return message.reply("Hey! Your not a Co-Owner/Admin/Moderator");
-      message.channel.send ('```Commands for Staff!\n\n' +
+    //  if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner"].includes(r.name)) )
+    //  return message.reply("Hey! Your not a Co-Owner/Admin/Moderator");
+      message.reply("We're working on the moderation feature if you want to help do **"+prefix+"git** then start a git pull request. ")
+      /*message.channel.send ('```Commands for Staff!\n\n' +
                   'ab:kick Kicks people\n' +
                   'ab:ban Bans People\n' +
                   "ab:rm Removes the message with a amount\n" +
-                  'Please note that we are still working on this feature!```');
+                  'Please note that we are still working on this feature!```');*/
     }
 
  });
