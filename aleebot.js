@@ -159,7 +159,8 @@ client.on("message", function(message){
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'userinfo** Tells you your info about you.\n' +
-      '**'+prefix+'abinvite** Lets you bring AleeBot to your server.', true)
+      '**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
+      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server', true)
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
@@ -203,9 +204,14 @@ client.on("message", function(message){
       message.channel.sendEmbed(embed);
     }
 
-    if (command === 'abinvite'){
+    if (command === 'botinvite'){
       message.reply(':arrow_left: Look at your DMs.');
       message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp")
+    }
+
+    if (command === 'serverinvite'){
+      message.reply(':arrow_left: Look at your DMs.');
+      message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ")
     }
  });
 
