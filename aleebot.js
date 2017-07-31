@@ -41,10 +41,10 @@ client.on("guildMemberRemove", function(member) {
             presence.game.name = "with ban buttons";
             break;
         case 1:
-            presence.game.name = "AleeOS or ShiftOS";
+            presence.game.name = "AleeOS";
             break;
         case 2:
-            presence.game.name = "Annoy Alee";
+            presence.game.name = "with a Android device";
             break;
         case 3:
             presence.game.name = "with an internal bug";
