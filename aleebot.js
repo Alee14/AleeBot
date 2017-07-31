@@ -4,7 +4,7 @@
  *   Copyright (C) 2017 AleeCorp
  *
  *   This script is made by Alee14 and other people.
- *   Some stuff was made by Victor Tran (vicr123), swawesome95 (no longer a dev), Rain and AKidFromTheUK.
+ *   Some stuff was made by swawesome95 (no longer a dev), Rain and AKidFromTheUK.
  *   Please say thanks to swawesome95 to laying the basics of this bot, and Rain for improving some of the code.
  *
  * *************************************/
@@ -18,8 +18,7 @@ var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
        console.log("[SUCCESS] AleeBot is now ready! Running version "+ ver +"!");
-    client.setInterval(setGame, 300000);
-    setGame();
+       client.user.setGame(`on ${client.guilds.size} servers`);
    });
 //Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
 /*client.on("guildMemberAdd", function(member) {
@@ -30,97 +29,6 @@ client.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
 });*/
 
-	function setGame() {
-    var presence = {};
-    presence.game = {};
-    presence.status = "online";
-    presence.afk = false;
-
-    switch (Math.floor(Math.random() * 1000) % 27) {
-        case 0:
-            presence.game.name = "with ban buttons";
-            break;
-        case 1:
-            presence.game.name = "AleeOS";
-            break;
-        case 2:
-            presence.game.name = "with a Android device";
-            break;
-        case 3:
-            presence.game.name = "with an internal bug";
-            break;
-        case 4:
-            presence.game.name = "in the forest";
-            break;
-        case 5:
-            presence.game.name = "bot games";
-            break;
-        case 6:
-            presence.game.name = "with binary code";
-            break;
-        case 7:
-            presence.game.name = "being very cool";
-            break;
-        case 8:
-            presence.game.name = "with supa weapon";
-            break;
-        case 9:
-            presence.game.name = "solving puzzles";
-            break;
-        case 10:
-            presence.game.name = "rewinding time";
-            break;
-        case 11:
-            presence.game.name = "checking archives";
-            break;
-        case 12:
-            presence.game.name = "being unbreakable";
-            break;
-        case 13:
-            presence.game.name = "sandwiches";
-            break;
-        case 14:
-            presence.game.name = "drawing pokemon";
-            break;
-        case 15:
-            presence.game.name = "obsessing";
-            break;
-        case 16:
-            presence.game.name = "the waiting game";
-            break;
-        case 17:
-            presence.game.name = "da VMware World!";
-            break;
-        case 18:
-            presence.game.name = "with hexagons";
-            break;
-        case 19:
-            presence.game.name = "with music";
-            break;
-        case 20:
-            presence.game.name = "being a ninja";
-            break;
-        case 21:
-            presence.game.name = "if money cant buy happiness then why is it so fabulous";
-            break;
-        case 22:
-            presence.game.name = "being awesome";
-            break;
-        case 23:
-            presence.game.name = "AleeCraft";
-            break;
-        case 24:
-            presence.game.name = "AleeChat";
-            break;
-        case 25:
-            presence.game.name = "For help ab:help";
-            break;
-	case 26:
-	    presence.game.name = "trying to DJ";
-	    break;
-    }
-client.user.setPresence(presence);
-}
 /*
 function wordFilter(content) {
     var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
@@ -131,6 +39,30 @@ function wordFilter(content) {
         return false;
     }
 } */
+
+
+client.on("guildCreate", guild => {
+
+  // This event triggers when the bot joins a guild.
+
+  console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+
+  client.user.setGame(`on ${client.guilds.size} servers`);
+
+});
+
+
+
+client.on("guildDelete", guild => {
+
+  // this event triggers when the bot is removed from a guild.
+
+  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+
+  client.user.setGame(`on ${client.guilds.size} servers`);
+
+});
+
 
 client.on("message", function(message){
   if (message.author.bot) return;
@@ -164,6 +96,7 @@ client.on("message", function(message){
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
+
 	}
 
     if(command === 'profile'){
@@ -206,13 +139,26 @@ client.on("message", function(message){
 
     if (command === 'botinvite'){
       message.reply(':arrow_left: Look at your DMs.');
-      message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp")
+      message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp");
     }
 
     if (command === 'serverinvite'){
       message.reply(':arrow_left: Look at your DMs.');
-      message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ")
+      message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ");
     }
+
+    if(command === 'mod'){
+      if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner"].includes(r.name)) )
+      return message.reply("Hey! Your not a Co-Owner/Admin/Moderator");
+      message.channel.send ('```Commands for Staff!\n\n' +
+                  'ab:kick Kicks people\n' +
+                  'ab:ban Bans People\n' +
+                  "ab:rm Removes the message with a amount\n" +
+                  'ab:ya Working on this\n' +
+                  'ab:suggest You suggest things (working progress)\n\n' +
+                  'Please note that we are still working on this feature!```');
+    }
+
  });
 
  process.on('unhandledRejection', function(err, p) {
