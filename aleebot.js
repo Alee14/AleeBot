@@ -145,6 +145,12 @@ client.on("message", function(message){
     if (command === 'serverinvite'){
       message.reply(':arrow_left: Look at your DMs.');
       message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ");
+
+    }
+
+    if(command === 'rm'){
+      message.reply('Coming soon');
+
     }
 
     if(command === 'mod'){
