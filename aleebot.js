@@ -13,7 +13,7 @@ const client = new Discord.Client();
 const config = require('./absettings.json');
 
 const prefix = "ab:";
-var ver = "1.0.7";
+var ver = "1.0.8";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -160,7 +160,7 @@ client.on("message", function(message){
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'userinfo** Tells you your info about you.\n' +
       '**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
-      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server', true)
+      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.', true)
       .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + ver + "!")
 			.setColor(0x00FFFF)
 			message.channel.sendEmbed(embed);
