@@ -139,24 +139,24 @@ client.on("message", function(message){
     }
 
     if (command === 'botinvite'){
-      message.reply(':arrow_left: Look at your DMs.');
+      message.reply(':arrow_left: Continue in DMs.');
       message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp");
     }
 
     if (command === 'serverinvite'){
-      message.reply(':arrow_left: Look at your DMs.');
+      message.reply(':arrow_left: Continue in DMs.');
       message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ");
 
     }
 
     if(command === 'mod'){
-      if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner"].includes(r.name)) )
-      return message.reply("Hey! Your not a Co-Owner/Admin/Moderator");
+      if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner", "AleeBot Creator"].includes(r.name)) )
+      return message.reply("Hey! Your not a Co-Owner or Admin or Moderator!");
       message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
       message.channel.send ('```Commands for Staff!\n\n' +
-                  'ab:kick Kicks people\n' +
-                  'ab:ban Bans People\n' +
-                  "ab:rm Removes the message with a amount\n" +
+                  ''+prefix+'kick Kicks people\n' +
+                  ''+prefix'ban Bans People\n' +
+                  ""+prefiix+"rm Removes the message with a amount\n" +
                   'Please note that we are still working on this feature!```');
     }
 
