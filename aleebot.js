@@ -154,9 +154,9 @@ client.on("message", function(message){
       return message.reply("Hey! Your not a Co-Owner or Admin or Moderator!");
       message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
       message.channel.send ('```Commands for Staff!\n\n' +
-                  ''+prefix+'kick Kicks people\n' +
-                  ''+prefix'ban Bans People\n' +
-                  ""+prefiix+"rm Removes the message with a amount\n" +
+                  'ab:kick Kicks people\n' +
+                  'ab:ban Bans People\n' +
+                  "ab:rm Removes the message with a amount\n" +
                   'Please note that we are still working on this feature!```');
     }
 
