@@ -152,7 +152,7 @@ client.on("message", function(message){
     if(command === 'mod'){
       message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
       if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner", "AleeBot Creator", "Staff", "Owner","King Alee"].includes(r.name)) )
-      return message.reply("Hey! Your not a Co-Owner or Admin or Moderator!");
+      return message.reply("Hey! Your not a part of staff!");
       message.channel.send ('```Commands for Staff!\n\n' +
                   'ab:kick Kicks people\n' +
                   'ab:ban Bans People\n' +
