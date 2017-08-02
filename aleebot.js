@@ -170,13 +170,13 @@ client.on("message", function(message){
 
                     message.guild.leave();
 
-                  } else {
+                else
 
-                                  message.reply("Hey! You don't have permission to kick me out of this server!");
+                message.reply("Hey! You don't have permission to kick me out of this server!");
+                return true;
+    }
 
-                              }
 
-                              return true;
 
  });
 
