@@ -11,7 +11,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./absettings.json');
-const consts = require('./consts.js');
 
 const prefix = "ab:";
 var abversion = "1.0.8";
@@ -158,22 +157,7 @@ client.on("message", function(message){
                   'ab:kick Kicks people\n' +
                   'ab:ban Bans People\n' +
                   "ab:rm Removes the message with a amount\n" +
-                  "ab:leave Makes me leave the server\n" +
                   'Please note that we are still working on this feature!```');
-    }
-
-    if (command === "leave") {
-
-            if (message.author.id == consts.users.alee14 || message.author.id == message.guild.owner.user.id) {
-
-                message.reply("You want me to leave this server? Fine, i'm gone!").then(function() {
-
-                    message.guild.leave();
-
-                else
-
-                message.reply("Hey! You don't have permission to kick me out of this server!");
-                return true;
     }
 
 
