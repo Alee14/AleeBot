@@ -29,7 +29,7 @@ client.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
 });
 
-
+/*
 function wordFilter(content) {
     var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
 
