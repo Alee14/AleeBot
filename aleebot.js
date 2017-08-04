@@ -27,7 +27,7 @@ client.on("guildMemberAdd", function(member) {
 
 client.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
-});*/
+});
 
 
 function wordFilter(content) {
