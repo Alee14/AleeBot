@@ -21,7 +21,7 @@ client.on('ready', () => {
        client.user.setGame(`on ${client.guilds.size} servers`);
    });
 //Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
-/*client.on("guildMemberAdd", function(member) {
+client.on("guildMemberAdd", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Welcome to the AleeArmy!");
 });
 
@@ -29,7 +29,7 @@ client.on("guildMemberRemove", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
 });*/
 
-/*
+
 function wordFilter(content) {
     var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
 
