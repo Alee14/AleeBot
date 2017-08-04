@@ -22,11 +22,11 @@ client.on('ready', () => {
    });
 //Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
 client.on("guildMemberAdd", function(member) {
-	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Welcome to the AleeArmy!");
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
 });
 
 client.on("guildMemberRemove", function(member) {
-	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " Nice knowing you bye...");
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
 });
 
 /*
