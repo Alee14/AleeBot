@@ -91,11 +91,11 @@ client.on("message", function(message){
 			"**"+prefix+"ping** Type this command and you'll see ;).\n" +
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
-      '**'+prefix+'userinfo** Tells you your info about you.\n' +
-      '**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
-      '**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
-      '**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
-      .setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + abversion + "!")
+			'**'+prefix+'userinfo** Tells you your info about you.\n' +
+			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
+			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
+			'**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
+			.setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + abversion + "!")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
