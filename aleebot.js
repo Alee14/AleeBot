@@ -13,6 +13,7 @@ const client = new Discord.Client();
 const config = require('./absettings.json');
 
 const prefix = "ab:";
+const year = "2017";
 var abversion = "1.0.8";
 var logsChannel = "318874545593384970";
 
@@ -95,7 +96,7 @@ client.on("message", function(message){
 			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
 			'**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
-			.setFooter("AleeBot Copyright 2017. The version that AleeBot's running is " + abversion + "!")
+			.setFooter("AleeBot Copyright "+ year +". The version that AleeBot's running is " + abversion + "!")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
