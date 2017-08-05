@@ -19,9 +19,9 @@ var logsChannel = "318874545593384970";
 client.on('ready', () => {
        console.log("[SUCCESS] AleeBot is now ready! Running version "+ abversion +"!");
        client.user.setGame(`on ${client.guilds.size} servers`);
-       client.user.setStatus('online'))
+       client.user.setStatus('online')
    });
-//Only works for AleeAmry Community I need someone to work it for Public and it's disabled because it crashes AleeBot :(
+
 client.on("guildMemberAdd", function(member) {
 	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
 });
