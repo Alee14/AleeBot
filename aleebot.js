@@ -5,7 +5,7 @@
  *
  *   This script is made by Alee14 and other people.
  *   Some stuff was made by swawesome95 (no longer a dev), Rain and AKidFromTheUK.
- *   Please say thanks to swawesome95 to laying the basics of this bot, and Rain for improving some of the code.
+ *   Please say thanks to swawesome95 to laying the basics of this bot (which looks bad), and Rain for improving some of the code.
  *
  * *************************************/
 const Discord = require('discord.js');
