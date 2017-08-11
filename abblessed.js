@@ -251,3 +251,4 @@ screen.key(['q', 'C-c'], function(ch, key) {
 
 // Render the screen.
 screen.render();
+});
