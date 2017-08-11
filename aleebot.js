@@ -203,6 +203,17 @@ commandProcessed = true;
                   'Please note that we are still working on this feature!```');
     }
 
+    if(message.content == 'AleeBot sucks' || message.content == 'aleebot sucks' || message.content == 'AleeBot Sucks'){
+      switch (Math.floor(Math.random() * 1000) % 3) {
+      case 0:
+      message.reply('Why you hate me .-.');
+      break;
+      case 1:
+      message.reply('Okay but why you hate me?');
+      break;
+        }
+    }
+
 
 
  });
