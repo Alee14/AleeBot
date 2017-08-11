@@ -109,7 +109,7 @@ function clearBoxes() {
 }
 
 // Quit on Escape, q, or Control-C.
-screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+screen.key(['q', 'C-c'], function(ch, key) {
   return process.exit(0);
 });
 
