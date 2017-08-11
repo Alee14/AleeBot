@@ -93,8 +93,8 @@ client.on("message", function(message){
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
-	//		'**'+prefix+'userinfo** Tells you your info about you.\n' +
-	//		'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
+	    '**'+prefix+'userinfo** Tells you your info about you.\n' +
+			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
 			'**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
 			.setFooter("AleeBot Copyright "+ year +". The version that AleeBot's running is " + abversion + "!")
@@ -181,7 +181,7 @@ commandProcessed = true;
       message.channel.sendEmbed(embed);
     }
 
-/*    if (command === 'botinvite'){
+    if (command === 'botinvite'){
       message.reply(':arrow_left: Continue in DMs.');
       message.author.sendMessage("AleeBot on your server? Great! Here's the link: https://goo.gl/KDQyrp");
     }
@@ -190,7 +190,7 @@ commandProcessed = true;
       message.reply(':arrow_left: Continue in DMs.');
       message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ");
 
-    } */
+    } 
 
     if(command === 'mod'){
       message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
