@@ -6,7 +6,7 @@ var screen = blessed.screen({
   smartCSR: true
 });
 
-screen.title = 'AleeBot'+ abversion +'Console';
+screen.title = 'AleeBot '+ abversion +' Console';
 
 
 
