@@ -47,8 +47,7 @@ screen.key(['escape', 'q', 'C-c'], function(ch, key) {
   return process.exit(0);
 });
 
-// Focus our element.
-box.focus();
+
 
 // Render the screen.
 screen.render();
