@@ -42,6 +42,72 @@ var titleBox = blessed.text({
 
 screen.append(titleBox);
 
+var logBox = blessed.log({
+
+    top: 1,
+
+    left: 0,
+
+    width: "100%",
+
+    height: "100%-4",
+
+    tags: true,
+
+    style: {
+
+        fg: 'white',
+
+        bg: 'black',
+
+        scrollbar: {
+
+            bg: 'white'
+
+        }
+
+    },
+
+    padding: {
+
+        left: 1 // ,
+
+        // bottom: 2
+
+    },
+
+    scrollable: true,
+
+    alwaysScroll: true,
+
+    scrollOnInput: true,
+
+    scrollbar: true //,
+
+    //clickable: true
+
+});
+
+screen.append(logBox);
+
+
+
+function clearBoxes() {
+
+    while (lockBox.length > 0) {
+
+        var box = lockBox.pop();
+
+        box.hide();
+
+        box.destroy();
+
+    }
+
+
+
+}
+
 // Quit on Escape, q, or Control-C.
 screen.key(['escape', 'q', 'C-c'], function(ch, key) {
   return process.exit(0);
