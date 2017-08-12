@@ -14,7 +14,7 @@ const config = require('./absettings.json');
 
 const prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.8.1";
+var abversion = "1.0.8.3";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -95,6 +95,7 @@ client.on("message", function(message){
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
+      '**'+prefix+"ask** Go ask AleeBot a question and he will respond an answer.\n" +
 	    '**'+prefix+'userinfo** Tells you your info about you.\n' +
 			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
@@ -241,6 +242,20 @@ commandProcessed = true;
 
                             commandProcessed = true;
                         }
+      if(command === 'ask'){
+        var abaskanswer = [
+          "Yes.",
+          "No.",
+          "Maybe.",
+          "I don't know?"
+        ];
+        if (args[1]) {
+           message.channel.sendMessage(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
+        } else {
+          message.channel.sendMessage("Sorry, I don't know what your saying.")
+        }
+
+      }
 
  });
 
