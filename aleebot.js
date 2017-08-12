@@ -190,7 +190,7 @@ commandProcessed = true;
       message.reply(':arrow_left: Continue in DMs.');
       message.author.sendMessage("You want a invite to the AleeArmy server? Here's the link: https://discord.gg/JqgXrAJ");
 
-    } 
+    }
 
     if(command === 'mod'){
       message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
@@ -214,7 +214,30 @@ commandProcessed = true;
         }
     }
 
+    if(command === 'attack'){
 
+      abattack = command.substr(7);
+
+                            if (command.indexOf("@everyone") == -1) {
+
+                                if (command.indexOf("@here") == -1) {
+
+                                    message.channel.send("<@" + message.author.id + "> :right_facing_fist: " + abattack);
+
+                                } else {
+
+                                message.reply("Nice try, but I ain't going to interrupt everyone who is online at this time. Kinda nice to not be bothered.");
+
+                                }
+
+                            } else {
+
+                                message.reply("Nice try, but I ain't going to interrupt everyone. Kinda nice to not be bothered.");
+
+                            }
+
+                            commandProcessed = true;
+                        }
 
  });
 
