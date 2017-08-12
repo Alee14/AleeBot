@@ -259,6 +259,8 @@ commandProcessed = true;
 	
     if(command === 'say'){
       message.channel.sendMessage(args.join(" "));
+      message.delete();
+
     
     }
 
