@@ -258,7 +258,9 @@ commandProcessed = true;
       }
 	
     if(command === 'say'){
-      if(message.author.id !== config.ownerID) return;
+      if(message.author.id !== config.ownerID) 
+	   message.reply('Hey! Your not Alee14!')   
+	      return;
       message.channel.sendMessage(args.join(" "));
       message.delete();
 
