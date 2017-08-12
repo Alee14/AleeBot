@@ -258,8 +258,11 @@ commandProcessed = true;
       }
 	
     if(command === 'say'){
-      if(message.author.id !== config.ownerID) 
-	   message.reply("Hey! You're not Alee14!")   
+      if(message.author.id == 242775871059001344242775871059001344){
+	 
+	 } else {
+       message.reply("Hey! You're not Alee14!")
+	 }
 	      return;
       message.channel.sendMessage(args.join(" "));
       message.delete();
