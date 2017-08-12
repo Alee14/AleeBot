@@ -258,6 +258,7 @@ commandProcessed = true;
       }
 	
     if(command === 'say'){
+      if(message.author.id !== config.ownerID) return;
       message.channel.sendMessage(args.join(" "));
       message.delete();
 
