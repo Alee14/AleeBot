@@ -51,6 +51,8 @@ client.on("guildCreate", guild => {
 
   client.user.setGame(`on ${client.guilds.size} servers`);
 
+  guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `ab:help`.")
+
 });
 
 
