@@ -258,7 +258,7 @@ commandProcessed = true;
       }
 	
     if(command === 'say'){
-      if(message.author.id == 242775871059001344242775871059001344){
+      if(message.author.id !== config.ownerID){
 	 
 	 } else {
        message.reply("Hey! You're not Alee14!")
@@ -269,7 +269,7 @@ commandProcessed = true;
     
     }
   if(command === 'eval'){
-  if(message.author.id == 242775871059001344242775871059001344) return;
+  if(message.author.id !== config.ownerID) return;
     try {
       const code = args.join(" ");
       let evaled = eval(code);
