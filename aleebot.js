@@ -126,6 +126,7 @@ client.on("message", function(message){
     }
 
     if(command === 'uptime'){
+      //This command was ported from AstralMod
       var timeString; // What we'll eventually put into the message
 
       var uptime = parseInt(client.uptime); // Get uptime in ms
@@ -217,7 +218,7 @@ commandProcessed = true;
     }
 
     if(command === 'attack'){
-
+      //This command was ported from AstralMod
       abattack = command.substr(7);
 
                             if (command.indexOf("@everyone") == -1) {
