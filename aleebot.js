@@ -256,17 +256,12 @@ commandProcessed = true;
         }
 
       }
-	
+// Owner is only allow to do this
     if(command === 'say'){
-      if(message.author.id !== config.ownerID){
-	 
-	 } else {
-       message.reply("Hey! You're not Alee14!")
-	 }
-	    return;
+      if(message.author.id !== config.ownerID) return;
       message.channel.sendMessage(args.join(" "));
       message.delete();
-    
+
     }
   if(command === 'eval'){
   if(message.author.id !== config.ownerID) return;
