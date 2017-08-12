@@ -263,7 +263,6 @@ commandProcessed = true;
 	 } else {
        message.reply("Hey! You're not Alee14!")
 	 }
-	      return;
       message.channel.sendMessage(args.join(" "));
       message.delete();
 
