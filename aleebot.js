@@ -112,7 +112,7 @@ client.on("message", function(message){
     }
 
     if(command === 'ping'){
-        message.reply(`Pong! :ping_pong: \`${Date.now() - message.createdTimestamp} ms\``);
+        message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
     }
 
     if(command === 'suggest'){
