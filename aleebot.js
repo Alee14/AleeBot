@@ -95,7 +95,7 @@ client.on("message", function(message){
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
-      .addField('Etc:', 'avatarurl\nowner\nsuggest', true)
+      .addField('Etc:', 'avatarurl\nsuggest', true)
 			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
@@ -112,10 +112,6 @@ client.on("message", function(message){
 
     if(command === 'ping'){
         message.reply(`Pong! :ping_pong: \`${Date.now() - message.createdTimestamp} ms\``);
-    }
-
-    if(command === 'owner'){
-		message.channel.send ('The person who made this bot is Alee14#9928!');
     }
 
     if(command === 'suggest'){
