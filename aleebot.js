@@ -100,7 +100,7 @@ client.on("message", function(message){
 			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
 			'**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
-			.setFooter("AleeBot Copyright "+ year +". The version that AleeBot's running is " + abversion + "!")
+			.setFooter("AleeBot Copyright "+ year +". The version that AleeBot's running is " + abversion + "!", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
