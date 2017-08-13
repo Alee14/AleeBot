@@ -90,15 +90,16 @@ client.on("message", function(message){
 		 var embed = new Discord.RichEmbed()
       .setTitle('Commands for AleeBot ' + abversion )
       .setDescription('Every command you put in this bot must start with `ab:`')
-			.addField('Fun Stuff:', 'attack\nask\nship')
-      .addField('Info:', 'userinfo\nserverinfo')
-      .addField('Link:', 'botinvite\nserverinvite\ngit')
-      .addField('Owner Only:', 'say\neval')
-      .addField('Monitor:', 'ping\nuptime')
-      .addField('Etc:', 'avatarurl\nowner\nsuggest')
+	            .addField('Fun Stuff:', 'attack\nask\nship',true)
+      .addField('Info:', 'userinfo\nserverinfo',true)
+      .addField('Link:', 'botinvite\nserverinvite\ngit',true)
+      .addField('Owner Only:', 'say\neval',true)
+      .addField('Monitor:', 'ping\nuptime',true)
+      .addField('Etc:', 'avatarurl\nsuggest', true)
 			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
+		 	message.delete();
 
 	}
 
@@ -112,10 +113,6 @@ client.on("message", function(message){
 
     if(command === 'ping'){
         message.reply(`Pong! :ping_pong: \`${Date.now() - message.createdTimestamp} ms\``);
-    }
-
-    if(command === 'owner'){
-		message.channel.send ('The person who made this bot is Alee14#9928!');
     }
 
     if(command === 'suggest'){
@@ -164,13 +161,13 @@ commandProcessed = true;
     }
 
     if(command === 'userinfo'){
-         var embed = new Discord.RichEmbed()
-         .setAuthor(message.author.username)
-         .setDescription("This is your user info!")
-         .setColor("#7af442")
-         .addField("Username", `${message.author.username}#${message.author.discriminator}`)
-         .addField("Created At", message.author.createdAt)
-   			 message.channel.sendEmbed(embed);
+	    var embed = new Discord.RichEmbed()
+           .setAuthor(message.author.username)
+           .setDescription("This is your user info!")
+           .setColor("#7af442")
+           .addField("Username", `${message.author.username}#${message.author.discriminator}`)
+           .addField("Created At", message.author.createdAt)
+	message.channel.sendEmbed(embed);
 
     }
 
