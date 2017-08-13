@@ -1,5 +1,5 @@
 # AleeBot
-A Discord Bot where it can do anything (I have no idea what's going to be so don't judge me :P)!!!!
+A discord bot where it can do cool things.
 
 If you want to become a dev do a pull request, also submit a problem/suggestion to Issues.
 Get gource at: https://gource.io
