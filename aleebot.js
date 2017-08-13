@@ -107,7 +107,7 @@ client.on("message", function(message){
     }
 
     if(command === 'git'){
-        message.channel.send ('Here is the github repo: https://github.com/AleeCorp/AleeBot');
+        message.channel.send ("Here's the github repo: https://github.com/AleeCorp/AleeBot");
     }
 
     if(command === 'ping'){
