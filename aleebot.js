@@ -96,7 +96,7 @@ client.on("message", function(message){
       .addField('Owner Only:', 'say\neval')
       .addField('Monitor:', 'ping\nuptime')
       .addField('Etc:', 'avatarurl\nowner\nsuggest')
-			.setFooter("AleeBot "+ abversion +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
