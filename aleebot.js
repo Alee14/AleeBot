@@ -216,13 +216,12 @@ commandProcessed = true;
 
     if(command === 'attack'){
       //This command was ported from AstralMod
-      abattack = command.substr(7);
 
                             if (command.indexOf("@everyone") == -1) {
 
                                 if (command.indexOf("@here") == -1) {
 
-                                    message.channel.send("<@" + message.author.id + "> :right_facing_fist: " + abattack);
+                                    message.channel.send("<@" + message.author.id + "> :right_facing_fist: " + args);
 
                                 } else {
 
