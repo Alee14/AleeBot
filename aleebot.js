@@ -14,7 +14,7 @@ const config = require('./absettings.json');
 
 const prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.8.4";
+var abversion = "1.0.8.5";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -88,20 +88,14 @@ client.on("message", function(message){
 
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
-			.addField('Commands for AleeBot '+ abversion +'.\n\n',
-			'**'+prefix+'avatarurl** Shows your profile pic in a image.\n' +
-			'**'+prefix+'git** Shows the repo of AleeBot.\n' +
-			"**"+prefix+"ping** It tells you the pingtime and a ping pong icon.\n" +
-			'**'+prefix+'owner** Shows who made this bot.\n' +
-			'**'+prefix+'suggest** You suggest things (working progress).\n' +
-      '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
-      '**'+prefix+"ask** Go ask AleeBot a question and he will respond an answer.\n" +
-      '**'+prefix+"ship** It tells you who you ship with.\n" +
-	    '**'+prefix+'userinfo** Tells you your info about you.\n' +
-			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
-			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
-			'**'+prefix+'mod** (For staff only) Displays the commands for moderation.\n', true)
-			.setFooter("AleeBot Copyright "+ year +". The version that AleeBot's running is " + abversion + "!", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+      .setTitle('Commands for AleeBot ' + abversion )
+			.addField('Fun Stuff:', 'attack\nask\nship')
+      .addField('Info:', 'userinfo\nserverinfo')
+      .addField('Link:', 'botinvite\nserverinvite\ngit')
+      .addField('Owner Only:', 'say\neval')
+      .addField('Monitor:', 'ping\nuptime')
+      .addField('Etc:', 'avatarurl\nowner\nsuggest')
+			.setFooter("AleeBot Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
