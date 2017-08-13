@@ -85,19 +85,6 @@ client.on("message", function(message){
 		message.reply("You have been caught swearing.");
 		message.author.send("You have been caught swearing in AleeArmy Community.");
 	} */
-	
-	function isMod(member) {
-    if (member != null) {
-        if (member.roles.find("name", "King Alee") || member.roles.find("name", "Co-Owner") || member.roles.find("name", "Admin") || member.roles.find("name", "Moderator") || member.roles.find("name", "Upper Council of Explorers") || member.roles.find("name", "Lower Council of Explorers") || member.roles.find("name", "Pseudo-Moderator") || member.roles.find("name", "Staff") || member.roles.find("name", "The Crew") || member.roles.find("name", "Mini-Mods")) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
-}
-	
 
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
@@ -174,60 +161,14 @@ commandProcessed = true;
     }
 
     if(command === 'userinfo'){
-	    
-	                        if (!isMod(message.member)) {
-                        var member = message.member;
-                        embed = new Discord.RichEmbed("test");
-                        embed.setAuthor(getUserString(member), member.user.displayAvatarURL);
-                        embed.setColor("#FF0000");
-                        embed.setDescription("User Information");
+	    var embed = new Discord.RichEmbed()
+           .setAuthor(message.author.username)
+           .setDescription("This is your user info!")
+           .setColor("#7af442")
+           .addField("Username", `${message.author.username}#${message.author.discriminator}`)
+           .addField("Created At", message.author.createdAt)
+	message.channel.sendEmbed(embed);
 
-                        {
-                            var msg = "**Created** " + member.user.createdAt.toUTCString() + "\n";
-                            if (member.joinedAt.getTime() == 0) {
-                                msg += "**Joined** -∞... and beyond! Discord seems to be giving incorrect info... :(";
-                            } else {
-                                msg += "**Joined** " + member.joinedAt.toUTCString();
-                            }
-
-                            embed.addField("Timestamps", msg);
-                        }
-
-                        {
-                            var msg = "**Current Display Name** " + member.displayName + "\n";
-                            msg += "**Username** " + member.user.username + "\n";
-                            if (member.nickname != null) {
-                                msg += "**Nickname** " + member.nickname;
-                            } else {
-                                msg += "**Nickname** No nickname";
-                            }
-
-                            embed.addField("Names", msg);
-                        }
-
-                        /*if (member.lastMessageID != null) {
-                            var lastMessage = null;
-                            
-                            message.channel.fetchMessage(member.lastMessage).then(function(retrievedMessage) {
-                                lastMessage = retrievedMessage;
-                            }).catch(function () {
-                                lastMessage = -1;
-                            });
-                            
-                            while (lastMessage == null) {}
-                            
-                            if (lastMessage != -1) {
-                                var msg = "**ID** " + member.lastMessageID + "\n";
-                                msg += "**Contents** " + lastMessage.content;
-                                
-                                embed.addField("Last Message", msg);
-                            }
-                        }*/
-
-                        embed.setFooter("User ID: " + member.user.id);
-                        //embed.setDescription(msg);
-                        message.channel.send("", {embed: embed});
-                        commandProcessed = true;
     }
 
     if(command === 'serverinfo'){
