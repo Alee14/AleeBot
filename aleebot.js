@@ -96,7 +96,7 @@ client.on("message", function(message){
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
       '**'+prefix+"ask** Go ask AleeBot a question and he will respond an answer.\n" +
-      '**'+prefix+"ship** It tells you who you ship with."
+      '**'+prefix+"ship** It tells you who you ship with.\n" +
 	    '**'+prefix+'userinfo** Tells you your info about you.\n' +
 			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
