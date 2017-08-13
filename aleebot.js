@@ -88,8 +88,8 @@ client.on("message", function(message){
 
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
-			.addField('Commands for AleeBot!\n\n',
-			'**'+prefix+'profile** Shows your profile pic in a image.\n' +
+			.addField('Commands for AleeBot '+ abversion +'.\n\n',
+			'**'+prefix+'avatarurl** Shows your profile pic in a image.\n' +
 			'**'+prefix+'git** Shows the repo of AleeBot.\n' +
 			"**"+prefix+"ping** It tells you the pingtime and a ping pong icon.\n" +
 			'**'+prefix+'owner** Shows who made this bot.\n' +
@@ -107,7 +107,7 @@ client.on("message", function(message){
 
 	}
 
-    if(command === 'profile'){
+    if(command === 'avatarURL'){
         message.reply(message.author.avatarURL);
     }
 
