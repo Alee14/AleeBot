@@ -14,7 +14,7 @@ const config = require('./absettings.json');
 
 const prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.8.3";
+var abversion = "1.0.8.4";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -96,6 +96,7 @@ client.on("message", function(message){
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
       '**'+prefix+"ask** Go ask AleeBot a question and he will respond an answer.\n" +
+      '**'+prefix+"ship** It tells you who you ship with."
 	    '**'+prefix+'userinfo** Tells you your info about you.\n' +
 			'**'+prefix+'botinvite** Lets you bring AleeBot to your server.\n' +
 			'**'+prefix+'serverinvite** Invites you to the AleeArmy Server.\n' +
@@ -279,6 +280,9 @@ commandProcessed = true;
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
        }
      }
+    if(command === 'ship'){
+      message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
+    }
  });
 
 const clean = text => {
