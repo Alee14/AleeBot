@@ -91,7 +91,7 @@ client.on("message", function(message){
 			.addField('Commands for AleeBot!\n\n',
 			'**'+prefix+'profile** Shows your profile pic in a image.\n' +
 			'**'+prefix+'git** Shows the repo of AleeBot.\n' +
-			"**"+prefix+"ping** Type this command and you'll see ;).\n" +
+			"**"+prefix+"ping** It tells you the pingtime and a ping pong icon.\n" +
 			'**'+prefix+'owner** Shows who made this bot.\n' +
 			'**'+prefix+'suggest** You suggest things (working progress).\n' +
       '**'+prefix+'uptime** It tells you how long AleeBot has been on for.\n' +
