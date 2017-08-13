@@ -23,12 +23,12 @@ client.on('ready', () => {
        client.user.setStatus('online')
    });
 
-client.on("guildMemberAdd", function(member) {
-	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
+client.on("guildMemberAdd", member => {
+  member.guild.channel.get('275846808930877440').send('**' + member.user.username + '**, has joined the server.');
 });
 
-client.on("guildMemberRemove", function(member) {
-	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
+client.on("guildMemberRemove", member => {
+ member.guild.channel.get('275846808930877440').send('**' + member.user.username + '**, has left the server.')
 });
 
 /*
@@ -90,7 +90,7 @@ client.on("message", function(message){
 		 var embed = new Discord.RichEmbed()
       .setTitle('Commands for AleeBot ' + abversion )
       .setDescription('Every command you put in this bot must start with `ab:`')
-	            .addField('Fun Stuff:', 'attack\nask\nship',true)
+	    .addField('Fun Stuff:', 'attack\nask\nship',true)
       .addField('Info:', 'userinfo\nserverinfo',true)
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
