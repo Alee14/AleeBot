@@ -103,7 +103,7 @@ client.on("message", function(message){
 
 	}
 
-    if(command === 'avatarURL'){
+    if(command === 'avatarurl'){
         message.reply(message.author.avatarURL);
     }
 
