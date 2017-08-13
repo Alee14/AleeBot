@@ -89,13 +89,14 @@ client.on("message", function(message){
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
       .setTitle('Commands for AleeBot ' + abversion )
+      .setDescription('Every command you put in this bot must start with `ab:`')
 			.addField('Fun Stuff:', 'attack\nask\nship')
       .addField('Info:', 'userinfo\nserverinfo')
       .addField('Link:', 'botinvite\nserverinvite\ngit')
       .addField('Owner Only:', 'say\neval')
       .addField('Monitor:', 'ping\nuptime')
       .addField('Etc:', 'avatarurl\nowner\nsuggest')
-			.setFooter("AleeBot Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+			.setFooter("AleeBot "+ abversion +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
