@@ -23,12 +23,14 @@ client.on('ready', () => {
        client.user.setStatus('online')
    });
 
-client.on("guildMemberAdd", member => {
-  member.guild.channel.get('275846808930877440').send('**' + member.user.username + '**, has joined the server.');
+   client.on("guildMemberAdd", function(member) {
+     member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
+
 });
 
-client.on("guildMemberRemove", member => {
- member.guild.channel.get('275846808930877440').send('**' + member.user.username + '**, has left the server.')
+client.on("guildMemberRemove", function(member) {
+  member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
+
 });
 
 /*
