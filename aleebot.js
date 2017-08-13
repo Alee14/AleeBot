@@ -116,7 +116,7 @@ client.on("message", function(message){
     }
 
     if(command === 'ping'){
-        message.reply('Pong! :ping_pong:');
+        message.reply(`Pong! :ping_pong: \`${Date.now() - message.createdTimestamp} ms\``);
     }
 
     if(command === 'owner'){
