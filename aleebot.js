@@ -247,7 +247,9 @@ commandProcessed = true;
           "Yes.",
           "No.",
           "Maybe.",
-          "I don't know?"
+          "I don't know?",
+          "Hmm let me think :thinking:",
+          "ERROR 3029131 OVERFLOW!!!!"
         ];
         if (args[1]) {
            message.channel.sendMessage(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
