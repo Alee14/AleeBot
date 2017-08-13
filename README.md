@@ -1,5 +1,5 @@
 # AleeBot
-A discord bot where it can do cool things.
+A chat bot for discord written in discord.js.
 
 If you want to become a dev do a pull request, also submit a problem/suggestion to Issues.
 Get gource at: https://gource.io
