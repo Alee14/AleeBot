@@ -112,7 +112,7 @@ client.on("message", function(message){
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
-      .addField('Etc:', 'avatarurl\nsuggest', true)
+      .addField('Etc:', 'avatarurl\nsuggest\nplan', true)
 			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
@@ -206,15 +206,11 @@ commandProcessed = true;
 
     }
 
-    if(command === 'mod'){
-      message.reply("This is working progress if you want to help do **"+prefix+"git** then go to the site and start a pull request")
-      if(!message.member.roles.some(r=>["Admin", "Moderator","Co-Owner", "AleeBot Creator", "Staff", "Owner","King Alee"].includes(r.name)) )
-      return message.reply("Hey! You're not a staff!");
-      message.channel.send ('```Commands for Staff!\n\n' +
-                  'ab:kick Kicks people\n' +
-                  'ab:ban Bans People\n' +
-                  "ab:rm Removes the message with a amount\n" +
-                  'Please note that we are still working on this feature!```');
+    if(command === 'plan'){
+      message.channel.send ('```Plans for future versions of AleeBot\n\n' +
+                  '1. AI\n' +
+                  '2. Playing Music\n' +
+                  "3. Error Handler\n```");
     }
 
     if(message.content == 'AleeBot sucks'){
