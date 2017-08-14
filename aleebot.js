@@ -258,6 +258,7 @@ commandProcessed = true;
           "Maybe.",
           "I don't know?",
           "Hmm let me think :thinking:",
+          "Sorry my brain can't handle right now :/"
           ":red_circle: ERROR 3029131 OVERFLOW!!!! *explodes*"
         ];
         if (args[1]) {
