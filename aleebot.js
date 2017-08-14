@@ -329,6 +329,10 @@ commandProcessed = true;
      }
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
+    } catch(err) {
+      let embed = new Discord.RichEmbed()
+      .setAuthor("Help... A error as occured");
+      embed.setDescription("An error just happen: " + err)
     }
 
   /*  else
