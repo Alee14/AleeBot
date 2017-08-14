@@ -258,7 +258,7 @@ commandProcessed = true;
           "Maybe.",
           "I don't know?",
           "Hmm let me think :thinking:",
-          ":red_circle: ERROR 3029131 OVERFLOW!!!!"
+          ":red_circle: ERROR 3029131 OVERFLOW!!!! *explodes*"
         ];
         if (args[1]) {
            message.channel.sendMessage(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
