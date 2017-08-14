@@ -38,15 +38,7 @@ client.on('ready', () => {
        client.user.setStatus('online')
    });
 
-   client.on("guildMemberAdd", function(member) {
-     member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
 
-});
-
-client.on("guildMemberRemove", function(member) {
-  member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
-
-});
 
 /*
 function wordFilter(content) {
@@ -339,6 +331,6 @@ const clean = text => {
    console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
 });
 
- client.login (config.token).catch(function() {
+ client.login (config.abtoken).catch(function() {
        console.log("[ERROR] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
    });
