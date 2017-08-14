@@ -330,14 +330,6 @@ commandProcessed = true;
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
     }
 
-    if(command === 'plan'){
-       var embed = new Discord.RichEmbed()
-       .setTitle('Plans for future versions')
-       .addField('1. Ai')
-                ('2. Playing Music')
-                ('3. More fun stuff :)' ,true)
-      message.channel.sendEmbed(embed);
-    }
   /*  else
       message.reply("Erm... This isn't a command buddy if you need help type `ab:help`.")
       return; */
