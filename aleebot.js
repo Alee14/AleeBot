@@ -34,7 +34,7 @@ var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
        console.log("[SUCCESS] AleeBot is now ready! Running version "+ abversion +"!");
-       client.user.setGame(`on ${client.guilds.size} servers`);
+       client.user.setGame(`with other bots c:`);
        client.user.setStatus('online')
    });
 
@@ -58,7 +58,6 @@ client.on("guildCreate", guild => {
 
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
-  client.user.setGame(`on ${client.guilds.size} servers`);
 
   guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `ab:help`.")
 
@@ -72,7 +71,6 @@ client.on("guildDelete", guild => {
 
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 
-  client.user.setGame(`on ${client.guilds.size} servers`);
 
 });
 
@@ -97,7 +95,7 @@ client.on("message", function(message){
 
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
-      .setTitle('Commands for AleeBot ' + abversion )
+      .setTitle(`Commands for AleeBot ` + abversion + `and running on ${client.guilds.size}`)
       .setDescription('Every command you put in this bot must start with '+ prefix)
 	    .addField('Fun Stuff:', 'attack\nask\nship',true)
       .addField('Info:', 'userinfo\nserverinfo',true)
