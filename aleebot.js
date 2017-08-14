@@ -329,7 +329,7 @@ commandProcessed = true;
      }
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
-
+    }
 
  });
 
