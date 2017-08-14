@@ -331,10 +331,6 @@ commandProcessed = true;
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
     } else {
           message.reply("Erm... This isn't a command buddy if you need help type `ab:help`.")
-    } catch(err) {
-      let embed = new Discord.RichEmbed()
-      .setAuthor("Help... A error as occured");
-      embed.setDescription("An error just happen: " + err)
     }
 
 
