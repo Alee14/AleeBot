@@ -333,9 +333,9 @@ commandProcessed = true;
     if(command === 'plan'){
        var embed = new Discord.RichEmbed()
        .setTitle('Plans for future versions')
-       .addField('1. Ai\n' +
-                 '2. Playing music\n' +
-                 '3. More fun stuff :)')
+       .addField('1. Ai')
+                ('2. Playing Music')
+                ('3. More fun stuff :)' ,true)
       message.channel.sendEmbed(embed);
     }
   /*  else
