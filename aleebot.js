@@ -276,17 +276,55 @@ commandProcessed = true;
     }
   if(command === 'eval'){
   if(message.author.id !== config.ownerID) return;
-    try {
-      const code = args.join(" ");
-      let evaled = eval(code);
+  const argseval = message.content.split(" ").slice(1);
+		try {
+			var code = argseval.join(" ");
+			var evaled = eval(code);
 
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
+			if (typeof evaled !== "string")
+				evaled = require("util").inspect(evaled);
+			message.delete();
 
-      message.channel.send(clean(evaled), {code:"xl"});
-    } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-       }
+			message.channel.send({
+				embed: {
+					color: 3191350,
+					author: {
+						name: "Eval is working!",
+						icon_url: message.author.displayAvatarURL
+					},
+					fields: [{
+							name: '**:inbox_tray: Input**',
+							value: `\`\`\`js\n${code}\n\`\`\``
+						},
+						{
+							name: '**:outbox_tray: Output**',
+							value: `\`\`\`js\n${clean(evaled)}\n\`\`\``
+						}
+					],
+				}
+			})
+		} catch (err) {
+			message.delete();
+
+			message.channel.send({
+				embed: {
+					color: 3191350,
+					author: {
+						name: "Error",
+						icon_url: message.author.displayAvatarURL
+					},
+					fields: [{
+							name: '**Please check your code.**',
+							value: `\`\`\`xl\n${clean(err)}\n\`\`\``
+						},
+						{
+							name: '**Output**',
+							value: `\`\`\`js\n${clean(evaled)}\n\`\`\``
+						}
+					],
+				}
+			})
+		}
      }
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
