@@ -29,7 +29,7 @@ const config = require('./absettings.json');
 
 var prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.8.5";
+var abversion = "1.0.9";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
