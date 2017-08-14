@@ -208,9 +208,8 @@ commandProcessed = true;
 
     if(command === 'plan'){
       message.channel.send ('```Plans for future versions of AleeBot\n\n' +
-                  '1. AI\n' +
-                  '2. Playing Music\n' +
-                  "3. Error Handler\n```");
+                  '1. Playing Music\n' +
+                  "2. Error Handler\n```");
     }
 
     if(message.content == 'AleeBot sucks'){
