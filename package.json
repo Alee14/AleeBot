@@ -1,10 +1,10 @@
 {
   "name": "aleebot",
-  "version": "1.0.6",
-  "description": "A Discord Bot where it can do anything!!!!",
+  "version": "1.0.8.5",
+  "description": "A chat bot for discord written in discord.js.",
   "main": "aleebot.js",
   "dependencies": {
-    "discord.js": "^11.1.0"
+    "discord.js": "^11.1.0",
   },
   "devDependencies": {},
   "scripts": {
