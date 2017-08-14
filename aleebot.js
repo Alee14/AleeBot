@@ -112,7 +112,7 @@ client.on("message", function(message){
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
-      .addField('Etc:', 'avatarurl\nsuggest', true)
+      .addField('Etc:', 'avatarurl\nsuggest\nplans', true)
 			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
@@ -328,6 +328,13 @@ commandProcessed = true;
      }
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
+    }
+
+    if(command === 'plan'){
+       var embed = new Discord.RichEmbed()
+       .setTitle('Plans for the future versions')
+       .addField('1. Ai\n2. Play music', true)
+      message.channel.sendEmbed(embed);
     }
   /*  else
       message.reply("Erm... This isn't a command buddy if you need help type `ab:help`.")
