@@ -217,7 +217,7 @@ commandProcessed = true;
                   'Please note that we are still working on this feature!```');
     }
 
-    if(message.content == 'AleeBot sucks' || message.content == 'aleebot sucks' || message.content == 'AleeBot Sucks'){
+    if(message.content == 'AleeBot sucks'){
       switch (Math.floor(Math.random() * 1000) % 3) {
       case 0:
       message.reply('Why you hate me .-.');
