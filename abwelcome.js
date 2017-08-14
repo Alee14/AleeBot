@@ -22,6 +22,6 @@ process.on('unhandledRejection', function(err, p) {
   console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
 });
 
-client.login (config.token).catch(function() {
+client.login (config.aawtoken).catch(function() {
       console.log("[ERROR] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
   });
