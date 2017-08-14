@@ -290,6 +290,8 @@ commandProcessed = true;
      }
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
+    } else {
+      message.channel.send("Erm... This isn't a command buddy if you need help type `ab:help`.")
     }
  });
 
