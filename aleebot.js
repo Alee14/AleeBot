@@ -95,7 +95,7 @@ client.on("message", function(message){
 
 	 if (command === 'help'){
 		 var embed = new Discord.RichEmbed()
-      .setTitle(`Commands for AleeBot ` + abversion + `and running on ${client.guilds.size}`)
+      .setTitle(`Commands for AleeBot ` + abversion + ` and running on ${client.guilds.size} servers.`)
       .setDescription('Every command you put in this bot must start with '+ prefix)
 	    .addField('Fun Stuff:', 'attack\nask\nship',true)
       .addField('Info:', 'userinfo\nserverinfo',true)
