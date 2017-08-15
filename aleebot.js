@@ -198,7 +198,7 @@ commandProcessed = true;
     if(command === 'plan'){
       message.channel.send ('```Plans for future versions of AleeBot\n\n' +
                   '1. Playing Music\n' +
-                  "2. Error Handler\n```");
+                  "If you want a suggestion go DM alee14.\n```");
     }
 
 
@@ -306,6 +306,14 @@ commandProcessed = true;
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
     }
+
+    try{
+
+   }catch(err){
+   message.reply('Error: '+ err);
+   console.log('A error just happend! Details: '+ err)
+   }
+
 
  });
 
