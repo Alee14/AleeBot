@@ -27,7 +27,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./absettings.json');
 
-var prefix = "ab:";
+var prefix = "abb:";
 const year = "2017";
 var abversion = "1.0.9 Beta";
 var logsChannel = "318874545593384970";
