@@ -34,7 +34,7 @@ var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
        console.log("[SUCCESS] AleeBot is now ready! Running version "+ abversion +"!");
-       client.user.setGame(`with other bots c:`);
+       client.user.setGame(`with version ` + abversion);
        client.user.setStatus('online')
    });
 
