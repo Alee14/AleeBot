@@ -10,7 +10,6 @@ client.on('ready', () => {
 
    client.on("guildMemberAdd", function(member) {
      member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
-     member.addRole(member.guild.role.find("name", "Member"));
 
 });
 
