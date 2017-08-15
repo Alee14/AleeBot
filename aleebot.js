@@ -310,8 +310,8 @@ commandProcessed = true;
     try{
 
    }catch(err){
-   message.reply('Error: '+ err);
-   console.log('A error just happend! Details: '+ err)
+   message.channel.send(':no_entry_sign: Error: '+ err);
+   console.log('[ERROR] '+ err)
    }
 
 
