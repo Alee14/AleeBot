@@ -184,7 +184,7 @@ message.reply(":clock1: AleeBot has been up for " + timeString + " hours.");
 commandProcessed = true;
     }
 
-    if(command === 'userinfo'){
+    if(command === 'userinfo'){ // This command was ported from Precipitation by OfficialRain
 	    var embed = new Discord.RichEmbed()
   		.setAuthor(message.author.username, message.author.avatarURL)
   		.setDescription("Here's some information about your user.")
