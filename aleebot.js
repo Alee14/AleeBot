@@ -103,11 +103,28 @@ client.on("message", function(message){
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
       .addField('Etc:', 'avatarurl\nsuggest\nplan', true)
-			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created by Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
-	}
+	} else {
+    message.channel.send ('```Commands for AleeBot '+ abversion +'\n\n' +
+                ''+prefix+'avatarurl\n' +
+                ''+prefix+'git\n' +
+                ''+prefix+'ping\n' +
+                ''+prefix+'suggest\n' +
+                ''+prefix+'uptime\n' +
+                ''+prefix+'userinfo\n' +
+                ''+prefix+'serverinfo\n' +
+                ''+prefix+'botinvite\n' +
+                ''+prefix+'serverinvite\n' +
+                ''+prefix+'plan\n' +
+                ''+prefix+'attack\n' +
+                ''+prefix+'ask\n' +
+                ''+prefix+'ship\n\n' +
+                "Copyright "+ year +". Created by Alee14\n```");
+  }
+
 
     if(command === 'avatarurl'){
         message.reply(message.author.avatarURL);
