@@ -107,8 +107,9 @@ client.on("message", function(message){
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
 
-	} else {
-    message.channel.send ('```Commands for AleeBot '+ abversion +'\n\n' +
+	} /* This feature is broken
+    else if {
+    message.channel.send ("```Commands for AleeBot "+ abversion +".\nYou are using this view because this bot doesn't have permission to send embed link.\n\n" +
                 ''+prefix+'avatarurl\n' +
                 ''+prefix+'git\n' +
                 ''+prefix+'ping\n' +
@@ -123,7 +124,7 @@ client.on("message", function(message){
                 ''+prefix+'ask\n' +
                 ''+prefix+'ship\n\n' +
                 "Copyright "+ year +". Created by Alee14\n```");
-  }
+  } */
 
 
     if(command === 'avatarurl'){
