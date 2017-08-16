@@ -24,12 +24,13 @@
  *
  **************************************/
 const Discord = require('discord.js');
+const blessed = require('blessed');
 const client = new Discord.Client();
 const config = require('./absettings.json');
 
-var prefix = "abb:";
+var prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.9 Beta";
+var abversion = "1.0.9";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
