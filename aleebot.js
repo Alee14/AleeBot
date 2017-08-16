@@ -24,12 +24,13 @@
  *
  **************************************/
 const Discord = require('discord.js');
+const blessed = require('blessed');
 const client = new Discord.Client();
 const config = require('./absettings.json');
 
 var prefix = "ab:";
 const year = "2017";
-var abversion = "1.0.8.5";
+var abversion = "1.0.9";
 var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
@@ -59,7 +60,7 @@ client.on("guildCreate", guild => {
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
 
-  guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `ab:help`.")
+  guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `"+prefix+"help`.")
 
 });
 
@@ -77,6 +78,7 @@ client.on("guildDelete", guild => {
 
 client.on("message", function(message){
   if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
   if (!message.content.startsWith(prefix)) return;
 
   let command = message.content.split(" ")[0];
@@ -102,13 +104,30 @@ client.on("message", function(message){
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
-      .addField('Etc:', 'avatarurl\nsuggest\nplan', true)
-			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created By Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+      .addField('Etc:', 'avatarurl\nplan', true)
+			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created by Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
-		 	message.delete();
 
-	}
+	} /* This feature is broken
+    else if {
+    message.channel.send ("```Commands for AleeBot "+ abversion +".\nYou are using this view because this bot doesn't have permission to send embed link.\n\n" +
+                ''+prefix+'avatarurl\n' +
+                ''+prefix+'git\n' +
+                ''+prefix+'ping\n' +
+                ''+prefix+'suggest\n' +
+                ''+prefix+'uptime\n' +
+                ''+prefix+'userinfo\n' +
+                ''+prefix+'serverinfo\n' +
+                ''+prefix+'botinvite\n' +
+                ''+prefix+'serverinvite\n' +
+                ''+prefix+'plan\n' +
+                ''+prefix+'attack\n' +
+                ''+prefix+'ask\n' +
+                ''+prefix+'ship\n\n' +
+                "Copyright "+ year +". Created by Alee14\n```");
+  } */
+
 
     if(command === 'avatarurl'){
         message.reply(message.author.avatarURL);
@@ -122,9 +141,6 @@ client.on("message", function(message){
         message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
     }
 
-    if(command === 'suggest'){
-        message.reply('Sorry this feature is still being worked on :(');
-    }
 
     if(command === 'uptime'){
       //This command was ported from AstralMod
@@ -167,14 +183,15 @@ message.reply(":clock1: AleeBot has been up for " + timeString + " hours.");
 commandProcessed = true;
     }
 
-    if(command === 'userinfo'){
+    if(command === 'userinfo'){ // This command was ported from Precipitation by OfficialRain
 	    var embed = new Discord.RichEmbed()
-           .setAuthor(message.author.username)
-           .setDescription("This is your user info!")
-           .setColor("#7af442")
-           .addField("Username", `${message.author.username}#${message.author.discriminator}`)
-           .addField("Created At", message.author.createdAt)
-	message.channel.sendEmbed(embed);
+  		.setAuthor(message.author.username, message.author.avatarURL)
+  		.setDescription("Here's some information about your user.")
+  		.addField("Names", "**Username:** " + message.author.username + "\n**Display Name:** " + message.member.displayName)
+  		.addField("Identity", "**User ID:** " + message.author.id + "\n**Discriminator:** " + message.author.discriminator)
+  		.addField("Create and Join Times", "**Created account at:** " + message.member.user.createdAt + "\n**Joined server at:** " + message.member.joinedAt)
+  		.setColor("#7af442")
+	     message.channel.sendEmbed(embed);
 
     }
 
@@ -199,19 +216,9 @@ commandProcessed = true;
     if(command === 'plan'){
       message.channel.send ('```Plans for future versions of AleeBot\n\n' +
                   '1. Playing Music\n' +
-                  "2. Error Handler\n```");
+                  "If you want a suggestion go DM alee14.\n```");
     }
 
-    if(message.content == 'AleeBot sucks'){
-      switch (Math.floor(Math.random() * 1000) % 3) {
-      case 0:
-      message.reply('Why you hate me .-.');
-      break;
-      case 1:
-      message.reply('Okay but why you hate me?');
-      break;
-        }
-    }
 
     if(command === 'attack'){
       //This command was ported from AstralMod
@@ -239,12 +246,14 @@ commandProcessed = true;
       if(command === 'ask'){
         var abaskanswer = [
           "Yes.",
+          "Nope. Just kidding :P",
+          "Definitely!",
           "No.",
-          "Maybe.",
+          "Yep. Just kidding :P",
+          "I doubt it.",
+          "Maybe?",
           "I don't know?",
-          "Hmm let me think :thinking:",
-          "Sorry my brain can't handle right now :/",
-          ":red_circle: ERROR 3029131 OVERFLOW!!!! *explodes*"
+          "Hmm let me think :thinking:"
         ];
         if (args[1]) {
            message.channel.sendMessage(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
@@ -315,6 +324,14 @@ commandProcessed = true;
     if(command === 'ship'){
       message.channel.send(":ship: "+ message.author.username + " x " + message.guild.members.random().displayName);
     }
+
+    try{
+
+   }catch(err){
+   message.channel.send(':no_entry_sign: Error: '+ err);
+   console.log('[ERROR] '+ err)
+   }
+
 
  });
 
