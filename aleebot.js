@@ -103,7 +103,7 @@ client.on("message", function(message){
       .addField('Link:', 'botinvite\nserverinvite\ngit',true)
       .addField('Owner Only:', 'say\neval',true)
       .addField('Monitor:', 'ping\nuptime',true)
-      .addField('Etc:', 'avatarurl\nsuggest\nplan', true)
+      .addField('Etc:', 'avatarurl\nplan', true)
 			.setFooter("AleeBot "+ abversion +" Copyright "+ year +". Created by Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
 			.setColor("#7af442")
 			message.channel.sendEmbed(embed);
@@ -140,9 +140,6 @@ client.on("message", function(message){
         message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
     }
 
-    if(command === 'suggest'){
-        message.reply('Sorry this feature is still being worked on :(');
-    }
 
     if(command === 'uptime'){
       //This command was ported from AstralMod
