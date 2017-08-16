@@ -186,12 +186,13 @@ commandProcessed = true;
 
     if(command === 'userinfo'){
 	    var embed = new Discord.RichEmbed()
-           .setAuthor(message.author.username)
-           .setDescription("This is your user info!")
-           .setColor("#7af442")
-           .addField("Username", `${message.author.username}#${message.author.discriminator}`)
-           .addField("Created At", message.author.createdAt)
-	message.channel.sendEmbed(embed);
+  		.setAuthor(message.author.username, message.author.avatarURL)
+  		.setDescription("Here's some information about your user.")
+  		.addField("Names", "**Username:** " + message.author.username + "\n**Display Name:** " + message.member.displayName)
+  		.addField("Identity", "**User ID:** " + message.author.id + "\n**Discriminator:** " + message.author.discriminator)
+  		.addField("Create and Join Times", "**Created account at:** " + message.member.user.createdAt + "\n**Joined server at:** " + message.member.joinedAt)
+  		.setColor("#7af442")
+	     message.channel.sendEmbed(embed);
 
     }
 
