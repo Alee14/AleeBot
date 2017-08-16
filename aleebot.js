@@ -77,6 +77,7 @@ client.on("guildDelete", guild => {
 
 client.on("message", function(message){
   if (message.author.bot) return;
+  if (message.channel.type === "dm") return;
   if (!message.content.startsWith(prefix)) return;
 
   let command = message.content.split(" ")[0];
