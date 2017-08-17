@@ -22,7 +22,19 @@ client.on("guildMemberRemove", function(member) {
 client.on('message', message => {
   for (x = 0; x < profanities.length; x++) {
     if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
-        message.reply('Hey! Don\'t say that word!')
+        client.channels.get('318874545593384970').sendMessage(":information_source: " + message.author.username + " just swore!");
+        console.log('[WARNING] '+ message.author.username +' just swore!')
+        switch (Math.floor(Math.random() * 1000) % 3) {
+          case 0:
+          message.reply('Keep this server clean buddy!');
+          break;
+          case 1:
+          message.reply('We want this server PG!');
+          break;
+          case 2:
+          message.reply('Hmm. You like swearing a lot well some other people don\'t!')
+          break;
+        }
         message.delete();
         return;
     }
