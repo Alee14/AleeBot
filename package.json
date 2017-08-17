@@ -1,10 +1,12 @@
 {
   "name": "aleebot",
-  "version": "1.0.8.5",
-  "description": "A chat bot for discord written in discord.js.",
+  "version": "1.1.0",
+  "description": "A chat bot for discord written in discord.js",
   "main": "aleebot.js",
   "dependencies": {
-    "discord.js": "^11.1.0",
+    "blessed": "^0.1.81",
+    "fs": "^0.0.1-security",
+    "discord.js": "^11.1.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,12 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/AleeCorp/AleeBot.git"
   },
-  "keywords": [
-    "discord",
-    "discord-bot",
-    "javascript"
-  ],
-  "author": "AleeCorp",
+  "author": "alee14",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AleeCorp/AleeBot/issues"
