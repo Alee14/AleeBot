@@ -35,7 +35,7 @@ timeString = hours + ":" + uptimeMinutes // We don't need to add an extra 0.
 
 
 
-message.reply("AleeBot has been up for " + timeString + " hours. Looks like i'm not tired :wink:");
+message.reply("It looks like AleeBot has been up for " + timeString + " hours.");
 
 commandProcessed = true;
 }
