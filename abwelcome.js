@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const profanities = require('profanities');
 const client = new Discord.Client();
 const config = require('./absettings.json');
 
@@ -16,6 +17,16 @@ client.on('ready', () => {
 client.on("guildMemberRemove", function(member) {
   member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
 
+});
+
+client.on('message', message => {
+  for (x = 0; x < profanities.length; x++) {
+    if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
+        message.reply('Hey! Don\'t say that word!')
+        message.delete();
+        return;
+    }
+  }
 });
 
 process.on('unhandledRejection', function(err, p) {

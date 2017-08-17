@@ -5,8 +5,9 @@
   "main": "aleebot.js",
   "dependencies": {
     "blessed": "^0.1.81",
+    "discord.js": "^11.1.0",
     "fs": "^0.0.1-security",
-    "discord.js": "^11.1.0"
+    "profanities": "^2.5.0"
   },
   "devDependencies": {},
   "scripts": {
