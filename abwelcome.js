@@ -15,7 +15,7 @@ client.on('ready', () => {
 });
 
 client.on("guildMemberRemove", function(member) {
-  member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has left the server");
+  member.guild.channels.find("name", "welcomes-and-byes").sendMessage(`**${member.user.username}** has left the server`);
 
 });
 
