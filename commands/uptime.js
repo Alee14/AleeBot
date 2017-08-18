@@ -39,3 +39,24 @@ message.reply("It looks like AleeBot has been up for " + timeString + " hours.")
 
 commandProcessed = true;
 }
+
+exports.conf = {
+  enabled: true,
+
+  guildOnly: false,
+
+  aliases: [],
+
+  permLevel: 0
+
+};
+
+exports.help = {
+
+  name: 'uptime',
+
+  description: 'It will tell you how long AleeBot has been on for.',
+
+  usage: 'uptime'
+
+};

@@ -17,3 +17,23 @@ if (args[1]) {
   message.channel.sendMessage("Sorry, I don't know what your saying.")
 }
 }
+exports.conf = {
+  enabled: true,
+
+  guildOnly: false,
+
+  aliases: [],
+
+  permLevel: 0
+
+};
+
+exports.help = {
+
+  name: 'ask',
+
+  description: 'Go ask AleeBot a question let\'s see what AleeBot\'s response!',
+
+  usage: 'ask [args]'
+
+};

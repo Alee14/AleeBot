@@ -33,3 +33,24 @@ var embed = new Discord.RichEmbed()
               ''+prefix+'ask\n' +
               ''+prefix+'ship\n\n' +
               "Copyright "+ year +". Created by Alee14\n```"); */
+  exports.conf = {
+    enabled: true,
+
+    guildOnly: false,
+
+    aliases: ['h', 'halp'],
+
+    permLevel: 0
+
+    };
+
+
+    exports.help = {
+
+    name: 'help',
+
+    description: 'Displays all the available commands for your permission level.',
+
+    usage: 'help [command]'
+
+    };

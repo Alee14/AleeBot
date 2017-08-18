@@ -11,3 +11,24 @@ exports.run = (client, message, args, config) => {
    message.channel.sendEmbed(embed);
 
 }
+
+exports.conf = {
+  enabled: true,
+
+  guildOnly: false,
+
+  aliases: [],
+
+  permLevel: 0
+
+};
+
+exports.help = {
+
+  name: 'userinfo',
+
+  description: 'It will tell your user info!',
+
+  usage: 'userinfo'
+
+};
