@@ -24,48 +24,50 @@
  *
  **************************************/
 const Discord = require('discord.js');
+const moment = require('moment');
 const blessed = require('blessed');
 const fs = require('fs');
 const client = new Discord.Client();
 const config = require('./absettings.json');
+const log = message => {
+
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+
+};
 
 
 var logsChannel = "318874545593384970";
 
+
+client.commands = new Discord.Collection();
+
+client.aliases = new Discord.Collection();
+  fs.readdir('./commands/', (err, files) => {
+    if (err) console.error(err);
+    log(`Loading a total of ${files.length} commands.`);
+    files.forEach(f => {
+      let props = require(`./commands/${f}`);
+      log(`Loading Command: ${props.help.name}. Done!`);
+      client.commands.set(props.help.name, props);
+      props.conf.aliases.forEach(alias => {
+        client.aliases.set(alias, props.help.name);
+      });
+    });
+  });
+
+
 client.on('ready', () => {
-  console.log("[SUCCESS] AleeBot is now ready! Running version "+ config.abversion +"!");
+  log("[>] AleeBot is now ready! Running version "+ config.abversion +"!");
   client.user.setPresence({ game: { name: 'with version '+ config.abversion +'', type: 0 } });
   client.user.setStatus('online')
   });
-
-   fs.readdir("./events/", (err, files) => {
-     if (err) return console.error(err);
-     files.forEach(file => {
-       let eventFunction = require(`./events/${file}`);
-       let eventName = file.split(".")[0];
-       // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-       client.on(eventName, (...args) => eventFunction.run(client, ...args));
-     });
-   });
-
-
-/*
-function wordFilter(content) {
-    var word = content.search(/\b(fuck|fag|faggot|fuck|fuk|fuc|fucc|ho|phuck|hentai|porn|slut|bitch|succ|fucking|shit|ass|asshole|mofo|motherfucker|fucker|damn|hell|dick|cock|sex|cunt|nigger|nigga)+\b/i);
-
-    if (word != -1) {
-        return true;
-    } else {
-        return false;
-    }
-} */
 
 
 client.on("guildCreate", guild => {
 
   // This event triggers when the bot joins a guild.
 
-  console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+  log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
 
   guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `"+ config.prefix +"help`.")
@@ -78,7 +80,7 @@ client.on("guildDelete", guild => {
 
   // this event triggers when the bot is removed from a guild.
 
-  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+  log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 
 
 });
@@ -96,6 +98,7 @@ client.on("message", function(message){
   let commandFile = require(`./commands/${command}.js`);
   commandFile.run(client, message, args, config);
 } catch (err) {
+  message.reply (`:no_entry_sign: Error!\nThe command ${command} isn't found. (Reported to console.)`)
   console.error(err);
 }
 
@@ -112,9 +115,9 @@ client.on("message", function(message){
  });
 
  process.on('unhandledRejection', function(err, p) {
-   console.log("[ERROR | UNCAUGHT PROMISE] " + err.stack);
+   log("[X | UNCAUGHT PROMISE] " + err.stack);
 });
 
  client.login (config.abtoken).catch(function() {
-       console.log("[ERROR] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
+       log("[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
    });

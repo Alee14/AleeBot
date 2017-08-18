@@ -5,3 +5,24 @@ exports.run = (client, message, args, config) => {
   message.delete();
 
 }
+
+exports.conf = {
+  enabled: true,
+
+  guildOnly: false,
+
+  aliases: [],
+
+  permLevel: 0
+
+};
+
+exports.help = {
+
+  name: 'say',
+
+  description: 'You cannot use this command host of the bot can use it!',
+
+  usage: 'say [input]'
+
+};

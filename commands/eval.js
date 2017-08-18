@@ -57,3 +57,24 @@ const argseval = message.content.split(" ").slice(1);
     })
   }
 }
+
+exports.conf = {
+  enabled: true,
+
+  guildOnly: false,
+
+  aliases: [],
+
+  permLevel: 0
+
+};
+
+exports.help = {
+
+  name: 'eval',
+
+  description: 'It injects code but you cannot use it only the person host it is allow!',
+
+  usage: 'eval [code]'
+
+};
