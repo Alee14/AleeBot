@@ -34,6 +34,8 @@ var logsChannel = "318874545593384970";
 
 client.on('ready', () => {
   console.log("[SUCCESS] AleeBot is now ready! Running version "+ config.abversion +"!");
+  client.user.setGame(`with version ` + config.abversion);
+  client.user.setStatus('online')
   });
 
    fs.readdir("./events/", (err, files) => {
@@ -46,31 +48,6 @@ client.on('ready', () => {
      });
    });
 
-
-   function setGame() {
-       var presence = {
-           game: {
-               type: 0
-           },
-           status: "online",
-
-           afk: false
-       };
-
-       switch (Math.floor(Math.random() * 1000) % 35) {
-           case 0:
-              presence.game.name = "For help: ab:help";
-              break;
-           case 1:
-              presence.game.name = "Running version "+ config.abversion +"";
-              break;
-           case 2:
-              presence.game.name = `Running on ${client.guilds.size} servers`;
-           case 3:
-              presence.game.name = "with other bots c:"
-             }
-             client.user.setPresence(presence);
-             }
 
 /*
 function wordFilter(content) {
