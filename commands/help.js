@@ -6,6 +6,7 @@ exports.run = (client, message, args, config) => {
 var embed = new Discord.RichEmbed()
  .setTitle(`Commands for AleeBot ` + config.abversion + ` and running on ${client.guilds.size} servers.`)
  .setDescription('Every command you put in this bot must start with `ab:`')
+ .setThumbnail("https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
  .addField('Fun Stuff:', 'attack\nask\nship',true)
  .addField('Info:', 'userinfo\nserverinfo',true)
  .addField('Link:', 'botinvite\nserverinvite\ngit',true)
