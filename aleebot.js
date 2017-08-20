@@ -31,7 +31,7 @@ const client = new Discord.Client();
 const config = require('./absettings.json');
 const log = message => {
 
-  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
 
 };
 
@@ -42,35 +42,40 @@ var logsChannel = "318874545593384970";
 client.commands = new Discord.Collection();
 
 client.aliases = new Discord.Collection();
-  fs.readdir('./commands/', (err, files) => {
+fs.readdir('./commands/', (err, files) => {
     if (err) console.error(err);
     log(`Loading a total of ${files.length} commands.`);
     files.forEach(f => {
-      let props = require(`./commands/${f}`);
-      log(`Loading Command: ${props.help.name}. Done!`);
-      client.commands.set(props.help.name, props);
-      props.conf.aliases.forEach(alias => {
-        client.aliases.set(alias, props.help.name);
-      });
+        let props = require(`./commands/${f}`);
+        log(`Loading Command: ${props.help.name}. Done!`);
+        client.commands.set(props.help.name, props);
+        props.conf.aliases.forEach(alias => {
+            client.aliases.set(alias, props.help.name);
+        });
     });
-  });
+});
 
 
 client.on('ready', () => {
-  log("[>] AleeBot is now ready! Running version "+ config.abversion +"!");
-  client.user.setPresence({ game: { name: 'with version '+ config.abversion +'', type: 0 } });
-  client.user.setStatus('online')
-  });
+    log("[>] AleeBot is now ready! Running version " + config.abversion + "!");
+    client.user.setPresence({
+        game: {
+            name: 'with version ' + config.abversion + '',
+            type: 0
+        }
+    });
+    client.user.setStatus('online')
+});
 
 
 client.on("guildCreate", guild => {
 
-  // This event triggers when the bot joins a guild.
+    // This event triggers when the bot joins a guild.
 
-  log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+    log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
 
-  guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `"+ config.prefix +"help`.")
+    guild.defaultChannel.sendMessage(":wave: Hello I am AleeBot thanks for inviting me to your server for help type `" + config.prefix + "help`.")
 
 });
 
@@ -78,46 +83,37 @@ client.on("guildCreate", guild => {
 
 client.on("guildDelete", guild => {
 
-  // this event triggers when the bot is removed from a guild.
+    // this event triggers when the bot is removed from a guild.
 
-  log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+    log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 
 
 });
 
 
-client.on("message", function(message){
-  if (message.author.bot) return;
-  if (message.channel.type === "dm") return;
-  if(message.content.indexOf(config.prefix) !== 0) return;
+client.on("message", function(message) {
+    if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
+    if (message.content.indexOf(config.prefix) !== 0) return;
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 
-  try {
-  let commandFile = require(`./commands/${command}.js`);
-  commandFile.run(client, message, args, config);
-} catch (err) {
-  message.reply (`:no_entry_sign: Error!\nThe command ${command} isn't found. (Reported to console.)`)
-  console.error(err);
-}
+    try {
+        let commandFile = require(`./commands/${command}.js`);
+        commandFile.run(client, message, args, config);
+    } catch (err) {
+        message.reply(`:no_entry_sign: Error!\nThe command ${command} isn't found. (Reported to console.)`)
+        console.error(err);
+    }
 
-/*	if (wordFilter(message.content))
-	{
-		message.delete();
-		client.channels.get('318874545593384970').sendMessage(":information_source: " + message.author.username + " just swore!");
-		console.log("[INFO] " + message.author.username + " just swore!");
-		switch (Math.floor(Math.random() * 1000) % 3) {
-		message.reply("You have been caught swearing.");
-		message.author.send("You have been caught swearing in AleeArmy Community.");
-	} */
 
- });
-
- process.on('unhandledRejection', function(err, p) {
-   log("[X | UNCAUGHT PROMISE] " + err.stack);
 });
 
- client.login (config.abtoken).catch(function() {
-       log("[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
-   });
+process.on('unhandledRejection', function(err, p) {
+    log("[X | UNCAUGHT PROMISE] " + err.stack);
+});
+
+client.login(config.abtoken).catch(function() {
+    log("[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
+});
