@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 //const config = require('./absettings.json');
 //const abversion = require(config.abversion)
-exports.run = (client, message, args, config) => {
+exports.run = (client, message, args, config, abversion) => {
 
 var embed = new Discord.RichEmbed()
- .setTitle(`Commands for AleeBot ` + config.abversion + ` and running on ${client.guilds.size} servers.`)
+ .setTitle(`Commands for AleeBot ` + abversion + ` and running on ${client.guilds.size} servers.`)
  .setDescription('Every command you put in this bot must start with `ab:`')
  .setThumbnail("https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
  .addField('Fun Stuff:', 'attack\nask\nship',true)
@@ -13,7 +13,7 @@ var embed = new Discord.RichEmbed()
  .addField('Owner Only:', 'say\neval',true)
  .addField('Monitor:', 'ping\nuptime',true)
  .addField('Etc:', 'avatarurl', true)
- .setFooter("AleeBot "+ config.abversion +" Copyright "+ config.year +". Created by Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+ .setFooter("AleeBot "+ abversion +" Copyright 2017. Created by Alee14", "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
  .setColor("#7af442")
  message.channel.sendEmbed(embed);
 } /* This feature is broken

@@ -1,6 +1,6 @@
 /****************************************
  *
- *   AleeBot for AleeArmy Community and other servers
+ *   AleeBot 1.1.1 for AleeArmy Community and other servers
  *   Copyright (C) 2017 AleeCorp
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,15 +29,12 @@ const blessed = require('blessed');
 const fs = require('fs');
 const client = new Discord.Client();
 const config = require('./absettings.json');
+const abversion = "1.1.1";
 const log = message => {
 
     console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
 
 };
-
-
-var logsChannel = "318874545593384970";
-
 
 client.commands = new Discord.Collection();
 
@@ -57,10 +54,10 @@ fs.readdir('./commands/', (err, files) => {
 
 
 client.on('ready', () => {
-    log("[>] AleeBot is now ready! Running version " + config.abversion + "!");
+    log("[>] AleeBot is now ready! Running version " + abversion + "!");
     client.user.setPresence({
         game: {
-            name: 'with version ' + config.abversion + '',
+            name: 'with version ' + abversion,
             type: 0
         }
     });
@@ -101,7 +98,7 @@ client.on("message", function(message) {
 
     try {
         let commandFile = require(`./commands/${command}.js`);
-        commandFile.run(client, message, args, config);
+        commandFile.run(client, message, args, config, abversion);
     } catch (err) {
         message.reply(`:no_entry_sign: Error!\nThe command ${command} isn't found. (Reported to console.)`)
         console.error(err);
