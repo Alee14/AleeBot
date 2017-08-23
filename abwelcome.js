@@ -11,8 +11,7 @@ client.on('ready', () => {
 
    client.on("guildMemberAdd", function(member) {
      member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server")
-     message.author.sendMessage(`Welcome to the AleeArmy Server **${member.user.username}**! Make sure to read the rules first and wait until Alee or a staff makes you part of member!`);
-
+    
 });
 
 client.on("guildMemberRemove", function(member) {
