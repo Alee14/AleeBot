@@ -1,6 +1,6 @@
 /****************************************
  *
- *   AleeBot 1.1.1 for AleeArmy Community and other servers
+ *   AleeBot for AleeArmy Community and other servers
  *   Copyright (C) 2017 AleeCorp
  *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
