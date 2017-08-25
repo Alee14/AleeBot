@@ -100,8 +100,8 @@ client.on("message", function(message) {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args, config, abversion);
     } catch (err) {
-        message.reply(`:no_entry_sign: Error!\nThe command ${command} isn't found. (Reported to console.)`)
-        console.error(err);
+        message.channel.send(":no_entry_sign: Error!\n`"+ err +"` (Reported to console.)");
+        log(err);
     }
 
 
