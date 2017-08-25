@@ -100,7 +100,7 @@ client.on("message", function(message) {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args, config, abversion);
     } catch (err) {
-        message.channel.send(":no_entry_sign: Error!\n`"+ err +"` (Reported to console.)");
+        message.channel.send(":no_entry_sign: Error!\n`"+ err +"`");
         log(err);
     }
 
