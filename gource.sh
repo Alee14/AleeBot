@@ -1,1 +1,1 @@
-gource -f
+gource -f --key

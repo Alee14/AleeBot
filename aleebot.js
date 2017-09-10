@@ -54,7 +54,7 @@ fs.readdir('./commands/', (err, files) => {
 
 
 client.on('ready', () => {
-    log("[>] AleeBot is now ready! Running version " + abversion + "!");
+    log(`[>] AleeBot is now ready! Running version ${abversion} in ${client.guilds.size} guilds!`);
     client.user.setPresence({
         game: {
             name: 'with version ' + abversion + '',
@@ -100,7 +100,7 @@ client.on("message", function(message) {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args, config, abversion);
     } catch (err) {
-        message.channel.send(":no_entry_sign: Error!\n`"+ err +"`");
+        message.channel.send(`:no_entry_sign: Error!\n The command ${command} isn't found!`);
         log(err);
     }
 
