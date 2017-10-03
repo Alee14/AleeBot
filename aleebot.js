@@ -59,7 +59,7 @@ client.on('ready', () => {
     log(`[>] AleeBot is now ready! Running version ${abversion} in ${client.guilds.size} guilds`);
     client.user.setPresence({
         game: {
-            name: 'with version' +abversion,
+            name: 'with version ' +abversion,
             type: 0
         }
     });
