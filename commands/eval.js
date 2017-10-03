@@ -51,11 +51,11 @@ const argseval = message.content.split(" ").slice(1);
           {
             name: '**Output**',
             value: `\`\`\`js\n${clean(evaled)}\n\`\`\``
-          }
-        ],
-      }
-    })
-  }
+					}
+				],
+			}
+		})
+	}
 }
 
 exports.conf = {

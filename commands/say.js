@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 exports.run = (client, message, args, config) => {
-  if(message.author.id !== config.ownerID) return;
+  if(message.author.id !== config.ownerID)   
+  message.reply(":no_entry: **NOPE!** Sorry buddy Alee is only allow to say this command.") 
+  else {
   message.channel.sendMessage(args.join(" "));
   message.delete();
-
+  }
 }
 
 exports.conf = {
