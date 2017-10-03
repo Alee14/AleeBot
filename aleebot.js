@@ -36,6 +36,25 @@ const log = message => {
 
 };
 
+function setGame() {
+    var games = [
+        "with version " + abversion,
+        "attacking AstralMod",
+        "with stuff",
+        "with Alee",
+        "games"
+    ]
+
+    client.user.setPresence({
+        status: 'online',
+        afk: false,
+        game: {
+            type: 0,
+            name: games[Math.floor(Math.random() * games.length)]
+        }
+    })
+}
+
 client.commands = new Discord.Collection();
 
 client.aliases = new Discord.Collection();
@@ -55,12 +74,6 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
     log(`[>] AleeBot is now ready! Running version ${abversion} in ${client.guilds.size} guilds!`);
-    client.user.setPresence({
-        game: {
-            name: 'with version ' + abversion + '',
-            type: 0
-        }
-    });
     client.user.setStatus('online')
 });
 
