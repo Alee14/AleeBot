@@ -1,7 +1,10 @@
 # AleeBot
-A chat bot for discord written in discord.js.
+Welcome to the AleeBot github repo!
+So here's the planned features so far
+[x] Electron
+[x] Embed help
 
-If you want to become a dev do a pull request, also submit a problem/suggestion to issues.
+If you want to help do a pull request, also submit a problem/suggestion to issues.
 Get gource at: https://gource.io
 
 # License
