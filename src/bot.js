@@ -12,7 +12,7 @@ const config = require('./absettings.json');
 
 client.on('ready', () => {
 	console.log("[>] AleeBot is now ready!")
-	console.log("Running version " + abVersion + `and in ${client.guilds.size} guilds`)
+	console.log("Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
 	 client.user.setPresence({ 
         game: { 
             name: 'with version ' + abVersion, 
