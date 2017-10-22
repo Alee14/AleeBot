@@ -15,13 +15,49 @@ client.on('ready', () => {
 	console.log("[i] Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
 	 client.user.setPresence({ 
         game: { 
-            name: 'with version ' + abVersion, 
+            name: `ab:help | ${client.guilds.size} servers`, 
             type: 0 
         } 
 	 });
 	client.user.setStatus('online')
 });
 
+client.on("guildCreate", guild => {
+ 
+    console.log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+	
+	client.user.setPresence({ 
+        game: { 
+            name: `ab:help | ${client.guilds.size} servers`, 
+            type: 0 
+        } 
+	 });
+ 
+});
+ 
+ 
+client.on("guildDelete", guild => {
+ 
+    console.log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
+	
+	client.user.setPresence({ 
+        game: { 
+            name: `ab:help | ${client.guilds.size} servers`, 
+            type: 0 
+        } 
+	 });
+ 
+ 
+});
+
+client.on('guildMemberAdd', member => {
+	if (member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server"));
+	else return;
+});
+
+client.on('guildMemberRemove', member => {
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(`**${member.user.username}** has left the server`).catch
+});
 
 client.on("message", function(message) { 
     if (message.author.bot) return; 
