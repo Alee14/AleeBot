@@ -6,7 +6,7 @@
 **********************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client(); 
-const abVersion = "2.0.0"; 
+const abVersion = "2.0.0 Beta"; 
 const prefix = "abb:"
 const config = require('./absettings.json'); 
 
@@ -51,13 +51,13 @@ client.on("guildDelete", guild => {
 });
 
 client.on('guildMemberAdd', member => {
-	if (member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server"));
-	else return;
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(member.toString() + " has joined the server");
 });
 
 client.on('guildMemberRemove', member => {
-	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(`**${member.user.username}** has left the server`).catch
+	member.guild.channels.find("name", "welcomes-and-byes").sendMessage(`**${member.user.username}** has left the server`);
 });
+
 
 client.on("message", function(message) { 
     if (message.author.bot) return; 
@@ -69,8 +69,17 @@ client.on("message", function(message) {
  
 	let args = message.content.split(" ").slice(1);
 	
-	if(command === 'test'){
-		message.reply(`[SUCCESS] This command is temporarily so this command will be deleted\nRunning version ` + abVersion);
+	if(command === 'help'){
+		var embed = new Discord.RichEmbed() 
+		.setAuthor('AleeBot '+ abVersion +' Commands', "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+		.addField('**ab:ping** Ping Pong!', true)
+		.setFooter("AleeCorp Copyright 2017")
+		.setColor("#1fd619")
+		message.channel.sendEmbed(embed); 
+	}
+	
+	if(command === 'ping'){
+		message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
 	}
 	
 });
