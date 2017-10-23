@@ -73,14 +73,29 @@ client.on("message", function(message) {
     if (command === 'help') {
         var embed = new Discord.RichEmbed()
             .setAuthor('AleeBot ' + abVersion + ' Commands', "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
-            .addField('**ab:ping** Ping Pong!', true)
+            .addField('**ab:ping** Ping Pong!', true) // I don't know why it's like this, but okay.
+            .addField('**ab:uptime** AleeBot uptime.', true)
             .setFooter("AleeCorp Copyright 2017")
             .setColor("#1fd619")
-        message.channel.sendEmbed(embed);
+        message.channel.send({embed});
     }
 
     if (command === 'ping') {
         message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
+    }
+    
+    if(command === 'uptime') {
+        var uptime = parseInt(client.uptime);
+		uptime = Math.floor(uptime / 1000);
+		var uptimeMinutes = Math.floor(uptime / 60);
+		var minutes = uptime % 60;
+		var hours = 0;
+		while (uptimeMinutes >= 60) {
+			hours++;
+			uptimeMinutes = uptimeMinutes - 60;
+		}
+		var uptimeSeconds = minutes % 60;
+        message.channel.send(":clock3: AleeBot has been up for " + hours + " hours, " + uptimeMinutes + " minutes, and " + uptimeSeconds + " seconds.")
     }
 
 });
