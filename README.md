@@ -10,7 +10,8 @@ Get gource at: https://gource.io
 # Contributors
 Here's the list of people who helped me with AleeBot
 1. Alee14
-2.
+2. OfficialRain (Rain)
+3.
 
 **Please note if you contribute to this please put your name here.**
 
