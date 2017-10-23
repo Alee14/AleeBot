@@ -82,6 +82,20 @@ client.on("message", function(message) {
     if (command === 'ping') {
         message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
     }
+    
+    if(command === 'uptime') {
+        var uptime = parseInt(client.uptime);
+			uptime = Math.floor(uptime / 1000);
+			var uptimeMinutes = Math.floor(uptime / 60);
+			var minutes = uptime % 60;
+			var hours = 0;
+			while (uptimeMinutes >= 60) {
+				hours++;
+				uptimeMinutes = uptimeMinutes - 60;
+			}
+			var uptimeSeconds = minutes % 60;
+        message.channel.send(":clock3: AleeBot has been up for " + hours + " hours, " + uptimeMinutes + " minutes, and " + uptimeSeconds + " seconds.")
+    }
 
 });
 client.login(config.abtoken).catch(function() {
