@@ -1,8 +1,8 @@
 /*********************************************
  *
- *		AleeBot for Discord servers
- *		Copyright (C) 2017 AleeCorp
- *		License: MIT
+ *	AleeBot for Discord servers
+ *	Copyright (C) 2017 AleeCorp
+ *	License: MIT
  *
  **********************************************/
 const Discord = require('discord.js');
