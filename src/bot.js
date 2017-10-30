@@ -17,7 +17,7 @@ client.on('ready', () => {
     console.log("[i] Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
     client.user.setPresence({
         game: {
-            name: config.prefix + `:help | ${client.guilds.size} servers`,
+            name: config.prefix + `help | ${client.guilds.size} servers`,
             type: 0
         }
     });
@@ -30,7 +30,7 @@ client.on("guildCreate", guild => {
 
     client.user.setPresence({
         game: {
-            name: config.prefix + `:help | ${client.guilds.size} servers`,
+            name: config.prefix + `help | ${client.guilds.size} servers`,
             type: 0
         }
     });
@@ -44,7 +44,7 @@ client.on("guildDelete", guild => {
 
     client.user.setPresence({
         game: {
-            name: config.prefix + `:help | ${client.guilds.size} servers`,
+            name: config.prefix + `help | ${client.guilds.size} servers`,
             type: 0
         }
     });
