@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const profanities = require('profanities');
 const client = new Discord.Client();
 const config = require('./absettings.json');
 
@@ -20,27 +19,7 @@ client.on("guildMemberRemove", function(member) {
 });
 
 client.on('message', message => {
-  for (x = 0; x < profanities.length; x++) {
-    if (message.content.toUpperCase() == profanities[x].toUpperCase()) {
-        client.channels.get('318874545593384970').sendMessage(":information_source: **" + message.author.username + "** just swore in #"+ message.channel.name +"!");
-        console.log('[WARNING] '+ message.author.username +' just swore in #'+ message.channel.name +'!')
-        switch (Math.floor(Math.random() * 1000) % 3) {
-          case 0:
-          message.reply('Keep this server clean buddy!');
-          break;
-          case 1:
-          message.reply('We want this server PG!');
-          break;
-          case 2:
-          message.reply('Hmm. You like swearing a lot well some other people don\'t!')
-          break;
-          case 3:
-          message.reply("If you like swearing say it in your head please.")
-        }
-        message.delete();
-        return;
-    }
-  }
+ 
 });
 
 process.on('unhandledRejection', function(err, p) {
