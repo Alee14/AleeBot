@@ -102,7 +102,7 @@ client.on("message", function(message) {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args, config, abversion);
     } catch (err) {
-        message.channel.send(`:no_entry_sign: Error!\n The command you're looking for isn't found try to type ab:help for commands!`);
+        message.channel.send(`:no_entry_sign: Error!\n The command that you're looking for isn't found try to type ab:help for commands!`);
         log(err);
     }
 
