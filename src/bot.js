@@ -17,7 +17,7 @@ client.on('ready', () => {
     console.log("[i] Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
     client.user.setPresence({
         game: {
-            name: config.prefix + `help | ${client.guilds.size} servers`,
+            name: config.prefix + 'help | ' + abVersion,
             type: 0
         }
     });
@@ -28,27 +28,12 @@ client.on("guildCreate", guild => {
 
     console.log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
-    client.user.setPresence({
-        game: {
-            name: config.prefix + `help | ${client.guilds.size} servers`,
-            type: 0
-        }
-    });
-
 });
 
 
 client.on("guildDelete", guild => {
 
     console.log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
-
-    client.user.setPresence({
-        game: {
-            name: config.prefix + `help | ${client.guilds.size} servers`,
-            type: 0
-        }
-    });
-
 
 });
 /*
@@ -72,8 +57,8 @@ client.on("message", function(message) {
 
     if (command === 'help') {
         var embed = new Discord.RichEmbed()
-            .setAuthor('AleeBot ' + abVersion + ' Commands', "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
-            .setDescription("Every command you input into AleeBot is " + config.prefix)
+            .setAuthor('AleeBot ' + abVersion + ` Help and on ${client.guilds.size} servers`, "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
+            .setDescription("Every command you input into AleeBot is `" + config.prefix + "`")
             .addField("- General Commands", "ping\nuptime", true)
             .setFooter("AleeCorp Copyright 2017")
             .setColor("#1fd619")
@@ -84,7 +69,7 @@ client.on("message", function(message) {
         message.reply("**PONG!** :ping_pong: " + Math.round(client.ping) + " ms");
     }
 
-    if(command === 'uptime') {
+    if (command === 'uptime') {
         var uptime = parseInt(client.uptime);
 			uptime = Math.floor(uptime / 1000);
 			var uptimeMinutes = Math.floor(uptime / 60);
