@@ -63,7 +63,8 @@ client.on('ready', () => {
           game: {
             name: 'AleeBot 1.1.1 | ab:help',
             type: 0
-        })
+        }
+        });
 
 
     client.user.setStatus('online')
