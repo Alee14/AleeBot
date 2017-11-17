@@ -4,7 +4,7 @@
   "description": "A chat bot for discord written in discord.js.",
   "main": "src/bot.js",
   "scripts": {
-    "start": "electron ./src/."
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/AleeCorp/AleeBot#readme",
   "dependencies": {
-    "discord.js": "^11.2.1",
-    "electron": "^1.7.9"
+    "discord.js": "^11.2.1"
   }
 }

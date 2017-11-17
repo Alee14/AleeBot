@@ -17,7 +17,7 @@ client.on('ready', () => {
     console.log("[i] Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
     client.user.setPresence({
         game: {
-            name: config.prefix + 'help | ' + abVersion,
+            name: 'AleeBot '+ abVersion + ' | ' + config.prefix +'help',
             type: 0
         }
     });
