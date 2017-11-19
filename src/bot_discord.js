@@ -50,6 +50,7 @@ client.on("message", function(message) {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     if (message.content.indexOf(config.prefix) !== 0) return;
+    var msg = message.content;
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();

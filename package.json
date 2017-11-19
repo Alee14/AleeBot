@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AleeCorp/AleeBot#readme",
   "dependencies": {
-    "discord.js": "^11.2.1"
+    "discord.js": "^11.2.1",
+    "node-telegram-bot-api": "^0.29.0"
   }
 }

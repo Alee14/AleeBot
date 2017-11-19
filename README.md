@@ -1,12 +1,13 @@
 # AleeBot
 Welcome to the AleeBot github repo!
-So here's the planned features so far
-1. Command handler
-
+We have 2 types of AleeBot the telegram one and a discord one and it doesn't really matter though.
 If you want to help do a pull request, also submit a problem/suggestion to issues.
 
+So here's the planned features so far for AleeBot for discord servers
+1. Command handler
+
 # Contributors
-Here's the list of people who helped me with AleeBot
+Here's the list of people who helped me with AleeBot for discord servers
 1. Alee14
 2. OfficialRain (Rain)
 3.
