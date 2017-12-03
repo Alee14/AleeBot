@@ -27,6 +27,7 @@ fs.readdir(`./commands/`, (err, files) => {
         console.log(`[i] Command ${f} loading...`);
         client.commands.set(cmds.config.command, cmds);
     })
+    console.log('[>] Success! All commands are loaded...')
 })
 
 
