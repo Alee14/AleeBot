@@ -8,9 +8,27 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const abVersion = "2.0.0 Beta";
-const prefix = "abb:"
+const prefix = "abb:";
 const fs = require("fs");
 const config = require('./absettings.json');
+console.log(`Welcome to AleeBot NodeJS Terminal!`);
+
+client.commands = new Discord.Collection();
+
+fs.readdir(`./commands/`, (err, files) => {
+    if(err) console.log(err);
+
+    var jsfiles = files.filter(f => f.split('.').pop() === 'js');
+    if(jsfiles.length <= 0) { return console.log('[X] No commands found...')}
+    else { console.log('[i] ' + jsfiles.length + ' commands found.') }
+
+    jsfiles.forEach((f, i) => {
+        var cmds = require(`./commands/${f}`);
+        console.log(`[i] Command ${f} loading...`);
+        client.commands.set(cmds.config.command, cmds);
+    })
+})
+
 
 client.on('ready', () => {
     console.log("[>] AleeBot is now ready!")
@@ -51,11 +69,16 @@ client.on("message", function(message) {
     if (message.channel.type === "dm") return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     var msg = message.content;
+    var cont = message.content.slice(prefix.length).split(" ");
+    var args = cont.slice(1);
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
 
+    if (!message.content.startsWith(prefix)) return;
 
+    var cmd = bot.commands.get(cont[0])
+    if (cmd) cmd.run(bot, message, args);
+
+/*
     if (command === 'help') {
         var embed = new Discord.RichEmbed()
             .setAuthor('AleeBot ' + abVersion + ` Help and on ${client.guilds.size} servers`, "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
@@ -87,7 +110,7 @@ client.on("message", function(message) {
     if (command === 'git') {
         message.author.send("I can see you want to contribute to this project.\nHere's the link: https://github.com/AleeCorp/AleeBot")
     }
-
+    */
 });
 client.login(config.abtoken).catch(function() {
     console.log("[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
