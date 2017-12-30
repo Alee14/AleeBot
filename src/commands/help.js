@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
     var embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + abVersion + ` Help and on ${client.guilds.size} servers`, "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
     .setDescription("Every command you input into AleeBot is `" + config.prefix + "`")
