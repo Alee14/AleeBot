@@ -1,6 +1,5 @@
 # AleeBot
 Welcome to the AleeBot github repo!
-We have 2 types of AleeBot the telegram one and a discord one and it doesn't really matter though.
 If you want to help do a pull request, also submit a problem/suggestion to issues.
 
 So here's the planned features so far for AleeBot for discord servers
@@ -16,4 +15,4 @@ Here's the list of people who helped me with AleeBot for discord servers
 
 # License
 
-We are licensed under the MIT license and don't steal our code and claim as yours please.
+We are licensed under the MIT license and don't steal our code and claim as yours thanks.

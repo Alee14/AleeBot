@@ -10,7 +10,6 @@ const client = new Discord.Client();
 const abVersion = "2.0.0 Beta";
 const prefix = "abb:";
 const fs = require("fs");
-const blessed = require('blessed');
 const config = require('./absettings.json');
 console.log(`Welcome to AleeBot NodeJS Terminal!`);
 

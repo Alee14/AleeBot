@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
 
     var uptime = parseInt(client.uptime);
         uptime = Math.floor(uptime / 1000);
