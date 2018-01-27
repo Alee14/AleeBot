@@ -1,4 +1,4 @@
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, abVersion) => {
     var embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + abVersion + `Changelog`, "https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048")
     .setDescription("What's new in AleeBot?")

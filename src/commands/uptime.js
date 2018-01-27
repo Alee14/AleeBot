@@ -1,4 +1,4 @@
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, abVersion) => {
 
     var uptime = parseInt(client.uptime);
         uptime = Math.floor(uptime / 1000);
