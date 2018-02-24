@@ -1,4 +1,4 @@
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, abVersion) => {
     message.author.send("I can see you want to contribute to this project.\nHere's the link: https://github.com/AleeCorp/AleeBot")
     }
     
