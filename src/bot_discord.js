@@ -1,7 +1,7 @@
 /*********************************************
  *
  *	AleeBot for Discord servers
- *	Copyright (C) 2017 AleeCorp
+ *	Copyright (C) 2018 AleeCorp
  *	License: MIT
  *
  **********************************************/
