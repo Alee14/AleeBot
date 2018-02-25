@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "aleebot",
   "version": "1.1.0",
@@ -24,3 +25,28 @@
   },
   "homepage": "https://github.com/AleeCorp/AleeBot#readme"
 }
+=======
+{
+  "name": "aleebot",
+  "version": "2.0.0",
+  "description": "A chat bot for discord written in discord.js.",
+  "main": "src/bot.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleeCorp/AleeBot.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AleeCorp/AleeBot/issues"
+  },
+  "homepage": "https://github.com/AleeCorp/AleeBot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "node-telegram-bot-api": "^0.29.0"
+  }
+}
+>>>>>>> beta
