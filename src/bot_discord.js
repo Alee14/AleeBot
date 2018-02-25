@@ -1,4 +1,4 @@
-/*********************************************
+/** *******************************************
  *
  *	AleeBot for Discord servers
  *	Copyright (C) 2018 AleeCorp
@@ -7,71 +7,92 @@
  **********************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const abVersion = "2.0.0 Beta";
-const prefix = "abb:";
-const fs = require("fs");
+const abVersion = '2.0.0 Beta';
+const prefix = 'abb:';
+const fs = require('fs');
 const config = require('./absettings.json');
-console.log(`Welcome to AleeBot NodeJS Terminal!`);
+console.log('Welcome to AleeBot NodeJS Terminal!');
 
 client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
 
-fs.readdir(`./commands/`, (err, files) => {
-    if(err) console.log(err);
-
-    var jsfiles = files.filter(f => f.split('.').pop() === 'js');
-    if(jsfiles.length <= 0) { return console.log('[X] No commands found...')}
-    else { console.log('[i] ' + jsfiles.length + ' commands found.') }
-
-    jsfiles.forEach((f, i) => {
-        var cmds = require(`./commands/${f}`);
-        console.log(`[i] Command ${f} loading...`);
-        client.commands.set(cmds.config.command, cmds);
-    })
-    console.log('[>] Success! All commands are loaded...')
-})
+fs.readdir('./commands', (err, files) => {
+  if (err) console.error(err);
+  console.log(`Attempting to load a total of ${files.length} commands into the memory.`);
+  files.forEach(file => {
+    try {
+      const command = require(`./commands/${file}`);
+      console.log(`Attempting to load the command "${command.help.name}".`);
+      client.commands.set(command.help.name, command);
+      command.conf.aliases.forEach(alias => {
+        client.aliases.set(alias, command.help.name);
+        console.log(`Attempting to load "${alias}" as an alias for "${command.help.name}"`);
+      });
+    }
+    catch (err) {
+      console.log('An error has occured trying to load a command. Here is the error.');
+      console.log(err.stack);
+    }
+  });
+  console.log('Command Loading complete!');
+  console.log('\n');
+});
 
 
 client.on('ready', () => {
-    console.log("[>] AleeBot is now ready!")
-    console.log("[i] Running version " + abVersion + ` and in ${client.guilds.size} guilds`)
-    client.user.setPresence({
-        game: {
-            name: 'AleeBot '+ abVersion + ' | ' + config.prefix +'help',
-            type: 0
-        }
-    });
-    client.user.setStatus('online')
+  console.log('[>] AleeBot is now ready!');
+  console.log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
+  client.user.setPresence({
+    game: {
+      name: 'AleeBot ' + abVersion + ' | ' + config.prefix + 'help',
+      type: 0,
+    },
+  });
+  client.user.setStatus('online');
 });
 
-client.on("guildCreate", guild => {
+client.on('guildCreate', guild => {
 
-    console.log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-
-});
-
-
-client.on("guildDelete", guild => {
-
-    console.log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
+  console.log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
 });
 
 
-client.on("message", function(message) {
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
-    if (message.content.indexOf(config.prefix) !== 0) return;
-    var msg = message.content;
-    var cont = message.content.slice(prefix.length).split(" ");
-    var args = cont.slice(1);
+client.on('guildDelete', guild => {
+
+  console.log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
+
+});
 
 
-    if (!message.content.startsWith(prefix)) return;
+client.on('message', (msg) => {
+  if (msg.author.bot) return;
 
-    var cmd = client.commands.get(cont[0])
-    if (cmd) cmd.run(client, message, args);
+  if (!msg.content.startsWith(prefix)) return;
+  const args = msg.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift();
+  let cmd;
 
+  if (client.commands.has(command)) {
+    cmd = client.commands.get(command);
+  } else if (client.aliases.has(command)) {
+    cmd = client.commands.get(client.aliases.get(command));
+  }
+
+  if (cmd) {
+    if (cmd.conf.guildOnly == true) {
+      if (!msg.channel.guild) {
+        return msg.channel.createMessage('This command can only be ran in a guild.');
+      }
+    }
+    try {
+      cmd.run(client, msg, args);
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
 });
 client.login(config.abtoken).catch(function() {
-    console.log("[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.");
+  console.log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
 });
