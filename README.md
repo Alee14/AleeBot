@@ -8,7 +8,7 @@ So here's the planned features so far for AleeBot for discord servers
 Here's the list of people who helped me with AleeBot for discord servers
 1. Alee14
 2. OfficialRain (Rain)
-3.
+3. jtsshieh
 
 **Please note if you contribute to this please put your name here.**
 
