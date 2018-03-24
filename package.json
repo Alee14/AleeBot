@@ -10,14 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/AleeCorp/AleeBot.git"
   },
-  "author": "",
+  "author": "AleeCorp",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AleeCorp/AleeBot/issues"
   },
   "homepage": "https://github.com/AleeCorp/AleeBot#readme",
   "dependencies": {
-    "discord.js": "^11.2.1",
-    "node-telegram-bot-api": "^0.29.0"
-  }
+    "discord.js": "^11.3.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.21.0",
+    "node-telegram-bot-api": "^0.29.0",
+    "simple-youtube-api": "^5.0.1"
+  },
+  "devDependencies": {}
 }
