@@ -50,7 +50,7 @@ module.exports.run = async (client, message, args) => {
       .addField('Link', video.url)
       .addField('Duration', time)
       .setThumbnail(video.thumbnails.high.url)
-      .setFootor('Beat Music Player');
+      .setFooter('Beat Music Player');
     await message.channel.send({embed});
     if (!client.voiceConnections.get(message.member.guild.id))
       message.member.voiceChannel.join().then(function(connection) {
