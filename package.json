@@ -21,7 +21,8 @@
     "fs": "0.0.1-security",
     "moment": "^2.21.0",
     "node-telegram-bot-api": "^0.29.0",
-    "simple-youtube-api": "^5.0.1"
+    "simple-youtube-api": "^5.0.1",
+    "ytdl-core": "^0.20.2"
   },
   "devDependencies": {}
 }
