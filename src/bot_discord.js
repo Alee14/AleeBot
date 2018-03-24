@@ -13,6 +13,7 @@ const fs = require('fs');
 const config = require('./absettings.json');
 console.log('Welcome to AleeBot NodeJS Terminal!');
 
+client.apikey = config.ytapikey;
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 

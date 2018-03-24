@@ -2,4 +2,5 @@
   "abtoken": "token",
   "ownerID": "242775871059001344",
   "prefix": "ab:",
+  "ytapikey": "generate one in google apis youtube v3",
 }

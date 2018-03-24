@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args) => {
   if (!message.member.voiceChannelID) return await message.channel.send('You are not in a voice channel');
   const YouTube = require('simple-youtube-api');
   const moment = require('moment');
-  const youtube = new YouTube(process.env.GOOGLE);
+  const youtube = new YouTube(client.apikey);
   const url = args.join(' ').replace(/<(.+)>/g, '$1');
   if (!url) return;
   await youtube.getVideo(url)
