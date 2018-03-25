@@ -5,9 +5,10 @@ src/absettings\.json
 
 run.bat
 
-ffmpeg.exe
+src/ffmpeg.exe
 
-ffplay.exe
+src/ffplay.exe
 
-ffprobe.exe
+src/ffprobe.exe
+
 .directory
