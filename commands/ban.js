@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
     const member = message.mentions.members.first();
     if (!member) return message.reply("Uhh... Please mention a member first.");
     member.ban(`Banned by ${message.author.tag} Reason: ` + mreason);
-    message.reply(member.user.tag + " has been banned! Reason: " + mreason);
+    message.reply(`${member.user.tag} has been banned! Reason: ` + mreason);
 };
 
 exports.conf = {

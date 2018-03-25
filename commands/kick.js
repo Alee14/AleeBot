@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
     const member = message.mentions.members.first();
     if (!member) return message.reply("Uhh... Please mention a member first.");
     member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
-    message.reply(member.user.tag + ` has been kicked! Reason: ` + mreason);
+    message.reply(`${member.user.tag} has been kicked! Reason: ` + mreason);
 };
 
 exports.conf = {
