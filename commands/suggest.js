@@ -35,6 +35,7 @@ module.exports.run = async (client, message, args) => {
         message.react('\u2705');
         message.react('\u274E');
       });
+    message.reply("Alright, your suggestion has been shown now.")
   };
   
   exports.conf = {
