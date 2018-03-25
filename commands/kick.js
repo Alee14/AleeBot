@@ -22,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ********************************/
-module.exports.run = async (client, message) => {
+module.exports.run = async (client, message, args) => {
+    const mreason = args.join(" ").slice(22);
     if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply("It looks like that you don't have the permissions to ban people.")
+    if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
     const member = message.mentions.members.first();
     if (!member) return message.reply("Uhh... Please mention a member first.");
-    member.kick(`Kicked by: ${message.author.tag}`);
-    message.reply("User Kicked!");
+    member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
+    message.reply(member.user.tag + ` has been kicked! Reason: ` + mreason);
 };
 
 exports.conf = {
