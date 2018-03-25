@@ -52,7 +52,7 @@ module.exports.run = async (client, message, args) => {
   };
   
   exports.conf = {
-    aliases: [''],
+    aliases: [],
     guildOnly: true,
   };
   exports.help = {
