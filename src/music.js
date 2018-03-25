@@ -7,7 +7,7 @@ module.exports.playYT = async (bot, connection, msg) => {
   bot.musicEmit = new MyEmitter();
 
   const musicvariables = require('./music.js').MusicVariables;
-  const server = musicvariables(msg.member.guild.id);
+  const server = musicvariables(bot, msg.member.guild.id);
 
   server.dispatcher = connection;
 
