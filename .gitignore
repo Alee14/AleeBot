@@ -4,3 +4,10 @@ node_modules/
 src/absettings\.json
 
 run.bat
+
+ffmpeg.exe
+
+ffplay.exe
+
+ffprobe.exe
+.directory
