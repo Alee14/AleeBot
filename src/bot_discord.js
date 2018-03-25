@@ -44,12 +44,25 @@ fs.readdir('./commands', (err, files) => {
 client.on('ready', () => {
   console.log('[>] AleeBot is now ready!');
   console.log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
-  client.user.setPresence({
-    game: {
-      name: 'AleeBot ' + abVersion + ' | ' + config.prefix + 'help',
-      type: 0,
-    },
-  });
+  
+  client.setInterval(function() {
+    const games = [
+      'AleeBot ' + abVersion + ' | ' + config.prefix + 'help',
+      'Annoying Alee',
+      'Coding stuff',
+      'Drawing shapes',
+      'Fighting AstralMod',
+    ];
+
+    client.user.setPresence({
+      status: 'online',
+      afk: false,
+      game: {
+        type: 0,
+        name: games[Math.floor(Math.random() * games.length)],
+      },
+    });
+  }, 200000);
   client.user.setStatus('online');
 });
 
