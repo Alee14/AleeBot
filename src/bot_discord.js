@@ -7,14 +7,16 @@
  **********************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const abVersion = '2.1.0';
+const abVersion = '2.2.0';
 const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
 console.log('Welcome to AleeBot NodeJS Terminal!');
 
+client.apikey = config.ytapikey;
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+client.servers = {};
 
 fs.readdir('./commands', (err, files) => {
   if (err) console.error(err);
