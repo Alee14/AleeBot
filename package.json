@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AleeCorp/AleeBot#readme",
   "dependencies": {
+    "discord-eco": "0.0.10",
     "discord.js": "^11.3.1",
     "fs": "0.0.1-security",
     "moment": "^2.21.0",

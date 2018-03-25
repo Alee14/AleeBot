@@ -12,3 +12,4 @@ ffplay.exe
 ffprobe.exe
 
 .directory
+userData.sqlite

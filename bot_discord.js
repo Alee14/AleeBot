@@ -23,6 +23,7 @@
  * SOFTWARE.
  ********************************/
 const Discord = require('discord.js');
+const economy = require('discord-eco');
 const client = new Discord.Client();
 const abVersion = '2.4.0 Beta';
 const prefix = 'abb:';
