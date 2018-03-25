@@ -20,23 +20,23 @@ client.servers = {};
 
 fs.readdir('./commands', (err, files) => {
   if (err) console.error(err);
-  console.log(`Attempting to load a total of ${files.length} commands into the memory.`);
+  console.log(`[!] Attempting to load a total of ${files.length} commands into the memory.`);
   files.forEach(file => {
     try {
       const command = require(`./commands/${file}`);
-      console.log(`Attempting to load the command "${command.help.name}".`);
+      console.log(`[!] Attempting to load the command "${command.help.name}".`);
       client.commands.set(command.help.name, command);
       command.conf.aliases.forEach(alias => {
         client.aliases.set(alias, command.help.name);
-        console.log(`Attempting to load "${alias}" as an alias for "${command.help.name}"`);
+        console.log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`);
       });
     }
     catch (err) {
-      console.log('An error has occured trying to load a command. Here is the error.');
+      console.log('[X] An error has occured trying to load a command. Here is the error.');
       console.log(err.stack);
     }
   });
-  console.log('Command Loading complete!');
+  console.log('[>] Command Loading complete!');
   console.log('\n');
 });
 
