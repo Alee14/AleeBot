@@ -7,8 +7,8 @@
  **********************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const abVersion = '2.2.0';
-const prefix = 'ab:';
+const abVersion = '2.3.0';
+const prefix = 'abb:';
 const fs = require('fs');
 const config = require('./absettings.json');
 console.log('Welcome to AleeBot NodeJS Terminal!');
