@@ -30,9 +30,9 @@ module.exports.run = async (client, message, args) => {
     if (!member) return message.reply("Uhh... Please mention a member first.");
     member.ban({
         days: args[1] || null,
-        reason: `Banned by ${message.author.tag}`
+        reason: `Banned by ${message.author.tag} ${mreason}`
     });
-    message.reply("User Banned!");
+    message.reply("User Banned! Reason: " + mreason);
 };
 
 exports.conf = {
