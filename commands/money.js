@@ -44,6 +44,6 @@ module.exports.run = async (client, message) => {
     name: 'money',
     description: 'Displays your balance.',
     usage: 'money',
-    category: '- Fun Commands',
+    category: '- Economy Commands',
   };
   

@@ -28,7 +28,8 @@ module.exports.run = async (client, message) => {
     .setAuthor('AleeBot ' + '2.4.0 Beta ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot 2.4?')
     .addField('[>] Suggestion Command!','Suggest command is only for exclusive servers!', true)
-    .addField('[>] Ban reasons!','For now the ban command is broken but we\'ll fix it soon!', true)
+    .addField('[>] Ban and kick reasons!','Now you can ban and kick people within reasons!', true)
+    .addField('[>] Economy!','Yes, it\'s true we\'ve now added economy in AleeBot but for now you can check for your balance!', true)
     .setFooter('AleeCorp Copyright 2017')
     .setColor('#1fd619');
   message.channel.sendEmbed(embed);
