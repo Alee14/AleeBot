@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
   
   exports.conf = {
     aliases: ['8ball'],
-    guildOnly: false,
+    guildOnly: true,
   };
   exports.help = {
     name: 'ask',

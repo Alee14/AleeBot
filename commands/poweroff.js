@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   
   exports.conf = {
     aliases: ['reboot'],
-    guildOnly: false,
+    guildOnly: true,
   };
   exports.help = {
     name: 'poweroff',

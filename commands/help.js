@@ -31,7 +31,7 @@ module.exports.run = async (client, message) => {
 
 exports.conf = {
   aliases: ['h'],
-  guildOnly: false,
+  guildOnly: true,
 };
 exports.help = {
   name: 'help',

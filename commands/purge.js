@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   
   exports.conf = {
     aliases: ['rm'],
-    guildOnly: false,
+    guildOnly: true,
   };
   exports.help = {
     name: 'purge',

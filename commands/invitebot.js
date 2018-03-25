@@ -5,7 +5,7 @@ module.exports.run = async (client, message) => {
   
   exports.conf = {
     aliases: [],
-    guildOnly: false,
+    guildOnly: true,
   };
   exports.help = {
     name: 'invitebot',
