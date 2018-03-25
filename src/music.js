@@ -11,7 +11,7 @@ module.exports.playYT = async (bot, connection, msg) => {
 
   server.dispatcher = connection;
 
-  connection.play(YTDL(server.queue[0].url, {
+  connection.playStream(YTDL(server.queue[0].url, {
     filter: 'audioonly'
   }));
 
