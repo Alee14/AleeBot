@@ -2,8 +2,6 @@
 Welcome to the AleeBot github repo!
 If you want to help do a pull request, also submit a problem/suggestion to issues.
 
-So here's the planned features so far for AleeBot for discord servers
-
 # Contributors
 Here's the list of people who helped me with AleeBot for discord servers
 1. Alee14
