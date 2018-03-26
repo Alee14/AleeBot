@@ -115,7 +115,7 @@ client.on('message', (msg) => {
 
 process.on('unhandledRejection', function(err, p) {
 
-log("[X | UNCAUGHT PROMISE] " + err.stack);
+console.log("[X | UNCAUGHT PROMISE] " + err.stack);
 
 });
 
