@@ -25,8 +25,8 @@
 const Discord = require('discord.js');
 const economy = require('discord-eco');
 const client = new Discord.Client();
-const abVersion = '2.4.0 Beta';
-const prefix = 'abb:';
+const abVersion = '2.4.0';
+const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
 console.log('Welcome to AleeBot NodeJS Terminal!');
