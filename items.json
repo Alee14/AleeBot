@@ -16,5 +16,11 @@
         "price": "400",
         "type": "OS",
         "desc": "Buying this gives you theShell OS"
+    },
+    "AleeOS" : {
+        "name": "AleeOS",
+        "price": "10000",
+        "type": "OS",
+        "desc": "Buying this gives you AleeOS"
     }
 }
