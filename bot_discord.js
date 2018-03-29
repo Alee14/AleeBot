@@ -87,6 +87,7 @@ client.on('guildDelete', guild => {
 
 
 client.on('message', (msg) => {
+  if (msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
   const args = msg.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift();

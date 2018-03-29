@@ -28,7 +28,7 @@ module.exports.run = async (client, message) => {
 
 exports.conf = {
   aliases: [],
-  guildOnly: true,
+  guildOnly: false,
 };
 exports.help = {
   name: 'git',
