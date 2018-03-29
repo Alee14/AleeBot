@@ -1,0 +1,20 @@
+{
+    "Ping" : {
+        "name": "Ping Command",
+        "price": "10",
+        "type": "Commands",
+        "desc": "Buying this gives you access to ping command."
+    },
+    "Programmer" : {
+        "name": "Programmer Role",
+        "price": "100",
+        "type": "Roles",
+        "desc": "Buying this gives you the programmer role"
+    },
+    "theShell" : {
+        "name": "theShell OS",
+        "price": "400",
+        "type": "OS",
+        "desc": "Buying this gives you theShell OS"
+    }
+}
