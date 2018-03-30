@@ -43,6 +43,6 @@ exports.conf = {
     name: 'jail',
     description: 'Jails a member',
     usage: 'jail [user]',
-    category: '- Moderation Commands',
+    category: '- Exclusive Commands',
   };
   
