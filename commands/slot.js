@@ -2,7 +2,7 @@
  * 
  * Slot: Command for AleeBot and imported from PokeBot
  * 
- * Copyright (c) 2018 AleeCorp & PokeWorld
+ * Copyright (c) 2018 AleeCorp & jtsshieh + PokeWorld
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
