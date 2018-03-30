@@ -29,7 +29,7 @@ module.exports.run = async (client, message) => {
     .setDescription('What\'s new in AleeBot 2.5?')
     .addField('[>] Buy Command!','Now you could buy things with AleeBot!')
     .addField('[>] Leave Command!','The owner of this bot can only use this command.')
-    .addField('[>] Info Command!','For now this command only shows what\'s the hostname of the os.')
+    .addField('[>] Info Command!','For now this command only shows the hostname of the os.')
     .setColor('#1fd619');
   message.channel.send({embed});
 
