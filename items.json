@@ -1,10 +1,4 @@
 {
-    "Ping" : {
-        "name": "Ping Command",
-        "price": "10",
-        "type": "Commands",
-        "desc": "Buying this gives you access to ping command."
-    },
     "Programmer" : {
         "name": "Programmer Role",
         "price": "100",
@@ -16,11 +10,5 @@
         "price": "400",
         "type": "OS",
         "desc": "Buying this gives you theShell OS"
-    },
-    "AleeOS" : {
-        "name": "AleeOS",
-        "price": "10000",
-        "type": "OS",
-        "desc": "Buying this gives you AleeOS"
     }
 }
