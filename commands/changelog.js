@@ -25,7 +25,7 @@
 module.exports.run = async (client, message) => {
   const Discord = require('discord.js');
   const embed = new Discord.RichEmbed()
-    .setAuthor('AleeBot ' + '2.5.0 Beta ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
+    .setAuthor('AleeBot ' + '2.5.0 ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot 2.5?')
     .addField('[>] Buy Command!','Now you could buy things with AleeBot!')
     .addField('[>] Leave Command!','The owner of this bot can only use this command.')
