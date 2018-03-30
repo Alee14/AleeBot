@@ -5,10 +5,10 @@
         "type": "Roles",
         "desc": "Buying this gives you the programmer role"
     },
-    "theShell" : {
-        "name": "theShell OS",
+    "AleeOS" : {
+        "name": "AleeOS",
         "price": "400",
         "type": "OS",
-        "desc": "Buying this gives you theShell OS"
+        "desc": "Buying this gives you AleeOS"
     }
 }
