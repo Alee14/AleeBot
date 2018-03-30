@@ -54,7 +54,7 @@ module.exports.run = async (client, message, args) => {
                 for (var c in items) {
                     if (categories[i] === items[c].type) {
 
-                        tempDesc += `${items[c].name} - $${items[c].price} - ${items[c].desc}\n`;
+                        tempDesc += `${items[c].name} - ${items[c].price}$ - ${items[c].desc}\n`;
 
                     }
 
