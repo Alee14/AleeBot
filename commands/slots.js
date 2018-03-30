@@ -1,6 +1,6 @@
 /** **************************************
  *
- *   Slot: Command for AleeBot
+ *   Slots: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp & jtsshieh + PokeWorld
  *
  *   This program is free software: you can redistribute it and/or modify
