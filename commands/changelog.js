@@ -27,9 +27,7 @@ module.exports.run = async (client, message) => {
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + '2.6.0 Beta ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot 2.6?')
-    .addField('[>] Buy Command!','Now you could buy things with AleeBot!')
-    .addField('[>] Leave Command!','The owner of this bot can only use this command.')
-    .addField('[>] Info Command!','For now this command only shows the hostname of the os.')
+    .addField('[>] G A M E S!', 'Yes! You\'ve been waiting for a long time you can now get money from games!')
     .setColor('#1fd619');
   message.channel.send({embed});
 
