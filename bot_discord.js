@@ -33,7 +33,6 @@ console.log('Welcome to AleeBot NodeJS Terminal!');
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.servers = {};
 
 fs.readdir('./commands', (err, files) => {
   if (err) console.error(err);
