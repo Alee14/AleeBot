@@ -91,5 +91,5 @@ module.exports.run = async (client, message) => {
     name: 'slots',
     description: 'Develop a gambling addiction by playing Slots!',
     usage: 'slots',
-    category: '- Economy Commands',
+    category: '- Games',
   };

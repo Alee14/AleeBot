@@ -48,6 +48,6 @@ module.exports.run = async (client, message) => {
     name: 'rps',
     description: 'A rock, paper, scissors game.',
     usage: 'rps',
-    category: '- Economy Commands',
+    category: '- Games',
   };
   
