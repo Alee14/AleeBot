@@ -35,8 +35,9 @@ module.exports.run = async (client, message) => {
         "Paper",
         "Scissors",
       ];
-      
-    message.channel.sendMessage(rps[Math.floor(Math.random() * rps.length)]);
+
+    message.channel.send(rps[Math.floor(Math.random() * rps.length)]);
+    message.channel.send('Please note that this feature is in **beta** so if you want to help this please do by doing `ab:git`')
   };
   
   exports.conf = {
