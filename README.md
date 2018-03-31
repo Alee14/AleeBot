@@ -11,7 +11,3 @@ Here's the list of people who helped me with AleeBot for discord servers
 3. jtsshieh
 
 **Please note if you contribute to this please put your name here.**
-
-# License
-
-We are licensed under the MIT license and don't steal our code and claim as yours thanks.
