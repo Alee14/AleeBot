@@ -23,7 +23,7 @@ module.exports.run = async (client, message) => {
     .setAuthor('AleeBot ' + '2.6.0 ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot 2.6?')
     .addField('[>] G A M E S!', 'Yes! You\'ve been waiting for a long time you can now get money from games!')
-    .addField('[>] Quotes!', 'So you might be confused why quote? Well... we merged with another project which is called AstralQuote.')
+    .addField('[>] Quotes!', 'So you might be confused why quotes? Well... we merged with another project which is called AstralQuote.')
     .setColor('#1fd619');
   message.channel.send({embed});
 
