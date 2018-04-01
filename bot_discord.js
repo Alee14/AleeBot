@@ -20,7 +20,7 @@
 const Discord = require('discord.js');
 const economy = require('discord-eco');
 const client = new Discord.Client();
-const abVersion = '2.6.0 Beta';
+const abVersion = '2.6.0';
 const prefix = 'abb:';
 const fs = require('fs');
 const config = require('./absettings.json');
