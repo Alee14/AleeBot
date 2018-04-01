@@ -19,14 +19,21 @@
  * *************************************/
 const Discord = require('discord.js');
 const economy = require('discord-eco');
+const moment = require('moment');
 const client = new Discord.Client();
 const abVersion = '2.6.0';
 const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
 
-console.log ('AleeBot: Copyright (C) 2018 AleeCorp');
-console.log ('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
+const log = message => {
+
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+
+};
+
+console.log('AleeBot: Copyright (C) 2018 AleeCorp');
+console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
 console.log ('This is free software, and you are welcome to redistribute it');
 console.log ('under certain conditions; type `show c\' for details.\n')
 
@@ -35,30 +42,30 @@ client.aliases = new Discord.Collection();
 
 fs.readdir('./commands', (err, files) => {
   if (err) console.error(err);
-  console.log(`[!] Attempting to load a total of ${files.length} commands into the memory.`);
+  log(`[!] Attempting to load a total of ${files.length} commands into the memory.`);
   files.forEach(file => {
     try {
       const command = require(`./commands/${file}`);
-      console.log(`[!] Attempting to load the command "${command.help.name}".`);
+      log(`[!] Attempting to load the command "${command.help.name}".`);
       client.commands.set(command.help.name, command);
       command.conf.aliases.forEach(alias => {
         client.aliases.set(alias, command.help.name);
-        console.log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`);
+        log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`);
       });
     }
     catch (err) {
-      console.log('[X] An error has occured trying to load a command. Here is the error.');
-      console.log(err.stack);
+      log('[X] An error has occured trying to load a command. Here is the error.');
+      (err.stack);
     }
   });
-  console.log('[>] Command Loading complete!');
+  log('[>] Command Loading complete!');
   console.log('\n');
 });
 
 
 client.on('ready', () => {
-  console.log('[>] AleeBot is now ready!');
-  console.log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
+  log('[>] AleeBot is now ready!');
+  log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
   
   client.setInterval(function() {
     const games = [
@@ -83,14 +90,14 @@ client.on('ready', () => {
 
 client.on('guildCreate', guild => {
 
-  console.log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
+  log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 
 });
 
 
 client.on('guildDelete', guild => {
 
-  console.log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
+  log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
 
 });
 
@@ -125,11 +132,11 @@ client.on('message', (msg) => {
 
 process.on('unhandledRejection', function(err, p) {
 
-console.log("[X | UNCAUGHT PROMISE] " + err.stack);
+log("[X | UNCAUGHT PROMISE] " + err.stack);
 
 });
 
 
 client.login(config.abtoken).catch(function() {
-  console.log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
+  log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
 });
