@@ -54,7 +54,7 @@ fs.readdir('./commands', (err, files) => {
       });
     }
     catch (err) {
-      log('[X] An error has occured trying to load a command. Here is the error.');
+      console.log('[X] An error has occured trying to load a command. Here is the error.');
       (err.stack);
     }
   });
