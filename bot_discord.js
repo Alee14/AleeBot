@@ -117,61 +117,6 @@ client.on('message', (msg) => {
       console.error(e);
     }
   }
-
-let QuoteOfTheDay;
-let QuoteOfTheDayExpiry = 0;
-let QuoteOfTheDayStartTime;
-
-  function GetQuoteOfTheDay(quoteNum = -1) {
-    const now = new Date();
-  
-    if (QuoteOfTheDayExpiry < now.getTime()) {
-      log('[!] Getting new quote of the day...');
-      log('[!] This quote expires in 1 day.');
-  
-      QuoteOfTheDayStartTime = now;
-      QuoteOfTheDayExpiry = now.getTime();
-      QuoteOfTheDayExpiry += 86400000;
-  
-      QuoteOfTheDay = new Discord.RichEmbed();
-  
-      let quo = require('./quotes.json').quotes
-  
-      if (quoteNum == -1) {
-        quoteNum = Math.floor(Math.random() * 1000) % quo.length;
-        quo=quo[quoteNum];
-      }
-  
-      const author = quo.author;
-      const authorImage = quo.authorImage;
-      const quote = quo.quote;
-      const year = quo.year;
-      const url = quo.url;
-  
-      QuoteOfTheDay.setAuthor(author, authorImage);
-      QuoteOfTheDay.setColor('#939d45');
-      QuoteOfTheDay.setDescription(quote);
-      QuoteOfTheDay.setFooter('- ' + year);
-      QuoteOfTheDay.setURL(url);
-    } else {
-      log('[!] No need for new quote of the day');
-    }
-  
-  
-    return QuoteOfTheDay;
-  }
-
-  if (message.content === 'ab:qotd') {
-    const quoteofday = GetQuoteOfTheDay();
-    message.channel.send('Here\'s the quote of the day (as of ' + QuoteOfTheDayStartTime.toUTCString() + ')');
-    message.channel.sendEmbed(quoteofday);
-  } else if (command === 'ab:forcequote') {
-    message.delete();
-    QuoteOfTheDayExpiry = 0;
-    const quoteofday = GetQuoteOfTheDay();
-    message.channel.send('New quote of the day!');
-    message.channel.sendEmbed(quoteofday);
-  }
 });
 
 process.on('unhandledRejection', function(err, p) {
