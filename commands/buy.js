@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
     const economy = require('discord-eco')
     const Discord = require('discord.js');
     const fs = require('fs')
-    const items = JSON.parse(fs.readFileSync('./items.json', 'utf8'));
+    const items = JSON.parse(fs.readFileSync('./storage/items.json', 'utf8'));
         
         let categories = []; 
 
