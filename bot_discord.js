@@ -24,7 +24,12 @@ const abVersion = '2.6.0';
 const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
-console.log('Welcome to AleeBot NodeJS Terminal!');
+console.log('Welcome to AleeBot NodeJS Terminal!\n');
+
+console.log ('AleeBot: Copyright (C) 2018 AleeCorp');
+console.log ('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
+console.log ('This is free software, and you are welcome to redistribute it');
+console.log ('under certain conditions; type `show c\' for details.\n')
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
