@@ -136,6 +136,14 @@ log("[X | UNCAUGHT PROMISE] " + err.stack);
 
 });
 
+process.on('uncaughtException', function (exception) {
+  log(exception);
+});
+
+client.on("error", error => {
+  log(error);
+});
+
 
 client.login(config.abtoken).catch(function() {
   log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
