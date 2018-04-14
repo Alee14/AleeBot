@@ -38,6 +38,6 @@ exports.conf = {
     name: 'jail',
     description: 'Jails a member',
     usage: 'jail [user]',
-    category: '- Exclusive Commands',
+    category: '- ACN Exclusive Commands',
   };
   

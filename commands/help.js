@@ -42,7 +42,7 @@ module.exports.run = async (client, message) => {
         cat = cat + command + '\n';
       }
     });
-    embed.addField(x, cat);
+    embed.addField(x, cat, true);
   });
 
   await message.channel.send({ embed });

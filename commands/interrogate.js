@@ -1,6 +1,6 @@
 /****************************************
  * 
- *   Kick: Command for AleeBot
+ *   Interrogate: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -18,22 +18,26 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    const mreason = args.join(" ").slice(22);
-    if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply("It looks like that you don't have the permissions to ban people.");
-    if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
+    if (message.guild.id != '243022206437687296') return message.reply ('This is a ACN exclusive command.');
+
+    if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
+    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
+
     const member = message.mentions.members.first();
-    if (!member) return message.reply("Uhh... Please mention a member first.");
-    member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
-    message.reply(`**${member.user.tag}** has been kicked for the reason: \n\`\`\`${mreason}.\`\`\`\n`);
+    if (!member) return await message.reply('Uhh... Please mention a member first.');
+
+    member.addRole(message.guild.roles.find('name', 'Interrogation'));
+    message.reply(`Alright, I just interrogated ${member.user.tag}.`)
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
-};
-exports.help = {
-  name: 'kick',
-  description: 'Kicks a member',
-  usage: 'kick [user]',
-  category: '- Moderation Commands',
-};
+    aliases: [],
+    guildOnly: false,
+  };
+  exports.help = {
+    name: 'interrogate',
+    description: 'Interrogates a member',
+    usage: 'interrogate [user]',
+    category: '- ACN Exclusive Commands',
+  };
+  

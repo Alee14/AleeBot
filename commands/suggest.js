@@ -41,6 +41,6 @@ module.exports.run = async (client, message, args) => {
     name: 'suggest',
     description: 'Suggest things in AleeBot.',
     usage: 'suggest [suggestion]',
-    category: '- Exclusive Commands',
+    category: '- ACN Exclusive Commands',
   };
   
