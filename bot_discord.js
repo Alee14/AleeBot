@@ -21,8 +21,8 @@ const Discord = require('discord.js');
 const economy = require('discord-eco');
 const moment = require('moment');
 const client = new Discord.Client();
-const abVersion = '2.6.0';
-const prefix = 'ab:';
+const abVersion = '2.7.0 Beta';
+const prefix = 'abb:';
 const fs = require('fs');
 const config = require('./absettings.json');
 
