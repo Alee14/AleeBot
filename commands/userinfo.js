@@ -22,9 +22,10 @@ module.exports.run = async (client, message) => {
    var embed = new Discord.RichEmbed()
   .setAuthor(message.author.tag, message.author.avatarURL)
   .setDescription("User Information")
-  .addField("Names", "Username: " + message.author.username + "\nCurrent Nickname: " + message.member.displayName)
-  .addField("Identity", "User ID: " + message.author.id + "")
-  .addField("Create and Join Times", "Created account at: " + message.member.user.createdAt.toUTCString() + "\nJoined server at: " + message.member.joinedAt.toUTCString())
+  .setThumbnail(message.author.avatarURL)
+  .addField("Names", "**Username:** " + message.author.username + "\n**Current Nickname:** " + message.member.displayName)
+  .addField("Identity", `**User ID:** ${message.author.id} `)
+  .addField("Create and Join Times", "**Created At:** " + message.member.user.createdAt.toUTCString() + "\n**Joined Guild At:** " + message.member.joinedAt.toUTCString())
   .setColor('#1fd619')
    message.channel.send({embed});
 
