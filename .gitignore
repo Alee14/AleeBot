@@ -3,8 +3,6 @@ node_modules/
 
 absettings\.json
 
-run.bat
-
 ffmpeg.exe
 
 ffplay.exe
@@ -12,4 +10,5 @@ ffplay.exe
 ffprobe.exe
 
 .directory
+
 userData.sqlite
