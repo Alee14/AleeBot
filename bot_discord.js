@@ -20,7 +20,9 @@
 const Discord = require('discord.js');
 const economy = require('discord-eco');
 const moment = require('moment');
-const client = new Discord.Client();
+const client = new Discord.Client({
+  disableEveryone: true
+});
 const abVersion = '2.7.0';
 const prefix = 'ab:';
 const fs = require('fs');
