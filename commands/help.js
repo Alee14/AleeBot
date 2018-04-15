@@ -29,7 +29,6 @@ module.exports.run = async (client, message) => {
   });
 
   const embed = new Discord.RichEmbed()
-    .setTitle('AleeBot Help')
     .setAuthor('AleeBot 2.7.0' + ` Help and on ${client.guilds.size} servers`, 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('Every command you input into AleeBot is `' + require('../absettings.json').prefix + '`')
     .setColor('#1fd619')
