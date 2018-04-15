@@ -7,7 +7,7 @@ echo 1. Create a absettings.json file and include the token of your bot user so 
 echo 2. You will need to edit this file that you ran, and remove the 'git pull" line. This causes errors as it will try to pull from the AleeBot git.
 echo 3. Finally, you must credit the developers (AleeCorp Developers will work fine).
 echo --------------------------------------------------------------------------------
-echo To start the bot when you are ready, type in 'Yes' or tpye in 'debug' to enter into debug mode.
+echo To start the bot when you are ready, type in 'Yes' or type in 'debug' to enter into debug mode.
 set /p start=
 
 if %start% == Yes goto a
