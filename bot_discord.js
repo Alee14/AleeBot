@@ -144,6 +144,17 @@ client.on("error", error => {
   log(error);
 });
 
+if (process.argv.indexOf("--debug") == -1) {
+  log("Running AleeBot without --debug command line flag. Debug output disabled.");
+} else {
+
+  client.on('debug', function(info) {
+      log(info);
+  });
+  client.on('warn', function(info) {
+      log(info);
+  });
+}
 
 client.login(config.abtoken).catch(function() {
   log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
