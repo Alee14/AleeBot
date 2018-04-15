@@ -13,6 +13,7 @@ set /p start=
 if %start% == Yes goto a
 if %start% == yes goto a
 if %start% == y goto a
+if %start% == debug goto ad
 
 echo Exiting...
 pause>nul
@@ -21,3 +22,7 @@ exit
 git pull
 node bot_discord.js
 goto a
+:ad
+git pull
+node bot_discord.js --debug
+goto ad
