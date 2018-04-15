@@ -38,7 +38,7 @@ console.log ('This is free software, and you are welcome to redistribute it');
 console.log ('under certain conditions; type `show c\' for details.\n')
 
 if (process.argv.indexOf("--debug") == -1) {
-  log("Running AleeBot without --debug command line flag. Debug output disabled.");
+  console.log("Running AleeBot without --debug command line flag. Debug output disabled.\n");
 } else {
   console.log('[!] Entering debug mode...')
   client.on('debug', function(info) {
