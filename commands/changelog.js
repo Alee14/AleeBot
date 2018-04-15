@@ -20,7 +20,7 @@
 module.exports.run = async (client, message) => {
   const Discord = require('discord.js');
   const embed = new Discord.RichEmbed()
-    .setAuthor('AleeBot ' + '2.7.0 Beta ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
+    .setAuthor('AleeBot ' + '2.7.0 ' + 'Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot 2.7?')
     .addField('[>] User info!', 'Now AleeBot can tell you about your account!')
     .setColor('#1fd619');
