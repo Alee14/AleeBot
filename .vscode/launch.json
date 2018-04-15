@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Bot",
             "program": "${workspaceFolder}/bot_discord.js",
             "console": "integratedTerminal",
             
@@ -15,7 +15,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program with debug mode",
+            "name": "Launch Bot with debug mode",
             "program": "${workspaceFolder}/bot_discord.js",
             "console": "integratedTerminal",
             "args": [
