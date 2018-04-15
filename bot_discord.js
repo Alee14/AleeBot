@@ -37,6 +37,18 @@ console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `s
 console.log ('This is free software, and you are welcome to redistribute it');
 console.log ('under certain conditions; type `show c\' for details.\n')
 
+if (process.argv.indexOf("--debug") == -1) {
+  log("Running AleeBot without --debug command line flag. Debug output disabled.");
+} else {
+  console.log('[!] Entering debug mode...')
+  client.on('debug', function(info) {
+      log(info);
+  });
+  client.on('warn', function(info) {
+      log(info);
+  });
+}
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
@@ -143,18 +155,6 @@ process.on('uncaughtException', function (exception) {
 client.on("error", error => {
   log(error);
 });
-
-if (process.argv.indexOf("--debug") == -1) {
-  log("Running AleeBot without --debug command line flag. Debug output disabled.");
-} else {
-
-  client.on('debug', function(info) {
-      log(info);
-  });
-  client.on('warn', function(info) {
-      log(info);
-  });
-}
 
 client.login(config.abtoken).catch(function() {
   log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
