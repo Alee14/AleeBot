@@ -79,6 +79,9 @@ fs.readdir('./commands', (err, files) => {
 
 client.on('ready', () => {
   log('[>] AleeBot is now ready!');
+  log(`[i] Logged in as ${client.user.tag}`);
+  log(`[i] Bot ID: ${client.user.id}`);
+  log(`[i] Token: ${config.abtoken}`);
   log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
   
   client.setInterval(function() {
