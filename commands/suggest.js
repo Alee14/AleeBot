@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
   };
   exports.help = {
     name: 'suggest',
-    description: 'Suggest things in AleeBot.',
+    description: 'Suggest a feature in ACN.',
     usage: 'suggest [suggestion]',
     category: '- ACN Exclusive Commands',
   };

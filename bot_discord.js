@@ -23,7 +23,7 @@ const moment = require('moment');
 const client = new Discord.Client({
   disableEveryone: true
 });
-const abVersion = '2.7.0';
+const abVersion = '2.8.0 Beta';
 const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
