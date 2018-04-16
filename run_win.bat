@@ -16,9 +16,10 @@ if %start% == debug goto ad
 if %start% == no goto cexit
 if %start% == No goto cexit
 if %start% == exit goto cexit
+if %start% == easteregg goto easter
 if %start% == other goto error
 :error
-echo Bad command or file name or type command
+echo Bad command
 echo.
 pause>nul
 cls
@@ -34,6 +35,10 @@ goto add
 git pull
 node bot_discord.js --debug
 goto ad
+:easter
+echo Hey... there is no easter egg...
+cls
+goto main
 :cexit
 echo Exiting...
 pause>nul
