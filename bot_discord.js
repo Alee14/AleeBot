@@ -24,7 +24,7 @@ const client = new Discord.Client({
   disableEveryone: true
 });
 const abVersion = '2.8.0 Beta';
-const prefix = 'ab:';
+const prefix = 'abb:';
 const fs = require('fs');
 const config = require('./absettings.json');
 
