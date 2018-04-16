@@ -20,6 +20,7 @@
 const Discord = require('discord.js');
 const economy = require('discord-eco');
 const moment = require('moment');
+const DBL = require("dblapi.js");
 const client = new Discord.Client({
   disableEveryone: true
 });
@@ -27,6 +28,7 @@ const abVersion = '2.8.0';
 const prefix = 'ab:';
 const fs = require('fs');
 const config = require('./absettings.json');
+const dbl = new DBL(config.dbltoken, client);
 
 const log = message => {
 
@@ -92,6 +94,9 @@ client.on('ready', () => {
       'Drawing shapes',
       'Fighting AstralMod',
     ];
+    setInterval(() => {
+      dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
+  }, 1800000);
 
     client.user.setPresence({
       status: 'online',

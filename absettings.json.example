@@ -1,5 +1,6 @@
 {
   "abtoken": "token",
   "ownerID": "242775871059001344",
-  "prefix": "ab:"
+  "prefix": "ab:",
+  "dbltoken": "your dbl token"
 }

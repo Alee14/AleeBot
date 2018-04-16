@@ -18,6 +18,7 @@
   "homepage": "https://github.com/AleeCorp/AleeBot#readme",
   "dependencies": {
     "blessed": "^0.1.81",
+    "dblapi.js": "^2.0.0",
     "discord-eco": "0.0.10",
     "discord.js": "^11.3.1",
     "fs": "0.0.1-security",
