@@ -4,7 +4,7 @@
   "description": "A chat bot for discord written in discord.js.",
   "main": "src/bot.js",
   "scripts": {
-    "test": ""
+    "test": "node bot_discord.js"
   },
   "repository": {
     "type": "git",
