@@ -2,7 +2,7 @@
 Welcome to the AleeBot github repo!
 If you want to help do a pull request, also submit a problem/suggestion to issues.
 
-[![Discord Bots](https://discordbots.org/api/widget/status/282547024547545109.svg)](https://discordbots.org/bot/282547024547545109) [![Build Status](https://travis-ci.org/AleeCorp/AleeBot.svg?branch=master)](https://travis-ci.org/AleeCorp/AleeBot)
+[![Discord Bots](https://discordbots.org/api/widget/status/282547024547545109.svg)](https://discordbots.org/bot/282547024547545109) [![Build Status](https://travis-ci.org/AleeCorp/AleeBot.svg?branch=master)](https://travis-ci.org/AleeCorp/AleeBot) [![CircleCI](https://circleci.com/gh/AleeCorp/AleeBot.svg?style=svg)](https://circleci.com/gh/AleeCorp/AleeBot)
 
 # Tutorial for self hosting
 
