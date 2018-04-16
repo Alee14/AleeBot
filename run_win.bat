@@ -8,7 +8,7 @@ echo 2. You will need to edit this file that you ran, and remove the 'git pull" 
 echo 3. Finally, you must credit the developers (AleeCorp Developers will work fine).
 echo --------------------------------------------------------------------------------
 echo To start the bot when you are ready, type in 'Yes/yes/y' or type in 'debug' to enter debug mode.
-set /p start=> 
+set /p start=user@AleeBot:~$ 
 if %start% == Yes goto a
 if %start% == yes goto a
 if %start% == y goto a
