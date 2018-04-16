@@ -20,6 +20,8 @@ if %start% == other goto error
 :error
 echo Bad command or file name or type command
 echo.
+pause>nul
+cls
 goto main
 :a
 git pull
