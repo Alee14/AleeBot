@@ -29,9 +29,6 @@ git pull
 node bot_discord.js
 goto a
 :ad
-echo [i] Entering debug mode
-goto add
-:add
 echo.
 git pull
 node bot_discord.js --debug
