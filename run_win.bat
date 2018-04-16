@@ -32,6 +32,7 @@ goto a
 echo [i] Entering debug mode
 goto add
 :add
+echo.
 git pull
 node bot_discord.js --debug
 goto ad
