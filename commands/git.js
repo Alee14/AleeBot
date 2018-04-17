@@ -21,7 +21,7 @@ module.exports.run = async (client, message) => {
   const Discord = require('discord.js');
   const embed = new Discord.RichEmbed()
   .setTitle('GitHub Information')
-  .addField('**Github Repository:**', 'https://github.com/AleeCorp/AleeBot')
+  .addField('**Repository:**', 'https://github.com/AleeCorp/AleeBot')
   .addField('**Last Commit:**', '*Working Progress*')
   .setColor('#1fd619')
   message.channel.send({ embed });
