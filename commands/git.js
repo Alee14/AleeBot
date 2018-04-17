@@ -18,6 +18,7 @@
  * 
  * *************************************/
 module.exports.run = async (client, message) => {
+  const Discord = require('discord.js');
   const embed = new Discord.RichEmbed()
   .setTitle('GitHub Information')
   .addField('**Github Repository:**', 'https://github.com/AleeCorp/AleeBot')
