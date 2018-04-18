@@ -6,7 +6,7 @@
 
 # Tutorial for self hosting
 
-First get NodeJS then clone this repo then do `npm install` in the AleeBot folder after remove example in `absettings.json.example` then get your token from discord and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`
+First get NodeJS then clone this repo then do `npm install` in the AleeBot folder after remove example in `tokens.json.example` then get your token from discord and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`
 
 # Contributors
 Here's the list of people who helped me with AleeBot for discord servers

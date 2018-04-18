@@ -24,10 +24,9 @@ const DBL = require("dblapi.js");
 const client = new Discord.Client({
   disableEveryone: true
 });
-const abVersion = '2.8.0';
-const prefix = 'ab:';
+const settings = require('./storage/settings.json')
 const fs = require('fs');
-const config = require('./absettings.json');
+const config = require('./tokens.json');
 const dbl = new DBL(config.dbltoken, client);
 
 const log = message => {
@@ -82,13 +81,14 @@ fs.readdir('./commands', (err, files) => {
 client.on('ready', () => {
   log('[>] AleeBot is now ready!');
   log(`[i] Logged in as ${client.user.tag}`);
+  log(`[i] Prefix: ${settings.prefix}`)
   log(`[i] Bot ID: ${client.user.id}`);
   log(`[i] Token: ${config.abtoken}`);
-  log('[i] Running version ' + abVersion + ` and in ${client.guilds.size} guilds`);
+  log('[i] Running version ' + settings.abVersion + ` and in ${client.guilds.size} guilds`);
   
   client.setInterval(function() {
     const games = [
-      'AleeBot ' + abVersion + ' | ' + config.prefix + 'help',
+      'AleeBot ' + settings.abVersion + ' | ' + config.prefix + 'help',
       'Annoying Alee',
       'Coding stuff',
       'Drawing shapes',
@@ -126,8 +126,8 @@ client.on('guildDelete', guild => {
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;
-  if (!msg.content.startsWith(prefix)) return;
-  const args = msg.content.slice(prefix.length).trim().split(/ +/g);
+  if (!msg.content.startsWith(settings.prefix)) return;
+  const args = msg.content.slice(settings.prefix.length).trim().split(/ +/g);
   const command = args.shift();
   let cmd;
 
