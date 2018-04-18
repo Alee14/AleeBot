@@ -4,15 +4,6 @@
 
 [![Discord Bots](https://discordbots.org/api/widget/status/282547024547545109.svg)](https://discordbots.org/bot/282547024547545109) [![Build Status](https://travis-ci.org/AleeCorp/AleeBot.svg?branch=master)](https://travis-ci.org/AleeCorp/AleeBot) [![CircleCI](https://circleci.com/gh/AleeCorp/AleeBot.svg?style=svg)](https://circleci.com/gh/AleeCorp/AleeBot)
 
-# Tutorial for self hosting
-
-First get NodeJS then clone this repo then do `npm install` in the AleeBot folder. Now add a file called `tokens.json` then copy and paste this follow code.
-```
-{
-  "abtoken": "token"
-}
-```
-Then get your token from discord and replace token with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`.
 
 # Contributors
 Here's the list of people who helped me with AleeBot for discord servers
