@@ -88,7 +88,7 @@ client.on('ready', () => {
   
   client.setInterval(function() {
     const games = [
-      'AleeBot ' + settings.abVersion + ' | ' + config.prefix + 'help',
+      'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
       'Annoying Alee',
       'Coding stuff',
       'Drawing shapes',
