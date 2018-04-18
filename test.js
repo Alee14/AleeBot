@@ -81,12 +81,12 @@ client.on('ready', () => {
   log(`[i] Logged in as ${client.user.tag}`);
   log(`[i] Prefix: ${settings.prefix}`)
   log(`[i] Bot ID: ${client.user.id}`);
-  log(`[i] Token: ${config.abtoken}`);
+  log(`[i] Token: ${api.abtoken}`);
   log('[i] Running version ' + settings.abVersion + ` and in ${client.guilds.size} guilds`);
   
   client.setInterval(function() {
     const games = [
-      'AleeBot ' + settings.abVersion + ' | ' + config.prefix + 'help',
+      'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
       'Annoying Alee',
       'Coding stuff',
       'Drawing shapes',
