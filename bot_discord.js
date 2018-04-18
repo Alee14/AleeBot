@@ -26,8 +26,8 @@ const client = new Discord.Client({
 });
 const settings = require('./storage/settings.json')
 const fs = require('fs');
-const config = require('./tokens.json');
-const dbl = new DBL(config.dbltoken, client);
+const api = require('./tokens.json');
+const dbl = new DBL(api.dbltoken, client);
 
 const log = message => {
 
@@ -83,7 +83,7 @@ client.on('ready', () => {
   log(`[i] Logged in as ${client.user.tag}`);
   log(`[i] Prefix: ${settings.prefix}`)
   log(`[i] Bot ID: ${client.user.id}`);
-  log(`[i] Token: ${config.abtoken}`);
+  log(`[i] Token: ${api.abtoken}`);
   log('[i] Running version ' + settings.abVersion + ` and in ${client.guilds.size} guilds`);
   
   client.setInterval(function() {
@@ -166,6 +166,6 @@ client.on("error", error => {
   log(error);
 });
 
-client.login(config.abtoken).catch(function() {
+client.login(api.abtoken).catch(function() {
   log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.');
 });
