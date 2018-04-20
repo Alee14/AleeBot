@@ -35,7 +35,7 @@ const log = message => {
 
 };
 
-console.log('AleeBot: Copyright (C) 2018 AleeCorp');
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
 console.log ('This is free software, and you are welcome to redistribute it');
 console.log ('under certain conditions; type `show c\' for details.\n')
@@ -126,8 +126,20 @@ client.on('guildDelete', guild => {
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;
-  if (!msg.content.startsWith(settings.prefix)) return;
-  const args = msg.content.slice(settings.prefix.length).trim().split(/ +/g);
+
+  let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
+
+  if(!prefixes[msg.guild.id]){
+    prefixes[msg.guild.id] = {
+      prefixes: settings.prefix
+    };
+  }
+
+  let prefix = prefixes[msg.guild.id].prefixes
+
+
+  if (!msg.content.startsWith(prefix)) return;
+  const args = msg.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift();
   let cmd;
 

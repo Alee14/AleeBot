@@ -22,7 +22,7 @@ module.exports.run = async (client, message) => {
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ' Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot '+ require('../storage/settings.json').abVersion +'?')
-    .addField('1. Suggest a feature for AleeBot!', 'You can now suggest a feature for AleeBot!')
+    .addField('1. Setting a custom prefix for AleeBot!', 'We\'ve finally did it! You can now set a prefix!')
     .setColor('#1fd619');
   message.channel.send({embed});
 
