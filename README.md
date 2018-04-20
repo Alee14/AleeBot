@@ -6,21 +6,20 @@
  </div>
   
 <h1>What features does AleeBot have?</h1>
-- Economy
-<br>
-- Moderation
-<br>
-- Fun features
-<br>
-- Quotes
+<ul>
+  <li>Economy</li>
+  <li>Moderation</li>
+  <li>Fun features</li>
+  <li>Quotes</li>
+</ul>
 <h1>Reporting issues/pull request/request a feature</h1>
 <p>If you want to help do a pull request, also submit a problem/suggestion to issues.</p>
 <h1>Contributors</h1>
 <p>Here's the list of people who helped me with AleeBot for discord servers</p>
-- Alee14
+<ul>
+  <li>Alee14</li>
+  <li>OfficialRain (Rain)</li>
+  <li>jtsshieh</li>
+</ul>
 <br>
-- OfficialRain (Rain)
-<br>
-- jtsshieh
-
 <b>Please note if you contribute to this please put your name here.</b>
