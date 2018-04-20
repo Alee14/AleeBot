@@ -20,7 +20,7 @@
 module.exports.run = async (client, message, args) => {
     const fs = require('fs');
     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply('Sorry you need admin to set my prefix')
-    if(!args[0] || args[0 == "help"]) return message.reply('Usage: ab:setprefix <prefix>')
+    if(!args[0] || args[0 == "help"]) return message.reply(`Usage: <your prefix>setprefix <prefix>`)
 
     let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
 

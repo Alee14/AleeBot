@@ -18,6 +18,7 @@
  * 
  * *************************************/
 const Discord = require('discord.js');
+const fs = require('fs');
 module.exports.run = async (client, message) => {
   const categories = [];
   const commands = Array.from(client.commands.keys());
@@ -28,9 +29,19 @@ module.exports.run = async (client, message) => {
     }
   });
 
+  let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
+
+  if(!prefixes[message.guild.id]){
+    prefixes[message.guild.id] = {
+      prefixes: settings.prefix
+    };
+  }
+
+  let prefix = prefixes[message.guild.id].prefixes
+
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
-    .setDescription('Every command you input into AleeBot is `' + require('../storage/settings.json').prefix + '`')
+    .setDescription('Every command you input into AleeBot is `' + prefix + '`')
     .setColor('#1fd619')
     .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');
 

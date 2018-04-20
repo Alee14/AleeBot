@@ -81,7 +81,7 @@ fs.readdir('./commands', (err, files) => {
 client.on('ready', () => {
   log('[>] AleeBot is now ready!');
   log(`[i] Logged in as ${client.user.tag}`);
-  log(`[i] Prefix: ${settings.prefix}`)
+  log(`[i] Default Prefix: ${settings.prefix}`)
   log(`[i] Bot ID: ${client.user.id}`);
   log(`[i] Token: ${api.abtoken}`);
   log('[i] Running version ' + settings.abVersion + ` and in ${client.guilds.size} guilds`);
@@ -136,7 +136,7 @@ client.on('message', (msg) => {
   }
 
   let prefix = prefixes[msg.guild.id].prefixes
-
+  
 
   if (!msg.content.startsWith(prefix)) return;
   const args = msg.content.slice(prefix.length).trim().split(/ +/g);
