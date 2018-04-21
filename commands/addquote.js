@@ -18,6 +18,7 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
+  message.reply('This command is in working progress');
     /*
     const moment = require('moment');
     const log = message => {
