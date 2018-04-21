@@ -22,7 +22,7 @@ const fs = require('fs');
 module.exports.run = async (client, message) => {
   const categories = [];
   const commands = Array.from(client.commands.keys());
-
+  const settings = require('./storage/settings.json')
   commands.forEach(function(x) {
     if (!categories.includes(client.commands.get(x).help.category)) {
       categories.push(client.commands.get(x).help.category);
