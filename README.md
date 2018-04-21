@@ -8,6 +8,7 @@
 <h1>What features does AleeBot have?</h1>
 <ul>
   <li>Economy</li>
+  <li>Customizable Prefix</li>
   <li>Moderation</li>
   <li>Fun features</li>
   <li>Quotes</li>
