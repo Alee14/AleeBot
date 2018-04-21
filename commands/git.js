@@ -27,8 +27,6 @@ module.exports.run = async (client, message) => {
   .addField('**Last Commit:**', commit.subject)
   .setColor('#1fd619')
   message.channel.send({ embed });
-  console.log(commit)
-  console.log(err)
   })
 };
 
