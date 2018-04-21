@@ -29,7 +29,7 @@ module.exports.run = async (client, message) => {
     }
   });
 
-  let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
+  let prefixes = JSON.parse(fs.readFileSync("../storage/prefixes.json", "utf8"));
 
   if(!prefixes[message.guild.id]){
     prefixes[message.guild.id] = {
