@@ -1,6 +1,6 @@
 /****************************************
  * 
- *   InviteBot: Command for AleeBot
+ *   Invite: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -18,8 +18,24 @@
  * 
  * *************************************/
 module.exports.run = async (client, message) => {
-    message.reply("Continue in DMs.")
-    message.author.send('Want AleeBot in your server? Here\'s the link: https://discordapp.com/oauth2/authorize?client_id=282547024547545109&permissions=68185158&scope=bot');
+   const Discord = require('discord.js');
+   const embed = new Discord.RichEmbed()
+   message.channel.send({embed: {
+    color: 2086425,
+    title: "Invite Command",
+    fields: [{
+        name: "Invite AleeBot",
+        value: "[Invite AleeBot to your server.](https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot)"
+      },
+      {
+        name: "Join AleeCorp Network",
+        value: "[If there's any bugs you can join ACN guild.](https://discord.gg/EFhRDqG)"
+      }
+    ],
+  }
+});
+ 
+   // message.channel.send('Want AleeBot in your server? Here\'s the link: https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot');
   };
   
   exports.conf = {
@@ -27,9 +43,9 @@ module.exports.run = async (client, message) => {
     guildOnly: false,
   };
   exports.help = {
-    name: 'invitebot',
-    description: 'Invite AleeBot to your server.',
-    usage: 'invitebot',
+    name: 'invite',
+    description: 'Gives you an invite to the guild and the bot.',
+    usage: 'invite',
     category: '- General Commands',
   };
   
