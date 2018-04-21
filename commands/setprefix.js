@@ -18,6 +18,12 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
+  const moment = require('moment');
+  const log = message => {
+
+    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+  
+  };
     const fs = require('fs');
     if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply('Sorry you need admin to set my prefix')
     if(!args[0] || args[0 == "help"]) return message.reply(`Usage: <your prefix>setprefix <prefix>`)
@@ -33,6 +39,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     message.reply(`AleeBot's Prefix in this guild is now \`${args[0]}\``);
+    log(`[i] The guild ${message.guild.name} has changed AleeBot's prefix to ${args[0]}`)
     };
   
   exports.conf = {
