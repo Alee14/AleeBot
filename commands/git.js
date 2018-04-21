@@ -19,12 +19,17 @@
  * *************************************/
 module.exports.run = async (client, message) => {
   const Discord = require('discord.js');
+  const git = require('git-last-commit');
+  git.getLastCommit(function(err, commit) {
   const embed = new Discord.RichEmbed()
   .setTitle('GitHub Information')
   .addField('**Repository:**', 'https://github.com/AleeCorp/AleeBot')
-  .addField('**Last Commit:**', '*Working Progress*')
+  .addField('**Last Commit:**', commit.subject)
   .setColor('#1fd619')
   message.channel.send({ embed });
+  console.log(commit)
+  console.log(err)
+  })
 };
 
 exports.conf = {
