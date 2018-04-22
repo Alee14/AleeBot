@@ -1,6 +1,6 @@
 /****************************************
  * 
- *   Purge: Command for AleeBot
+ *   Uptime: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify

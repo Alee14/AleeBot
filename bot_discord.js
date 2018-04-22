@@ -107,7 +107,7 @@ rl.on('line', function(cmd){
           break;
       case "broadcast":
           if (!args[1]) {
-              console.log('[!] Please insert the guild\'s ID.');
+              console.log('[!] Usage: broadcast [guildID] [channelID].');
           } else {
               let broadcast = args.join(" ").slice(48);
               var guild = null;
@@ -117,11 +117,21 @@ rl.on('line', function(cmd){
               if (channel != null) {
                 channel.send(broadcast);
               }
-              if (channel = null) {
-                console.log ('Usage: broadcast [guildID] [channelID]')
-              }
           }
           break;
+      case "uptime":
+      let uptime = parseInt(client.uptime);
+      uptime = Math.floor(uptime / 1000);
+      let uptimeMinutes = Math.floor(uptime / 60);
+      const minutes = uptime % 60;
+      let hours = 0;
+      while (uptimeMinutes >= 60) {
+      hours++;
+      uptimeMinutes = uptimeMinutes - 60;
+      }
+      const uptimeSeconds = minutes % 60;
+      console.log('[i] AleeBot has been up for ' + hours + ' hours, ' + uptimeMinutes + ' minutes, and ' + uptimeSeconds + ' seconds.');
+      break;
       case "exit":
         console.log('[i] AleeBot will now exit!')
         process.exit(0);
@@ -131,6 +141,7 @@ rl.on('line', function(cmd){
           msg += (`guilds - Shows all guilds that AleeBot's on.\n`)
           msg += (`leave - Leaves a guild.\n`)
           msg += (`broadcast - Broadcasts a message to a server.\n`)
+          msg += (`uptime - Shows the uptime for AleeBot.\n`)
           msg += (`help - Shows this command.\n`)
           msg += (`exit - Exits AleeBot.\n`)
           console.log(msg);
