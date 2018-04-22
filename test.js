@@ -91,7 +91,7 @@ rl.on('line', function(cmd){
           } else {
               console.log('[i] Here\'s the servers that AleeBot is connected to:')
               for ([id, guild] of client.guilds) {
-                  console.log(`   Guild Name: ${guild.name} - ID: ${guild.id} - Owner: ${guild.owner.user.tag}`);
+                  console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`);
               }
           }
           break;
