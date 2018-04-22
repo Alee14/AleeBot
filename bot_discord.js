@@ -97,6 +97,17 @@ rl.on('line', function(cmd){
               }
           }
           break;
+      case "channels":
+            if (!args[1]) {
+              console.log('[!] Please insert the guild\'s ID.')
+            } else {
+              var guild = client.guilds.get(args[1]);
+              console.log('[i] Here\'s the channels that this guild have:')
+              for ([id, channel, guild] of guild && client.channels) {
+                  console.log(`   Channel: #${channel.name} - ID: ${channel.id}`);
+              }
+            }
+          break;
       case "leave":
           if (!args[1]) {
               console.log('[!] Please insert the guild\'s ID.');
@@ -139,6 +150,7 @@ rl.on('line', function(cmd){
       case "help":
           var msg = (`AleeBot `+ settings.abVersion +` Console Help\n\n`);
           msg += (`guilds - Shows all guilds that AleeBot's on.\n`)
+          msg += (`channels - Shows all the channels that the guilds have.\n`)
           msg += (`leave - Leaves a guild.\n`)
           msg += (`broadcast - Broadcasts a message to a server.\n`)
           msg += (`uptime - Shows the uptime for AleeBot.\n`)
