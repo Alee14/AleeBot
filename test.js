@@ -34,12 +34,6 @@ const log = message => {
 
 };
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  prompt: '> '
-});
-
 console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
 console.log ('This is free software, and you are welcome to redistribute it');
@@ -81,64 +75,6 @@ fs.readdir('./commands', (err, files) => {
   log('[>] Command Loading complete!');
   console.log('\n');
 });
-
-rl.on('line', function(cmd){
-  var args = cmd.split(" ");
-  switch(args[0]) {
-      case "guilds":
-          if (client.guilds.size === 0) {
-              console.log(('[!] No guilds found.'));
-          } else {
-              console.log('[i] Here\'s the servers that AleeBot is connected to:')
-              for ([id, guild] of client.guilds) {
-                  console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`);
-              }
-          }
-          break;
-      case "leave":
-          if (!args[1]) {
-              console.log('[!] Please insert the guild\'s ID.');
-          } else {
-              var guild = client.guilds.get(args[1]);
-              guild.leave();
-          }
-          break;
-      case "broadcast":
-          if (!args[1]) {
-              console.log('[!] Please insert the guild\'s ID.');
-          } else {
-              let broadcast = args.join(" ").slice(48);
-              var guild = null;
-              guild = client.guilds.get(args[1]);
-              var channel = null;
-              channel = guild.channels.get(args[2])
-              if (channel != null) {
-                channel.send(broadcast);
-              }
-              if (channel = null) {
-                console.log ('Usage: broadcast [guildID] [channelID]')
-              }
-          }
-          break;
-      case "exit":
-        console.log('[i] AleeBot will now exit!')
-        process.exit(0);
-          break;
-      case "help":
-          var msg = (`AleeBot `+ settings.abVersion +` Console Help\n\n`);
-          msg += (`guilds - Shows all guilds that AleeBot's on.\n`)
-          msg += (`leave - Leaves a guild.\n`)
-          msg += (`broadcast - Broadcasts a message to a server.\n`)
-          msg += (`help - Shows this command.\n`)
-          msg += (`exit - Exits AleeBot.\n`)
-          console.log(msg);
-          break;
-      default:
-     console.log('Unknown Command type \'help\' to list the commands...')
-  }
-  rl.prompt();
-});
-
 
 client.on('ready', () => {
   log('[>] AleeBot is now ready!');
