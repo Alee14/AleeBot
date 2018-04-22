@@ -28,7 +28,7 @@ module.exports.run = async (client, message, args) => {
       if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`)
   
       let quotes = JSON.parse(fs.readFileSync("./storage/quotes.json", "utf8"));
-  
+
       quotes = {
           author: args[0],
           authorImage: args[1],
