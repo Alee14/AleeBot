@@ -170,7 +170,6 @@ client.on('ready', () => {
     });
   }, 200000);
   client.user.setStatus('online');
-  rl.prompt();
 });
 
 client.on('guildCreate', guild => {
