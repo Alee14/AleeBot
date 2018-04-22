@@ -18,8 +18,6 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
-  message.reply('This command is in working progress');
-    /*
     const moment = require('moment');
     const log = message => {
   
@@ -27,7 +25,7 @@ module.exports.run = async (client, message, args) => {
     
     };
       const fs = require('fs');
-      if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote]`)
+      if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`)
   
       let quotes = JSON.parse(fs.readFileSync("./storage/quotes.json", "utf8"));
   
@@ -43,7 +41,7 @@ module.exports.run = async (client, message, args) => {
       })
   
       message.reply(`You just added a new quote!`);
-      log(`[i] A quote has been added to quotes.json...`) */
+      log(`[i] A quote has been added to quotes.json...`) 
       };
     
     exports.conf = {
