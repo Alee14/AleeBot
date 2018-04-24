@@ -1,7 +1,7 @@
 <div align="center">
   <h1>AleeBot</h1>
 <a href="https://discordbots.org/bot/282547024547545109"><img src="https://discordbots.org/api/widget/status/282547024547545109.svg" alt="AleeBot Status Widget" />
-  </a><a href="https://discord.gg/EFhRDqG"><img src="https://img.shields.io/discord/243022206437687296.svg?colorB=7289DA&label=discord" alt="Discord Badge"></a><a href="https://travis-ci.org/AleeCorp/AleeBot"><img src="https://travis-ci.org/AleeCorp/AleeBot.svg?branch=master" alt="Travis CI Build Status" /></a><a href="https://circleci.com/gh/AleeCorp/AleeBot"> <img src="https://circleci.com/gh/AleeCorp/AleeBot.svg?style=svg" alt="CircleCI Build Status" /></a>
+  </a><a href="https://discord.gg/EFhRDqG"><img src="https://img.shields.io/discord/243022206437687296.svg?colorB=7289DA&label=discord" alt="Discord Badge"> </a><a href="https://travis-ci.org/AleeCorp/AleeBot"><img src="https://travis-ci.org/AleeCorp/AleeBot.svg?branch=master" alt="Travis CI Build Status" /></a><a href="https://circleci.com/gh/AleeCorp/AleeBot"> <img src="https://circleci.com/gh/AleeCorp/AleeBot.svg?style=svg" alt="CircleCI Build Status" /></a>
 
   <p>Welcome to the AleeBot github repository! This bot is crafted for discord servers.</p>
  </div>
