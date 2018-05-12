@@ -18,6 +18,7 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
+    /*
     const moment = require('moment');
     const log = message => {
   
@@ -42,6 +43,7 @@ module.exports.run = async (client, message, args) => {
   
       message.reply(`You just added a new quote!`);
       log(`[i] A quote has been added to quotes.json...`) 
+      */
       };
     
     exports.conf = {
