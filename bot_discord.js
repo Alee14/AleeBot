@@ -18,7 +18,6 @@
  * 
  * *************************************/
 const Discord = require('discord.js');
-const economy = require('discord-eco');
 const moment = require('moment');
 const readline = require('readline');
 const DBL = require("dblapi.js");
