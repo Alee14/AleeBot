@@ -22,11 +22,11 @@ module.exports.run = async (client, message, args) => {
         client.channels.find('id', '435234655579537418').send(
             new RichEmbed()
             .setColor ('#1fd619')
-            .setTitle('Suggestion')
-            .setDescription(`This is a suggestion from `+ message.author.username +` and from the guild ${message.guild.name}.`)
+            .setTitle('AleeBot Feature Suggestion')
+            .setDescription(`This is a AleeBot feature suggestion from `+ message.author.username +` and from the guild ${message.guild.name}.`)
             .addField('Suggestion Contents', args.join(' '))
          )
-       message.reply("Alright, your suggestion has been shown to the ACN guild.")
+       await message.reply("Alright, your suggestion has been shown to the ACN guild.")
    
   };
   
