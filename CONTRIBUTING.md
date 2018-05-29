@@ -1,5 +1,5 @@
 # Contributing to AleeBot
-If you want to help me make AleeBot you must get NodeJS to make AleeBot work.\n
+<p>If you want to help me make AleeBot you must get NodeJS to make AleeBot work.</p>
 Include the GPL-3.0 license too and follow the following format when you create a new file:
 ```
 /****************************************
