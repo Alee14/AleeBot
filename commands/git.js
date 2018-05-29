@@ -25,7 +25,7 @@ module.exports.run = async (client, message) => {
   .setTitle('GitHub Information')
   .addField('**Repository:**', 'https://github.com/AleeCorp/AleeBot')
   .addField('**Last Commit:**', commit.subject)
-  .addField('**Commited By:**', commit.committer.name)
+  .addField('**Commited By:**', commit.author.name)
   .setColor('#1fd619')
   message.channel.send({ embed });
   })
