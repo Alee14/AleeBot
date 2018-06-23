@@ -27,6 +27,7 @@ const client = new Discord.Client({
 });
 const settings = require('./storage/settings.json')
 const fs = require('fs');
+const db = require('quick.db');
 const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
 
