@@ -31,4 +31,4 @@ First get NodeJS then clone this repo then do `npm install` in the AleeBot folde
   "abtoken": "token"
 }
 ```
-Then get your token from discord and replace token with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`.
+Then get your token from discord and replace `token` with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`.

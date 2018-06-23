@@ -201,7 +201,6 @@ client.on('ready', () => {
 client.on('guildCreate', guild => {
 
   log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`.blue);
-  message.author.send(':wave: Hello! Thanks for inviting AleeBot!\nFor help type `ab:help`, and if you want to set the prefix `ab:setprefix [prefix]`')
 
 });
 
