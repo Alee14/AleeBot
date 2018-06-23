@@ -12,3 +12,4 @@ ffprobe.exe
 .directory
 
 userData.sqlite
+.vs/slnx.sqlite
