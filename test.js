@@ -20,33 +20,41 @@
 const Discord = require('discord.js');
 const moment = require('moment');
 const readline = require('readline');
+const colors = require('colors');
 const DBL = require("dblapi.js");
 const client = new Discord.Client({
   disableEveryone: true
 });
 const settings = require('./storage/settings.json')
 const fs = require('fs');
+const db = require('quick.db');
 
 const log = message => {
 
-  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
 
 };
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`);
-console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.');
-console.log ('This is free software, and you are welcome to redistribute it');
-console.log ('under certain conditions; type `show c\' for details.\n')
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  prompt: '> '.gray
+});
+
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`.gray);
+console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
+console.log ('This is free software, and you are welcome to redistribute it'.gray);
+console.log ('under certain conditions; type `show c\' for details.\n'.gray)
 
 if (process.argv.indexOf("--debug") == -1) {
-  console.log("Running AleeBot without --debug command line flag. Debug output disabled.\n");
+  console.log("Running AleeBot without --debug command line flag. Debug output disabled.\n".yellow);
 } else {
-  console.log('[!] Entering debug mode...')
+  console.log('[!] Entering debug mode...'.yellow)
   client.on('debug', function(info) {
-      log(info);
+      log(info.gray);
   });
   client.on('warn', function(info) {
-      log(info);
+      log(info.red);
   });
 }
 
@@ -55,34 +63,34 @@ client.aliases = new Discord.Collection();
 
 fs.readdir('./commands', (err, files) => {
   if (err) console.error(err);
-  log(`[!] Attempting to load a total of ${files.length} commands into the memory.`);
+  log(`[!] Attempting to load a total of ${files.length} commands into the memory.`.cyan);
   files.forEach(file => {
     try {
       const command = require(`./commands/${file}`);
-      log(`[!] Attempting to load the command "${command.help.name}".`);
+      log(`[!] Attempting to load the command "${command.help.name}".`.cyan);
       client.commands.set(command.help.name, command);
       command.conf.aliases.forEach(alias => {
         client.aliases.set(alias, command.help.name);
-        log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`);
+        log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`.cyan);
       });
     }
     catch (err) {
-      log('[X] An error has occured trying to load a command. Here is the error.');
+      log('[X] An error has occured trying to load a command. Here is the error.'.red);
       console.log(err.stack);
     }
   });
-  log('[>] Command Loading complete!');
+  log('[>] Command Loading complete!'.green);
   console.log('\n');
 });
 
 client.on('ready', () => {
-  log('[>] AleeBot is now ready!');
-  log(`[i] Logged in as ${client.user.tag}`);
-  log(`[i] Default Prefix: ${settings.prefix}`)
-  log(`[i] Bot ID: ${client.user.id}`);
-  log(`[i] Token: ${api.abtoken}`);
-  log('[i] Running version ' + settings.abVersion + ` and in ${client.guilds.size} guilds`);
-  
+  log('[>] AleeBot is now ready!'.green);
+  log(`[i] Logged in as ${client.user.tag}`.green);
+  log(`[i] Default Prefix: ${settings.prefix}`.green)
+  log(`[i] Bot ID: ${client.user.id}`.green);
+  log(`[i] Token: ${api.abtoken}`.green);
+  log(`[i] Running version ${settings.abVersion} and in ${client.guilds.size} guilds`.green);
+
   client.setInterval(function() {
     const games = [
       'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
@@ -93,8 +101,8 @@ client.on('ready', () => {
     ];
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
-  }, 1800000);
-
+    }, 1800000);
+    db.createWebview('password', 3000);
     client.user.setPresence({
       status: 'online',
       afk: false,
@@ -109,15 +117,14 @@ client.on('ready', () => {
 
 client.on('guildCreate', guild => {
 
-  log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  message.author.send(':wave: Hello! Thanks for inviting AleeBot!\nFor help type `ab:help`, and if you want to set the prefix `ab:setprefix [prefix]`')
+  log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`.blue);
 
 });
 
 
 client.on('guildDelete', guild => {
 
-  log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`);
+  log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`.red);
 
 });
 
@@ -164,14 +171,10 @@ client.on('message', (msg) => {
 
 process.on('unhandledRejection', function(err, p) {
 
-log("[X | UNCAUGHT PROMISE] " + err.stack);
+log("[X | UNCAUGHT PROMISE] " + err.stack.red);
 
 });
 
 process.on('uncaughtException', function (exception) {
-  log(exception);
-});
-
-client.on("error", error => {
-  log(error);
+  log(exception.red);
 });
