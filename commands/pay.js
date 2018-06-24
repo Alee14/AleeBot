@@ -49,7 +49,7 @@ module.exports.run = async (client, message, args) => {
   };
   
   exports.conf = {
-    aliases: [],
+    aliases: ['transfer'],
     guildOnly: false,
   };
   exports.help = {
