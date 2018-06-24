@@ -1,6 +1,6 @@
 @echo off
 title Installing/Updating Dependencies
 git pull
-npm install
+npm install --save
 pause
 exit

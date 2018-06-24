@@ -23,6 +23,7 @@ module.exports.run = async (client, message) => {
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ' Changelog', 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
     .setDescription('What\'s new in AleeBot '+ require('../storage/settings.json').abVersion +'?')
     .addField('1. Economy features has been added back!', 'We just rewritten the economy features.')
+    .addField('2. We have reorganized commands.', 'Yes, I have redesign the help command a bit.')
     .setColor('#1fd619');
   message.channel.send({embed});
 
@@ -36,5 +37,5 @@ exports.help = {
   name: 'changelog',
   description: 'What\'s new',
   usage: 'changelog',
-  category: '- General Commands',
+  category: '- Information Commands',
 };

@@ -25,7 +25,10 @@ module.exports.run = async (client, message) => {
 
     let balance = await db.fetch(`userBalance_${user.id}`);
 
-    if (balance === null) balance = 0;
+    if (balance === null) {
+      db.set(`userBalance_${message.author.id}`, 0);
+      balance = 0;
+    }
         const embed = new RichEmbed()
         .setDescription(`**AleeCorp Bank**`)
         .addField('Account Holder: ', user.username, true)

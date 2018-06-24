@@ -21,7 +21,7 @@ const db = require('quick.db');
       ms = require('parse-ms');
 
 module.exports.run = async (client, message) => {
-/*
+
     let cooldown = 8.64e+7,
         amount = 100;
     
@@ -34,11 +34,16 @@ module.exports.run = async (client, message) => {
     } else {
         message.channel.send(`You have successfully collected $${amount} dollars!`);
 
+        let balance = await db.fetch(`userBalance_${message.author.id}`);
+
+        if (balance == null) {
+            db.set(`userBalance_${message.author.id}`, 0);
+        }
+
         db.set(`lastDaily_${message.author.id}`, Date.now());
         db.add(`userBalance_${message.author.id}`, 100);
     }
-*/
-    message.reply('This command is broken for now.');
+
   };
   
   exports.conf = {
