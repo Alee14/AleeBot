@@ -168,8 +168,6 @@ rl.on('line', function(cmd){
 
 client.on('ready', () => {
   log('[>] AleeBot is now ready!'.green);
-  db.createWebview('password', 3000);
-  log('[>] Started the Quick.DB web server! Port: 3000.'.green)
   log(`[i] Logged in as ${client.user.tag}`.green);
   log(`[i] Default Prefix: ${settings.prefix}`.green)
   log(`[i] Bot ID: ${client.user.id}`.green);
@@ -186,8 +184,8 @@ client.on('ready', () => {
     ];
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
-  }, 1800000);
-
+    }, 1800000);
+    db.createWebview('password', 3000);
     client.user.setPresence({
       status: 'online',
       afk: false,

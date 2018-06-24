@@ -44,6 +44,7 @@ module.exports.run = async (client, message, args) => {
       message.reply(`You just added a new quote!`);
       log(`[i] A quote has been added to quotes.json...`) 
       */
+     message.reply('Command is broken for now');
       };
     
     exports.conf = {
