@@ -50,6 +50,6 @@ module.exports.run = async (client, message, args) => {
     name: 'setprefix',
     description: 'Sets the guild prefix.',
     usage: 'setprefix [prefix]',
-    category: '- General Commands',
+    category: '- Settings Commands',
   };
   

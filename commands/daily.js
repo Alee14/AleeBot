@@ -21,8 +21,7 @@ const db = require('quick.db');
       ms = require('parse-ms');
 
 module.exports.run = async (client, message) => {
-    const { RichEmbed } = require('discord.js');
-
+/*
     let cooldown = 8.64e+7,
         amount = 100;
     
@@ -38,7 +37,8 @@ module.exports.run = async (client, message) => {
         db.set(`lastDaily_${message.author.id}`, Date.now());
         db.add(`userBalance_${message.author.id}`, 100);
     }
-
+*/
+    message.reply('This command is broken for now.');
   };
   
   exports.conf = {

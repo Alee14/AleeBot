@@ -21,6 +21,21 @@ Include the GPL-3.0 license too and follow the following format when you create 
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  * *************************************/
+
+ module.exports.run = async (client, message) => {
+  // Code here
+};
+
+exports.conf = {
+  aliases: [],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'name here',
+  description: 'Description here.',
+  usage: 'Usage [here]',
+  category: '- General Commands',
+};
 ```
 
 # Testing the bot

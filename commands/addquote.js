@@ -54,6 +54,6 @@ module.exports.run = async (client, message, args) => {
       name: 'addquote',
       description: 'Sets the guild prefix.',
       usage: 'addquote [author] [authorImage] [quote] [year]',
-      category: '- General Commands',
+      category: '- Quote Commands',
     };
     

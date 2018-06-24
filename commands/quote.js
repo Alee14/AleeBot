@@ -60,6 +60,6 @@ exports.conf = {
     name: 'quote',
     description: 'Tells you quotes',
     usage: 'quote',
-    category: '- General Commands',
+    category: '- Quote Commands',
   };
   

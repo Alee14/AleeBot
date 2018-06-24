@@ -39,6 +39,6 @@ module.exports.run = async (client, message) => {
     name: 'userinfo',
     description: 'Tells your info.',
     usage: 'userinfo',
-    category: '- Info Commands',
+    category: '- Information Commands',
   };
   

@@ -60,6 +60,6 @@ module.exports.run = async (client, message) => {
         name: 'vtquote',
         description: 'Tells you quotes when victor accidentaly swore.',
         usage: 'vtquote',
-        category: '- General Commands',
+        category: '- Quote Commands',
       };
       

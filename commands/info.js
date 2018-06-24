@@ -38,6 +38,6 @@ module.exports.run = async (client, message) => {
     name: 'info',
     description: 'Tells you information about the bot',
     usage: 'info',
-    category: '- General Commands',
+    category: '- Information Commands',
   };
   

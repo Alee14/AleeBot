@@ -168,12 +168,14 @@ rl.on('line', function(cmd){
 
 client.on('ready', () => {
   log('[>] AleeBot is now ready!'.green);
+  db.createWebview('password', 3000);
+  log('[>] Started the Quick.DB web server! Port: 3000.'.green)
   log(`[i] Logged in as ${client.user.tag}`.green);
   log(`[i] Default Prefix: ${settings.prefix}`.green)
   log(`[i] Bot ID: ${client.user.id}`.green);
   log(`[i] Token: ${api.abtoken}`.green);
   log(`[i] Running version ${settings.abVersion} and in ${client.guilds.size} guilds`.green);
-  
+
   client.setInterval(function() {
     const games = [
       'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
