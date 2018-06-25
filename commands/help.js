@@ -40,7 +40,7 @@ module.exports.run = async (client, message) => {
   let prefix = prefixes[message.guild.id].prefixes
 
   const embed = new Discord.RichEmbed()
-    .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, 'https://cdn.discordapp.com/avatars/282547024547545109/6c147a444ae328c38145ef1f74169e38.png?size=2048')
+    .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, client.user.avatarURL)
     .setDescription('Every command you input into AleeBot is `' + prefix + '`')
     .setColor('#1fd619')
     .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');

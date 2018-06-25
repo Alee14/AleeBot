@@ -30,6 +30,8 @@ const fs = require('fs');
 const db = require('quick.db');
 const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
+const active = new Map();
+const ownerID = "242775871059001344";
 
 const log = message => {
 
@@ -160,7 +162,7 @@ rl.on('line', function(cmd){
           console.log(msg.cyan);
           break;
       default:
-     console.log('Unknown Command type \'help\' to list the commands...'.yellow)
+     console.log('Unknown command, type \'help\' to list the commands...'.yellow)
   }
   rl.prompt();
 });
@@ -245,7 +247,13 @@ client.on('message', (msg) => {
       }
     }
     try {
-      cmd.run(client, msg, args);
+
+      let ops = {
+        ownerID: ownerID,
+        active: active
+      }
+
+      cmd.run(client, msg, args, ops);
     }
     catch (e) {
       console.error(e);

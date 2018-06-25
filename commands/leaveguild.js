@@ -1,7 +1,7 @@
 /****************************************
  * 
- *   Leave: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp & (your name here)
+ *   LeaveGuild: Command for AleeBot
+ *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,18 +17,10 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * 
  * *************************************/
-
-module.exports.run = async (client, message, args) => {
-    if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
-
-    if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.')
-
-    if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
-
-    message.guild.me.voiceChannel.leave();
-
-    message.channel.send("Leaving channel...")
-
+module.exports.run = async (client, message) => {
+    if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
+    message.channel.send('Alright, I\'m leaving the server now. Bye everyone!')
+    message.guild.leave();
   };
   
   exports.conf = {
@@ -36,8 +28,9 @@ module.exports.run = async (client, message, args) => {
     guildOnly: false,
   };
   exports.help = {
-    name: 'leave',
-    description: 'Leaves voice chat.',
-    usage: 'leave',
-    category: '- Music Commands',
+    name: 'leaveguild',
+    description: 'Makes the bot leave the server',
+    usage: 'leaveguild',
+    category: '- Owners Only',
   };
+  

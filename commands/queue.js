@@ -1,6 +1,6 @@
 /****************************************
  * 
- *   Leave: Command for AleeBot
+ *   Queue: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp & (your name here)
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -18,16 +18,22 @@
  * 
  * *************************************/
 
-module.exports.run = async (client, message, args) => {
-    if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
+module.exports.run = async (client, message, args, ops) => {
+ 
+    let fetched = ops.active.get(message.guild.id);
 
-    if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.')
+    if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
 
-    if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
+    let queue = fetched.queue
+    let nowPlaying = queue[0];
 
-    message.guild.me.voiceChannel.leave();
+    let resp = `__**Now Playing**__\n**${nowPlaying.songTitle}** -- **Requested By:** *${nowPlaying.requester}*\n\n__**Queue**__\n`;
 
-    message.channel.send("Leaving channel...")
+    for (var i = 1; i < queue.length; i++) {
+        resp += `${i}. **${queue[i].songTitle}** -- **Requested By:** *${queue[i].requester}*\n`
+    }
+
+    message.channel.send(resp);
 
   };
   
@@ -36,8 +42,8 @@ module.exports.run = async (client, message, args) => {
     guildOnly: false,
   };
   exports.help = {
-    name: 'leave',
-    description: 'Leaves voice chat.',
-    usage: 'leave',
+    name: 'queue',
+    description: 'Checks what music is in queue.',
+    usage: 'queue',
     category: '- Music Commands',
   };
