@@ -62,6 +62,17 @@ if (process.argv.indexOf("--debug") == -1) {
   });
 }
 
+if (process.argv.indexOf("--beta") == -1) {
+  client.login(api.abtoken).catch(function() {
+    log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+  });
+  
+} else {
+  client.login(api.abbtoken).catch(function() {
+    log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+  });  
+}
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
@@ -217,6 +228,31 @@ client.on('guildDelete', guild => {
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;
+  
+  if (msg.mentions != null && msg.mentions.users != null) {
+    if (msg.mentions.users.has("282547024547545109")){
+            if (msg.content.toLowerCase().includes("hello") || (msg.content.toLowerCase().includes("hi"))) {
+                msg.reply("Hi there.");
+        } else {
+            if (msg.content.toLowerCase().includes("shut") && msg.content.toLowerCase().includes("up")) {
+            switch (Math.floor(Math.random() * 1000) % 3) {
+              case 0:
+                  msg.reply("Excuse me? Can you not speak to me in that tone...")
+                  break;
+              case 1:
+                  msg.reply("NO! I can talk as much I can!");
+                  break;
+              case 2:
+                  msg.reply("Nah I won't....");
+                  break;
+            }
+          } else if (msg.content.toLowerCase().includes("how") && msg.content.toLowerCase().includes("are") && msg.content.toLowerCase().includes("you")) {
+            msg.reply("I'm doing OK, I suppose...")
+          }
+      }
+    }
+}
+
 
   let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
 
@@ -269,8 +305,4 @@ log("[X | UNCAUGHT PROMISE] " + err.stack.red);
 
 process.on('uncaughtException', function (exception) {
   log(exception.red);
-});
-
-client.login(api.abtoken).catch(function() {
-  log('[X] Login failed. Please contact Alee14#9928 or email him at alee14498@gmail.com.'.red);
 });

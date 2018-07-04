@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Play: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp & (your name here)
+ *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -106,10 +106,10 @@ module.exports.run = async (client, message, args, ops) => {
 
       if (vc) vc.leave();
 
-    }
+       }
 
-  } 
-
+    } 
+  
   exports.conf = {
     aliases: [],
     guildOnly: false,

@@ -1,7 +1,7 @@
 /****************************************
  * 
- *   Queue: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp & (your name here)
+ *   Skip: Command for AleeBot
+ *   Copyright (C) 2018 AleeCorp
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,21 +19,34 @@
  * *************************************/
 
 module.exports.run = async (client, message, args, ops) => {
- 
+
     let fetched = ops.active.get(message.guild.id);
 
     if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
 
-    let queue = fetched.queue
-    let nowPlaying = queue[0];
+    if (message.member.voiceChannel !== message.guild.me.voiceChannel) return message.reply('Sorry, you are currently not in the same channel as the bot.')
 
-    let resp = `__**Now Playing**__\n**${nowPlaying.songTitle}** -- **Requested By:** *${nowPlaying.requester}*\n\n__**Queue**__\n`;
+    let userCount = message.member.voiceChannel.members.size;
 
-    for (var i = 1; i < queue.length; i++) {
-        resp += `${i}. **${queue[i].songTitle}** -- **Requested By:** *${queue[i].requester}*\n`
+    let required = Math.ceil(userCount/2);
+
+    if (!fetched.queue[0].voteSkips) fetched.queue[0].voteSkips = [];
+
+    if (fetched.queue[0].voteSkips.includes(message.member.id)) return message.reply(`Sorry, you have already voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`)
+
+    fetched.queue[0].voteSkips.push(message.member.id);
+
+    ops.active.set(message.guild.id, fetched);
+
+    if (fetched.queue[0].voteSkips.length >= required) {
+
+        message.channel.send('Successfully skipped song!');
+
+        return fetched.dispatcher.emit('finish');
+
     }
 
-    message.channel.send(resp);
+    message.channel.send(`Successfully voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`)
 
   };
   
@@ -42,8 +55,8 @@ module.exports.run = async (client, message, args, ops) => {
     guildOnly: false,
   };
   exports.help = {
-    name: 'queue',
-    description: 'Checks what music is in queue.',
-    usage: 'queue',
+    name: 'skip',
+    description: 'Skips a music.',
+    usage: 'skip',
     category: '- Music Commands',
   };
