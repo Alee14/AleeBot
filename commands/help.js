@@ -38,13 +38,13 @@ module.exports.run = async (client, message) => {
   }
 
   let prefix = prefixes[message.guild.id].prefixes
-
+  if (!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links please enable them to use the full help.');
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, client.user.avatarURL)
     .setDescription('Every command you input into AleeBot is `' + prefix + '`')
     .setColor('#1fd619')
     .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');
-
+  
   categories.forEach(function(x) {
     let cat = '';
     commands.forEach(function(command) {
