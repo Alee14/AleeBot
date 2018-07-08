@@ -225,6 +225,13 @@ client.on('guildDelete', guild => {
 
 });
 
+dbl.on('posted', () => {
+  log('Server count posted!'.blue);
+})
+
+dbl.on('error', e => {
+ log(`[X | DBL ERROR] ${e}`.red);
+})
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;
@@ -310,5 +317,5 @@ log("[X | UNCAUGHT PROMISE] " + err.stack.red);
 });
 
 process.on('uncaughtException', function (exception) {
-  log(exception.red);
+  log("[X | UNCAUGHT EXCEPTION]" + exception.red);
 });
