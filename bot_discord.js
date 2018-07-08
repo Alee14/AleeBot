@@ -232,7 +232,7 @@ client.on('message', (msg) => {
   if (msg.mentions != null && msg.mentions.users != null) {
     if (msg.mentions.users.has("282547024547545109")){
             if (msg.content.toLowerCase().includes("hello") || (msg.content.toLowerCase().includes("hi"))) {
-                msg.reply("Hi there.");
+                msg.reply(`Hello ${msg.author.username}!`);
         } else {
             if (msg.content.toLowerCase().includes("shut") && msg.content.toLowerCase().includes("up")) {
             switch (Math.floor(Math.random() * 1000) % 3) {
@@ -247,11 +247,17 @@ client.on('message', (msg) => {
                   break;
             }
           } else if (msg.content.toLowerCase().includes("how") && msg.content.toLowerCase().includes("are") && msg.content.toLowerCase().includes("you")) {
-            msg.reply("I'm doing OK, I suppose...")
+            msg.reply("I'm doing OK, I suppose...");
+          } else if (msg.content.toLowerCase().includes("ok") && msg.content.toLowerCase().includes("google")) {
+            msg.reply("Erm... I am not google, if you want to use Google here's the link: https://www.google.com");
+          } else if (msg.content.toLowerCase().includes("f") && msg.content.toLowerCase().includes("off")) {
+            msg.reply("Do you want a hammer? :hammer:");
+          } else if (msg.content.toLowerCase().includes("aleearmy")) {
+            msg.reply("Oh yeah.. that thing Alee made...");
           }
       }
     }
-}
+  };
 
 
   let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf8"));
