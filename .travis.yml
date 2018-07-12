@@ -1,3 +1,25 @@
+sudo: required
+
+services:
+- docker
+
+arch:
+  repos:
+  - papyros=http://dash.papyros.io/repos/$repo/$arch
+  packages:
+  # pacman packages
+  - perl
+  - nodejs
+  - npm
+  # aur packages
+  - go-git
+  # packages from papyros repo
+  - papyros-shell
+  script:
+  - "./build_script.sh"
+
+script:
+- "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
 language: node_js
 node_js:
 - "node"
