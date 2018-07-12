@@ -64,12 +64,14 @@ if (process.argv.indexOf("--debug") == -1) {
 
 if (process.argv.indexOf("--beta") == -1) {
   client.login(api.abtoken).catch(function() {
-    log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+    console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+    process.exit(0);
   });
   
 } else {
   client.login(api.abbtoken).catch(function() {
-    log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+    console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+    process.exit(0);
   });  
 }
 
@@ -315,7 +317,11 @@ process.on('unhandledRejection', function(err, p) {
 log("[X | UNCAUGHT PROMISE] " + err.stack.red);
 
 });
+client.on('reconnecting', function() {
+  log("[!] AleeBot has disconnected from Discord and is now attempting to reconnect.".yellow);
+});
 
-process.on('uncaughtException', function (exception) {
-  log("[X | UNCAUGHT EXCEPTION]" + exception.red);
+client.on('disconnect', function() {
+  log("[X] AleeBot has disconnected from Discord and will not attempt to reconnect.".red);
+  console.log("At this point, you'll need to restart AleeBot.".red);
 });
