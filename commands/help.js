@@ -41,7 +41,7 @@ module.exports.run = async (client, message) => {
   if (!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links please enable them to use the full help.');
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, client.user.avatarURL)
-    .setDescription('Every command you input into AleeBot is `' + prefix + '`\n\nATTENTION ALL: ALEEBOT WILL NO LONGER RECIEVE UPDATES AFTER 2.11.3.')
+    .setDescription('Every command you input into AleeBot is `' + prefix + '`\n\nATTENTION ALL: ALEEBOT WILL NO LONGER RECIEVE UPDATES AFTER 2.11.4.')
     .setColor('#1fd619')
     .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');
   
