@@ -1,5 +1,5 @@
 /****************************************
- * 
+ *
  *   AleeBot: Made for discord servers
  *   Copyright (C) 2018 AleeCorp
  *
@@ -15,7 +15,7 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 const Discord = require('discord.js');
 const moment = require('moment');
@@ -67,12 +67,12 @@ if (process.argv.indexOf("--beta") == -1) {
     console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
     process.exit(0);
   });
-  
+
 } else {
   client.login(api.abbtoken).catch(function() {
     console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
     process.exit(0);
-  });  
+  });
 }
 
 client.commands = new Discord.Collection();
@@ -200,7 +200,7 @@ client.on('ready', () => {
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);
-    db.createWebview('password', 3000);
+    db.createWebview('password', 4000);
     client.user.setPresence({
       status: 'online',
       afk: false,
@@ -237,7 +237,7 @@ dbl.on('error', e => {
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;
-  
+
   if (msg.mentions != null && msg.mentions.users != null) {
     if (msg.mentions.users.has("282547024547545109")){
             if (msg.content.toLowerCase().includes("hello") || (msg.content.toLowerCase().includes("hi"))) {
@@ -278,7 +278,7 @@ client.on('message', (msg) => {
   }
 
   let prefix = prefixes[msg.guild.id].prefixes
-  
+
 
   if (!msg.content.startsWith(prefix)) return;
   const args = msg.content.slice(prefix.length).trim().split(/ +/g);

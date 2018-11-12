@@ -1,5 +1,5 @@
 /****************************************
- * 
+ *
  *   Help: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp
  *
@@ -15,7 +15,7 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 const Discord = require('discord.js');
 const fs = require('fs');
@@ -41,10 +41,10 @@ module.exports.run = async (client, message) => {
   if (!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links please enable them to use the full help.');
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, client.user.avatarURL)
-    .setDescription('Every command you input into AleeBot is `' + prefix + '`\n\nATTENTION ALL: ALEEBOT WILL NO LONGER RECIEVE UPDATES AFTER 2.11.4.')
+    .setDescription('Every command you input into AleeBot is `' + prefix + '`\n\nATTENTION ALL: ALEEBOT WILL BE CONTINUING BUT ALEE WON\'T BE DEVELOPING IT MUCH...')
     .setColor('#1fd619')
     .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');
-  
+
   categories.forEach(function(x) {
     let cat = '';
     commands.forEach(function(command) {
