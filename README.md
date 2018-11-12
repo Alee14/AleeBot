@@ -5,7 +5,7 @@
 
   <p>AleeBot: A bot that's made for the discord app</p>
   <br>
-  <p>PROJECT MERGE: WE ARE GOING TO MERGE WITH GALAXY REPO <a href="https://github.com/UniverseDevGroup/GalaxyBot">HERE</a></p>
+  <p>PROJECT ANNOUNCEMENT: WE WILL NO LONGER DEVELOP THIS.</a></p>
  </div>
 <br>
 <h1>What features does AleeBot have?</h1>
