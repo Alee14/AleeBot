@@ -200,7 +200,6 @@ client.on('ready', () => {
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);
-    db.createWebview('password', 4000);
     client.user.setPresence({
       status: 'online',
       afk: false,
