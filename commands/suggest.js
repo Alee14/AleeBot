@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Suggest: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    if (message.guild.id != '243022206437687296') return message.reply ('This is a ACN exclusive command.');
+    if (message.guild.id != '243022206437687296') return message.reply ('This is a ALP exclusive command.');
     const { RichEmbed } = require('discord.js');
     client.channels.find('id', '427495678390960148').send(
         new RichEmbed()
@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
         message.react('\u2705');
         message.react('\u274E');
       });
-    message.reply("Alright, your suggestion has been shown now.")
+    message.reply("Your suggestion has been shown in the suggestions channel.")
   };
   
   exports.conf = {
@@ -41,6 +41,6 @@ module.exports.run = async (client, message, args) => {
     name: 'suggest',
     description: 'Suggest a feature in ACN.',
     usage: 'suggest [suggestion]',
-    category: '- ACN Exclusive Commands',
+    category: '- ALP Exclusive Commands',
   };
   

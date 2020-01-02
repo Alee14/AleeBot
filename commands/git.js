@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Git: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ module.exports.run = async (client, message) => {
   git.getLastCommit(function(err, commit) {
   const embed = new Discord.RichEmbed()
   .setTitle('GitHub Information')
-  .addField('**Repository:**', 'https://github.com/AleeCorp/AleeBot')
+  .addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot-JS')
   .addField('**Last Commit:**', commit.subject)
   .addField('**Commited By:**', commit.author.name)
   .setColor('#1fd619')

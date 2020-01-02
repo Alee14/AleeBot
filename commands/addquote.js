@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   AddQuote: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    /*
+  /*
     const moment = require('moment');
     const log = message => {
   
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
     
     };
       const fs = require('fs');
-      if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`)
+      if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`);
   
       let quotes = JSON.parse(fs.readFileSync("./storage/quotes.json", "utf8"));
 
@@ -43,7 +43,7 @@ module.exports.run = async (client, message, args) => {
   
       message.reply(`You just added a new quote!`);
       log(`[i] A quote has been added to quotes.json...`) 
-      */
+*/
      message.reply('Command is broken for now');
       };
     

@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Quote: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ let NewQuote;
   function GetNewQuote(quoteNum = -1) {
     NewQuote = new Discord.RichEmbed();
   
-    let quo = require('../storage/quotes.json').quotes
+    let quo = require('../storage/quotes.json').quotes;
 
     if (quoteNum == -1) {
       quoteNum = Math.floor(Math.random() * 1000) % quo.length;

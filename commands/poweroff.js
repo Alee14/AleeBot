@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Poweroff: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,9 @@
  * *************************************/
 module.exports.run = async (client, message, args) => {
     if (!['242775871059001344',].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot to use this command.');
+    await client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot is now going offline.");
     await message.reply(':warning: AleeBot will now exit!');
+    client.destroy();
     process.exit(0);
   };
   

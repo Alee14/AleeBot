@@ -1,7 +1,7 @@
 /****************************************
  *
  *   AleeBot: Made for discord servers
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@ const client = new Discord.Client({
 });
 const settings = require('./storage/settings.json')
 const fs = require('fs');
-const db = require('quick.db');
 const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
 const active = new Map();
@@ -45,7 +44,7 @@ const rl = readline.createInterface({
   prompt: '> '.gray
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2020 Alee Productions`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log ('This is free software, and you are welcome to redistribute it'.gray);
 console.log ('under certain conditions; type `show c\' for details.\n'.gray)
@@ -161,6 +160,7 @@ rl.on('line', function(cmd){
       break;
       case "exit":
         console.log('[i] AleeBot will now exit!'.blue)
+        client.destroy();
         process.exit(0);
           break;
       case "help":
@@ -210,6 +210,7 @@ client.on('ready', () => {
     });
   }, 200000);
   client.user.setStatus('online');
+  client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot has started.");
   rl.prompt();
 });
 
@@ -228,11 +229,11 @@ client.on('guildDelete', guild => {
 
 dbl.on('posted', () => {
   log('Server count posted!'.blue);
-})
+});
 
 dbl.on('error', e => {
  log(`[X | DBL ERROR] ${e}`.red);
-})
+});
 
 client.on('message', (msg) => {
   if (msg.author.bot) return;

@@ -15,3 +15,7 @@ userData.sqlite
 .vs/slnx.sqlite
 .vs/slnx.sqlite-journal
 json.sqlite
+
+yarn.lock
+
+package-lock.json
