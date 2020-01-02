@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Interrogate: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,6 +38,6 @@ exports.conf = {
     name: 'interrogate',
     description: 'Interrogates a member',
     usage: 'interrogate [user]',
-    category: '- ACN Exclusive Commands',
+    category: '- ALP Exclusive Commands',
   };
   

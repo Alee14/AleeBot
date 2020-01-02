@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Eval: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp & jtsshieh + PokeWorld
+ *   Copyright (C) 2017-2020 Alee Productions & jtsshieh + PokeWorld
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

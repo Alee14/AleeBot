@@ -1,7 +1,7 @@
 /****************************************
  *
  *   Help: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ const fs = require('fs');
 module.exports.run = async (client, message) => {
   const categories = [];
   const commands = Array.from(client.commands.keys());
-  const settings = require('../storage/settings.json')
+  const settings = require('../storage/settings.json');
   commands.forEach(function(x) {
     if (!categories.includes(client.commands.get(x).help.category)) {
       categories.push(client.commands.get(x).help.category);
@@ -41,9 +41,9 @@ module.exports.run = async (client, message) => {
   if (!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links please enable them to use the full help.');
   const embed = new Discord.RichEmbed()
     .setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.size} servers`, client.user.avatarURL)
-    .setDescription('Every command you input into AleeBot is `' + prefix + '`\n\nATTENTION ALL: ALEEBOT WILL BE CONTINUING BUT ALEE WON\'T BE DEVELOPING IT MUCH...')
+    .setDescription('Every command you input into AleeBot is `' + prefix + '`')
     .setColor('#1fd619')
-    .setFooter('AleeCorp Copyright 2018, Licensed with GPL-3.0');
+    .setFooter('© Copyright 2017-2020 Alee Productions, Licensed with GPL-3.0');
 
   categories.forEach(function(x) {
     let cat = '';

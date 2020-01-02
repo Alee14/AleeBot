@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   SuggestFeature: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@ module.exports.run = async (client, message, args) => {
             new RichEmbed()
             .setColor ('#1fd619')
             .setTitle('AleeBot Feature Suggestion')
-            .setDescription(`This is a AleeBot feature suggestion from `+ message.author.username +` and from the guild ${message.guild.name}.`)
+            .setDescription(`This is an AleeBot feature suggestion from `+ message.author.username +` sending from ${message.guild.name}.`)
             .addField('Suggestion Contents', args.join(' '))
          )
-       await message.reply("Alright, your suggestion has been shown to the ACN guild.")
+       await message.reply("Your suggestion has been shown to the ALP discord server!")
    
   };
   

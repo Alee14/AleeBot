@@ -1,7 +1,7 @@
 /****************************************
  * 
  *   Invite: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ module.exports.run = async (client, message) => {
         value: "[Invite AleeBot to your server.](https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot)"
       },
       {
-        name: "Join Alee Community",
+        name: "Join the Alee Productions Community",
         value: "[If there's any bugs you can join Alee Community guild and explain the bug...](https://discord.gg/EFhRDqG)"
       }
     ],
