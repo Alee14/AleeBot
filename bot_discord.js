@@ -44,7 +44,7 @@ const rl = readline.createInterface({
   prompt: '> '.gray
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2018 AleeCorp`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2020 Alee Productions`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log ('This is free software, and you are welcome to redistribute it'.gray);
 console.log ('under certain conditions; type `show c\' for details.\n'.gray)
