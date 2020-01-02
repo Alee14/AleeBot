@@ -1,11 +1,11 @@
 # Contributing to AleeBot
 If you want to help me make AleeBot you must get NodeJS to make AleeBot work.
 Include the GPL-3.0 license too and follow the following format when you create a new file:
-```
+```js
 /****************************************
  * 
  *   [Command/Plugin]: (Command or Plugin) for AleeBot
- *   Copyright (C) 2018 AleeCorp & (your name here)
+ *   Copyright (C) 2017-2020 Alee Productions & (your name here)
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,10 +40,10 @@ exports.help = {
 
 # Testing the bot
 
-First get NodeJS then clone this repo then do `npm install` in the AleeBot folder. Now add a file called `tokens.json` then copy and paste this follow code.
+First get NodeJS then clone this repo then do `npm install` or `yarn install` in the AleeBot folder. Now add a file called `tokens.json` then copy and paste this follow code.
 ```
 {
   "abtoken": "token"
 }
 ```
-Then get your token from discord and replace `token` with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat`.
+Then get your token from discord and replace `token` with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat` or `npm/yarn start`.
