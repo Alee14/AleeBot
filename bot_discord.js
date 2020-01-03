@@ -210,7 +210,7 @@ client.on('ready', () => {
     });
   }, 200000);
   client.user.setStatus('online');
-  client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot has started.");
+  //client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot has started.");
   rl.prompt();
 });
 
