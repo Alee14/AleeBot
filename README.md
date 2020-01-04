@@ -1,6 +1,6 @@
 <div align="center">
   <h1>AleeBot</h1>
-  <p>A bot that's made from the Discord.JS api! This bot is made for discord servers.</p>
+  <p>An all-in-one bot that's made from the Discord.JS api! This bot is made for discord servers.</p>
   <p>Project by Alee Productions</p>
 <a href="https://discordbots.org/bot/282547024547545109"><img src="https://discordbots.org/api/widget/status/282547024547545109.svg" alt="AleeBot Status Widget" />
   </a><a href="https://discord.gg/EFhRDqG"><img src="https://img.shields.io/discord/243022206437687296.svg?colorB=7289DA&label=discord" alt="Discord Badge"> </a>
