@@ -41,7 +41,7 @@ exports.help = {
 # Testing the bot
 
 First get NodeJS then clone this repo then do `npm install` or `yarn install` in the AleeBot folder. Now add a file called `tokens.json` then copy and paste this follow code.
-```
+```json
 {
   "abtoken": "token"
 }

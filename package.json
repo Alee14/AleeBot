@@ -5,7 +5,7 @@
   "main": "src/bot.js",
   "scripts": {
     "start": "node bot_discord.js",
-    "dev": "node bot_discord.js --beta"
+    "dev": "nodemon bot_discord.js --beta"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,6 @@
     "ytdl-core": "^0.20.4"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "nodemon": "^2.0.2"
   }
 }

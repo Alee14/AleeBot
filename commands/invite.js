@@ -25,7 +25,7 @@ module.exports.run = async (client, message) => {
     title: "Invite Command",
     fields: [{
         name: "Invite AleeBot",
-        value: "[Invite AleeBot to your server.](https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot)"
+        value: "[Invite AleeBot to your server.](https://top.gg/bot/282547024547545109)"
       },
       {
         name: "Join the Alee Productions Community",
