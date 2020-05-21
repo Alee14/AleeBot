@@ -37,7 +37,7 @@ case $input in
     exit 1
     ;;
      *)
-echo "Invalid input..."
+echo "Bad command"
     ;;
 esac
     done
