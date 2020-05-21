@@ -160,6 +160,11 @@ rl.on('line', function(cmd){
       break;
       case "exit":
         console.log('[i] AleeBot will now exit!'.blue)
+        const embed = new Discord.RichEmbed()
+        .setAuthor("AleeBot Status", client.user.avatarURL)
+        .setDescription("AleeBot is now going offline...")
+        .setColor("#ff3333")
+        client.channels.find('id', '606602551634296968').send({embed});
         client.destroy();
         process.exit(0);
           break;
@@ -198,7 +203,7 @@ client.on('ready', () => {
       'Fighting AstralMod',
     ];
     setInterval(() => {
-      dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
+      dbl.postStats(client.guilds.size, client.shards.id, client.shards.total);
     }, 1800000);
     client.user.setPresence({
       status: 'online',
@@ -210,8 +215,20 @@ client.on('ready', () => {
     });
   }, 200000);
   client.user.setStatus('online');
-  client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot has started.");
+  const embed = new Discord.RichEmbed()
+  .setAuthor("AleeBot Status", client.user.avatarURL)
+  .setDescription("AleeBot has started")
+  .setColor("#5cd65c")
+  client.channels.find('id', '606602551634296968').send({embed});
   rl.prompt();
+});
+
+client.on('guildMemberAdd', member => {
+    if (member.guild.id != '243022206437687296') return 0
+    var role = member.guild.roles.find((role) => role.name === "Member");
+    member.addRole(role);
+    log(`[i] ${member.user.username} joined Alee Productions.`.green);
+    log(`[i] I gave ${member.user.username} the "Member" role.`.green);
 });
 
 client.on('guildCreate', guild => {
@@ -246,7 +263,7 @@ client.on('message', (msg) => {
             if (msg.content.toLowerCase().includes("shut") && msg.content.toLowerCase().includes("up")) {
             switch (Math.floor(Math.random() * 1000) % 3) {
               case 0:
-                  msg.reply("Excuse me? Can you not speak to me in that tone...")
+                  msg.reply("Hey, Can you not speak to me in that tone...")
                   break;
               case 1:
                   msg.reply("NO! I can talk as much I can!");

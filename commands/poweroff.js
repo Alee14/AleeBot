@@ -18,8 +18,13 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
+  const Discord = require('discord.js');
     if (!['242775871059001344',].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot to use this command.');
-    await client.channels.find('id', '606602551634296968').send("**AleeBot Status:** AleeBot is now going offline.");
+    const embed = new Discord.RichEmbed()
+    .setAuthor("AleeBot Status", client.user.avatarURL)
+    .setDescription("AleeBot is now going offline...")
+    .setColor("#ff3333")
+    await client.channels.find('id', '606602551634296968').send({embed});
     await message.reply(':warning: AleeBot will now exit!');
     client.destroy();
     process.exit(0);
