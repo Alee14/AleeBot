@@ -203,7 +203,7 @@ client.on('ready', () => {
       'Fighting AstralMod',
     ];
     setInterval(() => {
-      dbl.postStats(client.guilds.size, client.shards.id, client.shards.total);
+      dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);
     client.user.setPresence({
       status: 'online',
@@ -230,6 +230,27 @@ client.on('guildMemberAdd', member => {
     log(`[i] ${member.user.username} joined Alee Productions.`.green);
     log(`[i] I gave ${member.user.username} the "Member" role.`.green);
 });
+
+client.on('messageUpdate', async(oldMessage, newMessage) => {
+    if (oldMessage.guild.id != '243022206437687296') return 0
+    if (oldMessage.content === newMessage.content){
+      return;
+    }
+    const logEmbed = new Discord.RichEmbed()
+    .setAuthor("AleeBot Logging", client.user.avatarURL)
+    .setDescription(`A message from ${oldMessage.author.username} was edited`)
+    .addField("Before: ", `\`\`\`${oldMessage.content}\`\`\``)
+    .addField("After: ", `\`\`\`${newMessage.content}\`\`\``)
+    .setColor("#ffff1a")
+    .setTimestamp()
+
+    let editmessage = newMessage.guild.channels.find(ch => ch.name === "logs")
+    if(!editmessage) return;
+
+    editmessage.send(logEmbed);
+
+
+})
 
 client.on('guildCreate', guild => {
 
