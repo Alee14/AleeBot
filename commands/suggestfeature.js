@@ -19,6 +19,7 @@
  * *************************************/
 module.exports.run = async (client, message, args) => {
         const { RichEmbed } = require('discord.js');
+        
         client.channels.find('id', '427495678390960148').send(
             new RichEmbed()
             .setColor ('#1fd619')

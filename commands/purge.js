@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Purge: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,26 +15,25 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply("It looks like that you don't have the permissions to delete messages.")
-    if (isNaN(args[0])) return message.reply("Please put the valid number of messages to purge.");
+  if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('It looks like that you don\'t have the permissions to delete messages.');
+  if (isNaN(args[0])) return message.reply('Please put the valid number of messages to purge.');
 
-    if (args[0] > 100) return message.channel.send("Please put a number less than 100.");
+  if (args[0] > 100) return message.channel.send('Please put a number less than 100.');
 
-    message.channel.bulkDelete(args[0])
-    .then( messages => message.channel.send(`Successfully deleted ${messages.size} messages.`))
-  };
-  
-  exports.conf = {
-    aliases: ['rm'],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'purge',
-    description: 'Removes messages in a bulk.',
-    usage: 'purge [number]',
-    category: '- Moderation Commands',
-  };
-  
+  message.channel.bulkDelete(args[0])
+      .then( (messages) => message.channel.send(`Successfully deleted ${messages.size} messages.`));
+};
+
+exports.conf = {
+  aliases: ['rm'],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'purge',
+  description: 'Removes messages in a bulk.',
+  usage: 'purge [number]',
+  category: '- Moderation Commands',
+};

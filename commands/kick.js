@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Kick: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,23 +15,23 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    const Discord = require('discord.js');
-    const mreason = args.join(" ").slice(22);
-    if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply("It looks like that you don't have the permissions to ban people.");
-    if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
-    const member = message.mentions.members.first();
-    if (!member) return message.reply("Uhh... Please mention a member first.");
-    member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
-    const embed = new Discord.RichEmbed()
-    .setTitle('User Kicked!')
-    .setColor('#1fd619')
-    .addField('**User:**', `${member.user.tag}`)
-    .addField('**Reason:**', `\`\`\`${mreason}\`\`\``)
-    await message.channel.send({ embed });
-  };
+  const Discord = require('discord.js');
+  const mreason = args.join(' ').slice(22);
+  if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to ban people.');
+  if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
+  const member = message.mentions.members.first();
+  if (!member) return message.reply('Uhh... Please mention a member first.');
+  member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
+  const embed = new Discord.RichEmbed()
+      .setTitle('User Kicked!')
+      .setColor('#1fd619')
+      .addField('**User:**', `${member.user.tag}`)
+      .addField('**Reason:**', `\`\`\`${mreason}\`\`\``);
+  await message.channel.send({embed});
+};
 
 exports.conf = {
   aliases: [],

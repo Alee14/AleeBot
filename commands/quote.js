@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Quote: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,16 +15,16 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
-const Discord = require('discord.js');
+  const Discord = require('discord.js');
 
-let NewQuote;
+  let NewQuote;
 
   function GetNewQuote(quoteNum = -1) {
     NewQuote = new Discord.RichEmbed();
-  
+
     let quo = require('../storage/quotes.json').quotes;
 
     if (quoteNum == -1) {
@@ -47,19 +47,18 @@ let NewQuote;
     return NewQuote;
   }
 
-    const newquote = GetNewQuote();
-    message.reply('Alright, here\'s your quote.')
-    message.channel.send(newquote);
+  const newquote = GetNewQuote();
+  message.reply('Alright, here\'s your quote.');
+  message.channel.send(newquote);
 };
 
 exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'quote',
-    description: 'Tells you quotes',
-    usage: 'quote',
-    category: '- Quote Commands',
-  };
-  
+  aliases: [],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'quote',
+  description: 'Tells you quotes',
+  usage: 'quote',
+  category: '- Quote Commands',
+};

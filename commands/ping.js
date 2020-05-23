@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Ping: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,7 +15,7 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
   message.reply('**PONG!** :ping_pong: ' + Math.round(client.ping) + ' ms');

@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Git: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,20 +15,20 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
   const Discord = require('discord.js');
   const git = require('git-last-commit');
   git.getLastCommit(function(err, commit) {
-  const embed = new Discord.RichEmbed()
-  .setTitle('GitHub Information')
-  .addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot-JS')
-  .addField('**Last Commit:**', commit.subject)
-  .addField('**Commited By:**', commit.author.name)
-  .setColor('#1fd619')
-  message.channel.send({ embed });
-  })
+    const embed = new Discord.RichEmbed()
+        .setTitle('GitHub Information')
+        .addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot-JS')
+        .addField('**Last Commit:**', commit.subject)
+        .addField('**Commited By:**', commit.author.name)
+        .setColor('#1fd619');
+    message.channel.send({embed});
+  });
 };
 
 exports.conf = {

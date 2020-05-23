@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Daily: Command for AleeBot
  *   Copyright (C) 2018 AleeCorp
  *
@@ -15,45 +15,42 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 const db = require('quick.db');
-      ms = require('parse-ms');
+ms = require('parse-ms');
 
 module.exports.run = async (client, message) => {
+  const cooldown = 8.64e+7;
+  const amount = 100;
 
-    let cooldown = 8.64e+7,
-        amount = 100;
-    
-    let lastDaily = await db.fetch(`lastDaily_${message.author.id}`);
+  const lastDaily = await db.fetch(`lastDaily_${message.author.id}`);
 
-    if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
-        let timeObj = ms(cooldown - (Date.now() - lastDaily));
+  if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+    const timeObj = ms(cooldown - (Date.now() - lastDaily));
 
-        message.reply(`You already collected your money, please wait **${timeObj.hours}h ${timeObj.minutes}m**!`)
-    } else {
-        message.channel.send(`You have successfully collected $${amount} dollars!`);
+    message.reply(`You already collected your money, please wait **${timeObj.hours}h ${timeObj.minutes}m**!`);
+  } else {
+    message.channel.send(`You have successfully collected $${amount} dollars!`);
 
-        let balance = await db.fetch(`userBalance_${message.author.id}`);
+    const balance = await db.fetch(`userBalance_${message.author.id}`);
 
-        if (balance == null) {
-            db.set(`userBalance_${message.author.id}`, 0);
-        }
-
-        db.set(`lastDaily_${message.author.id}`, Date.now());
-        db.add(`userBalance_${message.author.id}`, 100);
+    if (balance == null) {
+      db.set(`userBalance_${message.author.id}`, 0);
     }
 
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'daily',
-    description: 'This gives you money everyday.',
-    usage: 'daily',
-    category: '- Economy Commands',
-  };
-  
+    db.set(`lastDaily_${message.author.id}`, Date.now());
+    db.add(`userBalance_${message.author.id}`, 100);
+  }
+};
+
+exports.conf = {
+  aliases: [],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'daily',
+  description: 'This gives you money everyday.',
+  usage: 'daily',
+  category: '- Economy Commands',
+};

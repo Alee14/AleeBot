@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Uptime: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions & OfficialRain
  *
@@ -15,10 +15,9 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
-
   let uptime = parseInt(client.uptime);
   uptime = Math.floor(uptime / 1000);
   let uptimeMinutes = Math.floor(uptime / 60);
@@ -30,7 +29,6 @@ module.exports.run = async (client, message) => {
   }
   const uptimeSeconds = minutes % 60;
   message.channel.send(':clock3: AleeBot has been up for ' + hours + ' hours, ' + uptimeMinutes + ' minutes, and ' + uptimeSeconds + ' seconds.');
-
 };
 
 exports.conf = {

@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Suggest: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,32 +15,31 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    if (message.guild.id != '243022206437687296') return message.reply ('This is a ALP exclusive command.');
-    const { RichEmbed } = require('discord.js');
-    client.channels.find('id', '427495678390960148').send(
-        new RichEmbed()
-          .setColor ('#1fd619')
+  if (message.guild.id != '243022206437687296') return message.reply('This is a ALP exclusive command.');
+  const {RichEmbed} = require('discord.js');
+  client.channels.find('id', '427495678390960148').send(
+      new RichEmbed()
+          .setColor('#1fd619')
           .setTitle('Suggestion')
           .setDescription(`This is a suggestion from `+ message.author.username +` please react to it using the following emojis.`)
-          .addField('Suggestion Contents', args.join(' '))
-      ).then(message => {
-        message.react('\u2705');
-        message.react('\u274E');
-      });
-    message.reply("Your suggestion has been shown in the suggestions channel.")
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'suggest',
-    description: 'Suggest a feature in ACN.',
-    usage: 'suggest [suggestion]',
-    category: '- ALP Exclusive Commands',
-  };
-  
+          .addField('Suggestion Contents', args.join(' ')),
+  ).then((message) => {
+    message.react('\u2705');
+    message.react('\u274E');
+  });
+  message.reply('Your suggestion has been shown in the suggestions channel.');
+};
+
+exports.conf = {
+  aliases: [],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'suggest',
+  description: 'Suggest a feature in ACN.',
+  usage: 'suggest [suggestion]',
+  category: '- ALP Exclusive Commands',
+};

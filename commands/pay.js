@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Pay: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,46 +15,46 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 
 module.exports.run = async (client, message, args) => {
-    const db = require('quick.db');
-    if (!message.mentions.members.first()) return message.reply('Please mention a user...');
+  const db = require('quick.db');
+  if (!message.mentions.members.first()) return message.reply('Please mention a user...');
 
-    let targetMember = message.mentions.members.first(),
-        amount = parseInt(args.join(' ').replace(targetMember, ''));
-        
-    if (isNaN(amount)) return message.reply('Please define an amount.')
+  const targetMember = message.mentions.members.first();
+  const amount = parseInt(args.join(' ').replace(targetMember, ''));
 
-    let targetBalance = await db.fetch(`userBalance_${targetMember.id}`),
-        selfBalance = await db.fetch(`userBalance_${message.author.id}`);
+  if (isNaN(amount)) return message.reply('Please define an amount.');
 
-    if (targetBalance === null) {
-        db.set(`userBalance_${targetMember.id}`, 0);
-        targetBalance = 0
-    } 
+  let targetBalance = await db.fetch(`userBalance_${targetMember.id}`);
+  let selfBalance = await db.fetch(`userBalance_${message.author.id}`);
 
-    if (selfBalance === null) {
-        db.set(`userBalance_${message.author.id}`, 0);
-        selfBalance = 0
-    } 
+  if (targetBalance === null) {
+    db.set(`userBalance_${targetMember.id}`, 0);
+    targetBalance = 0;
+  }
 
-    if (amount > selfBalance) return message.reply('Sorry you don\'t have enough money.');
+  if (selfBalance === null) {
+    db.set(`userBalance_${message.author.id}`, 0);
+    selfBalance = 0;
+  }
 
-    db.add(`userBalance_${targetMember.id}`, amount);
-    db.subtract(`userBalance_${message.author.id}`, amount);
+  if (amount > selfBalance) return message.reply('Sorry you don\'t have enough money.');
 
-    message.reply(`Successfully transfered $${amount} to ${targetMember.user}`)
-  };
-  
-  exports.conf = {
-    aliases: ['transfer'],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'pay',
-    description: 'You can pay others!',
-    usage: 'pay [@user] [interger]',
-    category: '- Economy Commands',
-  };
+  db.add(`userBalance_${targetMember.id}`, amount);
+  db.subtract(`userBalance_${message.author.id}`, amount);
+
+  message.reply(`Successfully transfered $${amount} to ${targetMember.user}`);
+};
+
+exports.conf = {
+  aliases: ['transfer'],
+  guildOnly: false,
+};
+exports.help = {
+  name: 'pay',
+  description: 'You can pay others!',
+  usage: 'pay [@user] [interger]',
+  category: '- Economy Commands',
+};

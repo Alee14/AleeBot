@@ -1,5 +1,5 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   AddQuote: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
@@ -15,19 +15,19 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
   /*
     const moment = require('moment');
     const log = message => {
-  
+
       console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
-    
+
     };
       const fs = require('fs');
       if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`);
-  
+
       let quotes = JSON.parse(fs.readFileSync("./storage/quotes.json", "utf8"));
 
       quotes = {
@@ -36,25 +36,25 @@ module.exports.run = async (client, message, args) => {
           quote: args[2],
           year: args[3]
       };
-  
+
       fs.writeFile("./storage/quotes.json", JSON.stringify(quotes), (err) =>{
           if (err) log(err)
       })
-  
+
       message.reply(`You just added a new quote!`);
-      log(`[i] A quote has been added to quotes.json...`) 
+      log(`[i] A quote has been added to quotes.json...`)
 */
-     message.reply('Command is broken for now');
-      };
-    
-    exports.conf = {
-      aliases: [],
-      guildOnly: true,
-    };
-    exports.help = {
-      name: 'addquote',
-      description: 'Sets the guild prefix.',
-      usage: 'addquote [author] [authorImage] [quote] [year]',
-      category: '- Quote Commands',
-    };
-    
+  message.reply('Command is broken for now');
+};
+
+exports.conf = {
+  aliases: [],
+  guildOnly: true,
+};
+exports.help = {
+  name: 'addquote',
+  description: 'Sets the guild prefix.',
+  usage: 'addquote [author] [authorImage] [quote] [year]',
+  category: '- Quote Commands',
+};
+
