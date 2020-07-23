@@ -19,29 +19,29 @@
  * *************************************/
 
 module.exports.run = async (client, message, args, ops) => {
-  const fetched = ops.active.get(message.guild.id);
+	const fetched = ops.active.get(message.guild.id);
 
-  if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
+	if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
 
-  const queue = fetched.queue;
-  const nowPlaying = queue[0];
+	const queue = fetched.queue;
+	const nowPlaying = queue[0];
 
-  let resp = `__**Now Playing**__\n**${nowPlaying.songTitle}** -- **Requested By:** *${nowPlaying.requester}*\n\n__**Queue**__\n`;
+	let resp = `__**Now Playing**__\n**${nowPlaying.songTitle}** -- **Requested By:** *${nowPlaying.requester}*\n\n__**Queue**__\n`;
 
-  for (let i = 1; i < queue.length; i++) {
-    resp += `${i}. **${queue[i].songTitle}** -- **Requested By:** *${queue[i].requester}*\n`;
-  }
+	for (let i = 1; i < queue.length; i++) {
+		resp += `${i}. **${queue[i].songTitle}** -- **Requested By:** *${queue[i].requester}*\n`;
+	}
 
-  message.channel.send(resp);
+	message.channel.send(resp);
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'queue',
-  description: 'Checks what music is in queue.',
-  usage: 'queue',
-  category: '- Music Commands',
+	name: 'queue',
+	description: 'Checks what music is in queue.',
+	usage: 'queue',
+	category: '- Music Commands',
 };

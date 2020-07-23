@@ -18,7 +18,6 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-/*
 const Discord = require('discord.js');
 const fs = require('fs')
 const db = require('quick.db');
@@ -39,7 +38,7 @@ const items = JSON.parse(fs.readFileSync('./storage/items.json', 'utf8'));
         }
 
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
             .setDescription(`Available Items`)
             .setColor('#1fd619')
 
@@ -101,17 +100,15 @@ const items = JSON.parse(fs.readFileSync('./storage/items.json', 'utf8'));
         }
 
         message.channel.send('You bought ' + itemName + '!');
-    */
-  message.reply('Command is broken for now');
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'buy',
-  description: 'Buy things.',
-  usage: 'buy [item]',
-  category: '- Economy Commands',
+	name: 'buy',
+	description: 'Buy things.',
+	usage: 'buy [item]',
+	category: '- Economy Commands',
 };

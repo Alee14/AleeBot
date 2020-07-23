@@ -19,24 +19,24 @@
  * *************************************/
 
 module.exports.run = async (client, message, args) => {
-  if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
+	if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
 
-  if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.');
+	if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.');
 
-  if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
+	if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
 
-  message.guild.me.voiceChannel.leave();
+	message.guild.me.voiceChannel.leave();
 
-  message.channel.send('Leaving channel...');
+	message.channel.send('Leaving channel...');
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'leave',
-  description: 'Leaves voice chat.',
-  usage: 'leave',
-  category: '- Music Commands',
+	name: 'leave',
+	description: 'Leaves voice chat.',
+	usage: 'leave',
+	category: '- Music Commands',
 };

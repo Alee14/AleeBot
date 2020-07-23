@@ -18,7 +18,7 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-  /*
+	/*
     const moment = require('moment');
     const log = message => {
 
@@ -44,17 +44,17 @@ module.exports.run = async (client, message, args) => {
       message.reply(`You just added a new quote!`);
       log(`[i] A quote has been added to quotes.json...`)
 */
-  message.reply('Command is broken for now');
+	message.reply('Command is broken for now');
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: true,
+	aliases: [],
+	guildOnly: true,
 };
 exports.help = {
-  name: 'addquote',
-  description: 'Sets the guild prefix.',
-  usage: 'addquote [author] [authorImage] [quote] [year]',
-  category: '- Quote Commands',
+	name: 'addquote',
+	description: 'Sets the guild prefix.',
+	usage: 'addquote [author] [authorImage] [quote] [year]',
+	category: '- Quote Commands',
 };
 

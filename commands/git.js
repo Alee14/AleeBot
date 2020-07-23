@@ -18,26 +18,26 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  const Discord = require('discord.js');
-  const git = require('git-last-commit');
-  git.getLastCommit(function(err, commit) {
-    const embed = new Discord.RichEmbed()
-        .setTitle('GitHub Information')
-        .addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot-JS')
-        .addField('**Last Commit:**', commit.subject)
-        .addField('**Commited By:**', commit.author.name)
-        .setColor('#1fd619');
-    message.channel.send({embed});
-  });
+	const Discord = require('discord.js');
+	const git = require('git-last-commit');
+	git.getLastCommit(function(err, commit) {
+		const embed = new Discord.MessageEmbed()
+			.setTitle('GitHub Information')
+			.addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot')
+			.addField('**Last Commit:**', commit.subject)
+			.addField('**Commited By:**', commit.author.name)
+			.setColor('#1fd619');
+		message.channel.send({embed});
+	});
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'git',
-  description: 'Get the git info.',
-  usage: 'git',
-  category: '- General Commands',
+	name: 'git',
+	description: 'Get the git info.',
+	usage: 'git',
+	category: '- General Commands',
 };

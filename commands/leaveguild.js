@@ -18,18 +18,18 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
-  message.channel.send('Alright, I\'m leaving the server now. Bye everyone!');
-  message.guild.leave();
+	if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
+	message.channel.send('Alright, I\'m leaving the server now. Bye everyone!');
+	message.guild.leave();
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'leaveguild',
-  description: 'Makes the bot leave the server',
-  usage: 'leaveguild',
-  category: '- Owners Only',
+	name: 'leaveguild',
+	description: 'Makes the bot leave the server',
+	usage: 'leaveguild',
+	category: '- Owners Only',
 };

@@ -18,31 +18,31 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-  const abaskanswer = [
-    'Yes.',
-    'Nope. Just kidding :P',
-    'Definitely!',
-    'No.',
-    'Yep. Just kidding :P',
-    'I doubt it.',
-    'Maybe?',
-    'I don\'t know?',
-    'Hmm let me think :thinking:',
-  ];
-  if (args[1]) {
-    message.channel.sendMessage(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
-  } else {
-    message.channel.sendMessage('Sorry, I don\'t know what your saying.');
-  }
+	const abaskanswer = [
+		'Yes.',
+		'Nope. Just kidding :P',
+		'Definitely!',
+		'No.',
+		'Yep. Just kidding :P',
+		'I doubt it.',
+		'Maybe?',
+		'I don\'t know?',
+		'Hmm let me think :thinking:',
+	];
+	if (args[1]) {
+		message.channel.send(abaskanswer[Math.floor(Math.random() * abaskanswer.length)]);
+	} else {
+		message.channel.send('Sorry, I don\'t know what your saying.');
+	}
 };
 
 exports.conf = {
-  aliases: ['8ball'],
-  guildOnly: false,
+	aliases: ['8ball'],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'ask',
-  description: 'Give AleeBot a question!',
-  usage: 'ask [args]',
-  category: '- Fun Commands',
+	name: 'ask',
+	description: 'Give AleeBot a question!',
+	usage: 'ask [args]',
+	category: '- Fun Commands',
 };

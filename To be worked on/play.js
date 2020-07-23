@@ -19,97 +19,97 @@
  * *************************************/
 
 module.exports.run = async (client, message, args, ops) => {
-  const ytdl = require('ytdl-core');
+	const ytdl = require('ytdl-core');
 
-  if (!message.member.voiceChannel) return message.reply('Please connect to a voice channel...');
+	if (!message.member.voiceChannel) return message.reply('Please connect to a voice channel...');
 
-  if (!args[0]) return message.reply('Please input a url.');
+	if (!args[0]) return message.reply('Please input a url.');
 
-  const vaildate = await ytdl.validateURL(args[0]);
+	const vaildate = await ytdl.validateURL(args[0]);
 
-  if (!vaildate) return message.reply('Please input a **valid** url.');
+	if (!vaildate) return message.reply('Please input a **valid** url.');
 
-  const info = await ytdl.getInfo(args[0]);
+	const info = await ytdl.getInfo(args[0]);
 
-  const data = ops.active.get(message.guild.id) || {};
+	const data = ops.active.get(message.guild.id) || {};
 
-  if (!data.connection) data.connection = await message.member.voiceChannel.join();
-  if (!data.queue) data.queue = [];
-  data.guildID = message.guild.id;
+	if (!data.connection) data.connection = await message.member.voiceChannel.join();
+	if (!data.queue) data.queue = [];
+	data.guildID = message.guild.id;
 
-  data.queue.push({
-    songTitle: info.title,
-    requester: message.author.tag,
-    url: args[0],
-    announceChannel: message.channel.id,
-  });
-  if (!data.dispatcher) play(client, ops, data);
-  else {
-    const {RichEmbed} = require('discord.js');
-    const embed = new RichEmbed()
-        .setTitle('This music has been added to the queue!')
-        .setAuthor(info.title, client.user.avatarURL)
-        .setColor(0x00afff)
-        .setTimestamp()
-        .addField('Title', info.title)
-        .addField('Requested by:', message.author.tag)
-        .setFooter('AleeBot Music Player');
+	data.queue.push({
+		songTitle: info.title,
+		requester: message.author.tag,
+		url: args[0],
+		announceChannel: message.channel.id,
+	});
+	if (!data.dispatcher) play(client, ops, data);
+	else {
+		const {MessageEmbed} = require('discord.js');
+		const embed = new MessageEmbed()
+			.setTitle('This music has been added to the queue!')
+			.setAuthor(info.title, client.user.avatarURL())
+			.setColor(0x00afff)
+			.setTimestamp()
+			.addField('Title', info.title)
+			.addField('Requested by:', message.author.tag)
+			.setFooter('AleeBot Music Player');
 
-    message.channel.send({embed});
-  }
+		message.channel.send({embed});
+	}
 
-  ops.active.set(message.guild.id, data);
+	ops.active.set(message.guild.id, data);
 };
 
 async function play(client, ops, data) {
-  const ytdl = require('ytdl-core');
-  const {RichEmbed} = require('discord.js');
-  const embed = new RichEmbed()
-      .setTitle('Now playing!')
-      .setAuthor(data.queue[0].songTitle, client.user.avatarURL)
-      .setColor(0x00afff)
-      .setTimestamp()
-      .addField('Title', data.queue[0].songTitle)
-      .addField('Requested by:', data.queue[0].requester)
-  // .addField('Link', info.url)
-  // .addField('Duration', time)
-      .setFooter('AleeBot Music Player');
+	const ytdl = require('ytdl-core');
+	const {MessageEmbed} = require('discord.js');
+	const embed = new MessageEmbed()
+		.setTitle('Now playing!')
+		.setAuthor(data.queue[0].songTitle, client.user.avatarURL())
+		.setColor(0x00afff)
+		.setTimestamp()
+		.addField('Title', data.queue[0].songTitle)
+		.addField('Requested by:', data.queue[0].requester)
+	// .addField('Link', info.url)
+	// .addField('Duration', time)
+		.setFooter('AleeBot Music Player');
 
-  client.channels.get(data.queue[0].announceChannel).send({embed});
+	client.channels.get(data.queue[0].announceChannel).send({embed});
 
-  data.dispatcher = await data.connection.playStream(ytdl(data.queue[0].url, {filter: 'audioonly'}));
-  data.dispatcher.guildID = data.guildID;
+	data.dispatcher = await data.connection.playStream(ytdl(data.queue[0].url, {filter: 'audioonly'}));
+	data.dispatcher.guildID = data.guildID;
 
-  data.dispatcher.once('finish', function() {
-    finish(client, ops, this);
-  });
-};
+	data.dispatcher.once('finish', function() {
+		finish(client, ops, this);
+	});
+}
 
 function finish(client, ops, dispatcher) {
-  const fetched = ops.active.get(dispatcher.guildID);
+	const fetched = ops.active.get(dispatcher.guildID);
 
-  fetched.queue.shift();
+	fetched.queue.shift();
 
-  if (fetched.queue.length > 0) {
-    ops.active.set(dispatcher.guildID, fetched);
+	if (fetched.queue.length > 0) {
+		ops.active.set(dispatcher.guildID, fetched);
 
-    play(client, ops, fetched);
-  } else {
-    ops.active.delete(dispatcher.guildID);
+		play(client, ops, fetched);
+	} else {
+		ops.active.delete(dispatcher.guildID);
 
-    const vc = client.guild.get(dispatcher.guildID).me.voiceChannel;
+		const vc = client.guild.get(dispatcher.guildID).me.voiceChannel;
 
-    if (vc) vc.leave();
-  }
+		if (vc) vc.leave();
+	}
 }
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'play',
-  description: 'Plays music.',
-  usage: 'play [url]',
-  category: '- Music Commands',
+	name: 'play',
+	description: 'Plays music.',
+	usage: 'play [url]',
+	category: '- Music Commands',
 };

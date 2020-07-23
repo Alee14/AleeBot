@@ -18,27 +18,27 @@
  * 
  * *************************************/
 module.exports.run = async (client, message, args) => {
-        const { RichEmbed } = require('discord.js');
+	const { MessageEmbed } = require('discord.js');
         
-        client.channels.find('id', '427495678390960148').send(
-            new RichEmbed()
-            .setColor ('#1fd619')
-            .setTitle('AleeBot Feature Suggestion')
-            .setDescription(`This is an AleeBot feature suggestion from `+ message.author.username +` sending from ${message.guild.name}.`)
-            .addField('Suggestion Contents', args.join(' '))
-         )
-       await message.reply("Your suggestion has been shown to the ALP discord server!")
+	client.channels.cache.get('427495678390960148').send(
+		new MessageEmbed()
+			.setColor ('#1fd619')
+			.setTitle('AleeBot Feature Suggestion')
+			.setDescription('This is an AleeBot feature suggestion from '+ message.author.username +` sending from ${message.guild.name}.`)
+			.addField('Suggestion Contents', args.join(' '))
+	);
+	await message.reply('Your suggestion has been shown to the ALP discord server!');
    
-  };
+};
   
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'suggestfeature',
-    description: 'Suggest features in AleeBot.',
-    usage: 'suggestfeature [suggestion]',
-    category: '- General Commands',
-  };
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'suggestfeature',
+	description: 'Suggest features in AleeBot.',
+	usage: 'suggestfeature [suggestion]',
+	category: '- General Commands',
+};
   

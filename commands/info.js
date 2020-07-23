@@ -18,25 +18,25 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  const Discord = require('discord.js');
-  const os = require('os');
-  const embed = new Discord.RichEmbed()
-      .setTitle('Information on AleeBot\'s Host')
-      .addField('OS Hostname: ', os.hostname(), true)
-      .addField('NodeJS Version: ', process.versions.node, true)
-      .addField('OS Platform: ', os.platform(), true)
-      .addField('OS Version: ', os.release(), true)
-      .setColor('#1fd619');
-  message.channel.send({embed});
+	const Discord = require('discord.js');
+	const os = require('os');
+	const embed = new Discord.MessageEmbed()
+		.setTitle('Information on AleeBot\'s Host')
+		.addField('OS Hostname: ', os.hostname(), true)
+		.addField('NodeJS Version: ', process.versions.node, true)
+		.addField('OS Platform: ', os.platform(), true)
+		.addField('OS Version: ', os.release(), true)
+		.setColor('#1fd619');
+	message.channel.send({embed});
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'info',
-  description: 'Tells you information about the bot',
-  usage: 'info',
-  category: '- Information Commands',
+	name: 'info',
+	description: 'Tells you information about the bot',
+	usage: 'info',
+	category: '- Information Commands',
 };

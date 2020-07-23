@@ -19,12 +19,13 @@
  * *************************************/
 const Discord = require('discord.js');
 const moment = require('moment');
+const Sequelize = require('sequelize');
 const readline = require('readline');
 const colors = require('colors');
 const DBL = require('dblapi.js');
 const i18next = require('i18next');
 const client = new Discord.Client({
-  disableEveryone: true,
+	disableEveryone: true,
 });
 const settings = require('./storage/settings.json');
 const fs = require('fs');
@@ -32,15 +33,18 @@ const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
 const active = new Map();
 const ownerID = '242775871059001344';
+var autoRole = true;
+var logChannel = '318874545593384970';
+let statusChannelID = '606602551634296968';
 
 const log = (message) => {
-  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
+	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
 };
 
 const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  prompt: '> '.gray,
+	input: process.stdin,
+	output: process.stdout,
+	prompt: '> '.gray,
 });
 
 console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2020 Alee Productions`.gray);
@@ -49,376 +53,373 @@ console.log('This is free software, and you are welcome to redistribute it'.gray
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
 
 if (process.argv.indexOf('--debug') == -1) {
-  console.log('Running AleeBot without --debug command line flag. Debug output disabled.\n'.yellow);
+	console.log('Running AleeBot without --debug command line flag. Debug output disabled.\n'.yellow);
 } else {
-  console.log('[!] Entering debug mode...'.yellow);
-  client.on('debug', function(info) {
-    log(info.gray);
-  });
-  client.on('warn', function(info) {
-    log(info.red);
-  });
+	console.log('[!] Entering debug mode...'.yellow);
+	client.on('debug', function(info) {
+		log(info.gray);
+	});
+	client.on('warn', function(info) {
+		log(info.red);
+	});
 }
 
 if (process.argv.indexOf('--beta') == -1) {
-  client.login(api.abtoken).catch(function() {
-    console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
-    process.exit(0);
-  });
+	client.login(api.abtoken).catch(function() {
+		console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+		process.exit(0);
+	});
 } else {
-  client.login(api.abbtoken).catch(function() {
-    console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
-    process.exit(0);
-  });
+	client.login(api.abbtoken).catch(function() {
+		console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
+		process.exit(0);
+	});
 }
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
 fs.readdir('./commands', (err, files) => {
-  if (err) console.error(err);
-  log(`[!] Attempting to load a total of ${files.length} commands into the memory.`.cyan);
-  files.forEach((file) => {
-    try {
-      const command = require(`./commands/${file}`);
-      log(`[!] Attempting to load the command "${command.help.name}".`.cyan);
-      client.commands.set(command.help.name, command);
-      command.conf.aliases.forEach((alias) => {
-        client.aliases.set(alias, command.help.name);
-        log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`.cyan);
-      });
-    } catch (err) {
-      log('[X] An error has occured trying to load a command. Here is the error.'.red);
-      console.log(err.stack);
-    }
-  });
-  log('[>] Command Loading complete!'.green);
-  console.log('\n');
+	if (err) console.error(err);
+	log(`[!] Attempting to load a total of ${files.length} commands into the memory.`.cyan);
+	files.forEach((file) => {
+		try {
+			const command = require(`./commands/${file}`);
+			log(`[!] Attempting to load the command "${command.help.name}".`.cyan);
+			client.commands.set(command.help.name, command);
+			command.conf.aliases.forEach((alias) => {
+				client.aliases.set(alias, command.help.name);
+				log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`.cyan);
+			});
+		} catch (err) {
+			log('[X] An error has occured trying to load a command. Here is the error.'.red);
+			console.log(err.stack);
+		}
+	});
+	log('[>] Command Loading complete!'.green);
+	console.log('\n');
 });
 
 rl.on('line', function(cmd) {
-  const args = cmd.split(' ');
-  switch (args[0]) {
-    case 'guilds':
-      if (client.guilds.size === 0) {
-        console.log(('[!] No guilds found.'.yellow));
-      } else {
-        console.log('[i] Here\'s the servers that AleeBot is connected to:');
-        for ([id, guild] of client.guilds) {
-          console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`.blue);
-        }
-      }
-      break;
-    case 'channels':
-      if (!args[1]) {
-        console.log('[!] Please insert the guild\'s ID.'.yellow);
-      } else {
-        var guild = client.guilds.get(args[1]);
-        console.log('[i] Here\'s the channels that this guild have:'.blue);
-        for ([id, channel, guild] of guild && client.channels) {
-          console.log(`   Channel: #${channel.name} - ID: ${channel.id}`.blue);
-        }
-      }
-      break;
-    case 'leave':
-      if (!args[1]) {
-        console.log('[!] Please insert the guild\'s ID.'.yellow);
-      } else {
-        var guild = client.guilds.get(args[1]);
-        guild.leave();
-      }
-      break;
-    case 'broadcast':
-      if (!args[1]) {
-        console.log('[!] Usage: broadcast [guildID] [channelID].'.yellow);
-      } else {
-        const broadcast = args.join(' ').slice(48);
-        var guild = null;
-        guild = client.guilds.get(args[1]);
-        var channel = null;
-        channel = guild.channels.get(args[2]);
-        if (channel != null) {
-          channel.send(broadcast);
-        }
-      }
-      break;
-    case 'uptime':
-      let uptime = parseInt(client.uptime);
-      uptime = Math.floor(uptime / 1000);
-      let uptimeMinutes = Math.floor(uptime / 60);
-      const minutes = uptime % 60;
-      let hours = 0;
-      while (uptimeMinutes >= 60) {
-        hours++;
-        uptimeMinutes = uptimeMinutes - 60;
-      }
-      const uptimeSeconds = minutes % 60;
-      console.log(`[i] AleeBot has been up for ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`.blue);
-      break;
-    case 'exit':
-      console.log('[i] AleeBot will now exit!'.blue);
-      const asyncPowerOff = async () => {
-        const embed = new Discord.RichEmbed()
-            .setAuthor('AleeBot Status', client.user.avatarURL)
-            .setDescription('AleeBot is now going offline...')
-            .setColor('#ff3333');
-        await client.channels.find('id', '606602551634296968').send({embed});
-      };
-      asyncPowerOff();
-      client.destroy();
-      process.exit(0);
-      break;
-    case 'help':
-      let msg = (`AleeBot `+ settings.abVersion +` Console Help\n\n`);
-      msg += (`guilds - Shows all guilds that AleeBot's on.\n`);
-      msg += (`channels - Shows all the channels that the guilds have.\n`);
-      msg += (`leave - Leaves a guild.\n`);
-      msg += (`broadcast - Broadcasts a message to a server.\n`);
-      msg += (`uptime - Shows the uptime for AleeBot.\n`);
-      msg += (`help - Shows this command.\n`);
-      msg += (`exit - Exits AleeBot.\n`);
-      console.log(msg.cyan);
-      break;
-    default:
-      console.log('Unknown command, type \'help\' to list the commands...'.yellow);
-  }
-  rl.prompt();
+	const args = cmd.split(' ');
+	switch (args[0]) {
+	case 'guilds':
+		if (client.guilds.size === 0) {
+			console.log(('[!] No guilds found.'.yellow));
+		} else {
+			console.log('[i] Here\'s the servers that AleeBot is connected to:');
+			for ([id, guild] of client.guilds) {
+				console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`.blue);
+			}
+		}
+		break;
+	case 'channels':
+		if (!args[1]) {
+			console.log('[!] Please insert the guild\'s ID.'.yellow);
+		} else {
+			var guild = client.guilds.get(args[1]);
+			console.log('[i] Here\'s the channels that this guild have:'.blue);
+			for ([id, channel, guild] of guild && client.channels) {
+				console.log(`   Channel: #${channel.name} - ID: ${channel.id}`.blue);
+			}
+		}
+		break;
+	case 'leave':
+		if (!args[1]) {
+			console.log('[!] Please insert the guild\'s ID.'.yellow);
+		} else {
+			var guild = client.guilds.get(args[1]);
+			guild.leave();
+		}
+		break;
+	case 'broadcast':
+		if (!args[1]) {
+			console.log('[!] Usage: broadcast [guildID] [channelID].'.yellow);
+		} else {
+			const broadcast = args.join(' ').slice(48);
+			var guild = null;
+			guild = client.guilds.get(args[1]);
+			var channel = null;
+			channel = guild.channels.get(args[2]);
+			if (channel != null) {
+				channel.send(broadcast);
+			}
+		}
+		break;
+	case 'uptime':
+		let uptime = parseInt(client.uptime);
+		uptime = Math.floor(uptime / 1000);
+		let uptimeMinutes = Math.floor(uptime / 60);
+		const minutes = uptime % 60;
+		let hours = 0;
+		while (uptimeMinutes >= 60) {
+			hours++;
+			uptimeMinutes = uptimeMinutes - 60;
+		}
+		const uptimeSeconds = minutes % 60;
+		console.log(`[i] AleeBot has been up for ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`.blue);
+		break;
+	case 'exit':
+		console.log('[i] AleeBot will now exit!'.blue);
+		const asyncPowerOff = async () => {
+			const readyEmbed = new Discord.MessageEmbed()
+				.setAuthor('AleeBot Status', client.user.avatarURL())
+				.setDescription('AleeBot is now going offline...')
+				.setColor('#ff3333');
+				let statusChannel = client.channels.cache.get(statusChannelID);
+  				if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
+  			await statusChannel.send(readyEmbed);
+		};
+		asyncPowerOff();
+		client.destroy();
+		process.exit(0);
+		break;
+	case 'help':
+		let msg = ('AleeBot '+ settings.abVersion +' Console Help\n\n');
+		msg += ('guilds - Shows all guilds that AleeBot\'s on.\n');
+		msg += ('channels - Shows all the channels that the guilds have.\n');
+		msg += ('leave - Leaves a guild.\n');
+		msg += ('broadcast - Broadcasts a message to a server.\n');
+		msg += ('uptime - Shows the uptime for AleeBot.\n');
+		msg += ('help - Shows this command.\n');
+		msg += ('exit - Exits AleeBot.\n');
+		console.log(msg.cyan);
+		break;
+	default:
+		console.log('Unknown command, type \'help\' to list the commands...'.yellow);
+	}
+	rl.prompt();
+});
+
+const sequelize = new Sequelize('database', 'user', 'password', {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	// SQLite only
+	storage: 'database.sqlite',
 });
 
 
 client.on('ready', () => {
-  log('[>] AleeBot is now ready!'.green);
-  log(`[i] Logged in as ${client.user.tag}`.green);
-  log(`[i] Default Prefix: ${settings.prefix}`.green);
-  log(`[i] Bot ID: ${client.user.id}`.green);
-  log(`[i] Token: ${api.abtoken}`.green);
-  log(`[i] Running version ${settings.abVersion} and in ${client.guilds.size} guilds`.green);
+	log('[>] AleeBot is now ready!'.green);
+	log(`[i] Logged in as ${client.user.tag}`.green);
+	log(`[i] Default Prefix: ${settings.prefix}`.green);
+	log(`[i] Bot ID: ${client.user.id}`.green);
+	log(`[i] Token: ${api.abtoken}`.green);
+	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
 
-  client.setInterval(function() {
-    const games = [
-      'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
-      'Annoying Alee',
-      'Coding stuff',
-      'Drawing shapes',
-      'Fighting AstralMod',
-    ];
-    /*
+	client.setInterval(function() {
+		const games = [
+			'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
+			'Coding stuff',
+			'Drawing shapes',
+			'Fighting AstralMod',
+		];
+		/*
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);*/
-    client.user.setPresence({
-      status: 'online',
-      afk: false,
-      game: {
-        type: 0,
-        name: games[Math.floor(Math.random() * games.length)],
-      },
-    });
-  }, 200000);
-  client.user.setStatus('online');
-  const embed = new Discord.RichEmbed()
-      .setAuthor('AleeBot Status', client.user.avatarURL)
-      .setDescription('AleeBot has started')
-      .setColor('#5cd65c');
-  client.channels.find('id', '606602551634296968').send({embed});
-  rl.prompt();
+		client.user.setPresence({
+			status: 'online',
+			afk: false,
+			game: {
+				type: 0,
+				name: games[Math.floor(Math.random() * games.length)],
+			},
+		});
+	}, 200000);
+	client.user.setStatus('online');
+	const readyEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Status', client.user.avatarURL())
+		.setDescription('AleeBot has started')
+		.addField('Prefix', `\`${settings.prefix}\``, true)
+		.setColor('#5cd65c');
+	let statusChannel = client.channels.cache.get(statusChannelID);
+  	if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
+  	statusChannel.send(readyEmbed);
+  	client.user.setStatus('online');
+	rl.prompt();
 });
 
 client.on('guildMemberAdd', (member) => {
-  if (member.guild.id != '243022206437687296') return 0;
-  const role = member.guild.roles.find((role) => role.name === 'Member');
-  member.addRole(role);
-  log(`[i] ${member.user.username} joined Alee Productions.`.green);
-  log(`[i] I gave ${member.user.username} the "Member" role.`.green);
+	if (autoRole = true) {
+		if (member.guild.id != '243022206437687296') return 0;
+		const role = member.guild.roles.cache.get('657426918416580614');
+		member.roles.add(role);
+		log(`[i] ${member.user.username} joined Alee Productions.`.green);
+		log(`[i] I gave ${member.user.username} the "Member" role.`.green);
+	} else {
+		return;
+	}
 });
+/*
+client.on('guildMemberRemove', (member) =>{
+
+})
+*/
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-  if (oldMessage.guild.id != '243022206437687296') return 0;
-  if (oldMessage.content === newMessage.content) {
-    return;
-  }
-  const logEmbed = new Discord.RichEmbed()
-      .setAuthor('AleeBot Logging', client.user.avatarURL)
-      .setDescription(`A message from ${oldMessage.author.username} was edited`)
-      .addField('Before: ', `\`\`\`${oldMessage.content}\`\`\``)
-      .addField('After: ', `\`\`\`${newMessage.content}\`\`\``)
-      .setColor('#ffff1a')
-      .setTimestamp()
-      .setFooter(`Author ID: ${oldMessage.author.id}`);
+	if (oldMessage.guild.id != '243022206437687296') return 0;
+	if (oldMessage.content === newMessage.content) {
+		return;
+	}
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`A message from ${oldMessage.author.username} was edited`)
+		.addField('Before: ', `\`\`\`${oldMessage.content}\`\`\``)
+		.addField('After: ', `\`\`\`${newMessage.content}\`\`\``)
+		.setColor('#ffff1a')
+		.setTimestamp()
+		.setFooter(`Author ID: ${oldMessage.author.id}`);
+		
+	let editMessage = client.channels.cache.get(logChannel);
+	if (!editMessage) return;
 
-  const editMessage = newMessage.guild.channels.find((ch) => ch.name === 'logs');
-  if (!editMessage) return;
-
-  editMessage.send(logEmbed);
+	editMessage.send(logEmbed);
 });
 
 client.on('messageDelete', (message) => {
-  if (message.guild.id != '243022206437687296') return 0;
-  const logEmbed = new Discord.RichEmbed()
-      .setAuthor('AleeBot Logging', client.user.avatarURL)
-      .setDescription(`A message from ${message.author.username} was deleted`)
-      .addField('Deleted Message: ', `\`\`\`${message.content}\`\`\``)
-      .setColor('#ff021b')
-      .setTimestamp()
-      .setFooter(`Author ID: ${message.author.id}`);
+	if (message.guild.id != '243022206437687296') return 0;
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`A message from ${message.author.username} was deleted`)
+		.addField('Deleted Message: ', `\`\`\`${message.content}\`\`\``)
+		.setColor('#ff021b')
+		.setTimestamp()
+		.setFooter(`Author ID: ${message.author.id}`);
 
-  const deleteMessage = message.guild.channels.find((ch) => ch.name === 'logs');
-  if (!deleteMessage) return;
+	let deleteMessage = client.channels.cache.get(logChannel);
+	if (!deleteMessage) return;
 
-  deleteMessage.send(logEmbed);
+	deleteMessage.send(logEmbed);
 });
 
 client.on('guildBanAdd', (guild, user) => {
-  if (guild.id != '243022206437687296') return 0;
-  const logEmbed = new Discord.RichEmbed()
-      .setAuthor('AleeBot Logging', client.user.avatarURL)
-      .setDescription(`This user got banned from ${guild.name}`)
-      .addField(`User:`, `${user.tag}`)
-      .addField(`User ID:`, `${user.id}`)
-      .setColor('#ff021b')
-      .setTimestamp();
+	if (guild.id != '243022206437687296') return 0;
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`This user got banned from ${guild.name}`)
+		.addField('User:', `${user.tag}`)
+		.addField('User ID:', `${user.id}`)
+		.setColor('#ff021b')
+		.setTimestamp();
 
-  const banMessage = guild.channels.find((ch) => ch.name === 'logs');
-  if (!banMessage) return;
+	let banMessage = client.channels.cache.get(logChannel);
+	if (!banMessage) return;
 
-  banMessage.send(logEmbed);
+	banMessage.send(logEmbed);
 });
 
 client.on('guildBanRemove', (guild, user) => {
-  if (guild.id != '243022206437687296') return 0;
-  const logEmbed = new Discord.RichEmbed()
-      .setAuthor('AleeBot Logging', client.user.avatarURL)
-      .setDescription(`This user got unbanned from ${guild.name}`)
-      .addField(`User:`, `${user.tag}`)
-      .addField(`User ID:`, `${user.id}`)
-      .setColor('#ff021b')
-      .setTimestamp();
+	if (guild.id != '243022206437687296') return 0;
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`This user got unbanned from ${guild.name}`)
+		.addField('User:', `${user.tag}`)
+		.addField('User ID:', `${user.id}`)
+		.setColor('#ff021b')
+		.setTimestamp();
 
-  const banMessage = guild.channels.find((ch) => ch.name === 'logs');
-  if (!banMessage) return;
+	let banMessage = client.channels.cache.get(logChannel);
+	if (!banMessage) return;
 
-  banMessage.send(logEmbed);
+	banMessage.send(logEmbed);
 });
 
 client.on('guildCreate', (guild) => {
-  log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`.blue);
-  /*
-  const logEmbed = new Discord.RichEmbed()
-  .setAuthor("AleeBot", client.user.avatarURL)
-  .setDescription(`I got added to this server!`)
-  .addField(`Server Name:`, `${guild.name}`)
-  .addField(`Server ID:`, `${guild.id}`)
-  .setColor("#5cd65c")
+	log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`.blue);
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot', client.user.avatarURL())
+		.setDescription('I got added to a server!')
+		.addField('Server Name:', `${guild.name}`, true)
+		.addField('Server ID:', `${guild.id}`, true)
+		.addField('Members', guild.memberCount, true)
+		.setColor('#5cd65c')
+		.setFooter(`We now run on ${client.guilds.cache.size} guilds.`);
 
-  client.channels.find('id', '606602551634296968').send({logEmbed});*/
+	let statusChannel = client.channels.cache.get(statusChannelID);
+	if (!statusChannel) return;
+	statusChannel.send(logEmbed);
 });
 
 
 client.on('guildDelete', (guild) => {
-  log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`.red);
-  /*
-  const logEmbed = new Discord.RichEmbed()
-  .setAuthor("AleeBot", client.user.avatarURL)
-  .setDescription(`I got removed from server...`)
-  .addField(`Server Name:`, `${guild.name}`)
-  .addField(`Server ID:`, `${guild.id}`)
-  .setColor("#5cd65c")
+	log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`.red);
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot', client.user.avatarURL())
+		.setDescription('I got removed from a server...')
+		.addField('Server Name:', `${guild.name}`, true)
+		.addField('Server ID:', `${guild.id}`, true)
+		.setColor('#ff021b')
+		.setFooter(`We now run on ${client.guilds.cache.size} guilds.`);
 
-  client.channels.find('id', '606602551634296968').send({logEmbed});*/
+	let statusChannel = client.channels.cache.get(statusChannelID);
+	if (!statusChannel) return;
+	statusChannel.send(logEmbed);
 });
 
 dbl.on('posted', () => {
-  log('Server count posted!'.blue);
+	log('Server count posted!'.blue);
 });
 
 dbl.on('error', (e) => {
-  log(`[X | DBL ERROR] ${e}`.red);
+	log(`[X | DBL ERROR] ${e}`.red);
 });
 
 client.on('message', (msg) => {
-  if (msg.author.bot) return;
+	if (msg.author.bot) return;
 
-  if (msg.mentions != null && msg.mentions.users != null) {
-    if (msg.mentions.users.has('282547024547545109')) {
-      if (msg.content.toLowerCase().includes('hello') || (msg.content.toLowerCase().includes('hi'))) {
-        msg.reply(`Hello ${msg.author.username}!`);
-      } else {
-        if (msg.content.toLowerCase().includes('shut') && msg.content.toLowerCase().includes('up')) {
-          switch (Math.floor(Math.random() * 1000) % 3) {
-            case 0:
-              msg.reply('Hey, Can you not speak to me in that tone...');
-              break;
-            case 1:
-              msg.reply('NO! I can talk as much I can!');
-              break;
-            case 2:
-              msg.reply('Nah I won\'t....');
-              break;
-          }
-        } else if (msg.content.toLowerCase().includes('how') && msg.content.toLowerCase().includes('are') && msg.content.toLowerCase().includes('you')) {
-          msg.reply('I\'m doing OK, I suppose...');
-        } else if (msg.content.toLowerCase().includes('ok') && msg.content.toLowerCase().includes('google')) {
-          msg.reply('Erm... I am not google, if you want to use Google here\'s the link: https://www.google.com');
-        } else if (msg.content.toLowerCase().includes('f') && msg.content.toLowerCase().includes('off')) {
-          msg.reply('Do you want a hammer? :hammer:');
-        } else if (msg.content.toLowerCase().includes('aleearmy')) {
-          msg.reply('Oh yeah.. that thing Alee made...');
-        }
-      }
-    }
-  };
+	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
+
+	if (!prefixes[msg.guild.id]) {
+		prefixes[msg.guild.id] = {
+			prefixes: settings.prefix,
+		};
+	}
+
+	const prefix = prefixes[msg.guild.id].prefixes;
 
 
-  const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
+	if (!msg.content.startsWith(prefix)) return;
+	const args = msg.content.slice(prefix.length).trim().split(/ +/g);
+	const command = args.shift();
+	let cmd;
 
-  if (!prefixes[msg.guild.id]) {
-    prefixes[msg.guild.id] = {
-      prefixes: settings.prefix,
-    };
-  }
+	if (client.commands.has(command)) {
+		cmd = client.commands.get(command);
+	} else if (client.aliases.has(command)) {
+		cmd = client.commands.get(client.aliases.get(command));
+	}
 
-  const prefix = prefixes[msg.guild.id].prefixes;
+	if (cmd) {
+		if (cmd.conf.guildOnly == true) {
+			if (!msg.channel.guild) {
+				return msg.channel.createMessage('This command can only be ran in a guild.');
+			}
+		}
+		try {
+			const ops = {
+				ownerID: ownerID,
+				active: active,
+				autoRole: autoRole,
+			};
 
-
-  if (!msg.content.startsWith(prefix)) return;
-  const args = msg.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift();
-  let cmd;
-
-  if (client.commands.has(command)) {
-    cmd = client.commands.get(command);
-  } else if (client.aliases.has(command)) {
-    cmd = client.commands.get(client.aliases.get(command));
-  }
-
-  if (cmd) {
-    if (cmd.conf.guildOnly == true) {
-      if (!msg.channel.guild) {
-        return msg.channel.createMessage('This command can only be ran in a guild.');
-      }
-    }
-    try {
-      const ops = {
-        ownerID: ownerID,
-        active: active,
-      };
-
-      cmd.run(client, msg, args, ops);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+			cmd.run(client, msg, args, ops);
+		} catch (e) {
+			console.error(e);
+		}
+	}
 });
 
 process.on('unhandledRejection', function(err, p) {
-  log('[X | UNCAUGHT PROMISE] ' + err.stack.red);
+	log('[X | UNCAUGHT PROMISE] ' + err.stack.red);
 });
 client.on('reconnecting', function() {
-  log('[!] AleeBot has disconnected from Discord and is now attempting to reconnect.'.yellow);
+	log('[!] AleeBot has disconnected from Discord and is now attempting to reconnect.'.yellow);
 });
 
 client.on('disconnect', function() {
-  log('[X] AleeBot has disconnected from Discord and will not attempt to reconnect.'.red);
-  console.log('At this point, you\'ll need to restart AleeBot.'.red);
-  process.exit(0);
+	log('[X] AleeBot has disconnected from Discord and will not attempt to reconnect.'.red);
+	console.log('At this point, you\'ll need to restart AleeBot.'.red);
+	process.exit(0);
 });

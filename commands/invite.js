@@ -18,34 +18,32 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  const Discord = require('discord.js');
-  const embed = new Discord.RichEmbed();
-  message.channel.send({embed: {
-    color: 2086425,
-    title: 'Invite Command',
-    fields: [{
-      name: 'Invite AleeBot',
-      value: '[Invite AleeBot to your server.](https://top.gg/bot/282547024547545109)',
-    },
-    {
-      name: 'Join the Alee Productions Community',
-      value: '[If there\'s any bugs you can join Alee Community guild and explain the bug...](https://discord.gg/EFhRDqG)',
-    },
-    ],
-  },
-  });
+	message.channel.send({embed: {
+		color: 2086425,
+		title: 'Invite Command',
+		fields: [{
+			name: 'Invite AleeBot',
+			value: '[Invite AleeBot to your server.](https://top.gg/bot/282547024547545109)',
+		},
+		{
+			name: 'Join the Alee Productions Community',
+			value: '[Discord Server](https://discord.gg/EFhRDqG)',
+		},
+		],
+	},
+	});
 
-  // message.channel.send('Want AleeBot in your server? Here\'s the link: https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot');
+	// message.channel.send('Want AleeBot in your server? Here\'s the link: https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot');
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'invite',
-  description: 'Gives you an invite to the guild and the bot.',
-  usage: 'invite',
-  category: '- General Commands',
+	name: 'invite',
+	description: 'Gives you an invite to the guild and the bot.',
+	usage: 'invite',
+	category: '- General Commands',
 };
 

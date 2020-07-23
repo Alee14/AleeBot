@@ -1,6 +1,6 @@
 /** **************************************
  *
- *   AvatarURL: Command for AleeBot
+ *   avatarurl: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -18,16 +18,16 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  message.reply(message.author.avatarURL);
+	message.reply(message.author.avatarURL());
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'avatarurl',
-  description: 'Sends you your avatar picture.',
-  usage: 'avatarurl',
-  category: '- Fun Commands',
+	name: 'avatarurl',
+	description: 'Sends you your avatar picture.',
+	usage: 'avatarurl',
+	category: '- Fun Commands',
 };

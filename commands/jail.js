@@ -18,25 +18,25 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-  if (message.guild.id != '243022206437687296') return message.reply('This is a ALP exclusive command.');
+	if (message.guild.id != '243022206437687296') return message.reply('This is a ALP exclusive command.');
 
-  if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
-  if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
+	if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
+	if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
 
-  const member = message.mentions.members.first();
-  if (!member) return await message.reply('Uhh... Please mention a member first.');
+	const member = message.mentions.members.first();
+	if (!member) return await message.reply('Uhh... Please mention a member first.');
 
-  member.addRole(message.guild.roles.find('name', 'Jail'));
-  message.reply(`Alright, I just jailed ${member.user.tag}.`);
+	member.roles.add(message.guild.roles.cache.get('428205205155217418'));
+	message.reply(`Alright, I just jailed ${member.user.tag}.`);
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'jail',
-  description: 'Jails a member',
-  usage: 'jail [user]',
-  category: '- ALP Exclusive Commands',
+	name: 'jail',
+	description: 'Jails a member',
+	usage: 'jail [user]',
+	category: '- ALP Exclusive Commands',
 };

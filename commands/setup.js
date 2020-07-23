@@ -1,6 +1,6 @@
-/** **************************************
- *
- *   Quote: Command for AleeBot
+/****************************************
+ * 
+ *   Setup: Command for AleeBot
  *   Copyright (C) 2017-2020 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -15,41 +15,22 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  * *************************************/
+
 module.exports.run = async (client, message) => {
+	if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply(':warning: You must be a server owner or be the creator of the bot to access this command.');
+	message.reply('Look at your DMs.');
+	//message.reply("This feature is coming soon. Stay tuned!");
 	const Discord = require('discord.js');
+	const setupEmbed = new Discord.MessageEmbed()
+		.setTitle('AleeBot Setup', client.user.avatarURL())
+		.setDescription('Select the options')
+		.addField('Chat Logs', 'placeholder', true)
+		.addField('Chat Logs', 'placeholder', true)
+		.addField('Chat Logs', 'placeholder', true);
 
-	let NewQuote;
-
-	function GetNewQuote(quoteNum = -1) {
-		NewQuote = new Discord.MessageEmbed();
-
-		let quo = require('../storage/quotes.json').quotes;
-
-		if (quoteNum == -1) {
-			quoteNum = Math.floor(Math.random() * 1000) % quo.length;
-			quo=quo[quoteNum];
-		}
-
-		const author = quo.author;
-		const authorImage = quo.authorImage;
-		const quote = quo.quote;
-		const year = quo.year;
-		const url = quo.url;
-
-		NewQuote.setAuthor(author, authorImage);
-		NewQuote.setColor('#1fd619');
-		NewQuote.setDescription(quote);
-		NewQuote.setFooter('- ' + year);
-		NewQuote.setURL(url);
-
-		return NewQuote;
-	}
-
-	const newquote = GetNewQuote();
-	message.reply('Alright, here\'s your quote.');
-	message.channel.send(newquote);
+	message.author.send(setupEmbed);
 };
 
 exports.conf = {
@@ -57,8 +38,8 @@ exports.conf = {
 	guildOnly: false,
 };
 exports.help = {
-	name: 'quote',
-	description: 'Tells you quotes',
-	usage: 'quote',
-	category: '- Quote Commands',
+	name: 'setup',
+	description: 'Setting up AleeBot.',
+	usage: 'setup',
+	category: '- Settings Commands',
 };

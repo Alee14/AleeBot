@@ -18,33 +18,33 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-  const db = require('quick.db');
-  const {RichEmbed} = require('discord.js');
+	const db = require('quick.db');
+	const {MessageEmbed} = require('discord.js');
 
-  const user = message.mentions.users.first() || message.author;
+	const user = message.mentions.users.first() || message.author;
 
-  let balance = await db.fetch(`userBalance_${user.id}`);
+	let balance = await db.fetch(`userBalance_${user.id}`);
 
-  if (balance === null) {
-    db.set(`userBalance_${message.author.id}`, 0);
-    balance = 0;
-  }
-  const embed = new RichEmbed()
-      .setDescription(`**AleeCorp Bank**`)
-      .addField('Account Holder: ', user.username, true)
-      .addField('Account Balance: ', balance, true)
-      .setColor('#1fd619');
+	if (balance === null) {
+		db.set(`userBalance_${message.author.id}`, 0);
+		balance = 0;
+	}
+	const embed = new MessageEmbed()
+		.setDescription('**AleeCorp Bank**')
+		.addField('Account Holder: ', user.username, true)
+		.addField('Account Balance: ', balance, true)
+		.setColor('#1fd619');
 
-  message.channel.send({embed});
+	message.channel.send({embed});
 };
 
 exports.conf = {
-  aliases: ['bal', 'money'],
-  guildOnly: false,
+	aliases: ['bal', 'money'],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'balance',
-  description: 'Checks the balance of AleeBot',
-  usage: 'balance [@someone (optional)]',
-  category: '- Economy Commands',
+	name: 'balance',
+	description: 'Checks the balance of AleeBot',
+	usage: 'balance [@someone (optional)]',
+	category: '- Economy Commands',
 };

@@ -21,36 +21,36 @@ const db = require('quick.db');
 ms = require('parse-ms');
 
 module.exports.run = async (client, message) => {
-  const cooldown = 8.64e+7;
-  const amount = 100;
+	const cooldown = 8.64e+7;
+	const amount = 100;
 
-  const lastDaily = await db.fetch(`lastDaily_${message.author.id}`);
+	const lastDaily = await db.fetch(`lastDaily_${message.author.id}`);
 
-  if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
-    const timeObj = ms(cooldown - (Date.now() - lastDaily));
+	if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+		const timeObj = ms(cooldown - (Date.now() - lastDaily));
 
-    message.reply(`You already collected your money, please wait **${timeObj.hours}h ${timeObj.minutes}m**!`);
-  } else {
-    message.channel.send(`You have successfully collected $${amount} dollars!`);
+		message.reply(`You already collected your money, please wait **${timeObj.hours}h ${timeObj.minutes}m**!`);
+	} else {
+		message.channel.send(`You have successfully collected $${amount} dollars!`);
 
-    const balance = await db.fetch(`userBalance_${message.author.id}`);
+		const balance = await db.fetch(`userBalance_${message.author.id}`);
 
-    if (balance == null) {
-      db.set(`userBalance_${message.author.id}`, 0);
-    }
+		if (balance == null) {
+			db.set(`userBalance_${message.author.id}`, 0);
+		}
 
-    db.set(`lastDaily_${message.author.id}`, Date.now());
-    db.add(`userBalance_${message.author.id}`, 100);
-  }
+		db.set(`lastDaily_${message.author.id}`, Date.now());
+		db.add(`userBalance_${message.author.id}`, 100);
+	}
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'daily',
-  description: 'This gives you money everyday.',
-  usage: 'daily',
-  category: '- Economy Commands',
+	name: 'daily',
+	description: 'This gives you money everyday.',
+	usage: 'daily',
+	category: '- Economy Commands',
 };

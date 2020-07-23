@@ -18,35 +18,35 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-  const moment = require('moment');
-  const log = (message) => {
-    console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
-  };
-  const fs = require('fs');
-  if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('Sorry you need admin to set my prefix');
-  if (!args[0] || args[0 == 'help']) return message.reply(`Usage: <your prefix>setprefix <prefix>`);
+	const moment = require('moment');
+	const log = (message) => {
+		console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+	};
+	const fs = require('fs');
+	if (!message.member.hasPermission('ADMINISTRATOR')) return message.reply('Sorry you need admin to set my prefix');
+	if (!args[0] || args[0 == 'help']) return message.reply('Usage: <your prefix>setprefix <prefix>');
 
-  const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
+	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
 
-  prefixes[message.guild.id] = {
-    prefixes: args[0],
-  };
+	prefixes[message.guild.id] = {
+		prefixes: args[0],
+	};
 
-  fs.writeFile('./storage/prefixes.json', JSON.stringify(prefixes), (err) =>{
-    if (err) log(err);
-  });
+	fs.writeFile('./storage/prefixes.json', JSON.stringify(prefixes), (err) =>{
+		if (err) log(err);
+	});
 
-  message.reply(`AleeBot's Prefix in this guild is now \`${args[0]}\``);
-  log(`[i] The guild ${message.guild.name} has changed AleeBot's prefix to ${args[0]}`);
+	message.reply(`AleeBot's Prefix in this guild is now \`${args[0]}\``);
+	log(`[i] The guild ${message.guild.name} has changed AleeBot's prefix to ${args[0]}`);
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: true,
+	aliases: [],
+	guildOnly: true,
 };
 exports.help = {
-  name: 'setprefix',
-  description: 'Sets the guild prefix.',
-  usage: 'setprefix [prefix]',
-  category: '- Settings Commands',
+	name: 'setprefix',
+	description: 'Sets the guild prefix.',
+	usage: 'setprefix [prefix]',
+	category: '- Settings Commands',
 };
