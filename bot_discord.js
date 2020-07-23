@@ -209,7 +209,7 @@ client.on('ready', () => {
 	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
 
 	client.setInterval(function() {
-		const games = [
+		const activities = [
 			'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
 			'Coding stuff',
 			'Drawing shapes',
@@ -222,9 +222,9 @@ client.on('ready', () => {
 		client.user.setPresence({
 			status: 'online',
 			afk: false,
-			game: {
+			activity: {
 				type: 0,
-				name: games[Math.floor(Math.random() * games.length)],
+				name: activities[Math.floor(Math.random() * activities.length)],
 			},
 		});
 	}, 200000);
