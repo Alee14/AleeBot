@@ -18,7 +18,7 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-	message.reply(message.author.avatarURL());
+	message.reply(message.author.avatarURL({ dynamic: true, format: 'png', size: 1024 }));
 };
 
 exports.conf = {
