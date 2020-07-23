@@ -220,12 +220,11 @@ client.on('ready', () => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);*/
 		client.user.setPresence({
+			activity: {
+				name: activities[Math.floor(Math.random() * activities.length)]
+			},
 			status: 'online',
 			afk: false,
-			activity: {
-				type: 0,
-				name: activities[Math.floor(Math.random() * activities.length)],
-			},
 		});
 	}, 200000);
 	client.user.setStatus('online');
