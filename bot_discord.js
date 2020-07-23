@@ -242,7 +242,7 @@ client.on('ready', () => {
 
 client.on('guildMemberAdd', (member) => {
 	if (autoRole = true) {
-		if (member.guild.id != '243022206437687296') return 0;
+		if (member.guild.id != '243022206437687296') return;
 		const role = member.guild.roles.cache.get('657426918416580614');
 		member.roles.add(role);
 		log(`[i] ${member.user.username} joined Alee Productions.`.green);
@@ -258,7 +258,7 @@ client.on('guildMemberRemove', (member) =>{
 */
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-	if (oldMessage.guild.id != '243022206437687296') return 0;
+	if (oldMessage.guild.id != '243022206437687296') return;
 	if (oldMessage.content === newMessage.content) {
 		return;
 	}
@@ -278,7 +278,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 });
 
 client.on('messageDelete', (message) => {
-	if (message.guild.id != '243022206437687296') return 0;
+	if (message.guild.id != '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A message from ${message.author.username} was deleted`)
@@ -294,7 +294,7 @@ client.on('messageDelete', (message) => {
 });
 
 client.on('guildBanAdd', (guild, user) => {
-	if (guild.id != '243022206437687296') return 0;
+	if (guild.id != '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got banned from ${guild.name}`)
@@ -310,7 +310,7 @@ client.on('guildBanAdd', (guild, user) => {
 });
 
 client.on('guildBanRemove', (guild, user) => {
-	if (guild.id != '243022206437687296') return 0;
+	if (guild.id != '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got unbanned from ${guild.name}`)
