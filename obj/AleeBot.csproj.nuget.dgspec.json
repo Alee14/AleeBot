@@ -14,7 +14,7 @@
         "outputPath": "/run/media/storage/user-files/Documents/AleeBot/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/run/media/storage/user-files/Documents/nuget.config",
+          "/home/andrew/Documents/nuget.config",
           "/home/andrew/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
@@ -37,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Discord.Net": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
