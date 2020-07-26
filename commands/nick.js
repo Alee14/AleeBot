@@ -19,7 +19,6 @@
  * *************************************/
 module.exports.run = async (client, message, args) => {
     if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAME')) return message.reply('**ERROR:** I can\'t change nicknames. (Check permissions)');
-    if (message.guild.member(client.user).hasPermission('ADMINISRTATOR')) return message.reply('**ERROR:** Since you have admin permissions you are allowed to change your nickanme.');
     const nick = args.join(' ');
     message.member.setNickname(nick);
     message.channel.send(`Alright! I changed your nickname to \`${nick}\``);   
