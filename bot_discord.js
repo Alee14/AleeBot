@@ -278,6 +278,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
+	if (message.guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has joined this server!`)
@@ -301,6 +302,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('guildMemberRemove', (member) => {
+	if (message.guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has left this server!`)
