@@ -284,7 +284,7 @@ client.on('guildMemberAdd', (member) => {
 		.setDescription(`A user has joined this server!`)
 		.addField('Username: ', `${member.displayName}`, true)
 		.addField('User ID: ', `${member.id}`, true)
-		.addField('Joined At: ', `${member.joinedAt}`)
+		.addField('Joined At: ', `${member.joinedAt.toUTCString()}`)
 		.setColor('#4bff31')
 		.setTimestamp();
 

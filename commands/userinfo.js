@@ -27,7 +27,7 @@ module.exports.run = async (client, message) => {
 		.addField('Identity', `**User ID:** ${message.author.id} `)
 		.addField('Create and Join Times', '**Created At:** ' + message.member.user.createdAt.toUTCString() + '\n**Joined Guild At:** ' + message.member.joinedAt.toUTCString())
 		.setColor('#1fd619');
-	message.channel.send({embed});
+	await message.channel.send({embed});
 };
 
 exports.conf = {
