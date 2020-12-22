@@ -26,9 +26,9 @@ module.exports.run = async (client, message) => {
 	const setupEmbed = new Discord.MessageEmbed()
 		.setTitle('AleeBot Setup', client.user.avatarURL())
 		.setDescription('Select the options')
-		.addField('Chat Logs', 'placeholder', true)
-		.addField('Chat Logs', 'placeholder', true)
-		.addField('Chat Logs', 'placeholder', true);
+		.addField('Logs', 'channelid', true)
+	//	.addField('Chat Logs', 'placeholder', true)
+	//	.addField('Chat Logs', 'placeholder', true);
 
 	message.author.send(setupEmbed);
 };

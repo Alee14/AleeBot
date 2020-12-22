@@ -19,7 +19,7 @@
  * *************************************/
 const Discord = require('discord.js');
 const moment = require('moment');
-const Sequelize = require('sequelize');
+//const Sequelize = require('sequelize');
 const readline = require('readline');
 const colors = require('colors');
 const DBL = require('dblapi.js');
@@ -52,7 +52,7 @@ console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `s
 console.log('This is free software, and you are welcome to redistribute it'.gray);
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
 
-if (process.argv.indexOf('--debug') == -1) {
+if (process.argv.indexOf('--debug') === -1) {
 	console.log('Running AleeBot without --debug command line flag. Debug output disabled.\n'.yellow);
 } else {
 	console.log('[!] Entering debug mode...'.yellow);
@@ -64,7 +64,7 @@ if (process.argv.indexOf('--debug') == -1) {
 	});
 }
 
-if (process.argv.indexOf('--beta') == -1) {
+if (process.argv.indexOf('--beta') === -1) {
 	client.login(api.abtoken).catch(function() {
 		console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
 		process.exit(0);
@@ -92,7 +92,7 @@ fs.readdir('./commands', (err, files) => {
 				log(`[!] Attempting to load "${alias}" as an alias for "${command.help.name}"`.cyan);
 			});
 		} catch (err) {
-			log('[X] An error has occured trying to load a command. Here is the error.'.red);
+			log('[X] An error has occurred trying to load a command. Here is the error.'.red);
 			console.log(err.stack);
 		}
 	});
@@ -190,15 +190,49 @@ rl.on('line', function(cmd) {
 	}
 	rl.prompt();
 });
-
-const sequelize = new Sequelize('database', 'user', 'password', {
+/*
+const sequelizeLogging = new Sequelize('database', 'user', 'password', {
 	host: 'localhost',
 	dialect: 'sqlite',
 	logging: false,
 	// SQLite only
-	storage: 'database.sqlite',
+	storage: 'logging.sqlite',
 });
 
+const Logging = sequelizeLogging.define('logging', {
+	serverid: {
+		type: Sequelize.INTEGER,
+		unique: true,
+	},
+	channelid: Sequelize.INTEGER,
+	username: Sequelize.STRING,
+	usage_count: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0,
+		allowNull: false,
+	},
+});
+
+const sequelizeQuote = new Sequelize('database', 'user', 'password', {
+	host: 'localhost',
+	dialect: 'sqlite',
+	logging: false,
+	// SQLite only
+	storage: 'quote.sqlite',
+});
+
+const Quote = sequelizeQuote.define('quote', {
+	quoteid: {
+		type: Sequelize.INTEGER,
+		unique: true,
+	},
+	author: Sequelize.STRING,
+	authorImage: Sequelize.STRING,
+	quote: Sequelize.STRING,
+	year: Sequelize.INTEGER
+});
+
+*/
 
 client.on('ready', () => {
 	log('[>] AleeBot is now ready!'.green);
@@ -242,7 +276,7 @@ client.on('ready', () => {
 
 client.on('guildMemberAdd', (member) => {
 	if (autoRole = true) {
-		if (member.guild.id != '243022206437687296') return;
+		if (member.guild.id !== '243022206437687296') return;
 		const role = member.guild.roles.cache.get('657426918416580614');
 		member.roles.add(role);
 		log(`[i] ${member.user.username} joined Alee Productions.`.green);
@@ -258,7 +292,7 @@ client.on('guildMemberRemove', (member) =>{
 */
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-	if (oldMessage.guild.id != '243022206437687296') return;
+	if (oldMessage.guild.id !== '243022206437687296') return;
 	if (oldMessage.content === newMessage.content) {
 		return;
 	}
@@ -278,7 +312,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 });
 
 client.on('messageDelete', (message) => {
-	if (message.guild.id != '243022206437687296') return;
+	if (message.guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A message from ${message.author.username} was deleted`)
@@ -294,7 +328,7 @@ client.on('messageDelete', (message) => {
 });
 
 client.on('guildBanAdd', (guild, user) => {
-	if (guild.id != '243022206437687296') return;
+	if (guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got banned from ${guild.name}`)
@@ -310,7 +344,7 @@ client.on('guildBanAdd', (guild, user) => {
 });
 
 client.on('guildBanRemove', (guild, user) => {
-	if (guild.id != '243022206437687296') return;
+	if (guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got unbanned from ${guild.name}`)
@@ -391,7 +425,7 @@ client.on('message', (msg) => {
 	}
 
 	if (cmd) {
-		if (cmd.conf.guildOnly == true) {
+		if (cmd.conf.guildOnly === true) {
 			if (!msg.channel.guild) {
 				return msg.channel.createMessage('This command can only be ran in a guild.');
 			}
