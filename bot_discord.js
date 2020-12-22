@@ -33,9 +33,10 @@ const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
 const active = new Map();
 const ownerID = '242775871059001344';
-var autoRole = true;
-var logChannel = '318874545593384970';
+let autoRole = true;
+let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
+let readyEmbedMessage = true;
 
 const log = (message) => {
 	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
@@ -245,9 +246,9 @@ client.on('ready', () => {
 	client.setInterval(function() {
 		const activities = [
 			'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
-			'Coding stuff',
+			'Coding bytes',
 			'Drawing shapes',
-			'Fighting AstralMod',
+			'Fighting Quad',
 		];
 		/*
     setInterval(() => {
@@ -262,34 +263,58 @@ client.on('ready', () => {
 		});
 	}, 200000);
 	client.user.setStatus('online');
-	const readyEmbed = new Discord.MessageEmbed()
-		.setAuthor('AleeBot Status', client.user.avatarURL())
-		.setDescription('AleeBot has started')
-		.addField('Prefix', `\`${settings.prefix}\``, true)
-		.setColor('#5cd65c');
-	let statusChannel = client.channels.cache.get(statusChannelID);
-  	if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-  	statusChannel.send(readyEmbed);
+	if (readyEmbedMessage === true) {
+		const readyEmbed = new Discord.MessageEmbed()
+			.setAuthor('AleeBot Status', client.user.avatarURL())
+			.setDescription('AleeBot has started')
+			.addField('Prefix', `\`${settings.prefix}\``, true)
+			.setColor('#5cd65c');
+		let statusChannel = client.channels.cache.get(statusChannelID);
+		if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
+		statusChannel.send(readyEmbed);
+	}
   	client.user.setStatus('online');
 	rl.prompt();
 });
 
 client.on('guildMemberAdd', (member) => {
-	if (autoRole = true) {
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`A user has joined this server!`)
+		.addField('Username: ', `${member.displayName}`, true)
+		.addField('User ID: ', `${member.id}`, true)
+		.addField('Joined At: ', `${member.joinedAt}`)
+		.setColor('#4bff31')
+		.setTimestamp();
+
+	let guildMember = client.channels.cache.get(logChannel);
+	if (!guildMember) return;
+
+	guildMember.send(logEmbed);
+	if (autoRole === true) {
 		if (member.guild.id !== '243022206437687296') return;
 		const role = member.guild.roles.cache.get('657426918416580614');
 		member.roles.add(role);
 		log(`[i] ${member.user.username} joined Alee Productions.`.green);
 		log(`[i] I gave ${member.user.username} the "Member" role.`.green);
-	} else {
-		return;
 	}
 });
-/*
-client.on('guildMemberRemove', (member) =>{
 
+client.on('guildMemberRemove', (member) => {
+	const logEmbed = new Discord.MessageEmbed()
+		.setAuthor('AleeBot Logging', client.user.avatarURL())
+		.setDescription(`A user has left this server!`)
+		.addField('Username: ', `${member.displayName}`, true)
+		.addField('User ID: ', `${member.id}`, true)
+		.setColor('#ec2727')
+		.setTimestamp();
+
+	let guildMember = client.channels.cache.get(logChannel);
+	if (!guildMember) return;
+
+	guildMember.send(logEmbed);
 })
-*/
+
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
 	if (oldMessage.guild.id !== '243022206437687296') return;
