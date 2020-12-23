@@ -37,6 +37,13 @@ let autoRole = true;
 let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
 let readyEmbedMessage = true;
+const activities = [
+	'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
+	'Coding bytes',
+	'Drawing shapes',
+	'Fighting Quad',
+	'Ultra Jump Mania!'
+];
 
 const log = (message) => {
 	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
@@ -244,24 +251,17 @@ client.on('ready', () => {
 	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
 
 	client.setInterval(function() {
-		const activities = [
-			'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
-			'Coding bytes',
-			'Drawing shapes',
-			'Fighting Quad',
-			'Ultra Jump Mania!'
-		];
 		/*
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);*/
-		client.user.setPresence({
-			activity: {
-				name: activities[Math.floor(Math.random() * activities.length)]
-			},
-			status: 'online',
-			afk: false,
-		});
+	client.user.setPresence({
+		activity: {
+			name: activities[Math.floor(Math.random() * activities.length)]
+		},
+		status: 'online',
+		afk: false,
+	});
 	}, 200000);
 	client.user.setStatus('online');
 	if (readyEmbedMessage === true) {
