@@ -285,6 +285,8 @@ client.on('guildMemberAdd', (member) => {
 		.addField('Username: ', `${member.displayName}`, true)
 		.addField('User ID: ', `${member.id}`, true)
 		.addField('Joined At: ', `${member.joinedAt.toUTCString()}`)
+		.addField('Created At: ', `${member.user.createdAt.toUTCString()}`)
+		//.addField('Invite Code: ', `${member.invite.code}`)
 		.setColor('#4bff31')
 		.setTimestamp();
 
