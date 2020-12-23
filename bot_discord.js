@@ -23,7 +23,7 @@ const moment = require('moment');
 const readline = require('readline');
 const colors = require('colors');
 const DBL = require('dblapi.js');
-const i18next = require('i18next');
+//const i18next = require('i18next');
 const client = new Discord.Client({
 	disableEveryone: true,
 });
@@ -249,6 +249,7 @@ client.on('ready', () => {
 			'Coding bytes',
 			'Drawing shapes',
 			'Fighting Quad',
+			'Ultra Jump Mania!'
 		];
 		/*
     setInterval(() => {
@@ -284,7 +285,6 @@ client.on('guildMemberAdd', (member) => {
 		.setDescription(`A user has joined this server!`)
 		.addField('Username: ', `${member.displayName}`, true)
 		.addField('User ID: ', `${member.id}`, true)
-		.addField('Joined At: ', `${member.joinedAt.toUTCString()}`)
 		.addField('Created At: ', `${member.user.createdAt.toUTCString()}`)
 		//.addField('Invite Code: ', `${member.invite.code}`)
 		.setColor('#4bff31')

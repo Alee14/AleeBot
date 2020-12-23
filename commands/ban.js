@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
 	if (!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) return message.reply('Uhh... I don\'t have permission to ban members.');
 	const member = message.mentions.members.first();
 	if (!member) return message.reply('Uhh... Please mention a member first.');
-	member.ban(`Banned by ${message.author.tag} Reason: ` + mreason);
+	await member.ban(`Banned by ${message.author.tag} Reason: ` + mreason);
 	const embed = new Discord.MessageEmbed()
 		.setTitle('User Banned!')
 		.setColor('#1fd619')
