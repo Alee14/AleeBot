@@ -263,7 +263,6 @@ client.on('ready', () => {
 		afk: false,
 	});
 	}, 200000);
-	client.user.setStatus('online');
 	if (readyEmbedMessage === true) {
 		const readyEmbed = new Discord.MessageEmbed()
 			.setAuthor('AleeBot Status', client.user.avatarURL())
