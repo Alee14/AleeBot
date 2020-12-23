@@ -273,7 +273,6 @@ client.on('ready', () => {
 		if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
 		statusChannel.send(readyEmbed);
 	}
-  	client.user.setStatus('online');
 	rl.prompt();
 });
 
