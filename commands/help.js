@@ -19,7 +19,7 @@
  * *************************************/
 const Discord = require('discord.js');
 const fs = require('fs');
-module.exports.run = async (client, message) => {z
+module.exports.run = async (client, message) => {
 	const categories = [];
 	const commands = Array.from(client.commands.keys());
 	const settings = require('../storage/settings.json');
