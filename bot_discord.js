@@ -19,7 +19,6 @@
  * *************************************/
 const Discord = require('discord.js');
 const moment = require('moment');
-//const Sequelize = require('sequelize');
 const readline = require('readline');
 const colors = require('colors');
 const DBL = require('dblapi.js');
@@ -198,49 +197,6 @@ rl.on('line', function(cmd) {
 	}
 	rl.prompt();
 });
-/*
-const sequelizeLogging = new Sequelize('database', 'user', 'password', {
-	host: 'localhost',
-	dialect: 'sqlite',
-	logging: false,
-	// SQLite only
-	storage: 'logging.sqlite',
-});
-
-const Logging = sequelizeLogging.define('logging', {
-	serverid: {
-		type: Sequelize.INTEGER,
-		unique: true,
-	},
-	channelid: Sequelize.INTEGER,
-	username: Sequelize.STRING,
-	usage_count: {
-		type: Sequelize.INTEGER,
-		defaultValue: 0,
-		allowNull: false,
-	},
-});
-
-const sequelizeQuote = new Sequelize('database', 'user', 'password', {
-	host: 'localhost',
-	dialect: 'sqlite',
-	logging: false,
-	// SQLite only
-	storage: 'quote.sqlite',
-});
-
-const Quote = sequelizeQuote.define('quote', {
-	quoteid: {
-		type: Sequelize.INTEGER,
-		unique: true,
-	},
-	author: Sequelize.STRING,
-	authorImage: Sequelize.STRING,
-	quote: Sequelize.STRING,
-	year: Sequelize.INTEGER
-});
-
-*/
 
 client.on('ready', () => {
 	log('[>] AleeBot is now ready!'.green);
@@ -255,13 +211,13 @@ client.on('ready', () => {
     setInterval(() => {
       dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
     }, 1800000);*/
-	client.user.setPresence({
-		activity: {
-			name: activities[Math.floor(Math.random() * activities.length)]
-		},
-		status: 'online',
-		afk: false,
-	});
+		client.user.setPresence({
+			activity: {
+				name: activities[Math.floor(Math.random() * activities.length)]
+			},
+			status: 'online',
+			afk: false,
+		});
 	}, 200000);
 	if (readyEmbedMessage === true) {
 		const readyEmbed = new Discord.MessageEmbed()
@@ -325,7 +281,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 	}
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
-		.setDescription(`A message from ${oldMessage.author.username} was edited`)
+		.setDescription(`A message from ${oldMessage.author.username} was edited in <#${oldMessage.channel.id}>`)
 		.addField('Before: ', `\`\`\`${oldMessage.content}\`\`\``)
 		.addField('After: ', `\`\`\`${newMessage.content}\`\`\``)
 		.setColor('#ffff1a')
@@ -342,7 +298,7 @@ client.on('messageDelete', (message) => {
 	if (message.guild.id !== '243022206437687296') return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
-		.setDescription(`A message from ${message.author.username} was deleted`)
+		.setDescription(`A message from ${message.author.username} was deleted in <#${message.channel.id}>`)
 		.addField('Deleted Message: ', `\`\`\`${message.content}\`\`\``)
 		.setColor('#ff021b')
 		.setTimestamp()

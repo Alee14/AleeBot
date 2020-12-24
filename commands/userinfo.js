@@ -19,22 +19,16 @@
  * *************************************/
 module.exports.run = async (client, message) => {
 	const Discord = require('discord.js');
-	let targetMember;
-	if (message.mentions.users.first()) {
-		targetMember = message.mentions.users.first();
-	} else {
-		targetMember = message.author;
-	}
-
 	const embed = new Discord.MessageEmbed()
-		.setAuthor(targetMember.tag, targetMember.avatarURL())
+		.setAuthor(message.author.tag, message.author.avatarURL())
 		.setDescription('User Information')
-		.setThumbnail(targetMember.avatarURL())
-		.addField('Names', '**Username:** ' + targetMember.username + '\n**Current Nickname:** ' + targetMember.displayName)
-		.addField('Identity', `**User ID:** ${targetMember.id} `)
-		//.addField('Create and Join Times', '**Created At:** ' + targetMember.user.createdAt.toUTCString() + '\n**Joined Guild At:** ' + targetMember.joinedAt.toUTCString())
+		.setThumbnail(message.author.avatarURL())
+		.addField('Names', '**Username:** ' + message.author.username + '\n**Current Nickname:** ' + message.member.displayName)
+		.addField('Identity', `**User ID:** ${message.author.id} `)
+		.addField('Create and Join Times', '**Created At:** ' + message.member.user.createdAt.toUTCString() + '\n**Joined Guild At:** ' + message.member.joinedAt.toUTCString())
 		.setColor('#1fd619');
 	await message.channel.send({embed});
+
 };
 
 exports.conf = {
