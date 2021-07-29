@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   Invite: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,13 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-module.exports.run = async (client, message) => {
+module.exports.run = (client, message) => {
+	const disbut = require('discord-buttons')(client);
+	let button = new disbut.MessageButton()
+  .setLabel('My First Button!') //default: NO_LABEL_PROVIDED
+  .setID('click_to_function') //note: if you use the style "url" you must provide url using .setURL('https://example.com')
+  .setDisabled(); //disables the button | default: false
+
 	message.channel.send({embed: {
 		color: 2086425,
 		title: 'Invite Command',
@@ -31,7 +37,7 @@ module.exports.run = async (client, message) => {
 		},
 		],
 	},
-	});
+	}, button);
 
 	// message.channel.send('Want AleeBot in your server? Here\'s the link: https://discordapp.com/api/oauth2/authorize?client_id=282547024547545109&permissions=2080375863&scope=bot');
 };

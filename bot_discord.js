@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   AleeBot: Made for discord servers
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,16 +18,19 @@
  *
  * *************************************/
 const Discord = require('discord.js');
+const client = new Discord.Client({
+	disableEveryone: true,
+});
 const moment = require('moment');
+const express = require('express');
+const fs = require('fs');
 const readline = require('readline');
 const colors = require('colors');
 const DBL = require('dblapi.js');
 //const i18next = require('i18next');
-const client = new Discord.Client({
-	disableEveryone: true,
-});
+const web = express();
 const settings = require('./storage/settings.json');
-const fs = require('fs');
+const mongo = require('./plugins/mongo');
 const api = require('./tokens.json');
 const dbl = new DBL(api.dbltoken, client);
 const active = new Map();
@@ -35,13 +38,16 @@ const ownerID = '242775871059001344';
 let autoRole = true;
 let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
-let readyEmbedMessage = true;
+let readyEmbedMessage = false;
+
 const activities = [
 	'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
 	'Coding bytes',
 	'Drawing shapes',
 	'Fighting Quad',
-	'Ultra Jump Mania!'
+	'Ultra Jump Mania!',
+    'Exposing TAS-Corp',
+    'Fighting Evelyn Claythorne'
 ];
 
 const log = (message) => {
@@ -54,7 +60,7 @@ const rl = readline.createInterface({
 	prompt: '> '.gray,
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2020 Alee Productions`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2021 Alee Productions`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log('This is free software, and you are welcome to redistribute it'.gray);
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
@@ -103,8 +109,7 @@ fs.readdir('./commands', (err, files) => {
 			console.log(err.stack);
 		}
 	});
-	log('[>] Command Loading complete!'.green);
-	console.log('\n');
+	log('[>] Command loading complete!\n'.green);
 });
 
 rl.on('line', function(cmd) {
@@ -114,7 +119,7 @@ rl.on('line', function(cmd) {
 		if (client.guilds.size === 0) {
 			console.log(('[!] No guilds found.'.yellow));
 		} else {
-			console.log('[i] Here\'s the servers that AleeBot is connected to:');
+			console.log('[i] These are the servers that AleeBot is connected to:');
 			for ([id, guild] of client.guilds) {
 				console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`.blue);
 			}
@@ -124,8 +129,8 @@ rl.on('line', function(cmd) {
 		if (!args[1]) {
 			console.log('[!] Please insert the guild\'s ID.'.yellow);
 		} else {
-			var guild = client.guilds.get(args[1]);
-			console.log('[i] Here\'s the channels that this guild have:'.blue);
+			let guild = client.guilds.get(args[1]);
+			console.log('[i] These are the channels that this guild have:'.blue);
 			for ([id, channel, guild] of guild && client.channels) {
 				console.log(`   Channel: #${channel.name} - ID: ${channel.id}`.blue);
 			}
@@ -135,7 +140,7 @@ rl.on('line', function(cmd) {
 		if (!args[1]) {
 			console.log('[!] Please insert the guild\'s ID.'.yellow);
 		} else {
-			var guild = client.guilds.get(args[1]);
+			let guild = client.guilds.get(args[1]);
 			guild.leave();
 		}
 		break;
@@ -144,9 +149,9 @@ rl.on('line', function(cmd) {
 			console.log('[!] Usage: broadcast [guildID] [channelID].'.yellow);
 		} else {
 			const broadcast = args.join(' ').slice(48);
-			var guild = null;
+			let guild = null;
 			guild = client.guilds.get(args[1]);
-			var channel = null;
+			let channel = null;
 			channel = guild.channels.get(args[2]);
 			if (channel != null) {
 				channel.send(broadcast);
@@ -198,13 +203,28 @@ rl.on('line', function(cmd) {
 	rl.prompt();
 });
 
-client.on('ready', () => {
+client.on('ready', async () => {
 	log('[>] AleeBot is now ready!'.green);
 	log(`[i] Logged in as ${client.user.tag}`.green);
 	log(`[i] Default Prefix: ${settings.prefix}`.green);
 	log(`[i] Bot ID: ${client.user.id}`.green);
-	log(`[i] Token: ${api.abtoken}`.green);
 	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
+
+	await mongo().then(mongoose => {
+		try {
+			log('[>] Connected to MongoDB!'.green);
+		} finally {
+			mongoose.connection.close();
+		}
+	})
+
+	web.get('/', (req, res) => {
+		res.send("Hello World! This is going to become the AleeBot dashboard...");
+	});
+
+	web.listen(api.port, () => {
+		console.log(`Listening at https://localhost:${api.port}`)
+	})
 
 	client.setInterval(function() {
 		/*
@@ -223,6 +243,7 @@ client.on('ready', () => {
 		const readyEmbed = new Discord.MessageEmbed()
 			.setAuthor('AleeBot Status', client.user.avatarURL())
 			.setDescription('AleeBot has started')
+			.addField('Version', settings.abVersion, true)
 			.addField('Prefix', `\`${settings.prefix}\``, true)
 			.setColor('#5cd65c');
 		let statusChannel = client.channels.cache.get(statusChannelID);
@@ -410,7 +431,7 @@ client.on('message', (msg) => {
 	if (cmd) {
 		if (cmd.conf.guildOnly === true) {
 			if (!msg.channel.guild) {
-				return msg.channel.createMessage('This command can only be ran in a guild.');
+				return msg.channel.send('This command can only be ran in a guild.');
 			}
 		}
 		try {

@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   AddQuote: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,34 +17,74 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
+const mongo = require('../plugins/mongo');
+const quoteSchema = require('../schema/quote-schema');
 module.exports.run = async (client, message, args) => {
-	/*
-    const moment = require('moment');
-    const log = message => {
+/*
+	let authorMessage;
+	let authorImageMessage;
+	let quoteMessage;
+	let yearMessage;*/
 
-      console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+	if (!['242775871059001344'].includes(message.author.id)) return message.reply('**This command is disabled due to a new system being implemented.**');
+	//await message.author.send('Welcome to AleeBot\'s quoting system!\nThis process will be easy.');
 
-    };
-      const fs = require('fs');
-      if(!args[0]) return message.reply(`Usage: ab:addquote [author] [authorImage] [quote] [year]`);
+	if (!args.length) return message.reply("Error: Did not provide more context (message will be replaced eventually)");
 
-      let quotes = JSON.parse(fs.readFileSync("./storage/quotes.json", "utf8"));
+	await mongo().then(async (mongoose) => {
+		try {
+			await new quoteSchema({
+				author: args[0],
+				authorImage: args[1],
+				quote: args[2],
+				year: args[3]
 
-      quotes = {
-          author: args[0],
-          authorImage: args[1],
-          quote: args[2],
-          year: args[3]
-      };
+			}).save()
+		} finally {
+			await mongoose.connection.close();
+			message.reply('Added this quote to the database...');
+		}
+	})
 
-      fs.writeFile("./storage/quotes.json", JSON.stringify(quotes), (err) =>{
-          if (err) log(err)
-      })
+/*
+	let quoteState = {};
+	let state = quoteState[message.author.id];
 
-      message.reply(`You just added a new quote!`);
-      log(`[i] A quote has been added to quotes.json...`)
+	if (message.content.toLowerCase() === "q"){
+		await message.author.send("Process has been cancelled");
+		state = null;
+	} else {
+		switch (state) {
+			case 1:
+				await message.author.send('Enter the author\'s name');
+				authorMessage = message.content;
+				console.log(authorMessage);
+				state = 2;
+			break;
+			case 2:
+				await message.author.send('author url here');
+				authorImageMessage = message.content;
+				console.log(authorImageMessage);
+				state = 3;
+			break;
+			case 3:
+				await message.author.send('quote here');
+				quoteMessage = message.content;
+				console.log(quoteMessage);
+				state = 4;
+			break;
+			case 4:
+				await message.author.send('year here');
+				yearMessage = message.content;
+				console.log(yearMessage);
+				state = 5;
+			break;
+			case 5:
+				await message.author.send('process complete');
+				state = null;
+			break;
+		}
 */
-	message.reply('Command is broken for now');
 };
 
 exports.conf = {

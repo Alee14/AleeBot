@@ -5,7 +5,7 @@ Include the GPL-3.0 license too and follow the following format when you create 
 /****************************************
  * 
  *   [Command/Plugin]: (Command or Plugin) for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions & (your name here)
+ *   Copyright (C) 2017-2021 Alee Productions & (your name here)
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,9 @@ exports.help = {
 First get NodeJS then clone this repo then do `npm install` or `yarn install` in the AleeBot folder. Now add a file called `tokens.json` then copy and paste this follow code.
 ```json
 {
-  "abtoken": "token"
+  "abtoken": "token",
+  "mongoPath": "mongodb://127.0.0.1:27017/aleebot",
+  "port": 3000
 }
 ```
-Then get your token from discord and replace `token` with your token and finally run this in linux `./run_linux.sh` or for windows `run_win.bat` or `npm/yarn start`.
+Then get your token from discord and replace `token` with your token. After that, install MongoDB and run it. Finally, run this in linux `./run_linux.sh` or for windows `run_win.bat` or `npm/yarn start`.

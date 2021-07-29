@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   avatarurl: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,11 +18,17 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-	message.reply(message.author.avatarURL({ dynamic: true, format: 'png', size: 1024 }));
+	if(!message.mentions.users.first()) {
+		message.reply(message.author.avatarURL({ dynamic: true, format: 'png', size: 1024 }));
+	} else {
+		let targetMember;
+		targetMember = message.mentions.users.first();
+		message.reply(targetMember.avatarURL({ dynamic: true, format: 'png', size: 1024 }))
+	}
 };
 
 exports.conf = {
-	aliases: [],
+	aliases: ['pic'],
 	guildOnly: false,
 };
 exports.help = {

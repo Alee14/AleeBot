@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   Info: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,14 +20,16 @@
 module.exports.run = async (client, message) => {
 	const Discord = require('discord.js');
 	const os = require('os');
+	const mongoose = require('mongoose');
 	const embed = new Discord.MessageEmbed()
 		.setTitle('Information on AleeBot\'s Host')
 		.addField('OS Hostname: ', os.hostname(), true)
 		.addField('NodeJS Version: ', process.versions.node, true)
 		.addField('OS Platform: ', os.platform(), true)
 		.addField('OS Version: ', os.release(), true)
+		.addField('Mongoose Version:', mongoose.version, true)
 		.setColor('#1fd619');
-	message.channel.send({embed});
+	await message.channel.send({embed});
 };
 
 exports.conf = {

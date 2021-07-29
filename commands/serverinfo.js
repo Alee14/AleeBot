@@ -1,6 +1,6 @@
 /** **************************************
  *
- *   About: Command for AleeBot
+ *   ServerInfo: Command for AleeBot
  *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -19,23 +19,33 @@
  * *************************************/
 module.exports.run = async (client, message) => {
     const Discord = require('discord.js');
-    const os = require('os');
+    const listedChannels = [];
+    let memberCountNoBots = message.guild.members.cache.filter(member => !member.user.bot).size;
     const embed = new Discord.MessageEmbed()
-        .setAuthor(`AleeBot ${require('../storage/settings.json').abVersion}`, client.user.avatarURL())
-        .addField('About AleeBot', 'AleeBot is an all-in-one bot that\'s made from the Discord.JS api!')
-        .addField('Contributors', 'Andrew Lee (Founder of this project)\nOfficialRain (Raina) (Uptime Command)\njtsshieh (Command Handler)')
-        .setFooter('© Copyright 2017-2021 Alee Productions, Licensed with GPL-3.0')
+        .setAuthor(message.guild.name, message.guild.iconURL())
+        .setDescription('Server Information')
+        .setThumbnail(message.guild.iconURL())
+        .addField('Server Name:', message.guild.name)
+        .addField('Server ID:', message.guild.id)
+        .addField('Create At:', message.guild.createdAt.toUTCString())
+        /*message.guild.channels.cacheType.forEach(channel => {
+            listedChannels.push(channel)
+        })*/
+        //.addField('Channels', `${listedChannels.join('\n')}`)
+        //.addField('Total Channels', message.guild.channelCountMode)
+        .addField('Total Members (with bots)', message.guild.memberCount)
+        .addField('Total Members (without bots)', memberCountNoBots)
         .setColor('#1fd619');
     await message.channel.send({embed});
 };
 
 exports.conf = {
-    aliases: [],
+    aliases: ['sinfo'],
     guildOnly: false,
 };
 exports.help = {
-    name: 'about',
-    description: 'About the bot.',
-    usage: 'about',
+    name: 'serverinfo',
+    description: 'Tells your info.',
+    usage: 'serverinfo',
     category: '- Information Commands',
 };

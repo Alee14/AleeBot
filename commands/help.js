@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   Help: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ module.exports.run = async (client, message) => {
 		.setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.cache.size} servers`, client.user.avatarURL())
 		.setDescription('Every command you input into AleeBot is `' + prefix + '`')
 		.setColor('#1fd619')
-		.setFooter('© Copyright 2017-2020 Alee Productions, Licensed with GPL-3.0');
+		.setFooter('© Copyright 2017-2021 Alee Productions, Licensed with GPL-3.0');
 
 	categories.forEach(function(x) {
 		let cat = '';

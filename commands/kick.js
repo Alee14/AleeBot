@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   Kick: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
 	if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
 	const member = message.mentions.members.first();
 	if (!member) return message.reply('Uhh... Please mention a member first.');
-	member.kick(`Kicked by: ${message.author.tag} Reason: ` + mreason);
+	await member.kick(`Kicked by: ${message.author.tag}. Reason: ${mreason}.`);
 	const embed = new Discord.MessageEmbed()
 		.setTitle('User Kicked!')
 		.setColor('#1fd619')
