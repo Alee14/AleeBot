@@ -18,15 +18,30 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-    const Discord = require('discord.js');
-    const os = require('os');
-    const embed = new Discord.MessageEmbed()
+    const { MessageEmbed } = require('discord.js');
+    const { MessageButton, MessageActionRow } = require('discord-buttons');
+
+    const aboutEmbed = new MessageEmbed()
         .setAuthor(`AleeBot ${require('../storage/settings.json').abVersion}`, client.user.avatarURL())
         .addField('About AleeBot', 'AleeBot is an all-in-one bot that\'s made from the Discord.JS api!')
         .addField('Contributors', 'Andrew Lee (Founder of this project)\nOfficialRain (Raina) (Uptime Command)\njtsshieh (Command Handler)')
         .setFooter('© Copyright 2017-2021 Alee Productions, Licensed with GPL-3.0')
         .setColor('#1fd619');
-    await message.channel.send({embed});
+    
+    let inviteBot = new MessageButton()
+    .setStyle('url')
+    .setLabel('Invite AleeBot') 
+    .setURL('https://top.gg/bot/282547024547545109');
+
+    let inviteServer = new MessageButton()
+    .setStyle('url')
+    .setLabel('Join Binaryworks') 
+    .setURL('https://discord.gg/EFhRDqG');
+
+    let buttons = new MessageActionRow()
+    .addComponents(inviteBot, inviteServer);
+
+    await message.channel.send(aboutEmbed, buttons);
 };
 
 exports.conf = {

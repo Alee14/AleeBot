@@ -21,6 +21,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client({
 	disableEveryone: true,
 });
+require('discord-buttons')(client);
 const moment = require('moment');
 const express = require('express');
 const fs = require('fs');
