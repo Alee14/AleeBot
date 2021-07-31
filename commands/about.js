@@ -18,8 +18,7 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-    const { MessageEmbed } = require('discord.js');
-    const { MessageButton, MessageActionRow } = require('discord-buttons');
+    const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 
     const aboutEmbed = new MessageEmbed()
         .setAuthor(`AleeBot ${require('../storage/settings.json').abVersion}`, client.user.avatarURL())
@@ -28,20 +27,19 @@ module.exports.run = async (client, message) => {
         .setFooter('© Copyright 2017-2021 Alee Productions, Licensed with GPL-3.0')
         .setColor('#1fd619');
     
-    let inviteBot = new MessageButton()
-    .setStyle('url')
-    .setLabel('Invite AleeBot') 
-    .setURL('https://top.gg/bot/282547024547545109');
+    let inviteButton = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+            .setStyle('LINK')
+            .setLabel('Invite AleeBot')
+            .setURL('https://top.gg/bot/282547024547545109'),
+            new MessageButton()
+            .setStyle('LINK')
+            .setLabel('Join Binaryworks Community') 
+            .setURL('https://discord.gg/EFhRDqG')
+        );
 
-    let inviteServer = new MessageButton()
-    .setStyle('url')
-    .setLabel('Join Binaryworks') 
-    .setURL('https://discord.gg/EFhRDqG');
-
-    let buttons = new MessageActionRow()
-    .addComponents(inviteBot, inviteServer);
-
-    await message.channel.send(aboutEmbed, buttons);
+    await message.channel.send({embeds: [aboutEmbed], components: [inviteButton]});
 };
 
 exports.conf = {

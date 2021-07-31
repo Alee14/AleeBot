@@ -47,7 +47,7 @@ module.exports.run = async (client, message, args) => {
 			.addField(':outbox_tray: Output:', `\`\`\`${err}\`\`\``)
 			.setFooter('Eval', client.user.avatarURL())
 			.setColor('RED');
-		return message.channel.send({embed});
+		return message.channel.send({embeds: [embed]});
 	}
 
 	try {
@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args) => {
 			.setFooter('Eval', client.user.avatarURL())
 			.setColor('GREEN');
 
-		return message.channel.send({embed});
+		return message.channel.send({embeds: [embed]});
 	} catch (err) {
 		const embed = new MessageEmbed()
 			.setAuthor('Eval Error')
@@ -68,7 +68,7 @@ module.exports.run = async (client, message, args) => {
 			.addField(':outbox_tray: Output:', `\`\`\`${err}\`\`\``)
 			.setFooter('Eval', client.user.avatarURL())
 			.setColor('RED');
-		return message.channel.send({embed});
+		return message.channel.send({embeds: [embed]});
 	}
 };
 

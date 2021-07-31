@@ -27,7 +27,7 @@ module.exports.run = async (client, message) => {
 	
 	let statusChannel = client.channels.cache.get('606602551634296968');
 	if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-	await statusChannel.send(stopEmbed);
+	await statusChannel.send({ embeds: [stopEmbed]});
 	await message.reply(':warning: AleeBot will now exit!');
 	console.log('[i] AleeBot will now exit!'.blue);
 	client.destroy();

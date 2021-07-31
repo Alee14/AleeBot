@@ -38,7 +38,7 @@ module.exports.run = async (client, message) => {
 	}
 
 	const prefix = prefixes[message.guild.id].prefixes;
-	if (!message.guild.member(client.user).hasPermission('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links please enable them to use the full help.');
+	if (!message.guild.members.cache.get(client.user.id).permissions.has('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links, please enable them to use the full help.');
 	const embed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help and on ${client.guilds.cache.size} servers`, client.user.avatarURL())
 		.setDescription('Every command you input into AleeBot is `' + prefix + '`')
@@ -55,7 +55,7 @@ module.exports.run = async (client, message) => {
 		embed.addField(x, cat, true);
 	});
 
-	await message.channel.send({embed});
+	await message.channel.send({embeds: [embed]});
 };
 
 exports.conf = {

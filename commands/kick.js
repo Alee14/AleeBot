@@ -21,16 +21,16 @@ module.exports.run = async (client, message, args) => {
 	const Discord = require('discord.js');
 	const mreason = args.join(' ').slice(22);
 	if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to kick people.');
-	if (!message.guild.member(client.user).hasPermission('KICK_MEMBERS')) return message.reply('Uhh... I don\'t have permission to kick members.');
+	if (!message.guild.members.cache.get(client.user.id).permissions.has('KICK_MEMBERS')) return message.reply('I don\'t have permission to kick members.');
 	const member = message.mentions.members.first();
-	if (!member) return message.reply('Uhh... Please mention a member first.');
-	await member.kick(`Kicked by: ${message.author.tag}. Reason: ${mreason}.`);
-	const embed = new Discord.MessageEmbed()
+	if (!member) return message.reply('Please mention a member first.');
+	await member.kick(`Kicked by ${message.author.tag} for ${mreason}.`);
+	const kickEmbed = new Discord.MessageEmbed()
 		.setTitle('User Kicked!')
 		.setColor('#1fd619')
 		.addField('**User:**', `${member.user.tag}`)
 		.addField('**Reason:**', `\`\`\`${mreason}\`\`\``);
-	await message.channel.send({embed});
+	await message.channel.send({embeds: [kickEmbed]});
 };
 
 exports.conf = {

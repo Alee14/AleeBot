@@ -18,10 +18,10 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-	if (message.guild.id != '243022206437687296') return message.reply('This is a ALP exclusive command.');
+	if (message.guild.id != '243022206437687296') return message.reply('This is a Binaryworks exclusive command.');
 
-	if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
-	if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
+	if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
+	if (!message.guild.members.cache.get(client.user.id).permissions.has('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
 
 	const member = message.mentions.members.first();
 	if (!member) return await message.reply('Uhh... Please mention a member first.');
@@ -38,5 +38,5 @@ exports.help = {
 	name: 'interrogate',
 	description: 'Interrogates a member',
 	usage: 'interrogate [user]',
-	category: '- ALP Exclusive Commands',
+	category: '- Binaryworks Exclusive Commands',
 };

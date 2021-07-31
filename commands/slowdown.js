@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
 	if (!message.member.permissions.has('MANAGE_CHANNELS')) return message.reply('It looks like that you don\'t have the permissions to slowdown channels.');
 	if (isNaN(args[0])) return message.reply('Please input a valid number to slowdown a channel.');
 	await message.channel.setRateLimitPerUser(args[0]);
-	message.channel.send(`This channel has been ratelimited for ${args[0]} second(s).`);
+	message.channel.send(`This channel has been slowdowned for ${args[0]} second(s).`);
 
 };
 

@@ -19,9 +19,12 @@
  * *************************************/
 const Discord = require('discord.js');
 const client = new Discord.Client({
-	disableEveryone: true,
+	allowedMentions: {
+		parse: ['users', 'roles'],
+		repliedUser: true
+	},
+	intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS']
 });
-require('discord-buttons')(client);
 const moment = require('moment');
 const express = require('express');
 const fs = require('fs');
@@ -40,6 +43,7 @@ let autoRole = true;
 let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
 let readyEmbedMessage = false;
+let serverWhitelist = "243022206437687296";
 
 const activities = [
 	'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
@@ -48,12 +52,28 @@ const activities = [
 	'Fighting Quad',
 	'Ultra Jump Mania!',
     'Exposing TAS-Corp',
-    'Fighting Evelyn Claythorne'
+    'Fighting Evelyn Claythorne',
+	'Installing Windows 11',
+	'Breaking Windows 10',
+	'Reticulating splines',
+	'Dag dag!',
+	'90% bug free!'
 ];
 
 const log = (message) => {
 	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
 };
+
+function botPresence() {
+	client.user.setPresence({
+	activities: [{
+		name: activities[Math.floor(Math.random() * activities.length)]
+	}],
+	status: 'online',
+	afk: false,
+	});
+	log(`[>] Updated bot presence to "${client.user.presence.activities[0].name}"`.green);
+}
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -211,6 +231,8 @@ client.on('ready', async () => {
 	log(`[i] Bot ID: ${client.user.id}`.green);
 	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
 
+	botPresence();
+
 	await mongo().then(mongoose => {
 		try {
 			log('[>] Connected to MongoDB!'.green);
@@ -227,18 +249,9 @@ client.on('ready', async () => {
 		console.log(`Listening at https://localhost:${api.port}`)
 	})
 
-	client.setInterval(function() {
-		/*
-    setInterval(() => {
-      dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
-    }, 1800000);*/
-		client.user.setPresence({
-			activity: {
-				name: activities[Math.floor(Math.random() * activities.length)]
-			},
-			status: 'online',
-			afk: false,
-		});
+	setInterval(function() {
+	botPresence();
+
 	}, 200000);
 	if (readyEmbedMessage === true) {
 		const readyEmbed = new Discord.MessageEmbed()
@@ -246,16 +259,17 @@ client.on('ready', async () => {
 			.setDescription('AleeBot has started')
 			.addField('Version', settings.abVersion, true)
 			.addField('Prefix', `\`${settings.prefix}\``, true)
+			.addField('Discord.JS Version', Discord.version, true)
 			.setColor('#5cd65c');
 		let statusChannel = client.channels.cache.get(statusChannelID);
 		if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-		statusChannel.send(readyEmbed);
+		statusChannel.send({ embeds: [readyEmbed]});
 	}
 	rl.prompt();
 });
 
 client.on('guildMemberAdd', (member) => {
-	if (member.guild.id !== '243022206437687296') return;
+	if (member.guild.id !== serverWhitelist) return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has joined this server!`)
@@ -269,9 +283,9 @@ client.on('guildMemberAdd', (member) => {
 	let guildMember = client.channels.cache.get(logChannel);
 	if (!guildMember) return;
 
-	guildMember.send(logEmbed);
+	guildMember.send({ embeds: [logEmbed]});
 	if (autoRole === true) {
-		if (member.guild.id !== '243022206437687296') return;
+		if (member.guild.id !== serverWhitelist) return;
 		const role = member.guild.roles.cache.get('657426918416580614');
 		member.roles.add(role);
 		log(`[i] ${member.user.username} joined Alee Productions.`.green);
@@ -280,7 +294,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('guildMemberRemove', (member) => {
-	if (member.guild.id !== '243022206437687296') return;
+	if (member.guild.id !== serverWhitelist) return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has left this server!`)
@@ -292,12 +306,12 @@ client.on('guildMemberRemove', (member) => {
 	let guildMember = client.channels.cache.get(logChannel);
 	if (!guildMember) return;
 
-	guildMember.send(logEmbed);
+	guildMember.send({ embeds: [logEmbed]});
 })
 
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-	if (oldMessage.guild.id !== '243022206437687296') return;
+	if (oldMessage.guild.id !== serverWhitelist) return;
 	if (oldMessage.content === newMessage.content) {
 		return;
 	}
@@ -313,11 +327,11 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 	let editMessage = client.channels.cache.get(logChannel);
 	if (!editMessage) return;
 
-	editMessage.send(logEmbed);
+	editMessage.send({ embeds: [logEmbed]});
 });
 
 client.on('messageDelete', (message) => {
-	if (message.guild.id !== '243022206437687296') return;
+	if (message.guild.id !== serverWhitelist) return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A message from ${message.author.username} was deleted in <#${message.channel.id}>`)
@@ -329,11 +343,11 @@ client.on('messageDelete', (message) => {
 	let deleteMessage = client.channels.cache.get(logChannel);
 	if (!deleteMessage) return;
 
-	deleteMessage.send(logEmbed);
+	deleteMessage.send({ embeds: [logEmbed]});
 });
 
 client.on('guildBanAdd', (guild, user) => {
-	if (guild.id !== '243022206437687296') return;
+	if (guild.id !== serverWhitelist) return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got banned from ${guild.name}`)
@@ -345,11 +359,11 @@ client.on('guildBanAdd', (guild, user) => {
 	let banMessage = client.channels.cache.get(logChannel);
 	if (!banMessage) return;
 
-	banMessage.send(logEmbed);
+	banMessage.send({ embeds: [logEmbed]});
 });
 
 client.on('guildBanRemove', (guild, user) => {
-	if (guild.id !== '243022206437687296') return;
+	if (guild.id !== serverWhitelist) return;
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`This user got unbanned from ${guild.name}`)
@@ -361,7 +375,7 @@ client.on('guildBanRemove', (guild, user) => {
 	let banMessage = client.channels.cache.get(logChannel);
 	if (!banMessage) return;
 
-	banMessage.send(logEmbed);
+	banMessage.send({ embeds: [logEmbed]});
 });
 
 client.on('guildCreate', (guild) => {
@@ -371,13 +385,13 @@ client.on('guildCreate', (guild) => {
 		.setDescription('I got added to a server!')
 		.addField('Server Name:', `${guild.name}`, true)
 		.addField('Server ID:', `${guild.id}`, true)
-		.addField('Members', guild.memberCount, true)
+		.addField('Members', `${guild.memberCount}`, true)
 		.setColor('#5cd65c')
 		.setFooter(`We now run on ${client.guilds.cache.size} guilds.`);
 
 	let statusChannel = client.channels.cache.get(statusChannelID);
 	if (!statusChannel) return;
-	statusChannel.send(logEmbed);
+	statusChannel.send({ embeds: [logEmbed]});
 });
 
 
@@ -393,7 +407,7 @@ client.on('guildDelete', (guild) => {
 
 	let statusChannel = client.channels.cache.get(statusChannelID);
 	if (!statusChannel) return;
-	statusChannel.send(logEmbed);
+	statusChannel.send({ embeds: [logEmbed]});
 });
 
 dbl.on('posted', () => {
@@ -404,9 +418,10 @@ dbl.on('error', (e) => {
 	log(`[X | DBL ERROR] ${e}`.red);
 });
 
-client.on('message', (msg) => {
-	if (msg.author.bot) return;
+client.on('messageCreate', async(msg) => {
 
+	if (msg.author.bot) return;
+	
 	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
 
 	if (!prefixes[msg.guild.id]) {
@@ -452,6 +467,7 @@ client.on('message', (msg) => {
 process.on('unhandledRejection', function(err, p) {
 	log('[X | UNCAUGHT PROMISE] ' + err.stack.red);
 });
+
 client.on('reconnecting', function() {
 	log('[!] AleeBot has disconnected from Discord and is now attempting to reconnect.'.yellow);
 });

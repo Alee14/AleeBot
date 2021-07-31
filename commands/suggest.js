@@ -18,15 +18,15 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-	if (message.guild.id != '243022206437687296') return message.reply('This is a ALP exclusive command.');
+	if (message.guild.id != '243022206437687296') return message.reply('This is a Binaryworks exclusive command.');
 	const {MessageEmbed} = require('discord.js');
-	client.channels.cache.get('427495678390960148').send(
+	client.channels.cache.get('427495678390960148').send({ embeds: [
 		new MessageEmbed()
 			.setColor('#1fd619')
 			.setTitle('Suggestion')
-			.setDescription('This is a suggestion from '+ message.author.username +' please react to it using the following emojis.')
+			.setDescription('This is a suggestion from '+ message.author.username +'. Please react to it using the following emojis.')
 			.addField('Suggestion Contents', args.join(' ')),
-	).then((message) => {
+	]}).then((message) => {
 		message.react('\u2705');
 		message.react('\u274E');
 	});
@@ -39,7 +39,7 @@ exports.conf = {
 };
 exports.help = {
 	name: 'suggest',
-	description: 'Suggest a feature in ALP.',
+	description: 'Suggest a feature in Binaryworks.',
 	usage: 'suggest [suggestion]',
-	category: '- ALP Exclusive Commands',
+	category: '- Binaryworks Exclusive Commands',
 };

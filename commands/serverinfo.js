@@ -20,23 +20,23 @@
 module.exports.run = async (client, message) => {
     const Discord = require('discord.js');
     const listedChannels = [];
-    let memberCountNoBots = message.guild.members.cache.filter(member => !member.user.bot).size;
+    let memberCountNoBots = await message.guild.members.fetch().then((members) => members.filter(member => !member.user.bot).size);
     const embed = new Discord.MessageEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL())
+        .setAuthor(`${message.guild.name}`, `${message.guild.iconURL()}`)
         .setDescription('Server Information')
-        .setThumbnail(message.guild.iconURL())
-        .addField('Server Name:', message.guild.name)
-        .addField('Server ID:', message.guild.id)
-        .addField('Create At:', message.guild.createdAt.toUTCString())
+        .setThumbnail(`${message.guild.iconURL()}`)
+        .addField('Server Name:', `${message.guild.name}`)
+        .addField('Server ID:', `${message.guild.id}`)
+        .addField('Create At:', `${message.guild.createdAt.toUTCString()}`)
         /*message.guild.channels.cacheType.forEach(channel => {
             listedChannels.push(channel)
         })*/
         //.addField('Channels', `${listedChannels.join('\n')}`)
         //.addField('Total Channels', message.guild.channelCountMode)
-        .addField('Total Members (with bots)', message.guild.memberCount)
-        .addField('Total Members (without bots)', memberCountNoBots)
+        .addField('Total Members (with bots)', `${message.guild.memberCount}`)
+        .addField('Total Members (without bots)', `${memberCountNoBots}`)
         .setColor('#1fd619');
-    await message.channel.send({embed});
+    await message.channel.send({embeds: [embed]});
 };
 
 exports.conf = {

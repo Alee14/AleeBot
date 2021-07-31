@@ -34,7 +34,7 @@ exports.help = {
   name: 'name here',
   description: 'Description here.',
   usage: 'Usage [here]',
-  category: '- General Commands',
+  category: '- [Category] Commands',
 };
 ```
 

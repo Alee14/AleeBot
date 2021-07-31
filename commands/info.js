@@ -18,18 +18,19 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-	const Discord = require('discord.js');
+	const { MessageEmbed, version } = require('discord.js');
 	const os = require('os');
 	const mongoose = require('mongoose');
-	const embed = new Discord.MessageEmbed()
+	const embed = new MessageEmbed()
 		.setTitle('Information on AleeBot\'s Host')
 		.addField('OS Hostname: ', os.hostname(), true)
 		.addField('NodeJS Version: ', process.versions.node, true)
+		.addField('Discord.JS Version: ', version , true)
 		.addField('OS Platform: ', os.platform(), true)
 		.addField('OS Version: ', os.release(), true)
 		.addField('Mongoose Version:', mongoose.version, true)
 		.setColor('#1fd619');
-	await message.channel.send({embed});
+	await message.channel.send({ embeds: [embed] });
 };
 
 exports.conf = {

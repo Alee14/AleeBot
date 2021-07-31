@@ -23,11 +23,11 @@ module.exports.run = async (client, message) => {
 		.setAuthor(message.author.tag, message.author.avatarURL())
 		.setDescription('User Information')
 		.setThumbnail(message.author.avatarURL())
-		.addField('Names', '**Username:** ' + message.author.username + '\n**Current Nickname:** ' + message.member.displayName)
+		.addField('Names', `**Username:**  ${message.author.username}\n**Current Nickname:**  ${message.member.displayName}`)
 		.addField('Identity', `**User ID:** ${message.author.id} `)
-		.addField('Create and Join Times', '**Created At:** ' + message.member.user.createdAt.toUTCString() + '\n**Joined Guild At:** ' + message.member.joinedAt.toUTCString())
+		.addField('Create and Join Times', `**Created At:**  ${message.member.user.createdAt.toUTCString()}\n**Joined Guild At:**  ${message.member.joinedAt.toUTCString()}`)
 		.setColor('#1fd619');
-	await message.channel.send({embed});
+	await message.channel.send({embeds: [embed]});
 
 };
 

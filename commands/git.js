@@ -18,16 +18,23 @@
  *
  * *************************************/
 module.exports.run = async (client, message) => {
-	const Discord = require('discord.js');
+	const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 	const git = require('git-last-commit');
 	git.getLastCommit(function(err, commit) {
-		const embed = new Discord.MessageEmbed()
-			.setTitle('GitHub Information')
-			.addField('**Repository:**', 'https://github.com/aleeproductions/AleeBot')
+		const gitInfo = new MessageEmbed()
+			.setTitle('Git Information')
 			.addField('**Last Commit:**', commit.subject)
 			.addField('**Commited By:**', commit.author.name)
 			.setColor('#1fd619');
-		message.channel.send({embed});
+		
+		let sourceCode = new MessageActionRow()
+		.addComponents(
+			new MessageButton()
+			.setStyle('LINK')
+			.setLabel('Source Code') 
+			.setURL('https://github.com/aleeproductions/AleeBot')
+		);
+		message.channel.send({embeds: [gitInfo], components: [sourceCode]});
 	});
 };
 

@@ -20,14 +20,15 @@
 module.exports.run = async (client, message, args) => {
 	const { MessageEmbed } = require('discord.js');
         
-	client.channels.cache.get('427495678390960148').send(
+	client.channels.cache.get('427495678390960148').send({ embeds: [
 		new MessageEmbed()
-			.setColor ('#1fd619')
+			.setColor('#1fd619')
 			.setTitle('AleeBot Feature Suggestion')
-			.setDescription('This is an AleeBot feature suggestion from '+ message.author.username +` sending from ${message.guild.name}.`)
+			.setDescription(`This is an AleeBot feature suggested from ${message.author.username}.`)
 			.addField('Suggestion Contents', args.join(' '))
+			.setFooter(`Sending from ${message.guild.name}`, message.guild.iconURL())]}
 	);
-	await message.reply('Your suggestion has been shown to the ALP discord server!');
+	await message.reply('Your suggestion has been shown to the Binaryworks discord server!');
    
 };
   
