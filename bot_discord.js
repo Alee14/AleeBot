@@ -251,7 +251,6 @@ client.on('ready', async () => {
 
 	setInterval(function() {
 	botPresence();
-
 	}, 200000);
 	if (readyEmbedMessage === true) {
 		const readyEmbed = new Discord.MessageEmbed()
@@ -419,7 +418,7 @@ dbl.on('error', (e) => {
 });
 
 client.on('messageCreate', async(msg) => {
-
+	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
 	
 	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
@@ -463,6 +462,20 @@ client.on('messageCreate', async(msg) => {
 		}
 	}
 });
+/*
+client.on('interactionCreate', async (interaction) => {
+	if (!interaction.isCommand()) return;
+
+	if (!client.commands.has(interaction.commandName)) return;
+
+	try {
+		await client.commands.get(interaction.commandName).execute(interaction);
+	} catch (error) {
+		console.error(error);
+		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+	}
+
+});*/
 
 process.on('unhandledRejection', function(err, p) {
 	log('[X | UNCAUGHT PROMISE] ' + err.stack.red);
