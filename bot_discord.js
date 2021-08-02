@@ -30,20 +30,20 @@ const express = require('express');
 const fs = require('fs');
 const readline = require('readline');
 const colors = require('colors');
-const DBL = require('dblapi.js');
+const { AutoPoster } = require('topgg-autoposter');
 //const i18next = require('i18next');
 const web = express();
 const settings = require('./storage/settings.json');
 const mongo = require('./plugins/mongo');
 const api = require('./tokens.json');
-const dbl = new DBL(api.dbltoken, client);
 const active = new Map();
-const ownerID = '242775871059001344';
 let autoRole = true;
+let readyEmbedMessage = false;
+const ownerID = '242775871059001344';
 let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
-let readyEmbedMessage = false;
 let serverWhitelist = "243022206437687296";
+let roleWhitelist = "657426918416580614"
 
 const activities = [
 	'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
@@ -257,8 +257,8 @@ client.on('ready', async () => {
 			.setAuthor('AleeBot Status', client.user.avatarURL())
 			.setDescription('AleeBot has started')
 			.addField('Version', settings.abVersion, true)
-			.addField('Prefix', `\`${settings.prefix}\``, true)
 			.addField('Discord.JS Version', Discord.version, true)
+			.addField('Prefix', `\`${settings.prefix}\``, true)
 			.setColor('#5cd65c');
 		let statusChannel = client.channels.cache.get(statusChannelID);
 		if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
@@ -285,9 +285,9 @@ client.on('guildMemberAdd', (member) => {
 	guildMember.send({ embeds: [logEmbed]});
 	if (autoRole === true) {
 		if (member.guild.id !== serverWhitelist) return;
-		const role = member.guild.roles.cache.get('657426918416580614');
+		const role = member.guild.roles.cache.get(roleWhitelist);
 		member.roles.add(role);
-		log(`[i] ${member.user.username} joined Alee Productions.`.green);
+		log(`[i] ${member.user.username} joined Binaryworks Community.`.green);
 		log(`[i] I gave ${member.user.username} the "Member" role.`.green);
 	}
 });
@@ -409,14 +409,12 @@ client.on('guildDelete', (guild) => {
 	statusChannel.send({ embeds: [logEmbed]});
 });
 
-dbl.on('posted', () => {
-	log('Server count posted!'.blue);
-});
-
-dbl.on('error', (e) => {
-	log(`[X | DBL ERROR] ${e}`.red);
-});
-
+/*
+AutoPoster(api.dbltoken, client)
+	.on('posted', () => {
+		log('[>] Posted stats to Top.gg!'.blue);
+	})
+*/
 client.on('messageCreate', async(msg) => {
 	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
@@ -462,7 +460,7 @@ client.on('messageCreate', async(msg) => {
 		}
 	}
 });
-/*
+
 client.on('interactionCreate', async (interaction) => {
 	if (!interaction.isCommand()) return;
 
@@ -475,7 +473,7 @@ client.on('interactionCreate', async (interaction) => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 
-});*/
+});
 
 process.on('unhandledRejection', function(err, p) {
 	log('[X | UNCAUGHT PROMISE] ' + err.stack.red);

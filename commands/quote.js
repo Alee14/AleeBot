@@ -21,7 +21,7 @@ const mongo = require('../plugins/mongo');
 const quoteSchema = require('../schema/quote-schema');
 module.exports.run = async (client, message, args) => {
 	if (!['242775871059001344'].includes(message.author.id)) return message.reply('**This command is disabled due to a new system being implemented.**');
-	const Discord = require('discord.js');
+	const { MessageEmbed } = require('discord.js');
 
 	let NewQuote;
 	let quo;
@@ -36,13 +36,14 @@ module.exports.run = async (client, message, args) => {
 		await mongo().then(async (mongoose) => {
 			try {
 				const quote = await quoteSchema.findOne({quoteID: "1", author: quoAuthor, authorImage: quoAuthorImage, quote: quoQuote, year: quoYear})
-				/*const embed = new Discord.MessageEmbed()
+				/*
+				const embed = new MessageEmbed()
 					.setAuthor(quoAuthor, quoAuthorImage)
 					.setDescription(quoQuote)
 					.setColor('#1fd619')
 					.setFooter('- ' + quoYear);
 
-				await message.channel.send({embed});*/
+				await message.channel.send({embeds:[embed]});*/
 				console.log(quote);
 			} finally {
 				await mongoose.connection.close();
