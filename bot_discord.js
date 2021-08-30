@@ -51,13 +51,14 @@ const activities = [
 	'Drawing shapes',
 	'Fighting Quad',
 	'Ultra Jump Mania!',
-    'Exposing TAS-Corp',
+	'Exposing TAS-Corp',
     'Fighting Evelyn Claythorne',
 	'Installing Windows 11',
 	'Breaking Windows 10',
 	'Reticulating splines',
 	'Dag dag!',
-	'90% bug free!'
+	'90% bug free!',
+	'Now running ' + Discord.version + '!'
 ];
 
 const log = (message) => {

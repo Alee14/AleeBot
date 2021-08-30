@@ -20,7 +20,7 @@
 <p>Here's the list of people who helped me with AleeBot for discord servers</p>
 <ul>
   <li>Alee14</li>
-  <li>OfficialRain (Rain)</li>
+  <li>OfficialRain (Raina)</li>
   <li>jtsshieh</li>
 </ul>
 <br>

@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
 	if (args) {
 		await mongo().then(async (mongoose) => {
 			try {
-				const quote = await quoteSchema.findOne({quoteID: "1", author: quoAuthor, authorImage: quoAuthorImage, quote: quoQuote, year: quoYear})
+				const quote = await quoteSchema.findOne({quoteID: args[1], author: quoAuthor, authorImage: quoAuthorImage, quote: quoQuote, year: quoYear})
 				/*
 				const embed = new MessageEmbed()
 					.setAuthor(quoAuthor, quoAuthorImage)
