@@ -19,12 +19,12 @@
  * *************************************/
 const mongo = require('../plugins/mongo');
 const quoteSchema = require('../schema/quote-schema');
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message) => {
 	if (!['242775871059001344'].includes(message.author.id)) return message.reply('**This command is disabled due to a new system being implemented.**');
 	const { MessageEmbed } = require('discord.js');
 
-	let NewQuote;
-	let quo;
+//	let NewQuote;
+//	let quo;
 
 	let quoId;
 	let quoAuthor;
@@ -32,26 +32,27 @@ module.exports.run = async (client, message, args) => {
 	let quoQuote;
 	let quoYear;
 
-	if (args) {
-		await mongo().then(async (mongoose) => {
-			try {
-				const quote = await quoteSchema.findOne({quoteID: args[1], author: quoAuthor, authorImage: quoAuthorImage, quote: quoQuote, year: quoYear})
-				/*
-				const embed = new MessageEmbed()
-					.setAuthor(quoAuthor, quoAuthorImage)
-					.setDescription(quoQuote)
-					.setColor('#1fd619')
-					.setFooter('- ' + quoYear);
+	// Written using GitHub CoPilot
 
-				await message.channel.send({embeds:[embed]});*/
-				console.log(quote);
-			} finally {
-				await mongoose.connection.close();
-			}
-		})
-	} else {
+	// Fetch a random quote from quoteSchema database then return the quote using embeds
+	const fetchQuote = async () => {
+		const quote = await mongo.db.collection('quotes').aggregate([{ $sample: { size: 1 } }]).toArray();
+		quoId = quote[0]._id;
+		quoAuthor = quote[0].author;
+		quoAuthorImage = quote[0].authorImage;
+		quoQuote = quote[0].quote;
+		quoYear = quote[0].year;
+		const embed = new MessageEmbed()
+		
+			.setColor('#0099ff')
+			.setAuthor(quoAuthor, quoAuthorImage)
+			.setDescription(`${quoQuote}`)
+			.setFooter(`${quoYear}`)
+		return message.channel.send(embed);
 
-	}
+	};
+
+	fetchQuote();
 
 	/*
 

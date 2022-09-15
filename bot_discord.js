@@ -36,6 +36,7 @@ const web = express();
 const settings = require('./storage/settings.json');
 const mongo = require('./plugins/mongo');
 const api = require('./tokens.json');
+const { activity } = require('./storage/activities');
 const active = new Map();
 let autoRole = true;
 let readyEmbedMessage = false;
@@ -45,22 +46,6 @@ let statusChannelID = '606602551634296968';
 let serverWhitelist = "243022206437687296";
 let roleWhitelist = "657426918416580614"
 
-const activities = [
-	'AleeBot ' + settings.abVersion + ' | ' + settings.prefix + 'help',
-	'Coding bytes',
-	'Drawing shapes',
-	'Fighting Quad',
-	'Ultra Jump Mania!',
-	'Exposing TAS-Corp',
-    'Fighting Evelyn Claythorne',
-	'Installing Windows 11',
-	'Breaking Windows 10',
-	'Reticulating splines',
-	'Dag dag!',
-	'90% bug free!',
-	'Now running ' + Discord.version + '!'
-];
-
 const log = (message) => {
 	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
 };
@@ -68,7 +53,7 @@ const log = (message) => {
 function botPresence() {
 	client.user.setPresence({
 	activities: [{
-		name: activities[Math.floor(Math.random() * activities.length)]
+		name: activity[Math.floor(Math.random() * activity.length)]
 	}],
 	status: 'online',
 	afk: false,
@@ -82,7 +67,7 @@ const rl = readline.createInterface({
 	prompt: '> '.gray,
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2021 Alee Productions`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2022 Andrew Lee Projects`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log('This is free software, and you are welcome to redistribute it'.gray);
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
@@ -192,6 +177,10 @@ rl.on('line', function(cmd) {
 		}
 		const uptimeSeconds = minutes % 60;
 		console.log(`[i] AleeBot has been up for ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`.blue);
+		break;
+		case 'activity':
+			console.log('[i] Generating new activity'.blue);
+			botPresence();
 		break;
 	case 'exit':
 		console.log('[i] AleeBot will now exit!'.blue);
@@ -323,7 +312,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 		.setColor('#ffff1a')
 		.setTimestamp()
 		.setFooter(`Author ID: ${oldMessage.author.id}`);
-		
+
 	let editMessage = client.channels.cache.get(logChannel);
 	if (!editMessage) return;
 
@@ -419,7 +408,7 @@ AutoPoster(api.dbltoken, client)
 client.on('messageCreate', async(msg) => {
 	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
-	
+
 	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
 
 	if (!prefixes[msg.guild.id]) {

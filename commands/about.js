@@ -22,10 +22,10 @@ module.exports.run = async (client, message) => {
 
     const aboutEmbed = new MessageEmbed()
         .setAuthor(`AleeBot ${require('../storage/settings.json').abVersion}`, client.user.avatarURL())
-        .addField('About AleeBot', 'AleeBot is an all-in-one bot that\'s made from the Discord.JS api!')
+        .addField('About AleeBot', 'AleeBot is an all-in-one bot that\'s made from the Discord.JS API!')
         .addField('License', 'GNU General Public License v3.0')
         .addField('Contributors', 'Andrew Lee (Founder of this project)\nOfficialRain (Raina) (Uptime Command)\njtsshieh (Command Handler)')
-        .setFooter('© Copyright 2017-2021 Alee Productions')
+        .setFooter('© Copyright 2017-2022 Andrew Lee Projects')
         .setColor('#1fd619');
     
     let inviteButton = new MessageActionRow()

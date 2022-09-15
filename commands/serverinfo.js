@@ -27,7 +27,7 @@ module.exports.run = async (client, message) => {
         .setThumbnail(`${message.guild.iconURL()}`)
         .addField('Server Name:', `${message.guild.name}`)
         .addField('Server ID:', `${message.guild.id}`)
-        .addField('Create At:', `${message.guild.createdAt.toUTCString()}`)
+        .addField('Created At:', `${message.guild.createdAt.toUTCString()}`)
         /*message.guild.channels.cacheType.forEach(channel => {
             listedChannels.push(channel)
         })*/
