@@ -25,7 +25,7 @@ module.exports.run = async (client, message) => {
 		.setTitle('Information on AleeBot\'s Host')
 		.addField('OS Hostname: ', os.hostname(), true)
 		.addField('NodeJS Version: ', process.versions.node, true)
-		.addField('Discord.JS Version: ', version , true)
+		.addField('Discord.JS Version: ', version, true)
 		.addField('OS Platform: ', os.platform(), true)
 		.addField('OS Version: ', os.release(), true)
 		.addField('Mongoose Version:', mongoose.version, true)

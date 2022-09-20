@@ -32,7 +32,7 @@ module.exports.run = async (client, message) => {
 			new MessageButton()
 			.setStyle('LINK')
 			.setLabel('Source Code') 
-			.setURL('https://github.com/aleeproductions/AleeBot')
+			.setURL('https://github.com/alee14-projects/AleeBot')
 		);
 		message.channel.send({embeds: [gitInfo], components: [sourceCode]});
 	});

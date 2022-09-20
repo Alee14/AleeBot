@@ -26,6 +26,7 @@ module.exports.run = async (client, message, args) => {
 		'Yep. Just kidding :P',
 		'I doubt it.',
 		'Maybe?',
+		'Perhaps...',
 		'I don\'t know?',
 		'Hmm let me think :thinking:',
 	];

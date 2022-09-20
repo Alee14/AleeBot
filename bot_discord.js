@@ -178,9 +178,9 @@ rl.on('line', function(cmd) {
 		const uptimeSeconds = minutes % 60;
 		console.log(`[i] AleeBot has been up for ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`.blue);
 		break;
-		case 'activity':
-			console.log('[i] Generating new activity'.blue);
-			botPresence();
+	case 'activity':
+		console.log('[i] Generating new activity'.blue);
+		botPresence();
 		break;
 	case 'exit':
 		console.log('[i] AleeBot will now exit!'.blue);
@@ -204,6 +204,7 @@ rl.on('line', function(cmd) {
 		msg += ('leave - Leaves a guild.\n');
 		msg += ('broadcast - Broadcasts a message to a server.\n');
 		msg += ('uptime - Shows the uptime for AleeBot.\n');
+		msg += ('activity - Generates new activity\n');
 		msg += ('help - Shows this command.\n');
 		msg += ('exit - Exits AleeBot.\n');
 		console.log(msg.cyan);
@@ -219,7 +220,7 @@ client.on('ready', async () => {
 	log(`[i] Logged in as ${client.user.tag}`.green);
 	log(`[i] Default Prefix: ${settings.prefix}`.green);
 	log(`[i] Bot ID: ${client.user.id}`.green);
-	log(`[i] Running version ${settings.abVersion} and in ${client.guilds.cache.size} guilds`.green);
+	log(`[i] Running version ${settings.abVersion} | Serving in ${client.guilds.cache.size} guilds`.green);
 
 	botPresence();
 
@@ -368,7 +369,7 @@ client.on('guildBanRemove', (guild, user) => {
 });
 
 client.on('guildCreate', (guild) => {
-	log(`[i] New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`.blue);
+	log(`[i] New guild joined: ${guild.name} (${guild.id}). This guild has ${guild.memberCount} members!`.blue);
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot', client.user.avatarURL())
 		.setDescription('I got added to a server!')
@@ -385,7 +386,7 @@ client.on('guildCreate', (guild) => {
 
 
 client.on('guildDelete', (guild) => {
-	log(`[i] I have been removed from: ${guild.name} (id: ${guild.id})`.red);
+	log(`[i] I have been removed from: ${guild.name} (${guild.id})`.red);
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot', client.user.avatarURL())
 		.setDescription('I got removed from a server...')

@@ -18,16 +18,23 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-	if (message.guild.id != '243022206437687296') return message.reply('This is a Binaryworks exclusive command.');
+	const { MessageEmbed } = require('discord.js');
 
 	if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
 	if (!message.guild.members.cache.get(client.user.id).permissions.has('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
 
+	if (!args[1]) message.reply('Determine the length of the timeout...');
+	if (!args[2]) message.reply('Determine the reason of the timeout...');
+
 	const member = message.mentions.members.first();
 	if (!member) return await message.reply('Uhh... Please mention a member first.');
 
-	member.roles.add(message.guild.roles.cache.get('428205205155217418'));
-	message.reply(`Alright, I just jailed ${member.user.tag}.`);
+	const timeoutEmbed = new MessageEmbed()
+	.setDescription(`${member.user.tag} just got timed out!`)
+	.addField('Length', `${args[1]} minute(s)`)
+	.addField('Reason', args[2])
+	.setColor('#ec2727')
+	member.timeout(args[1] * 60 * 1000, args[2]).then(message.reply({embeds: [timeoutEmbed]}));
 };
 
 exports.conf = {
@@ -35,8 +42,8 @@ exports.conf = {
 	guildOnly: false,
 };
 exports.help = {
-	name: 'jail',
-	description: 'Jails a member',
-	usage: 'jail [user]',
-	category: '- Binaryworks Exclusive Commands',
+	name: 'timeout',
+	description: 'Times out a member',
+	usage: 'timeout [user]',
+	category: '- Moderation Commands',
 };
