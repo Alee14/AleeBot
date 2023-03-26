@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
 		.setTitle('User Kicked!')
 		.setColor('#1fd619')
 		.addField('**User:**', `${member.user.tag}`)
-		.addField('**Reason:**', `\`\`\`${mreason}\`\`\``);
+		if (mreason) return kickEmbed.addField('**Reason:**', `\`\`\`${mreason}\`\`\``);
 	await message.channel.send({embeds: [kickEmbed]});
 };
 

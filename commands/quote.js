@@ -17,72 +17,33 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-const mongo = require('../plugins/mongo');
-const quoteSchema = require('../schema/quote-schema');
 module.exports.run = async (client, message, args) => {
-	if (!['242775871059001344'].includes(message.author.id)) return message.reply('**This command is disabled due to a new system being implemented.**');
+	const quoteDB = require('../models/quote');
 	const { MessageEmbed } = require('discord.js');
+	let quoteID = args[0];
 
-//	let NewQuote;
-//	let quo;
+	if (quoteID === undefined) {
+		const quoteList = await quoteDB.findAll({ attributes: ['id'] })
+		quoteID = Math.floor(Math.random() * (quoteList.length - 1)) + 1
+	}
 
-	let quoId;
-	let quoAuthor;
-	let quoAuthorImage;
-	let quoQuote;
-	let quoYear;
+	const quote = await quoteDB.findOne({ where: { id: quoteID } })
 
-	if (args) {
-		await mongo().then(async (mongoose) => {
-			try {
-				const quote = await quoteSchema.findOne({quoteID: args[1], author: quoAuthor, authorImage: quoAuthorImage, quote: quoQuote, year: quoYear})
-				/*
-				const embed = new MessageEmbed()
-					.setAuthor(quoAuthor, quoAuthorImage)
-					.setDescription(quoQuote)
-					.setColor('#1fd619')
-					.setFooter('- ' + quoYear);
 
-				await message.channel.send({embeds:[embed]});*/
-				console.log(quote);
-			} finally {
-				await mongoose.connection.close();
-			}
-		})
+	if (quote) {
+		const embed = new MessageEmbed()
+			.setAuthor({ name: quote.author, iconURL: quote.authorImage})
+			.setDescription(quote.quote)
+			.setColor('#1fd619')
+			.setFooter('- ' + quote.year);
+
+		await message.reply('Alright, here\'s your quote.')
+		await message.channel.send({embeds:[embed]});
 	} else {
-
+		message.reply('Cannot find quote');
 	}
 
-	/*
 
-	function GetNewQuote(quoteNum = -1) {
-		NewQuote = new Discord.MessageEmbed();
-
-		let quo = require('../storage/quotes.json').quotes
-
-		if (quoteNum === -1) {
-			quoteNum = Math.floor(Math.random() * 1000) % quo.length;
-			quo=quo[quoteNum];
-		}
-
-		const author = quo.author;
-		const authorImage = quo.authorImage;
-		const quote = quo.quote;
-		const year = quo.year;
-		const url = quo.url;
-
-		NewQuote.setAuthor(author, authorImage);
-		NewQuote.setColor('#1fd619');
-		NewQuote.setDescription(quote);
-		NewQuote.setFooter('- ' + year);
-		//NewQuote.setURL(url);
-
-		return NewQuote;
-	}
-
-	const newquote = GetNewQuote();
-	message.reply('Alright, here\'s your quote.');
-	await message.channel.send(newquote);*/
 };
 
 exports.conf = {

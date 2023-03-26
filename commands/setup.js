@@ -1,5 +1,5 @@
 /****************************************
- * 
+ *
  *   Setup: Command for AleeBot
  *   Copyright (C) 2017-2021 Alee Productions
  *
@@ -15,22 +15,23 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 
 module.exports.run = async (client, message) => {
-	if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply(':warning: You must be a server owner or be the creator of the bot to access this command.');
+	if (!['242775871059001344', message.guild.ownerId].includes(message.author.id)) return message.reply(':warning: You must be a server owner or be the creator of the bot to access this command.');
 	message.reply('Look at your DMs.');
 	//message.reply("This feature is coming soon. Stay tuned!");
 	const Discord = require('discord.js');
 	const setupEmbed = new Discord.MessageEmbed()
 		.setTitle('AleeBot Setup', client.user.avatarURL())
 		.setDescription('Select the options')
-		.addField('Logs', 'channelid', true)
-	//	.addField('Chat Logs', 'placeholder', true)
-	//	.addField('Chat Logs', 'placeholder', true);
+		.addField('Chat Logs', 'channelid', true)
+		.addField('Joining & Leaving Logs', 'placeholder', true)
+		.addField('Broadcast', 'placeholder', true)
+		.addField('Broadcast', 'placeholder', true);
 
-	message.author.send(setupEmbed);
+	message.author.send({embeds: [setupEmbed]});
 };
 
 exports.conf = {

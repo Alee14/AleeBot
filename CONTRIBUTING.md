@@ -5,7 +5,7 @@ Include the GPL-3.0 license too and follow the following format when you create 
 /****************************************
  * 
  *   [Command/Plugin]: (Command or Plugin) for AleeBot
- *   Copyright (C) 2017-2021 Alee Productions & (your name here)
+ *   Copyright (C) 2017-2023 Andrew Lee & (your name here)
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

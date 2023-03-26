@@ -19,7 +19,7 @@
  * *************************************/
 module.exports.run = async (client, message) => {
 	if (!['242775871059001344', message.guild.ownerID].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
-	await message.channel.send('Leaving server. If that\'s a mistake, you can re-invite me...');
+	await message.channel.send('Leaving server. If that\'s a mistake, you can re-invite me');
 	message.guild.leave();
 };
 

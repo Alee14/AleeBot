@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   AleeBot: Made for discord servers
- *   Copyright (C) 2017-2021 Alee Productions
+ *   Copyright (C) 2017-2022 Andrew Lee Projects
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,11 +30,9 @@ const express = require('express');
 const fs = require('fs');
 const readline = require('readline');
 const colors = require('colors');
-const { AutoPoster } = require('topgg-autoposter');
 //const i18next = require('i18next');
 const web = express();
 const settings = require('./storage/settings.json');
-const mongo = require('./plugins/mongo');
 const api = require('./tokens.json');
 const { activity } = require('./storage/activities');
 const active = new Map();
@@ -67,7 +65,7 @@ const rl = readline.createInterface({
 	prompt: '> '.gray,
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2022 Andrew Lee Projects`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2023 Andrew Lee Projects`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log('This is free software, and you are welcome to redistribute it'.gray);
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
@@ -224,14 +222,6 @@ client.on('ready', async () => {
 
 	botPresence();
 
-	await mongo().then(mongoose => {
-		try {
-			log('[>] Connected to MongoDB!'.green);
-		} finally {
-			mongoose.connection.close();
-		}
-	})
-
 	web.get('/', (req, res) => {
 		res.send("Hello World! This is going to become the AleeBot dashboard...");
 	});
@@ -263,10 +253,9 @@ client.on('guildMemberAdd', (member) => {
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has joined this server!`)
-		.addField('Username: ', `${member.displayName}`, true)
+		.addField('Username: ', `${member.user.tag}`, true)
 		.addField('User ID: ', `${member.id}`, true)
 		.addField('Created At: ', `${member.user.createdAt.toUTCString()}`)
-		//.addField('Invite Code: ', `${member.invite.code}`)
 		.setColor('#4bff31')
 		.setTimestamp();
 
@@ -278,8 +267,7 @@ client.on('guildMemberAdd', (member) => {
 		if (member.guild.id !== serverWhitelist) return;
 		const role = member.guild.roles.cache.get(roleWhitelist);
 		member.roles.add(role);
-		log(`[i] ${member.user.username} joined Binaryworks Community.`.green);
-		log(`[i] I gave ${member.user.username} the "Member" role.`.green);
+		log(`[i] ${member.user.username} joined Andrew Lee Projects, automatically giving them role.`.green);
 	}
 });
 
@@ -288,7 +276,7 @@ client.on('guildMemberRemove', (member) => {
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has left this server!`)
-		.addField('Username: ', `${member.displayName}`, true)
+		.addField('Username: ', `${member.user.tag}`, true)
 		.addField('User ID: ', `${member.id}`, true)
 		.setColor('#ec2727')
 		.setTimestamp();

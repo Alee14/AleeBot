@@ -23,12 +23,17 @@ module.exports.run = async (client, message) => {
 	let uptimeMinutes = Math.floor(uptime / 60);
 	const minutes = uptime % 60;
 	let hours = 0;
+	let days = 0;
 	while (uptimeMinutes >= 60) {
-		hours++;
-		uptimeMinutes = uptimeMinutes - 60;
+  		hours++;
+  		uptimeMinutes = uptimeMinutes - 60;
+	}
+	while (hours >= 24) {
+  	days++;
+ 	hours = hours - 24;
 	}
 	const uptimeSeconds = minutes % 60;
-	message.channel.send(':clock3: AleeBot has been up for ' + hours + ' hours, ' + uptimeMinutes + ' minutes, and ' + uptimeSeconds + ' seconds.');
+	message.channel.send(`:clock3: AleeBot has been up for ${days} days, ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`);
 };
 
 exports.conf = {

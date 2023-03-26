@@ -17,36 +17,19 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-const mongo = require('../plugins/mongo');
-const logSchema = require('../schema/logging-schema');
+const guildDB = require ('../models/guild-settings')
 module.exports.run = async (client, message) => {
     //This will be replaced in the future possibly
     if (!message.member.permissions.has('MANAGE_GUILD')) return message.reply('It looks like that you can\'t manage this server.');
     const channel = await message.mentions.channels.first().id;
-    const cache = {}
+    const [ guild ] = await guildDB.findOrCreate({ where: { id: message.guild.id } } )
 
-    if (!channel) return message.reply('I cannot find that channel, please specify...');
-
-    cache[message.guild.id] = channel
-
-    await mongo().then(async (mongoose) => {
-        try {
-            await logSchema.findOneAndUpdate(
-                {
-                    _id: message.guild.id,
-                },
-                {
-                    _id: message.guild.id,
-                    logChannel: channel
-                },
-                {
-                    upsert: true
-                }
-            )
-        } finally {
-            await mongoose.connection.close();
-        }
-    })
+    if (!channel) {
+        message.reply('No channel has been set, disabling the logging channel feature...');
+        await guild.update({ channelId: null } );
+    } else {
+        await guild.update({ channelId: message.guild.id } )   ;
+    }
 
     await message.reply(`Logging channel has been set to <#${channel}>`);
 };
@@ -58,6 +41,6 @@ exports.conf = {
 exports.help = {
     name: 'setlogchannel',
     description: 'Set the log channel.',
-    usage: 'setlogchannel [channel id]',
+    usage: 'setlogchannel #channel',
     category: '- Moderation Commands',
 };
