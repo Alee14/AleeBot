@@ -384,7 +384,7 @@ client.on('guildDelete', (guild) => {
 	if (!statusChannel) return;
 	statusChannel.send({ embeds: [logEmbed]});
 });
-
+/*
 client.on("messageReactionAdd", async (reaction, user) => {
 	// When a reaction is received, check if the structure is partial
 	if (reaction.partial) {
@@ -403,7 +403,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	// The reaction is now also fully available and the properties will be reflected accurately:
 	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
 });
-
+*/
 client.on('messageCreate', async(msg) => {
 	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
