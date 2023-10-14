@@ -18,7 +18,7 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-	if (message.guild.id != '243022206437687296') return message.reply('This is a Binaryworks exclusive command.');
+	if (message.guild.id !== '243022206437687296') return message.reply('This is a Andrew Lee Projects exclusive command.');
 	const {MessageEmbed} = require('discord.js');
 	client.channels.cache.get('427495678390960148').send({ embeds: [
 		new MessageEmbed()
@@ -39,7 +39,7 @@ exports.conf = {
 };
 exports.help = {
 	name: 'suggest',
-	description: 'Suggest a feature in Binaryworks.',
+	description: 'Suggest a feature in Andrew Lee Projects.',
 	usage: 'suggest [suggestion]',
-	category: '- Binaryworks Exclusive Commands',
+	category: '- ALP Exclusive Commands',
 };

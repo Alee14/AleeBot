@@ -40,8 +40,9 @@ module.exports.run = async (client, message) => {
 	const prefix = prefixes[message.guild.id].prefixes;
 	if (!message.guild.members.cache.get(client.user.id).permissions.has('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links, please enable them to use the full help.');
 	const embed = new Discord.MessageEmbed()
-		.setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help | Serving in ${client.guilds.cache.size} servers`, client.user.avatarURL())
-		.setDescription('[!] Currently on the Alpha-Temp branch. Meaning that experimental features are enabled in this bot...')
+		.setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help`, client.user.avatarURL())
+		.setDescription('Every command you input into AleeBot is `ab:`')
+		.setFooter(`Currently serving on ${client.guilds.cache.size} servers`)
 		.setColor('#1fd619')
 
 	categories.forEach(function(x) {

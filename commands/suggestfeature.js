@@ -1,5 +1,5 @@
 /****************************************
- * 
+ *
  *   SuggestFeature: Command for AleeBot
  *   Copyright (C) 2017-2021 Alee Productions
  *
@@ -15,11 +15,11 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
 	const { MessageEmbed } = require('discord.js');
-        
+
 	client.channels.cache.get('427495678390960148').send({ embeds: [
 		new MessageEmbed()
 			.setColor('#1fd619')
@@ -28,10 +28,10 @@ module.exports.run = async (client, message, args) => {
 			.addField('Suggestion Contents', args.join(' '))
 			.setFooter(`Sending from ${message.guild.name}`, message.guild.iconURL())]}
 	);
-	await message.reply('Your suggestion has been shown to the Binaryworks discord server!');
-   
+	await message.reply('Your suggestion has been shown to the Andrew Lee Projects discord server!');
+
 };
-  
+
 exports.conf = {
 	aliases: [],
 	guildOnly: false,
@@ -42,4 +42,4 @@ exports.help = {
 	usage: 'suggestfeature [suggestion]',
 	category: '- General Commands',
 };
-  
+

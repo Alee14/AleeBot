@@ -87,12 +87,14 @@ const activities = [
     'MythOS',
     'Also try Scratch!',
     'Funky!',
+    'Apple Vision Pro',
     'What is Web3?',
     'GNU\'s NOT UNIX!',
     'Linux, but actually GNU/Linux',
-    'Praise RMS!',
+    'Praise RMS! (dont)',
     'Praying to St IGNUcius',
     'Debloating my ThinkPad',
+    'Turbotastic!',
     'Goddamn Idiotic Truckload of Windows',
     `Now running on Discord.JS ${version}!`
 ];

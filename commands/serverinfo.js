@@ -20,14 +20,14 @@
 module.exports.run = async (client, message) => {
     const Discord = require('discord.js');
     const listedChannels = [];
+    let guildOwner = await message.guild.fetchOwner();
     let memberCountNoBots = await message.guild.members.fetch().then((members) => members.filter(member => !member.user.bot).size);
     const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.guild.name}`, `${message.guild.iconURL()}`)
         .setDescription('Server Information')
         .setThumbnail(message.guild.iconURL())
-        .addField('Server Name:', `${message.guild.name}`)
-        .addField('Server ID:', `${message.guild.id}`)
-        .addField('Created At:', `${message.guild.createdAt.toUTCString()}`)
+        .addField('Main Information', `**Server Name:** ${message.guild.name}\n**Server ID:** ${message.guild.id}\n**Server Owner:** ${guildOwner.user.tag}`)
+        .addField('Join Dates', `**Created At:** ${message.guild.createdAt.toUTCString()}\n**AleeBot Joined:** ${message.guild.joinedAt.toUTCString()}`)
         /*message.guild.channels.cacheType.forEach(channel => {
             listedChannels.push(channel)
         })*/

@@ -24,23 +24,23 @@ module.exports.run = async (client, message, args) => {
 
 	if (quoteID === undefined) {
 		const quoteList = await quoteDB.findAll({ attributes: ['id'] })
-		quoteID = Math.floor(Math.random() * (quoteList.length - 1)) + 1
+		const random = crypto.getRandomValues(new Uint32Array(1));
+		quoteID = quoteList[random[0] % quoteList.length].id;
 	}
 
 	const quote = await quoteDB.findOne({ where: { id: quoteID } })
 
 
 	if (quote) {
-		const embed = new MessageEmbed()
-			.setAuthor({ name: quote.author, iconURL: quote.authorImage})
+		const quoteEmbed = new MessageEmbed()
+			.setAuthor({ name: quote.author, iconURL: quote.authorImage })
 			.setDescription(quote.quote)
 			.setColor('#1fd619')
 			.setFooter('- ' + quote.year);
 
-		await message.reply('Alright, here\'s your quote.')
-		await message.channel.send({embeds:[embed]});
+		await message.reply({ content: 'Alright, here\'s your quote.', embeds: [quoteEmbed] })
 	} else {
-		message.reply('Cannot find quote');
+		message.reply('Cannot find quote, specify the correct quote id.');
 	}
 
 

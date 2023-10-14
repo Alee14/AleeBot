@@ -23,7 +23,7 @@ const client = new Discord.Client({
 		parse: ['users', 'roles'],
 		repliedUser: true
 	},
-	intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS']
+	intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS']
 });
 const moment = require('moment');
 const express = require('express');
@@ -37,12 +37,12 @@ const api = require('./tokens.json');
 const { activity } = require('./storage/activities');
 const active = new Map();
 let autoRole = true;
-let readyEmbedMessage = false;
+let readyEmbedMessage = true;
 const ownerID = '242775871059001344';
 let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
 let serverWhitelist = "243022206437687296";
-let roleWhitelist = "657426918416580614"
+let roleWhitelist = "657426918416580614";
 
 const log = (message) => {
 	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`.white);
@@ -130,23 +130,14 @@ rl.on('line', function(cmd) {
 			}
 		}
 		break;
-	case 'channels':
-		if (!args[1]) {
-			console.log('[!] Please insert the guild\'s ID.'.yellow);
-		} else {
-			let guild = client.guilds.get(args[1]);
-			console.log('[i] These are the channels that this guild have:'.blue);
-			for ([id, channel, guild] of guild && client.channels) {
-				console.log(`   Channel: #${channel.name} - ID: ${channel.id}`.blue);
-			}
-		}
-		break;
 	case 'leave':
 		if (!args[1]) {
 			console.log('[!] Please insert the guild\'s ID.'.yellow);
 		} else {
-			let guild = client.guilds.get(args[1]);
-			guild.leave();
+			let guild = client.guilds.cache.get(args[1]);
+			guild.leave().then(guild => {
+				console.log(`AleeBot has left ${guild.name}`)
+			});
 		}
 		break;
 	case 'broadcast':
@@ -155,11 +146,13 @@ rl.on('line', function(cmd) {
 		} else {
 			const broadcast = args.join(' ').slice(48);
 			let guild = null;
-			guild = client.guilds.get(args[1]);
+			guild = client.guilds.cache.get(args[1]);
 			let channel = null;
-			channel = guild.channels.get(args[2]);
+			channel = guild.channels.cache.get(args[2]);
 			if (channel != null) {
-				channel.send(broadcast);
+				channel.send(`**[Broadcast]** ${broadcast}`);
+			} else {
+				console.log('[X] Broadcast cannot be blank'.red)
 			}
 		}
 		break;
@@ -169,12 +162,17 @@ rl.on('line', function(cmd) {
 		let uptimeMinutes = Math.floor(uptime / 60);
 		const minutes = uptime % 60;
 		let hours = 0;
+		let days = 0;
 		while (uptimeMinutes >= 60) {
 			hours++;
 			uptimeMinutes = uptimeMinutes - 60;
 		}
+		while (hours >= 24) {
+			days++;
+			hours = hours - 24;
+		}
 		const uptimeSeconds = minutes % 60;
-		console.log(`[i] AleeBot has been up for ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`.blue);
+		console.log(`[i] AleeBot has been up for ${days} days, ${hours} hours, ${uptimeMinutes} minutes, and ${uptimeSeconds} seconds.`);
 		break;
 	case 'activity':
 		console.log('[i] Generating new activity'.blue);
@@ -198,7 +196,6 @@ rl.on('line', function(cmd) {
 	case 'help':
 		let msg = ('AleeBot '+ settings.abVersion +' Console Help\n\n');
 		msg += ('guilds - Shows all guilds that AleeBot\'s on.\n');
-		msg += ('channels - Shows all the channels that the guilds have.\n');
 		msg += ('leave - Leaves a guild.\n');
 		msg += ('broadcast - Broadcasts a message to a server.\n');
 		msg += ('uptime - Shows the uptime for AleeBot.\n');
@@ -239,7 +236,7 @@ client.on('ready', async () => {
 			.setDescription('AleeBot has started')
 			.addField('Version', settings.abVersion, true)
 			.addField('Discord.JS Version', Discord.version, true)
-			.addField('Prefix', `\`${settings.prefix}\``, true)
+			.addField('Prefix', `\`${settings.prefix}\``)
 			.setColor('#5cd65c');
 		let statusChannel = client.channels.cache.get(statusChannelID);
 		if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
@@ -388,12 +385,25 @@ client.on('guildDelete', (guild) => {
 	statusChannel.send({ embeds: [logEmbed]});
 });
 
-/*
-AutoPoster(api.dbltoken, client)
-	.on('posted', () => {
-		log('[>] Posted stats to Top.gg!'.blue);
-	})
-*/
+client.on("messageReactionAdd", async (reaction, user) => {
+	// When a reaction is received, check if the structure is partial
+	if (reaction.partial) {
+		// If the message this reaction belongs to was removed, the fetching might result in an API error which should be handled
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message:', error);
+			// Return as `reaction.message.author` may be undefined/null
+			return;
+		}
+	}
+
+	// Now the message has been cached and is fully available
+	console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
+	// The reaction is now also fully available and the properties will be reflected accurately:
+	console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
+});
+
 client.on('messageCreate', async(msg) => {
 	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
