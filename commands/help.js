@@ -41,7 +41,7 @@ module.exports.run = async (client, message) => {
 	if (!message.guild.members.cache.get(client.user.id).permissions.has('EMBED_LINKS')) return message.reply('ERROR: AleeBot doesn\'t have the permission to send embed links, please enable them to use the full help.');
 	const embed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot ' + require('../storage/settings.json').abVersion + ` Help`, client.user.avatarURL())
-		.setDescription('Every command you input into AleeBot is `ab:`')
+		.setDescription('Every command you input into AleeBot is `' + prefix + '`')
 		.setFooter(`Currently serving on ${client.guilds.cache.size} servers`)
 		.setColor('#1fd619')
 
