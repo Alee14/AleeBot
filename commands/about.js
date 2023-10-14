@@ -17,6 +17,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
+const {MessageButton} = require("discord.js");
 module.exports.run = async (client, message) => {
     const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 
@@ -31,20 +32,24 @@ module.exports.run = async (client, message) => {
         .addField('Contributors', Contributors)
         .setFooter('© Copyright 2017-2023 Andrew Lee Projects')
         .setColor('#1fd619');
-    
-    let inviteButton = new MessageActionRow()
+
+    let Buttons = new MessageActionRow()
         .addComponents(
             new MessageButton()
             .setStyle('LINK')
-            .setLabel('Invite AleeBot')
-            .setURL('https://top.gg/bot/282547024547545109'),
+            .setLabel('Source Code')
+            .setURL('https://github.com/alee14-projects/AleeBot'),
             new MessageButton()
             .setStyle('LINK')
-            .setLabel('Join Andrew Lee Projects') 
+            .setLabel('Invite AleeBot')
+            .setURL('https://discord.com/oauth2/authorize?client_id=282547024547545109&permissions=68185158&scope=bot'),
+            new MessageButton()
+            .setStyle('LINK')
+            .setLabel('Join Andrew Lee Projects')
             .setURL('https://discord.gg/EFhRDqG')
         );
 
-    await message.channel.send({embeds: [aboutEmbed], components: [inviteButton]});
+    await message.channel.send({embeds: [aboutEmbed], components: [Buttons]});
 };
 
 exports.conf = {
