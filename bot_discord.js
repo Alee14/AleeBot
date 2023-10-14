@@ -17,6 +17,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
+require('dotenv').config()
 const Discord = require('discord.js');
 const client = new Discord.Client({
 	allowedMentions: {
@@ -33,7 +34,6 @@ const colors = require('colors');
 //const i18next = require('i18next');
 const web = express();
 const settings = require('./storage/settings.json');
-const api = require('./tokens.json');
 const { activity } = require('./storage/activities');
 const active = new Map();
 let autoRole = true;
@@ -83,12 +83,12 @@ if (process.argv.indexOf('--debug') === -1) {
 }
 
 if (process.argv.indexOf('--beta') === -1) {
-	client.login(api.abtoken).catch(function() {
+	client.login(process.env.abtoken).catch(function() {
 		console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
 		process.exit(0);
 	});
 } else {
-	client.login(api.abbtoken).catch(function() {
+	client.login(process.env.abbtoken).catch(function() {
 		console.log('[X] Login failed. The token that you put in is invalid, please put in a new one...'.red);
 		process.exit(0);
 	});
@@ -223,8 +223,8 @@ client.on('ready', async () => {
 		res.send("Hello World! This is going to become the AleeBot dashboard...");
 	});
 
-	web.listen(api.port, () => {
-		console.log(`Listening at https://localhost:${api.port}`)
+	web.listen(process.env.port, () => {
+		console.log(`Listening at https://localhost:${process.env.port}`)
 	})
 
 	setInterval(function() {

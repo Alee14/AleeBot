@@ -4,8 +4,6 @@ WORKDIR /usr/src/bot
 
 COPY package.json ./
 
-COPY tokens.json ./
-
 COPY yarn.lock ./
 
 RUN yarn install

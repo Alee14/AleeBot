@@ -16,3 +16,4 @@ ffprobe.exe
 json.sqlite
 package-lock.json
 database.sqlite
+.env
