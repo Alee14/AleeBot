@@ -2,12 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { PendingQuotes } from '../components/Quotes';
 
-const version = await fetch('http://localhost:3000/api/version').then(res => res.json());
 ---
 
 <Layout>
 	<div class="container">
-		<h1>AleeBot {version}</h1>
+		<h1 id="version">AleeBot</h1>
 		<PendingQuotes client:load />
 	</div>
 </Layout>
@@ -27,3 +26,19 @@ const version = await fetch('http://localhost:3000/api/version').then(res => res
 	}
 
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', async () => {
+		try {
+			const version = await fetch('http://localhost:3000/api/version').then((res) => res.json());
+			const versionElement = document.getElementById('version');
+			if (versionElement) {
+				versionElement.textContent = `AleeBot ${version}`;
+			} else {
+				console.error('Element with ID "version" not found.');
+			}
+		} catch (e) {
+			console.error('Failed to fetch version:', e);
+		}
+	});
+</script>

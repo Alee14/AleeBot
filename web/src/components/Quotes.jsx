@@ -72,6 +72,7 @@ export function PendingQuotes() {
                                 </div>
                                 <p className="quoteText">{quote.quote}</p>
                                 <small>- {quote.year}</small>
+                                <small>Submitted by {quote.submitterAuthor} ({quote.submitterID})</small>
                             </div>
                             <button onClick={() => approveQuote(quote.id)}>Approve</button>
                             <button onClick={() => rejectQuote(quote.id)}>Reject</button>

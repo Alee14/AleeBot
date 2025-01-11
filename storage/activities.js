@@ -91,7 +91,6 @@ const activities = [
     'What is Web3?',
     'GNU\'s NOT UNIX!',
     'Linux, but actually GNU/Linux',
-    'Praise RMS! (dont)',
     'Debloating my ThinkPad',
     'Turbotastic!',
     `Now running on Discord.JS ${version}!`

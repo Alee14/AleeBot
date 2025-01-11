@@ -27,7 +27,8 @@ module.exports.run = async (client, message) => {
 		.setDescription('Select the options')
 		.addField('Logging', 'channelid', true)
 		.addField('Broadcast', 'placeholder', true)
-		.addField('Broadcast', 'placeholder', true);
+		.addField('Quote of the Day', 'placeholder', true)
+		.addField('QOTD Channel', 'channelid', true);
 
 	message.author.send({embeds: [setupEmbed]});
 };
