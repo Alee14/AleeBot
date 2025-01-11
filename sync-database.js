@@ -1,7 +1,11 @@
-const quoteDB = require("./models/quote");
+const { quote, pendingQuote } = require("./models/quote");
 const guildDB = require ('./models/guild-settings');
-quoteDB.sync({alter: true}).then(() => {
+quote.sync({alter: true}).then(() => {
     console.log('Quote database synced!')
+});
+
+pendingQuote.sync({alter: true}).then(() => {
+    console.log('Pending Quote database synced!')
 });
 
 guildDB.sync({alter: true}).then(() => {

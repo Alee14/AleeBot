@@ -1,7 +1,7 @@
 /** **************************************
  *
  *   AleeBot: Made for discord servers
- *   Copyright (C) 2017-2022 Andrew Lee Projects
+ *   Copyright (C) 2017-2025 Andrew Lee Projects
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,17 +24,16 @@ const client = new Discord.Client({
 		parse: ['users', 'roles'],
 		repliedUser: true
 	},
-	intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS']
+	intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILD_MESSAGE_REACTIONS', 'DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS']
 });
 const moment = require('moment');
-const express = require('express');
 const fs = require('fs');
 const readline = require('readline');
 const colors = require('colors');
 //const i18next = require('i18next');
-const web = express();
 const settings = require('./storage/settings.json');
 const { activity } = require('./storage/activities');
+const createServer = require("./api/server");
 const active = new Map();
 let autoRole = true;
 let readyEmbedMessage = true;
@@ -50,11 +49,11 @@ const log = (message) => {
 
 function botPresence() {
 	client.user.setPresence({
-	activities: [{
-		name: activity[Math.floor(Math.random() * activity.length)]
-	}],
-	status: 'online',
-	afk: false,
+		activities: [{
+			name: activity[Math.floor(Math.random() * activity.length)]
+		}],
+		status: 'online',
+		afk: false,
 	});
 	log(`[>] Updated bot presence to "${client.user.presence.activities[0].name}"`.green);
 }
@@ -65,7 +64,7 @@ const rl = readline.createInterface({
 	prompt: '> '.gray,
 });
 
-console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2023 Andrew Lee Projects`.gray);
+console.log(`AleeBot ${settings.abVersion}: Copyright (C) 2017-2025 Andrew Lee Projects`.gray);
 console.log('This program comes with ABSOLUTELY NO WARRANTY; for details type `show w\'.'.gray);
 console.log('This is free software, and you are welcome to redistribute it'.gray);
 console.log('under certain conditions; type `show c\' for details.\n'.gray);
@@ -219,13 +218,7 @@ client.on('ready', async () => {
 
 	botPresence();
 
-	web.get('/', (req, res) => {
-		res.send("Hello World! This is going to become the AleeBot dashboard...");
-	});
-
-	web.listen(process.env.port, () => {
-		console.log(`Listening at https://localhost:${process.env.port}`)
-	})
+	createServer();
 
 	setInterval(function() {
 	botPresence();
@@ -286,7 +279,7 @@ client.on('guildMemberRemove', (member) => {
 
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-	if (oldMessage.guild.id !== serverWhitelist) return;
+	if (!oldMessage.guild || oldMessage.guild.id !== serverWhitelist) return;
 	if (oldMessage.content === newMessage.content) {
 		return;
 	}
@@ -407,6 +400,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 client.on('messageCreate', async(msg) => {
 	if (!client.application?.owner) await client.application?.fetch();
 	if (msg.author.bot) return;
+	if (!msg.guild) return;
 
 	const prefixes = JSON.parse(fs.readFileSync('./storage/prefixes.json', 'utf8'));
 

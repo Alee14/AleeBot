@@ -17,7 +17,6 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * *************************************/
-const {MessageButton} = require("discord.js");
 module.exports.run = async (client, message) => {
     const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 
@@ -30,7 +29,7 @@ module.exports.run = async (client, message) => {
         .addField('About AleeBot', 'AleeBot is an all-in-one bot that\'s made from the Discord.JS API!')
         .addField('License', 'GNU General Public License v3.0')
         .addField('Contributors', Contributors)
-        .setFooter('© Copyright 2017-2023 Andrew Lee Projects')
+        .setFooter('© Copyright 2017-2025 Andrew Lee Projects')
         .setColor('#1fd619');
 
     let Buttons = new MessageActionRow()

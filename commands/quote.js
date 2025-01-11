@@ -18,7 +18,7 @@
  *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-	const quoteDB = require('../models/quote');
+	const { quote: quoteDB } = require('../models/quote');
 	const { MessageEmbed } = require('discord.js');
 	let quoteID = args[0];
 
@@ -38,7 +38,7 @@ module.exports.run = async (client, message, args) => {
 			.setColor('#1fd619')
 			.setFooter('- ' + quote.year);
 
-		await message.reply({ content: 'Alright, here\'s your quote.', embeds: [quoteEmbed] })
+		await message.reply({ embeds: [quoteEmbed] })
 	} else {
 		message.reply('Cannot find quote, specify the correct quote id.');
 	}

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PendingQuotes } from '../components/Quotes';
+
+const version = await fetch('http://localhost:3000/api/version').then(res => res.json());
+---
+
+<Layout>
+	<div class="container">
+		<h1>AleeBot {version}</h1>
+		<PendingQuotes client:load />
+	</div>
+</Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		font-family: "Exo 2", sans-serif;
+	}
+
+	.container {
+		margin: 2em;
+	}
+
+</style>

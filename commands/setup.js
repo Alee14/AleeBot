@@ -20,14 +20,12 @@
 
 module.exports.run = async (client, message) => {
 	if (!['242775871059001344', message.guild.ownerId].includes(message.author.id)) return message.reply(':warning: You must be a server owner or be the creator of the bot to access this command.');
-	message.reply('Look at your DMs.');
-	//message.reply("This feature is coming soon. Stay tuned!");
+	message.reply(':arrow_left: Check DMs to continue.');
 	const Discord = require('discord.js');
 	const setupEmbed = new Discord.MessageEmbed()
 		.setTitle('AleeBot Setup', client.user.avatarURL())
 		.setDescription('Select the options')
-		.addField('Chat Logs', 'channelid', true)
-		.addField('Joining & Leaving Logs', 'placeholder', true)
+		.addField('Logging', 'channelid', true)
 		.addField('Broadcast', 'placeholder', true)
 		.addField('Broadcast', 'placeholder', true);
 
