@@ -124,9 +124,9 @@ rl.on('line', function(cmd) {
 			console.log(('[!] No guilds found.'.yellow));
 		} else {
 			console.log('[i] These are the servers that AleeBot is connected to:');
-			for ([id, guild] of client.guilds) {
+			client.guilds.cache.forEach((guild) => {
 				console.log(`   Guild Name: ${guild.name} - ID: ${guild.id}`.blue);
-			}
+			});
 		}
 		break;
 	case 'leave':

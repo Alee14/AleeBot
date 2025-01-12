@@ -38,10 +38,6 @@ module.exports.run = async (client, message, args) => {
 			.setColor('#1fd619')
 			.setFooter('- ' + quote.year);
 
-			if (quote.url) {
-				quoteEmbed.setURL(quote.url);
-			}
-
 		await message.reply({ embeds: [quoteEmbed] })
 	} else {
 		message.reply('Cannot find quote, specify the correct quote id.');

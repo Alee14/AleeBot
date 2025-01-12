@@ -50,24 +50,6 @@ module.exports.run = async (client, message) => {
 			});
 		}
 
-		async function imageCheck(message) {
-			const attachment = message.attachments.first();
-			if (attachment) {
-				const fileExtension = attachment.name.split('.').pop().toLowerCase();
-				if (['jpg', 'png', 'jpeg'].includes(fileExtension)) {
-					newAuthorImage = attachment.url.toString(); // Use the attachment's URL directly
-				} else {
-					await dmChannel.send('Invalid file type. Please attach a .jpg or .png image.');
-					return await imageCheck(message);
-				}
-			} else if (msg.content.startsWith('http') && (message.content.endsWith('.jpg') || message.content.endsWith('.jpeg')  || message.content.endsWith('.png'))) {
-				newAuthorImage = msg.content; // Use the provided URL
-			} else {
-				await dmChannel.send('Invalid input. Please provide an image URL or attach an image file.');
-				return await imageCheck(message);
-			}
-		}
-
 		let setupMessage = "Welcome to the AleeBot Quote Setup!\n";
 		setupMessage += "Please follow these rules when submitting quotes:\n";
 		setupMessage += "```1. No offensive content (NSFW, Racism, etc).\n";
@@ -92,7 +74,23 @@ module.exports.run = async (client, message) => {
 
 		collector.on('collect', async (msg) => {
 			if (counter === 2) { // Collecting author image
-				await imageCheck(msg);
+				const attachment = msg.attachments.first();
+				if (attachment) {
+					const fileExtension = attachment.name.split('.').pop().toLowerCase();
+					if (['jpg', 'png', 'jpeg'].includes(fileExtension)) {
+						newAuthorImage = attachment.url.toString(); // Use the attachment's URL directly
+					} else {
+						await dmChannel.send('Invalid file type. Please attach a .jpg or .png image.');
+						collector.stop();
+						return;
+					}
+				} else if (msg.content.startsWith('http') && (msg.content.endsWith('.jpg') || msg.content.endsWith('.jpeg')  || msg.content.endsWith('.png'))) {
+					newAuthorImage = message.content;
+				} else {
+					await dmChannel.send('Invalid input. Please provide an image URL or attach an image file.');
+					collector.stop();
+					return;
+				}
 			}
 
 			if (counter < setupProcess.length) {
@@ -150,7 +148,19 @@ module.exports.run = async (client, message) => {
 						case '📷':
 							await dmChannel.send('You selected the author image. Please provide the image URL or attach an image file.');
 							const imageResponse = await dmChannel.awaitMessages({ filter, max: 1, time: 60000 });
-							await imageCheck(imageResponse.first());
+							const attachment = imageResponse.first().attachments.first();
+							if (attachment) {
+								const fileExtension = attachment.name.split('.').pop().toLowerCase();
+								if (['jpg', 'png', 'jpeg'].includes(fileExtension)) {
+									newAuthorImage = attachment.url.toString(); // Use the attachment's URL directly
+								} else {
+									await dmChannel.send('Invalid file type. Please attach a .jpg or .png image.');
+								}
+							} else if (imageResponse.first().content.startsWith('http') && (imageResponse.first().content.endsWith('.jpg') || imageResponse.first().content.endsWith('.jpeg')  || imageResponse.first().content.endsWith('.png'))) {
+								newAuthorImage = message.content;
+							} else {
+								await dmChannel.send('Invalid input. Please provide an image URL or attach an image file.');
+							}
 							await dmChannel.send('Updated author image.');
 							break;
 						case '🖋️':
@@ -191,7 +201,7 @@ module.exports.run = async (client, message) => {
 			}
 		});
 	} catch (error) {
-		message.author.send('An error occurred while setting up the quote. Please try again.');
+		await message.author.send('An error occurred while setting up the quote. Please rerun the command.');
 		setupUsers.delete(message.author.id);
 		console.error(error);
 	}
