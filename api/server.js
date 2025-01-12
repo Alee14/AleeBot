@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const quotesRouter  = require('./routes/quotes');
+require('dotenv').config()
 
 const app = express();
-const PORT = 3000;
 
 const createServer = () => {
     app.use(cors()); // Allow cross-origin requests
@@ -18,8 +18,8 @@ const createServer = () => {
     });
 
     // Start the server
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+    app.listen(process.env.port, () => {
+        console.log(`Server is running on http://localhost:${process.env.port}`);
     });
 };
 

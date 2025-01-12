@@ -12,4 +12,5 @@ RUN yarn install
 
 COPY . .
 
-ENTRYPOINT ["node", "bot_discord.js", "--beta"]
+ENTRYPOINT ["node", "bot_discord.js"]
+
