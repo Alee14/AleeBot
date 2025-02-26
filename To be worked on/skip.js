@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Skip: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,48 +15,44 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 
 module.exports.run = async (client, message, args, ops) => {
+	const fetched = ops.active.get(message.guild.id);
 
-    let fetched = ops.active.get(message.guild.id);
+	if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
 
-    if (!fetched) return message.reply('Currently, there isn\'t any music playing in this guild.');
+	if (message.member.voiceChannel !== message.guild.me.voiceChannel) return message.reply('Sorry, you are currently not in the same channel as the bot.');
 
-    if (message.member.voiceChannel !== message.guild.me.voiceChannel) return message.reply('Sorry, you are currently not in the same channel as the bot.')
+	const userCount = message.member.voiceChannel.members.size;
 
-    let userCount = message.member.voiceChannel.members.size;
+	const required = Math.ceil(userCount/2);
 
-    let required = Math.ceil(userCount/2);
+	if (!fetched.queue[0].voteSkips) fetched.queue[0].voteSkips = [];
 
-    if (!fetched.queue[0].voteSkips) fetched.queue[0].voteSkips = [];
+	if (fetched.queue[0].voteSkips.includes(message.member.id)) return message.reply(`Sorry, you have already voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`);
 
-    if (fetched.queue[0].voteSkips.includes(message.member.id)) return message.reply(`Sorry, you have already voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`)
+	fetched.queue[0].voteSkips.push(message.member.id);
 
-    fetched.queue[0].voteSkips.push(message.member.id);
+	ops.active.set(message.guild.id, fetched);
 
-    ops.active.set(message.guild.id, fetched);
+	if (fetched.queue[0].voteSkips.length >= required) {
+		message.channel.send('Successfully skipped song!');
 
-    if (fetched.queue[0].voteSkips.length >= required) {
+		return fetched.dispatcher.emit('finish');
+	}
 
-        message.channel.send('Successfully skipped song!');
+	message.channel.send(`Successfully voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`);
+};
 
-        return fetched.dispatcher.emit('finish');
-
-    }
-
-    message.channel.send(`Successfully voted to skip! ${fetched.queue[0].voteSkips.length}/${required} required.`)
-
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'skip',
-    description: 'Skips a music.',
-    usage: 'skip',
-    category: '- Music Commands',
-  };
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'skip',
+	description: 'Skips a music.',
+	usage: 'skip',
+	category: '- Music Commands',
+};

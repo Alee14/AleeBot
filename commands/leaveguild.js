@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   LeaveGuild: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,22 +15,21 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
-    if (!['242775871059001344', message.guild.owner.user.id].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
-    message.channel.send('Alright, I\'m leaving the server now. Bye everyone!')
-    message.guild.leave();
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'leaveguild',
-    description: 'Makes the bot leave the server',
-    usage: 'leaveguild',
-    category: '- Owners Only',
-  };
-  
+	if (!['242775871059001344', message.guild.ownerID].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot or the owner of this guild to use this command.');
+	await message.channel.send('Leaving server. If that\'s a mistake, you can re-invite me');
+	message.guild.leave();
+};
+
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'leaveguild',
+	description: 'Makes the bot leave the server',
+	usage: 'leaveguild',
+	category: '- Owners Only',
+};

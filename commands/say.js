@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Say: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,23 +15,22 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    if (!['242775871059001344',].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot to use this command.');
-    let absay = args.join(" ");
-    message.delete().catch();
-    message.channel.send(absay);
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'say',
-    description: 'You can control AleeBot now!',
-    usage: 'say [context]',
-    category: '- Owners Only',
-  };
-  
+	if (!['242775871059001344'].includes(message.author.id)) return message.reply('Nope! You need the person who created this bot to use this command.');
+	const absay = args.join(' ');
+	message.delete().catch();
+	message.channel.send(absay);
+};
+
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'say',
+	description: 'You can control AleeBot now!',
+	usage: 'say [context]',
+	category: '- Owners Only',
+};

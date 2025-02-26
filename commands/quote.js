@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Quote: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,51 +15,43 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
-module.exports.run = async (client, message) => {
-const Discord = require('discord.js');
+module.exports.run = async (client, message, args) => {
+	const { quote: quoteDB } = require('../models/quote');
+	const { MessageEmbed } = require('discord.js');
+	let quoteID = args[0];
 
-let NewQuote;
+	if (quoteID === undefined) {
+		const quoteList = await quoteDB.findAll({ attributes: ['id'] })
+		const random = crypto.getRandomValues(new Uint32Array(1));
+		quoteID = quoteList[random[0] % quoteList.length].id;
+	}
 
-  function GetNewQuote(quoteNum = -1) {
-    NewQuote = new Discord.RichEmbed();
-  
-    let quo = require('../storage/quotes.json').quotes;
+	const quote = await quoteDB.findOne({ where: { id: quoteID } })
 
-    if (quoteNum == -1) {
-      quoteNum = Math.floor(Math.random() * 1000) % quo.length;
-      quo=quo[quoteNum];
-    }
+	if (quote) {
+		const quoteEmbed = new MessageEmbed()
+			.setAuthor({ name: quote.author, iconURL: quote.authorImage })
+			.setDescription(quote.quote)
+			.setColor('#1fd619')
+			.setFooter(`- ${quote.year}\nSubmitted by ${quote.submitter}`);
 
-    const author = quo.author;
-    const authorImage = quo.authorImage;
-    const quote = quo.quote;
-    const year = quo.year;
-    const url = quo.url;
+		await message.reply({ embeds: [quoteEmbed] })
+	} else {
+		message.reply('Cannot find quote, specify the correct quote id.');
+	}
 
-    NewQuote.setAuthor(author, authorImage);
-    NewQuote.setColor('#1fd619');
-    NewQuote.setDescription(quote);
-    NewQuote.setFooter('- ' + year);
-    NewQuote.setURL(url);
 
-    return NewQuote;
-  }
-
-    const newquote = GetNewQuote();
-    message.reply('Alright, here\'s your quote.')
-    message.channel.send(newquote);
 };
 
 exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'quote',
-    description: 'Tells you quotes',
-    usage: 'quote',
-    category: '- Quote Commands',
-  };
-  
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'quote',
+	description: 'Tells you quotes',
+	usage: 'quote',
+	category: '- Quote Commands',
+};

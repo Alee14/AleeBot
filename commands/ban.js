@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Ban: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,31 +15,31 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    const Discord = require('discord.js');
-    const mreason = args.join(" ").slice(22);
-    if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply("It looks like that you don't have the permissions to ban people.")
-    if (!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) return message.reply('Uhh... I don\'t have permission to ban members.');
-    const member = message.mentions.members.first();
-    if (!member) return message.reply("Uhh... Please mention a member first.");
-    member.ban(`Banned by ${message.author.tag} Reason: ` + mreason);
-    const embed = new Discord.RichEmbed()
-    .setTitle('User Banned!')
-    .setColor('#1fd619')
-    .addField('**User:**', `${member.user.tag}`)
-    .addField('**Reason:**', `\`\`\`${mreason}\`\`\``)
-    await message.channel.send({ embed });
+	const Discord = require('discord.js');
+	const mreason = args.join(' ').slice(22);
+	if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to ban people.');
+	if (!message.guild.members.cache.get(client.user.id).permissions.has('BAN_MEMBERS')) return message.reply('I don\'t have permission to ban members.');
+	const member = message.mentions.members.first();
+	if (!member) return message.reply('Please mention a member first.');
+	await member.ban({ reason: `Banned by ${message.author.tag} for ${mreason}.`});
+	const banEmbed = new Discord.MessageEmbed()
+		.setTitle('User Banned!')
+		.setColor('#1fd619')
+		.addField('**User:**', `${member.user.tag}`)
+		if (mreason) return banEmbed.addField('**Reason:**', `\`\`\`${mreason}\`\`\``);
+	await message.channel.send({embeds: [banEmbed]});
 };
 
 exports.conf = {
-  aliases: [],
-  guildOnly: false,
+	aliases: [],
+	guildOnly: false,
 };
 exports.help = {
-  name: 'ban',
-  description: 'Bans a member',
-  usage: 'ban [user] [reason]',
-  category: '- Moderation Commands',
+	name: 'ban',
+	description: 'Bans a member',
+	usage: 'ban [user] [reason]',
+	category: '- Moderation Commands',
 };

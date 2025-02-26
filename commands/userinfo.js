@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   UserInfo: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,30 +15,29 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message) => {
-   const Discord = require('discord.js');
-   var embed = new Discord.RichEmbed()
-  .setAuthor(message.author.tag, message.author.avatarURL)
-  .setDescription("User Information")
-  .setThumbnail(message.author.avatarURL)
-  .addField("Names", "**Username:** " + message.author.username + "\n**Current Nickname:** " + message.member.displayName)
-  .addField("Identity", `**User ID:** ${message.author.id} `)
-  .addField("Create and Join Times", "**Created At:** " + message.member.user.createdAt.toUTCString() + "\n**Joined Guild At:** " + message.member.joinedAt.toUTCString())
-  .setColor('#1fd619')
-   message.channel.send({embed});
+	const Discord = require('discord.js');
+	const embed = new Discord.MessageEmbed()
+		.setAuthor(message.author.tag, message.author.avatarURL())
+		.setDescription('User Information')
+		.setThumbnail(message.author.avatarURL())
+		.addField('Names', `**Display Name:**  ${message.member.displayName}\n**Username:**  ${message.author.username}\n**Server Nickname:**  ${message.member.displayName}`)
+		.addField('Identity', `**User ID:** ${message.author.id} `)
+		.addField('Create and Join Times', `**Created At:**  ${message.member.user.createdAt.toUTCString()}\n**Joined Guild At:**  ${message.member.joinedAt.toUTCString()}`)
+		.setColor('#1fd619');
+	await message.channel.send({embeds: [embed]});
 
-  };
-  
-  exports.conf = {
-    aliases: ['uinfo'],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'userinfo',
-    description: 'Tells your info.',
-    usage: 'userinfo',
-    category: '- Information Commands',
-  };
-  
+};
+
+exports.conf = {
+	aliases: ['uinfo'],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'userinfo',
+	description: 'Tells your info.',
+	usage: 'userinfo',
+	category: '- Information Commands',
+};

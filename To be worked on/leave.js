@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Leave: Command for AleeBot
- *   Copyright (C) 2018 AleeCorp
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,29 +15,28 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 
 module.exports.run = async (client, message, args) => {
-    if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
+	if (!message.member.voiceChannel) return message.reply('You need a voice channel to perform this action.');
 
-    if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.')
+	if (!message.guild.me.voiceChannel) return message.reply('Error: The bot isn\'t connected to a voice channel.');
 
-    if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
+	if (message.guild.me.voiceChannelID !== message.member.voiceChannelID) return message.reply('Error: You aren\'t connected in the same voice channel as the bot...');
 
-    message.guild.me.voiceChannel.leave();
+	message.guild.me.voiceChannel.leave();
 
-    message.channel.send("Leaving channel...")
+	message.channel.send('Leaving channel...');
+};
 
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'leave',
-    description: 'Leaves voice chat.',
-    usage: 'leave',
-    category: '- Music Commands',
-  };
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'leave',
+	description: 'Leaves voice chat.',
+	usage: 'leave',
+	category: '- Music Commands',
+};

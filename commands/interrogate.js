@@ -1,7 +1,7 @@
-/****************************************
- * 
+/** **************************************
+ *
  *   Interrogate: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,29 +15,28 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-    if (message.guild.id != '243022206437687296') return message.reply ('This is a ACN exclusive command.');
+	if (message.guild.id !== '243022206437687296') return message.reply('This is a Binaryworks exclusive command.');
 
-    if (!message.member.hasPermission('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
-    if (!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
+	if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('It looks like that you don\'t have the permissions to jail members.');
+	if (!message.guild.members.cache.get(client.user.id).permissions.has('MANAGE_ROLES')) return message.reply('Uhh... I don\'t have permission to jail members.');
 
-    const member = message.mentions.members.first();
-    if (!member) return await message.reply('Uhh... Please mention a member first.');
+	const member = message.mentions.members.first();
+	if (!member) return await message.reply('Uhh... Please mention a member first.');
 
-    member.addRole(message.guild.roles.find('name', 'Interrogation'));
-    message.reply(`Alright, I just interrogated ${member.user.tag}.`)
+	member.roles.add(message.guild.roles.cache.get('431973193608200193'));
+	message.reply(`Alright, I just interrogated ${member.user.tag}.`);
 };
 
 exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'interrogate',
-    description: 'Interrogates a member',
-    usage: 'interrogate [user]',
-    category: '- ALP Exclusive Commands',
-  };
-  
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'interrogate',
+	description: 'Interrogates a member',
+	usage: 'interrogate [user]',
+	category: '- ALP Exclusive Commands',
+};

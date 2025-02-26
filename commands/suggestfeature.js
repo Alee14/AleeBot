@@ -1,7 +1,7 @@
 /****************************************
- * 
+ *
  *   SuggestFeature: Command for AleeBot
- *   Copyright (C) 2017-2020 Alee Productions
+ *   Copyright (C) 2017-2021 Alee Productions
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,29 +15,31 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * *************************************/
 module.exports.run = async (client, message, args) => {
-        const { RichEmbed } = require('discord.js');
-        client.channels.find('id', '427495678390960148').send(
-            new RichEmbed()
-            .setColor ('#1fd619')
-            .setTitle('AleeBot Feature Suggestion')
-            .setDescription(`This is an AleeBot feature suggestion from `+ message.author.username +` sending from ${message.guild.name}.`)
-            .addField('Suggestion Contents', args.join(' '))
-         )
-       await message.reply("Your suggestion has been shown to the ALP discord server!")
-   
-  };
-  
-  exports.conf = {
-    aliases: [],
-    guildOnly: false,
-  };
-  exports.help = {
-    name: 'suggestfeature',
-    description: 'Suggest features in AleeBot.',
-    usage: 'suggestfeature [suggestion]',
-    category: '- General Commands',
-  };
-  
+	const { MessageEmbed } = require('discord.js');
+
+	client.channels.cache.get('427495678390960148').send({ embeds: [
+		new MessageEmbed()
+			.setColor('#1fd619')
+			.setTitle('AleeBot Feature Suggestion')
+			.setDescription(`This is an AleeBot feature suggested from ${message.author.username}.`)
+			.addField('Suggestion Contents', args.join(' '))
+			.setFooter(`Sending from ${message.guild.name}`, message.guild.iconURL())]}
+	);
+	await message.reply('Your suggestion has been shown to the Andrew Lee Projects discord server!');
+
+};
+
+exports.conf = {
+	aliases: [],
+	guildOnly: false,
+};
+exports.help = {
+	name: 'suggestfeature',
+	description: 'Suggest features in AleeBot.',
+	usage: 'suggestfeature [suggestion]',
+	category: '- General Commands',
+};
+

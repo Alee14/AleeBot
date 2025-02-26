@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PendingQuotes } from '../components/Quotes';
+
+---
+
+<Layout>
+	<div class="container">
+		<h1 id="version">AleeBot</h1>
+		<PendingQuotes client:load />
+	</div>
+</Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		font-family: "Exo 2", sans-serif;
+	}
+
+	.container {
+		margin: 2em;
+	}
+
+</style>
+
+<script>
+	import { API_URL } from "astro:env/client"
+	document.addEventListener('DOMContentLoaded', async () => {
+		try {
+			const version = await fetch(`${API_URL}/api/version`).then((res) => res.json());
+			const versionElement = document.getElementById('version');
+			if (versionElement) {
+				versionElement.textContent = `AleeBot ${version}`;
+			} else {
+				console.error('Element with ID "version" not found.');
+			}
+		} catch (e) {
+			console.error('Failed to fetch version:', e);
+		}
+	});
+</script>
