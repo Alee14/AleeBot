@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import '../styles/Quote.css'
+import { API_URL } from "astro:env/client";
 
 export function PendingQuotes() {
     const [quotes, setQuotes] = useState([]);
 
     const fetchQuotes = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/pending-quotes');
+            const response = await fetch(`${API_URL}/api/pending-quotes`);
             const data = await response.json();
             setQuotes(data);
         } catch (error) {
@@ -20,7 +21,7 @@ export function PendingQuotes() {
 
     const approveQuote = async (id) => {
         try {
-            const response = await fetch('http://localhost:3000/api/approve-quote', {
+            const response = await fetch(`${API_URL}/api/approve-quote`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ export function PendingQuotes() {
 
     const rejectQuote = async (id) => {
         try {
-            const response = await fetch('http://localhost:3000/api/reject-quote', {
+            const response = await fetch(`${API_URL}/api/reject-quote`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

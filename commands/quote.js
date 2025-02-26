@@ -30,13 +30,12 @@ module.exports.run = async (client, message, args) => {
 
 	const quote = await quoteDB.findOne({ where: { id: quoteID } })
 
-
 	if (quote) {
 		const quoteEmbed = new MessageEmbed()
 			.setAuthor({ name: quote.author, iconURL: quote.authorImage })
 			.setDescription(quote.quote)
 			.setColor('#1fd619')
-			.setFooter('- ' + quote.year);
+			.setFooter(`- ${quote.year}\nSubmitted by ${quote.submitter}`);
 
 		await message.reply({ embeds: [quoteEmbed] })
 	} else {

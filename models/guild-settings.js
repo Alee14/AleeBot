@@ -3,22 +3,27 @@ const sequelize = require('../utils/sequelize');
 
 const guildSettings = sequelize.define('guild-settings', {
     id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    guildID: {
         type: Sequelize.STRING,
-        primaryKey: true
+        allowNull: false
     },
     logChannelID: {
         type: Sequelize.STRING,
         allowNull: true
-    },
-    autoRoleToggle: {
-        type: Sequelize.BOOLEAN,
-        allowNull: true
-    },
-    autoRoleID: {
-        type: Sequelize.STRING,
-        allowNull: true
     }
+    // qotdChannelID: {
+    //     type: Sequelize.STRING,
+    //     allowNull: true
+    // },
+    // qotdToggle: {
+    //     type: Sequelize.BOOLEAN,
+    //     allowNull: true
+    // }
 
 })
 
-module.exports = guildSettings
+module.exports = { guildSettings }

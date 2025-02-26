@@ -28,9 +28,10 @@ import { PendingQuotes } from '../components/Quotes';
 </style>
 
 <script>
+	import { API_URL } from "astro:env/client"
 	document.addEventListener('DOMContentLoaded', async () => {
 		try {
-			const version = await fetch('http://localhost:3000/api/version').then((res) => res.json());
+			const version = await fetch(`${API_URL}/api/version`).then((res) => res.json());
 			const versionElement = document.getElementById('version');
 			if (versionElement) {
 				versionElement.textContent = `AleeBot ${version}`;

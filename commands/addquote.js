@@ -85,7 +85,7 @@ module.exports.run = async (client, message) => {
 						return;
 					}
 				} else if (msg.content.startsWith('http') && (msg.content.endsWith('.jpg') || msg.content.endsWith('.jpeg')  || msg.content.endsWith('.png'))) {
-					newAuthorImage = message.content;
+					newAuthorImage = msg.content;
 				} else {
 					await dmChannel.send('Invalid input. Please provide an image URL or attach an image file.');
 					collector.stop();
@@ -157,7 +157,7 @@ module.exports.run = async (client, message) => {
 									await dmChannel.send('Invalid file type. Please attach a .jpg or .png image.');
 								}
 							} else if (imageResponse.first().content.startsWith('http') && (imageResponse.first().content.endsWith('.jpg') || imageResponse.first().content.endsWith('.jpeg')  || imageResponse.first().content.endsWith('.png'))) {
-								newAuthorImage = message.content;
+								newAuthorImage = imageResponse.first().content;
 							} else {
 								await dmChannel.send('Invalid input. Please provide an image URL or attach an image file.');
 							}

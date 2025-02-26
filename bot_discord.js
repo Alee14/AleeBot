@@ -33,12 +33,15 @@ const colors = require('colors');
 //const i18next = require('i18next');
 const settings = require('./storage/settings.json');
 const { activity } = require('./storage/activities');
-const createServer = require("./api/server");
+const apiServer = require("./api/server");
 const active = new Map();
 let autoRole = true;
 let readyEmbedMessage = true;
+
+const { guildSettings } = require('./models/guild-settings');
+
 const ownerID = '242775871059001344';
-let logChannel = '318874545593384970';
+//let logChannel = '318874545593384970';
 let statusChannelID = '606602551634296968';
 let serverWhitelist = "243022206437687296";
 let roleWhitelist = "657426918416580614";
@@ -218,7 +221,7 @@ client.on('ready', async () => {
 
 	botPresence();
 
-	createServer();
+	apiServer(client);
 
 	setInterval(function() {
 	botPresence();
@@ -238,8 +241,10 @@ client.on('ready', async () => {
 	rl.prompt();
 });
 
-client.on('guildMemberAdd', (member) => {
-	if (member.guild.id !== serverWhitelist) return;
+client.on('guildMemberAdd', async (member) => {
+	const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
+	if (!guildSetting || !guildSetting.logChannelID) return;
+
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has joined this server!`)
@@ -249,7 +254,7 @@ client.on('guildMemberAdd', (member) => {
 		.setColor('#4bff31')
 		.setTimestamp();
 
-	let guildMember = client.channels.cache.get(logChannel);
+	let guildMember = client.channels.cache.get(guildSetting.logChannelID);
 	if (!guildMember) return;
 
 	guildMember.send({ embeds: [logEmbed]});
@@ -261,8 +266,10 @@ client.on('guildMemberAdd', (member) => {
 	}
 });
 
-client.on('guildMemberRemove', (member) => {
-	if (member.guild.id !== serverWhitelist) return;
+client.on('guildMemberRemove', async (member) => {
+	const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
+	if (!guildSetting || !guildSetting.logChannelID) return;
+
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A user has left this server!`)
@@ -271,7 +278,7 @@ client.on('guildMemberRemove', (member) => {
 		.setColor('#ec2727')
 		.setTimestamp();
 
-	let guildMember = client.channels.cache.get(logChannel);
+	let guildMember = client.channels.cache.get(guildSetting.logChannelID);
 	if (!guildMember) return;
 
 	guildMember.send({ embeds: [logEmbed]});
@@ -279,7 +286,10 @@ client.on('guildMemberRemove', (member) => {
 
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-	if (!oldMessage.guild || oldMessage.guild.id !== serverWhitelist) return;
+	const guildSetting = await guildSettings.findOne({ where: { guildID: oldMessage.guild.id } });
+	if (!oldMessage.guild || !guildSetting || !guildSetting.logChannelID) return;
+
+	//if (!oldMessage.guild || oldMessage.guild.id !== serverWhitelist) return;
 	if (oldMessage.content === newMessage.content) {
 		return;
 	}
@@ -292,14 +302,18 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 		.setTimestamp()
 		.setFooter(`Author ID: ${oldMessage.author.id}`);
 
-	let editMessage = client.channels.cache.get(logChannel);
+	let editMessage = client.channels.cache.get(guildSetting.logChannelID);
 	if (!editMessage) return;
 
 	editMessage.send({ embeds: [logEmbed]});
 });
 
-client.on('messageDelete', (message) => {
-	if (message.guild.id !== serverWhitelist) return;
+client.on('messageDelete', async (message) => {
+	if (!message.content) return;
+
+	const guildSetting = await guildSettings.findOne({ where: { guildID: message.guild.id } });
+	if (!guildSetting || !guildSetting.logChannelID) return;
+
 	const logEmbed = new Discord.MessageEmbed()
 		.setAuthor('AleeBot Logging', client.user.avatarURL())
 		.setDescription(`A message from ${message.author.username} was deleted in <#${message.channel.id}>`)
@@ -308,43 +322,47 @@ client.on('messageDelete', (message) => {
 		.setTimestamp()
 		.setFooter(`Author ID: ${message.author.id}`);
 
-	let deleteMessage = client.channels.cache.get(logChannel);
+	let deleteMessage = client.channels.cache.get(guildSetting.logChannelID);
 	if (!deleteMessage) return;
 
 	deleteMessage.send({ embeds: [logEmbed]});
 });
 
-client.on('guildBanAdd', (guild, user) => {
-	if (guild.id !== serverWhitelist) return;
-	const logEmbed = new Discord.MessageEmbed()
-		.setAuthor('AleeBot Logging', client.user.avatarURL())
-		.setDescription(`This user got banned from ${guild.name}`)
-		.addField('User:', `${user.tag}`)
-		.addField('User ID:', `${user.id}`)
-		.setColor('#ff021b')
-		.setTimestamp();
-
-	let banMessage = client.channels.cache.get(logChannel);
-	if (!banMessage) return;
-
-	banMessage.send({ embeds: [logEmbed]});
-});
-
-client.on('guildBanRemove', (guild, user) => {
-	if (guild.id !== serverWhitelist) return;
-	const logEmbed = new Discord.MessageEmbed()
-		.setAuthor('AleeBot Logging', client.user.avatarURL())
-		.setDescription(`This user got unbanned from ${guild.name}`)
-		.addField('User:', `${user.tag}`)
-		.addField('User ID:', `${user.id}`)
-		.setColor('#ff021b')
-		.setTimestamp();
-
-	let banMessage = client.channels.cache.get(logChannel);
-	if (!banMessage) return;
-
-	banMessage.send({ embeds: [logEmbed]});
-});
+// client.on('guildBanAdd', async (guild, user) => {
+// 	const guildSetting = await guildSettings.findOne({ where: { guildID: guild.id } });
+// 	if (!guildSetting || !guildSetting.logChannelID) return;
+//
+// 	const logEmbed = new Discord.MessageEmbed()
+// 		.setAuthor('AleeBot Logging', client.user.avatarURL())
+// 		.setDescription(`This user got banned from ${guild.name}`)
+// 		.addField('User:', `${user.tag}`)
+// 		.addField('User ID:', `${user.id}`)
+// 		.setColor('#ff021b')
+// 		.setTimestamp();
+//
+// 	let banMessage = client.channels.cache.get(guildSetting.logChannelID);
+// 	if (!banMessage) return;
+//
+// 	banMessage.send({ embeds: [logEmbed]});
+// });
+//
+// client.on('guildBanRemove', async (guild, user) => {
+// 	const guildSetting = await guildSettings.findOne({ where: { guildID: guild.id } });
+// 	if (!guildSetting || !guildSetting.logChannelID) return;
+//
+// 	const logEmbed = new Discord.MessageEmbed()
+// 		.setAuthor('AleeBot Logging', client.user.avatarURL())
+// 		.setDescription(`This user got unbanned from ${guild.name}`)
+// 		.addField('User:', `${user.tag}`)
+// 		.addField('User ID:', `${user.id}`)
+// 		.setColor('#ff021b')
+// 		.setTimestamp();
+//
+// 	let banMessage = client.channels.cache.get(guildSetting.logChannelID);
+// 	if (!banMessage) return;
+//
+// 	banMessage.send({ embeds: [logEmbed]});
+// });
 
 client.on('guildCreate', (guild) => {
 	log(`[i] New guild joined: ${guild.name} (${guild.id}). This guild has ${guild.memberCount} members!`.blue);
