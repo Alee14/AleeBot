@@ -1,19 +1,2 @@
+.idea/
 
-node_modules/
-
-tokens\.json
-
-ffmpeg.exe
-
-ffplay.exe
-
-ffprobe.exe
-
-.directory
-
-.vs/slnx.sqlite
-.vs/slnx.sqlite-journal
-json.sqlite
-package-lock.json
-database.sqlite
-.env

@@ -1,0 +1,21 @@
+{
+  "name": "aleebot",
+  "version": "4.0.0",
+  "main": "src/bot.js",
+  "type": "module",
+  "author": "Andrew Lee",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "node src/bot.js --beta",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "discord.js": "^14.18.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0"
+  }
+}
