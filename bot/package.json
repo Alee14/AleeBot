@@ -10,10 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "discord.js": "^14.18.0"
+    "cors": "^2.8.5",
+    "discord.js": "^14.18.0",
+    "express": "^4.21.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@stylistic/eslint-plugin-js": "^4.1.0",
     "dotenv": "^16.4.7",
     "eslint": "^9.21.0",
     "globals": "^16.0.0"

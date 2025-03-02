@@ -1,4 +1,4 @@
-import { Events } from "discord.js";
+import { Events } from 'discord.js';
 import { readFileSync } from 'node:fs';
 
 import { activities as activity } from '../storage/activities.js';
@@ -28,9 +28,9 @@ export default {
         botActivity(client);
 
         setInterval(function() {
-            botActivity();
+            botActivity(client);
         }, 200000);
 
 
     }
-}
+};

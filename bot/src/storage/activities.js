@@ -1,5 +1,5 @@
-import { version as discordVersion } from "discord.js";
-import { readFileSync } from "node:fs";
+import { version as discordVersion } from 'discord.js';
+import { readFileSync } from 'node:fs';
 const { version: abVersion } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 

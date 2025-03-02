@@ -1,4 +1,4 @@
-import { Events, MessageFlags } from "discord.js";
+import { Events, MessageFlags } from 'discord.js';
 
 export default {
     name: Events.InteractionCreate,
@@ -13,7 +13,7 @@ export default {
             await command.execute(interaction, client);
         } catch (e) {
             console.error(e);
-            await interaction.reply({ content: 'Something went wrong.', flags: MessageFlags.Ephemeral });
+            await interaction.reply({ content: `Something went wrong. Send the following error message to Alee:\n\`\`\`${e}\`\`\``, flags: MessageFlags.Ephemeral });
         }
     }
-}
+};
