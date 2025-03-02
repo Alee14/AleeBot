@@ -16,6 +16,23 @@ router.get('/pending-quotes', async (req, res) => {
     }
 });
 
+router.post('/add-quote', async (req, res) => {
+    const { author, authorImage, quote, year, submitterID } = req.body;
+    try {
+        await approvedQuote.create({
+            author: author,
+            authorImage: authorImage,
+            quote: quote,
+            year: year,
+            submitter: submitterID
+        });
+        res.status(200).send('Added a new quote');
+    } catch (error) {
+        console.error('Something went wrong:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 router.post('/approve-quote', async (req, res) => {
     const { id } = req.body;
     try {

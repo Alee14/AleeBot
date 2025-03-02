@@ -28,14 +28,16 @@ module.exports.run = async (client, message, args) => {
 		quoteID = quoteList[random[0] % quoteList.length].id;
 	}
 
-	const quote = await quoteDB.findOne({ where: { id: quoteID } })
+	const quote = await quoteDB.findOne({ where: { id: quoteID } });
+
+	let userSubmitter = await client.users.fetch(quote.submitter);
 
 	if (quote) {
 		const quoteEmbed = new MessageEmbed()
 			.setAuthor({ name: quote.author, iconURL: quote.authorImage })
 			.setDescription(quote.quote)
 			.setColor('#1fd619')
-			.setFooter(`- ${quote.year}\nSubmitted by ${quote.submitter}`);
+			.setFooter(`- ${quote.year}\nSubmitted by ${userSubmitter.username}`);
 
 		await message.reply({ embeds: [quoteEmbed] })
 	} else {

@@ -1,6 +1,6 @@
 {
   "name": "aleebot",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "description": "A chat bot for discord written in discord.js.",
   "main": "bot_discord.js",
   "scripts": {
