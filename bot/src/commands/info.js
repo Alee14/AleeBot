@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder, version } from 'discord.js';
 import { hostname, platform, release } from 'os';
+import { abEmbedColour } from '../storage/consts.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -15,7 +16,7 @@ export default {
                 { name: 'OS Platform: ', value: platform(), inline: true },
                 { name: 'OS Version: ', value: release(), inline: true }
             )
-            .setColor('#1fd619');
+            .setColor(abEmbedColour);
         return await interaction.reply({ embeds: [embed] });
     }
 };

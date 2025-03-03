@@ -6,6 +6,7 @@ import {
     ButtonStyle
 } from 'discord.js';
 import { readFileSync } from 'node:fs';
+import { abEmbedColour } from '../storage/consts.js';
 
 const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
@@ -18,11 +19,12 @@ export default {
             .setAuthor({ name: `AleeBot ${version}`, iconURL: interaction.client.user.avatarURL() })
             .addFields(
                 { name: 'About AleeBot', value: 'AleeBot is an all-in-one bot that\'s made from the Discord.JS API!' },
+                { name: 'Servers', value: `${interaction.client.guilds.cache.size}` },
                 { name: 'License', value: 'GNU General Public License v3.0' },
                 { name: 'Contributors', value: '- <@297201585090723841> (Uptime command from 2.x)' }
             )
             .setFooter({ text: '© Copyright 2017-2025 Andrew Lee Projects' })
-            .setColor('#1fd619');
+            .setColor(abEmbedColour);
 
         let Buttons = new ActionRowBuilder()
             .addComponents(

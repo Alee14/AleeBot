@@ -2,7 +2,7 @@ import { Events, MessageFlags } from 'discord.js';
 
 export default {
     name: Events.InteractionCreate,
-    async execute(interaction, client) {
+    async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
@@ -10,10 +10,14 @@ export default {
         if (!command) return;
 
         try {
-            await command.execute(interaction, client);
+            await command.execute(interaction);
         } catch (e) {
-            console.error(e);
-            await interaction.reply({ content: `Something went wrong. Send the following error message to Alee:\n\`\`\`${e}\`\`\``, flags: MessageFlags.Ephemeral });
+            console.log(e);
+            if (interaction.replied || interaction.deferred) {
+                await interaction.followUp({ content: `Something went wrong. The following error message:\n\`\`\`${e}\`\`\``, flags: MessageFlags.Ephemeral });
+            } else {
+                await interaction.reply({ content: `Something went wrong. The following error message:\n\`\`\`${e}\`\`\``, flags: MessageFlags.Ephemeral });
+            }
         }
     }
 };

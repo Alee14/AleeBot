@@ -2,12 +2,12 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import 'dotenv/config';
 import { event } from './handlers/event.js';
 import { command } from './handlers/command.js';
-import { apiServer } from '../api/server.js';
+import { apiServer } from './api/server.js';
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-command(client).then(() => console.log('[i] Command module loaded'));
-event(client).then(() => console.log('[i] Event module loaded'));
+command(client).then(() => console.log('[>] Command module loaded'));
+event(client).then(() => console.log('[>] Event module loaded'));
 apiServer(client);
 
 if (process.argv.indexOf('--beta') === -1) {
