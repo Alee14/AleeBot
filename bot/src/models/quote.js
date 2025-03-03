@@ -28,7 +28,7 @@ export const quote = sequelize.define('quotes', {
         allowNull: false
     }
 
-})
+});
 
 export const pendingQuote = sequelize.define('pending-quotes', {
     id: {
