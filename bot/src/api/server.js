@@ -4,11 +4,15 @@ import cors from 'cors';
 import 'dotenv/config';
 import { readFileSync } from 'node:fs';
 
+import { quoteRouter } from './routes/quotes.js';
+
 const app = express();
 
 export const apiServer = (client) => {
     app.use(cors()); // Allow cross-origin requests
     app.use(express.json());
+
+    app.use('/api', quoteRouter);
 
     app.get('/api/version', (req, res) => {
         const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));

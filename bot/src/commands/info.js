@@ -7,7 +7,7 @@ export default {
         .setName('info')
         .setDescription('Shows information about the host.'),
     async execute(interaction) {
-        const embed = new EmbedBuilder()
+        const hostEmbed = new EmbedBuilder()
             .setTitle('Information on AleeBot\'s Host')
             .addFields(
                 { name: 'OS Hostname: ', value: hostname(), inline: true },
@@ -17,6 +17,6 @@ export default {
                 { name: 'OS Version: ', value: release(), inline: true }
             )
             .setColor(abEmbedColour);
-        return await interaction.reply({ embeds: [embed] });
+        return await interaction.reply({ embeds: [hostEmbed] });
     }
 };

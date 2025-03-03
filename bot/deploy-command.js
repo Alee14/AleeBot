@@ -10,7 +10,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
-const rest = new REST().setToken(process.env.abbtoken);
+const rest = new REST().setToken(process.env.token);
 
 // and deploy your commands!
 (async() => {

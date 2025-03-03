@@ -59,12 +59,12 @@ const activities = [
     { name: 'Pocket Gakusei', type: 0 },
     { name: 'Hidden Heroes', type: 0 },
     { name: 'Skybreakers', type: 0 },
-    { name: 'Always Running', type: 0 },
-    { name: 'Only Up', type: 0 },
-    { name: 'Trade', type: 0 },
-    { name: 'Breeze', type: 0 },
-    { name: 'Steady', type: 0 },
-    { name: 'Bluejay', type: 0 },
+    { name: 'Always Running', type: 2 },
+    { name: 'Only Up', type: 2 },
+    { name: 'Trade', type: 2 },
+    { name: 'Breeze', type: 2 },
+    { name: 'Steady', type: 2 },
+    { name: 'Bluejay', type: 2 },
     { name: 'Exposing TAS-Corp', type: 4 },
     { name: 'Fighting Evelyn Claythorne', type: 4 },
     { name: 'Frying Dr. Sheridan', type: 4 },
@@ -95,6 +95,7 @@ const activities = [
     { name: 'Linux, but actually GNU/Linux', type: 4 },
     { name: 'Debloating my ThinkPad', type: 4 },
     { name: 'Turbotastic!', type: 4 },
+    { name: 'Artemis', type: 0 },
     { name: `Now running on Discord.JS ${discordVersion}!`, type: 4 }
 ];
 

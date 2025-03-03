@@ -1,8 +1,9 @@
-import { Events } from 'discord.js';
+import { EmbedBuilder, Events, version } from 'discord.js';
 import { readFileSync } from 'node:fs';
 
 import { activities } from '../storage/activities.js';
-const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
+import { readyMsg, abEmbedColour } from '../storage/consts.js';
+const { version: abVersion } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 function botActivity(client) {
     const activity = activities[Math.floor(Math.random() * activities.length)];
@@ -25,9 +26,26 @@ export default {
         console.log('[>] AleeBot is now ready!');
         console.log(`[i] Logged in as ${client.user.tag}`);
         console.log(`[i] Bot ID: ${client.user.id}`);
-        console.log(`[i] Running version ${version} | Serving in ${client.guilds.cache.size} guilds`);
+        console.log(`[i] Running version ${abVersion} | Serving in ${client.guilds.cache.size} guilds`);
 
         botActivity(client);
+
+        if (readyMsg) {
+            const readyEmbed = new EmbedBuilder()
+                .setAuthor({ name: 'AleeBot Status', iconURL: client.user.avatarURL() })
+                .setDescription('AleeBot has started')
+                .addFields(
+                    { name: 'Version', value: `${abVersion}`, inline: true },
+                    { name: 'Node.JS Version', value: `${process.versions.node}`, inline: true },
+                    { name: 'Discord.JS Version', value: `${version}`, inline: true }
+                )
+                .setColor(abEmbedColour);
+
+
+            let statusChannel = client.channels.cache.get(process.env.statusChannelID);
+            if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
+            statusChannel.send({ embeds: [readyEmbed]});
+        }
 
         setInterval(function() {
             botActivity(client);

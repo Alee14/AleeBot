@@ -27,7 +27,7 @@ export default {
         ];
 
         return await interaction.reply(
-            `<@${interaction.user.id}> asked:\n**${question}**\nMy answer:\n**${answers[Math.floor(Math.random() * answers.length)]}**`
+            `**${interaction.user.displayName}** asked:\n**${question}**\nMy answer:\n**${answers[Math.floor(Math.random() * answers.length)]}**`
         );
     }
 };

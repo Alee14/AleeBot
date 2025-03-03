@@ -16,6 +16,6 @@ export default {
                 { name: 'Create and Join Times', value: `**Created At:**  ${interaction.member.user.createdAt.toUTCString()}\n**Joined Guild At:**  ${interaction.member.joinedAt.toUTCString()}`}
             )
             .setColor(abEmbedColour);
-        return await interaction.reply({embeds: [userEmbed]});
+        return await interaction.reply({ embeds: [userEmbed] });
     }
 };
