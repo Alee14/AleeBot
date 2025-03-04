@@ -7,6 +7,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "start": "node src/bot.js",
+    "dev": "nodemon src/bot.js",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@stylistic/eslint-plugin-js": "^4.1.0",
     "dotenv": "^16.4.7",
     "eslint": "^9.21.0",
-    "globals": "^16.0.0"
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.9"
   }
 }

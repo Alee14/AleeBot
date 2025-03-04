@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
+import { SlashCommandBuilder, PermissionFlagsBits, MessageFlags } from 'discord.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -12,8 +12,7 @@ export default {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
     async execute(interaction) {
         const amount = interaction.options.getNumber('amount');
-
-        if (amount > 100) return interaction.reply('Put a number less than 100.');
+        if (amount > 100) return interaction.reply({ content: 'Put a number less than 100.', flags: MessageFlags.Ephemeral });
 
         return await interaction.channel.bulkDelete(amount)
             .then( (messages) => interaction.reply(`Deleted ${messages.size} messages.`));

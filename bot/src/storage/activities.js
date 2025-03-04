@@ -2,8 +2,7 @@ import { version as discordVersion } from 'discord.js';
 import { readFileSync } from 'node:fs';
 const { version: abVersion } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
-
-const activities = [
+export const activities = [
     { name: `AleeBot ${abVersion}`, type: 4 },
     { name: 'Coding bytes', type: 4 },
     { name: 'Drawing shapes', type: 4 },
@@ -96,7 +95,6 @@ const activities = [
     { name: 'Debloating my ThinkPad', type: 4 },
     { name: 'Turbotastic!', type: 4 },
     { name: 'Artemis', type: 0 },
+    { name: 'The Beat 92.5 - Montreal\'s Perfect Mix', type: 2 },
     { name: `Now running on Discord.JS ${discordVersion}!`, type: 4 }
 ];
-
-export { activities };

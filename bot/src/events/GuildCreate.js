@@ -13,12 +13,11 @@ export default {
                 { name: 'Server ID:', value: `${guild.id}`, inline: true },
                 { name: 'Members', value: `${guild.memberCount}`, inline: true }
             )
-
             .setColor(abEmbedColour)
             .setFooter({ text: `We now run on ${guild.client.guilds.cache.size} guilds.` });
 
         let statusChannel = guild.client.channels.cache.get(process.env.statusChannelID);
         if (!statusChannel) return;
-        statusChannel.send({ embeds: [logEmbed]});
+        await statusChannel.send({ embeds: [logEmbed]});
     }
 };

@@ -22,7 +22,7 @@ function botActivity(client) {
 export default {
     name: Events.ClientReady,
     once: true,
-    execute(client) {
+    async execute(client) {
         console.log('[>] AleeBot is now ready!');
         console.log(`[i] Logged in as ${client.user.tag}`);
         console.log(`[i] Bot ID: ${client.user.id}`);
@@ -44,7 +44,7 @@ export default {
 
             let statusChannel = client.channels.cache.get(process.env.statusChannelID);
             if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-            statusChannel.send({ embeds: [readyEmbed]});
+            await statusChannel.send({ embeds: [readyEmbed]});
         }
 
         setInterval(function() {
