@@ -9,7 +9,7 @@ export default {
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
-            .setDescription('A user has joined this server!')
+            .setDescription('A user has left this server!')
             .addFields(
                 { name: 'Username: ', value: `${member.user.tag}`, inline: true },
                 { name: 'User ID: ', value: `${member.id}`, inline: true },

@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node src/bot.js",
     "dev": "nodemon src/bot.js",
+    "deploy": "node deploy-command.js",
     "lint": "eslint ."
   },
   "dependencies": {

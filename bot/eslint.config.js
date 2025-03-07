@@ -20,7 +20,8 @@ export default [
             '@stylistic/js/quotes': ['error', 'single'],
             '@stylistic/js/semi-style': ['error', 'last'],
             '@stylistic/js/semi': ['error', 'always'],
-            '@stylistic/js/indent': ['error', 4]
+            '@stylistic/js/indent': ['error', 4],
+            'require-await': 'error'
         }
     },
     pluginJs.configs.recommended,

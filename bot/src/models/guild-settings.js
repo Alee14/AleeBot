@@ -1,4 +1,4 @@
-import { INTEGER, STRING } from 'sequelize';
+import { INTEGER, STRING, BOOLEAN } from 'sequelize';
 import { sequelize } from '../utils/sequelize.js';
 
 export const guildSettings = sequelize.define('guild-settings', {
@@ -14,14 +14,22 @@ export const guildSettings = sequelize.define('guild-settings', {
     logChannelID: {
         type: STRING,
         allowNull: true
-    }
-    // qotdChannelID: {
-    //     type: Sequelize.STRING,
-    //     allowNull: true
-    // },
-    // qotdToggle: {
-    //     type: Sequelize.BOOLEAN,
-    //     allowNull: true
-    // }
+    },
+    suggestionsChannelID: {
+        type: STRING,
+        allowNull: true
+    },
+    qotdChannelID: {
+        type: STRING,
+        allowNull: true
+    },
+    qotdToggle: {
+        type: BOOLEAN,
+        allowNull: true
+    },
+    ollamaEnabled: {
+        type: BOOLEAN,
+        allowNull: true
+    },
 
 });

@@ -23,7 +23,7 @@ export default {
                 { name: 'License', value: 'GNU General Public License v3.0' },
                 { name: 'Contributors', value: '- <@297201585090723841> (Uptime command from 2.x)' }
             )
-            .setFooter({ text: '© Copyright 2017-2025 Andrew Lee Projects' })
+            .setFooter({ text: '© Copyright 2017-2025 Andrew Lee & contributors' })
             .setColor(abEmbedColour);
 
         let Buttons = new ActionRowBuilder()

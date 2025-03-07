@@ -28,7 +28,7 @@ export default {
         console.log(`[i] Bot ID: ${client.user.id}`);
         console.log(`[i] Running version ${abVersion} | Serving in ${client.guilds.cache.size} guilds`);
 
-        botActivity(client);
+        await botActivity(client);
 
         if (readyMsg) {
             const readyEmbed = new EmbedBuilder()
@@ -40,7 +40,6 @@ export default {
                     { name: 'Discord.JS Version', value: `${version}`, inline: true }
                 )
                 .setColor(abEmbedColour);
-
 
             let statusChannel = client.channels.cache.get(process.env.statusChannelID);
             if (!statusChannel) return console.error('The status channel does not exist! Skipping.');

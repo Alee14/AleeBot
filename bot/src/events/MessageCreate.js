@@ -1,6 +1,7 @@
 import { Events } from 'discord.js';
 import { ollama } from '../utils/ollama.js';
-import { ollamaEnabled, ollamaModel } from '../storage/consts.js';
+import { ollamaGlobal, ollamaModel } from '../storage/consts.js';
+import { guildSettings } from '../models/guild-settings.js';
 
 export default {
     name: Events.MessageCreate,
@@ -9,10 +10,13 @@ export default {
         if (msg.author.bot) return;
         if (!msg.guild) return;
 
+        const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
+
         const args = msg.content.slice(`<@${msg.client.user.id}>`.length).trim();
 
         if (msg.mentions.has(msg.client.user)) {
-            if (!ollamaEnabled) return msg.reply('Sorry, this feature has been turned off.');
+            if (!guildSetting.ollamaEnabled) return;
+            if (!ollamaGlobal) return msg.reply('Sorry, this feature has been turned off.');
             if (!args) return msg.reply('Sorry? What was that?');
 
             try {
@@ -35,7 +39,7 @@ export default {
 
             } catch (err) {
                 console.error(err);
-                await msg.reply('Something went wrong.');
+                await msg.reply(`Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`${err.stack}\`\`\``);
             }
         }
     }
