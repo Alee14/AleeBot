@@ -3,23 +3,23 @@ import { guildSettings } from '../models/guild-settings.js';
 
 export default {
     name: Events.GuildBanRemove,
-    async execute(guild, user) {
-        const guildSetting = await guildSettings.findOne({ where: { guildID: guild.id } });
+    async execute(ban) {
+        const guildSetting = await guildSettings.findOne({ where: { guildID: ban.guild.id } });
         if (!guildSetting || !guildSetting.logChannelID) return;
 
         const logEmbed = new EmbedBuilder()
-            .setAuthor({ name: 'AleeBot Logging', iconURL: guild.client.user.avatarURL() })
-            .setDescription(`This user got unbanned from ${guild.name}`)
+            .setAuthor({ name: 'AleeBot Logging', iconURL: ban.guild.client.user.avatarURL() })
+            .setDescription('This user got unbanned from this server.')
             .addFields(
-                { name: 'User:', value: `${user.tag}` },
-                { name: 'User ID:', value: `${user.id}`}
+                { name: 'User:', value: `${ban.user.username}` },
+                { name: 'User ID:', value: `${ban.user.id}`}
             )
             .setColor('#ff021b')
             .setTimestamp();
 
-        let banMessage = guild.client.channels.cache.get(guildSetting.logChannelID);
+        let banMessage = ban.guild.client.channels.cache.get(guildSetting.logChannelID);
         if (!banMessage) return;
 
-        await banMessage.send({ embeds: [logEmbed]});
+        await banMessage.send({ embeds: [logEmbed] });
     }
 };

@@ -24,6 +24,6 @@ export default {
 
         let statusChannel = guild.client.channels.cache.get(process.env.statusChannelID);
         if (!statusChannel) return;
-        await statusChannel.send({ embeds: [logEmbed]});
+        await statusChannel.send({ embeds: [logEmbed] });
     }
 };

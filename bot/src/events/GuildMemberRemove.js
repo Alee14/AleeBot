@@ -11,7 +11,7 @@ export default {
             .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
             .setDescription('A user has left this server!')
             .addFields(
-                { name: 'Username: ', value: `${member.user.tag}`, inline: true },
+                { name: 'Username: ', value: `${member.user.username}`, inline: true },
                 { name: 'User ID: ', value: `${member.id}`, inline: true },
             )
             .setColor('#ec2727')
@@ -20,6 +20,6 @@ export default {
         let guildMember = member.client.channels.cache.get(guildSetting.logChannelID);
         if (!guildMember) return;
 
-        await guildMember.send({ embeds: [logEmbed]});
+        await guildMember.send({ embeds: [logEmbed] });
     }
 };

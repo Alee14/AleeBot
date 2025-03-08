@@ -110,6 +110,8 @@ export default {
             if (!quoteID) {
                 const quoteList = await quoteDB.findAll({ attributes: ['id'] });
                 const random = crypto.getRandomValues(new Uint32Array(1));
+
+                if (quoteList.length === 0) return await interaction.reply({ content: 'No quotes are currently in the database. You can add one by doing `/quote add`.', flags: MessageFlags.Ephemeral });
                 quoteID = quoteList[random[0] % quoteList.length].id;
             }
 

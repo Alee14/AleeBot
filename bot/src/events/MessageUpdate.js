@@ -10,18 +10,18 @@ export default {
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: msg.client.user.avatarURL() })
-            .setDescription(`A message from ${msg.author.username} was edited in <#${msg.channel.id}>`)
+            .setDescription(`A message from ${msg.author.username} was edited in ${msg.channel}`)
             .addFields(
                 { name: 'Before: ', value: `\`\`\`${msg.content}\`\`\`` },
                 { name: 'After: ', value: `\`\`\`${newmsg.content}\`\`\`` }
             )
             .setColor('#ffff1a')
             .setTimestamp()
-            .setFooter(`Author ID: ${msg.author.id}`);
+            .setFooter({ text: `Author ID: ${msg.author.id}` });
 
         let editMessage = msg.client.channels.cache.get(guildSetting.logChannelID);
         if (!editMessage) return;
 
-        await editMessage.send({ embeds: [logEmbed]});
+        await editMessage.send({ embeds: [logEmbed] });
     }
 };

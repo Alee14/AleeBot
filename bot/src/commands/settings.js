@@ -115,8 +115,8 @@ export default {
 
                     const logSetting = await guildSettings.findOne({ where: { guildID: interaction.guild.id } });
                     guildEmbed.spliceFields(0, 1, { name: 'Logging', value: logSetting?.logChannelID ? `<#${logSetting.logChannelID}>` : 'N/A', inline: true });
-
                     await interaction.editReply({ embeds: [guildEmbed], components: [row] });
+
                     await interaction.deleteReply();
                 }
 
