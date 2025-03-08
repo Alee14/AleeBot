@@ -9,16 +9,17 @@ export default {
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: channel.client.user.avatarURL() })
-            .setDescription(`A bulk of ${msg.size} messages was deleted in ${channel}`)
+            .setDescription(`A bulk of ${msg.size} messages were deleted in ${channel}`)
             .setColor('#ff021b')
             .setTimestamp();
 
         let messages = [];
 
         msg.forEach(message => {
-            messages.push(message.createdAt.toUTCString());
-            messages.push(`${message.author.username} - ${message.author.id}`);
-            messages.push(message.content);
+            messages.push(`[${message.createdAt.toUTCString()}]`);
+            messages.push(`${message.author.username} (${message.author.id})`);
+            messages.push(`Message (${message.id}): ${message.content}`);
+            messages.push('-----------------------------------');
         });
 
         const messageContent = messages.join('\n');

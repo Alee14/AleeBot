@@ -5,6 +5,7 @@ export default {
     data: new SlashCommandBuilder()
         .setName('userinfo')
         .setDescription('Information about a user.')
+        .setContexts(0)
         .addUserOption(option =>
             option
                 .setName('username')

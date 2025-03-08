@@ -4,7 +4,8 @@ import { abEmbedColour } from '../storage/consts.js';
 export default {
     data: new SlashCommandBuilder()
         .setName('serverinfo')
-        .setDescription('Information about this server.'),
+        .setDescription('Information about this server.')
+        .setContexts(0),
     async execute(interaction) {
         // let listedChannels = [];
         let guildOwner = await interaction.guild.fetchOwner();

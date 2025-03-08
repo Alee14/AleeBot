@@ -1,7 +1,7 @@
 import { Events, MessageFlags } from 'discord.js';
 
 function error(e) {
-    return `Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`${e.stack}\`\`\``;
+    return `Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`js\n${e.stack}\`\`\``;
 }
 
 export default {

@@ -20,13 +20,14 @@ export default {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('guild')
-                .setDescription('Change settings for the guild.'))
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('user')
-                .setDescription('Change settings for the user.')),
+                .setDescription('Change settings for the guild.')),
+    // .addSubcommand(subcommand =>
+    //     subcommand
+    //         .setName('user')
+    //         .setDescription('Change settings for the user.')),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === 'guild') {
+            if (!interaction.guild) return await interaction.reply({ content: 'This command can only be run in a guild.' });
             //if (!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild)) return await interaction.reply({ content: 'You do not have the permission to manage this guild.', flags: MessageFlags.Ephemeral });
 
             const guildSetting = await guildSettings.findOne({ where: { guildID: interaction.guild.id } });
@@ -126,17 +127,17 @@ export default {
             });
         }
 
-        if (interaction.options.getSubcommand() === 'user') {
-            const userEmbed = new EmbedBuilder()
-                .setAuthor({ name: 'AleeBot User Settings', iconURL: interaction.client.user.avatarURL() })
-                .setDescription('Select the options')
-                .addFields(
-                    { name: 'Language', value: 'logchannel', inline: true },
-                    { name: 'Location', value: 'channel', inline: true }
-                )
-                .setColor(abEmbedColour);
-
-            return await interaction.reply({ embeds: [userEmbed] });
-        }
+        // if (interaction.options.getSubcommand() === 'user') {
+        //     const userEmbed = new EmbedBuilder()
+        //         .setAuthor({ name: 'AleeBot User Settings', iconURL: interaction.client.user.avatarURL() })
+        //         .setDescription('Select the options')
+        //         .addFields(
+        //             { name: 'Language', value: 'logchannel', inline: true },
+        //             { name: 'Location', value: 'channel', inline: true }
+        //         )
+        //         .setColor(abEmbedColour);
+        //
+        //     return await interaction.reply({ embeds: [userEmbed] });
+        // }
     }
 };

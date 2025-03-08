@@ -15,7 +15,7 @@ export default {
             .addFields({ name: 'Deleted Message: ', value: `\`\`\`${msg.content}\`\`\`` })
             .setColor('#ff021b')
             .setTimestamp()
-            .setFooter(`Author ID: ${msg.author.id}`);
+            .setFooter({ text: `Author ID: ${msg.author.id}` });
 
         let deleteMessage = msg.client.channels.cache.get(guildSetting.logChannelID);
         if (!deleteMessage) return;

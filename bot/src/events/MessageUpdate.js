@@ -1,6 +1,8 @@
 import { EmbedBuilder, Events } from 'discord.js';
 import { guildSettings } from '../models/guild-settings.js';
 
+// bug: whenever a long message is edited, the bot crashes; also make sure that the log has newline
+
 export default {
     name: Events.MessageUpdate,
     async execute(msg, newmsg) {

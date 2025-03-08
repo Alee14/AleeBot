@@ -1,4 +1,4 @@
-import { Events } from 'discord.js';
+import {AttachmentBuilder, Events} from 'discord.js';
 import { ollama } from '../utils/ollama.js';
 import { ollamaGlobal, ollamaModel } from '../storage/consts.js';
 import { guildSettings } from '../models/guild-settings.js';
@@ -12,11 +12,11 @@ export default {
 
         const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
 
-        const args = msg.content.slice(`<@${msg.client.user.id}>`.length).trim();
+        const args = msg.content.slice(`${msg.client.user}`.length).trim();
 
         if (msg.mentions.has(msg.client.user)) {
             if (!guildSetting.ollamaEnabled) return;
-            if (!ollamaGlobal) return msg.reply('Sorry, this feature has been turned off.');
+            if (!ollamaGlobal) return msg.reply('Sorry, the LLM chatbot feature has been turned off.');
             if (!args) return msg.reply('Sorry? What was that?');
 
             try {
@@ -26,15 +26,12 @@ export default {
                 });
 
                 let content = response.message.content;
-                content = content.replace(/<think>.*?<\/think>/g, '');
 
                 if (content.length > 2000) {
-                    const chunks = content.match(/[\s\S]{1,2000}/g) || [];
-                    for (const chunk of chunks) {
-                        await msg.reply({ content: chunk });
-                    }
+                    const attachment = new AttachmentBuilder(Buffer.from(content, 'utf-8'), { name: 'output.txt' });
+                    return await msg.reply({ files: [attachment] });
                 } else {
-                    await msg.reply({ content });
+                    return await msg.reply({ content });
                 }
 
             } catch (err) {

@@ -65,6 +65,7 @@ export default {
         }
 
         if (interaction.options.getSubcommand() === 'guild') {
+            if (!interaction.guild) return await interaction.reply({ content: 'This command can only be run in a guild.' });
             const guildSetting = await guildSettings.findOne({ where: { guildID: interaction.guild.id } });
             if (!guildSetting || !guildSetting.suggestionsChannelID) return await interaction.reply({ content: 'This server did not configure to have suggestions enabled.' });
 

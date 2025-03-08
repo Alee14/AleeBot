@@ -4,6 +4,7 @@ export default {
     data: new SlashCommandBuilder()
         .setName('rm')
         .setDescription('Purges messages.')
+        .setContexts(0)
         .addNumberOption(option =>
             option
                 .setName('amount')

@@ -1,5 +1,6 @@
 import { EmbedBuilder, Events } from 'discord.js';
 import { guildSettings } from '../models/guild-settings.js';
+import { autoRole, serverWhitelist, roleWhitelist } from '../storage/consts.js';
 
 export default {
     name: Events.GuildMemberAdd,
@@ -9,7 +10,7 @@ export default {
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
-            .setDescription('A user has joined this server!')
+            .setDescription('A user has joined this server.')
             .addFields(
                 { name: 'Username: ', value: `${member.user}`, inline: true },
                 { name: 'User ID: ', value: `${member.id}`, inline: true },
@@ -22,5 +23,12 @@ export default {
         if (!guildMember) return;
 
         await guildMember.send({ embeds: [logEmbed] });
+
+        if (autoRole) {
+            if (member.guild.id !== serverWhitelist) return;
+            const role = member.guild.roles.cache.get(roleWhitelist);
+            member.roles.add(role);
+            console.log(`[i] ${member.user.username} joined Andrew Lee Projects, automatically giving them role.`.green);
+        }
     }
 };
