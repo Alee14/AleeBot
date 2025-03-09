@@ -20,6 +20,8 @@ export default {
             if (!args) return msg.reply('Sorry? What was that?');
 
             try {
+                const loadingMessage = await msg.reply('Thinking...');
+
                 const response = await ollama.chat({
                     model: ollamaModel,
                     messages: [{ role: 'user', content: args }],
@@ -29,9 +31,9 @@ export default {
 
                 if (content.length > 2000) {
                     const attachment = new AttachmentBuilder(Buffer.from(content, 'utf-8'), { name: 'output.txt' });
-                    return await msg.reply({ files: [attachment] });
+                    return await loadingMessage.edit({ files: [attachment] });
                 } else {
-                    return await msg.reply({ content });
+                    return await loadingMessage.edit({ content });
                 }
 
             } catch (err) {

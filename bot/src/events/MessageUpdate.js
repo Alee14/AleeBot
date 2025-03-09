@@ -1,7 +1,5 @@
-import { EmbedBuilder, Events } from 'discord.js';
+import { EmbedBuilder, Events, AttachmentBuilder } from 'discord.js';
 import { guildSettings } from '../models/guild-settings.js';
-
-// bug: whenever a long message is edited, the bot crashes; also make sure that the log has newline
 
 export default {
     name: Events.MessageUpdate,
@@ -10,20 +8,43 @@ export default {
         if (!msg.guild || !guildSetting || !guildSetting.logChannelID) return;
         if (msg.content === newmsg.content) return;
 
+        const useEmbedFields = msg.content.length <= 1023 &&
+            newmsg.content.length <= 1023;
+
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: msg.client.user.avatarURL() })
             .setDescription(`A message from ${msg.author.username} was edited in ${msg.channel}`)
-            .addFields(
-                { name: 'Before: ', value: `\`\`\`${msg.content}\`\`\`` },
-                { name: 'After: ', value: `\`\`\`${newmsg.content}\`\`\`` }
-            )
             .setColor('#ffff1a')
             .setTimestamp()
-            .setFooter({ text: `Author ID: ${msg.author.id}` });
+            .setFooter({ text: `Author ID: ${msg.author.id}\nMessage ID: ${msg.id}` });
+
+        if (useEmbedFields) {
+            logEmbed.addFields(
+                { name: 'Before: ', value: `\`\`\`\n${msg.content}\n\`\`\`` },
+                { name: 'After: ', value: `\`\`\`\n${newmsg.content}\n\`\`\`` }
+            );
+        }
 
         let editMessage = msg.client.channels.cache.get(guildSetting.logChannelID);
         if (!editMessage) return;
 
-        await editMessage.send({ embeds: [logEmbed] });
+        if (useEmbedFields) {
+            await editMessage.send({ embeds: [logEmbed] });
+        } else {
+            let messageContent = [];
+            messageContent.push(`Before:\n${msg.content}`);
+            messageContent.push(`After:\n${newmsg.content}`);
+
+            messageContent = messageContent.join('\n');
+
+            const attachment = new AttachmentBuilder(Buffer.from(messageContent, 'utf-8'), { name: 'message.txt' });
+
+            await editMessage.send({
+                embeds: [logEmbed],
+                files: [attachment],
+                content: 'Message content was too long to display in an embed.'
+            });
+        }
+
     }
 };
