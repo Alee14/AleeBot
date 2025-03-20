@@ -21,7 +21,9 @@ export default {
                 { name: 'About AleeBot', value: 'AleeBot is an all-in-one bot that\'s made from the Discord.JS API!' },
                 { name: 'Servers', value: `${interaction.client.guilds.cache.size}` },
                 { name: 'License', value: 'GNU General Public License v3.0' },
-                { name: 'Contributors', value: '- <@297201585090723841> (Uptime command from 2.x)' }
+                { name: 'Contributors', value:
+                        '- <@297201585090723841> (Uptime command from 2.x)\n' +
+                        '- <@236279900728721409> (Eval command from 2.x)' }
             )
             .setFooter({ text: '© Copyright 2017-2025 Andrew Lee & contributors' })
             .setColor(abEmbedColour);

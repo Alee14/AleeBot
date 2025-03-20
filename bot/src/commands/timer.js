@@ -41,7 +41,7 @@ export default {
         setTimeout(async function(){
             if (interaction.guild) {
                 let remindChannel = interaction.client.channels.cache.get(interaction.channel.id);
-                if (!remindChannel) return console.error('Unknown channel.');
+                if (!remindChannel) return;
                 return await remindChannel.send({ content: `${interaction.user}, You have been reminded.${message ? '\n\n' + content : ''}` });
             } else {
                 return await interaction.user.send({ content: `You have been reminded.${message ? '\n\n' + content : ''}` });
