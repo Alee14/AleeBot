@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 
 import { activities } from '../storage/activities.js';
 import { readyMsg, abEmbedColour } from '../storage/consts.js';
+// import { QuoteOfTheDay } from '../plugins/qotd.js';
 const { version: abVersion } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 function botActivity(client) {
@@ -13,8 +14,7 @@ function botActivity(client) {
             name: activity.name,
             type: activity.type
         }],
-        status: 'online',
-        afk: false,
+        status: 'online'
     });
     console.log(`[>] Updated bot presence to "${activity.name}"`);
 }
@@ -29,6 +29,7 @@ export default {
         console.log(`[i] Running version ${abVersion} | Serving in ${client.guilds.cache.size} guilds`);
 
         await botActivity(client);
+        //await QuoteOfTheDay(client);
 
         if (readyMsg) {
             const readyEmbed = new EmbedBuilder()

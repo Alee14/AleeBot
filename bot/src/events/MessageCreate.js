@@ -14,6 +14,8 @@ export default {
 
         const args = msg.content.slice(`${msg.client.user}`.length).trim();
 
+        // TODO: Check if the person mentions a specific command that executes eval, then start a message collection.
+
         if (msg.mentions.has(msg.client.user)) {
             if (!guildSetting.ollamaEnabled) return;
             if (!ollamaGlobal) return msg.reply('Sorry, the LLM chatbot feature has been turned off.');

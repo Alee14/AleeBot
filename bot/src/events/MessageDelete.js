@@ -9,7 +9,7 @@ export default {
         const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
         if (!guildSetting || !guildSetting.logChannelID) return;
 
-        const useEmbedFields = msg.content.length <= 1023;
+        const useEmbedFields = msg.content.length <= 1024;
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: msg.client.user.avatarURL() })

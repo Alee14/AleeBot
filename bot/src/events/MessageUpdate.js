@@ -8,8 +8,8 @@ export default {
         if (!msg.guild || !guildSetting || !guildSetting.logChannelID) return;
         if (msg.content === newmsg.content) return;
 
-        const useEmbedFields = msg.content.length <= 1023 &&
-            newmsg.content.length <= 1023;
+        const useEmbedFields = msg.content.length <= 1024 &&
+            newmsg.content.length <= 1024;
 
         const logEmbed = new EmbedBuilder()
             .setAuthor({ name: 'AleeBot Logging', iconURL: msg.client.user.avatarURL() })
@@ -33,6 +33,7 @@ export default {
         } else {
             let messageContent = [];
             messageContent.push(`Before:\n${msg.content}`);
+            messageContent.push('-----------------------------------');
             messageContent.push(`After:\n${newmsg.content}`);
 
             messageContent = messageContent.join('\n');
