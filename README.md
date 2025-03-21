@@ -15,8 +15,7 @@ Created by Andrew Lee
 If you want to help, feel free to add a feature then submit a pull request.
 
 # Contributors
-The people who contributed to AleeBot:
-
 - Rain (Uptime command from 2.x)
+- jtsshieh (Eval command from 2.x)
 
 **If you are contributing to this project, please put your name here.**

@@ -1,6 +1,5 @@
 import { Events } from 'discord.js';
 import { ChatBot } from '../plugins/chatbot.js';
-import { Evaluation } from '../plugins/eval.js';
 
 export default {
     name: Events.MessageCreate,
@@ -12,11 +11,7 @@ export default {
         const args = msg.content.slice(`${msg.client.user}`.length).trim();
 
         if (msg.mentions.has(msg.client.user)) {
-            if (args === 'execute') {
-                await Evaluation(msg);
-            } else {
-                await ChatBot(msg, args);
-            }
+            await ChatBot(msg, args);
         }
     }
 };
