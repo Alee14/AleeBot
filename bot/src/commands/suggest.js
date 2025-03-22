@@ -56,7 +56,7 @@ export default {
                             .setFooter({ text: `Sending from ${modalInteraction.guild.name}`, iconURL: modalInteraction.guild.iconURL() })
                     ]});
 
-                    return await modalInteraction.reply({content: 'Your suggestion has been sent.', flags: MessageFlags.Ephemeral});
+                    return await modalInteraction.reply({ content: 'Your suggestion has been sent.', flags: MessageFlags.Ephemeral });
                 })
                 .catch((err) => {
                     console.error(err);

@@ -8,7 +8,6 @@ export async function ChatBot(msg, args) {
 
     if (!guildSetting.ollamaEnabled) return;
     if (!ollamaGlobal) return msg.reply('Sorry, the LLM chatbot feature has been turned off.');
-    if (!args) return msg.reply('Sorry? What was that?');
 
     try {
         const loadingMessage = await msg.reply('Thinking...');

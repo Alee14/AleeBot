@@ -97,7 +97,7 @@ export default {
                         return modalInteraction.reply({ content: 'Something went wrong.', flags: MessageFlags.Ephemeral });
                     });
 
-                    return await modalInteraction.reply({content: 'Sending this quote for manual approval.', flags: MessageFlags.Ephemeral});
+                    return await modalInteraction.reply({ content: 'Sending this quote for manual approval.', flags: MessageFlags.Ephemeral });
                 })
                 .catch((err) => {
                     console.error(err);

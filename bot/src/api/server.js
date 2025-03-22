@@ -5,6 +5,7 @@ import 'dotenv/config';
 import { readFileSync } from 'node:fs';
 
 import { quoteRouter } from './routes/quotes.js';
+import { settingsRouter } from './routes/settings.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ export const apiServer = (client) => {
     app.use(express.json());
 
     app.use('/api', quoteRouter);
+    app.use('/api', settingsRouter(client));
 
     app.get('/api/version', (req, res) => {
         const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));

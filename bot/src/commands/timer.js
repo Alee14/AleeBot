@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, time, TimestampStyles } from 'discord.js';
+import { MessageFlags, SlashCommandBuilder, time, TimestampStyles } from 'discord.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -27,7 +27,7 @@ export default {
         const hours = interaction.options.getInteger('hours') || 0;
         const message = interaction.options.getString('message');
         const content = message ? `Reason: \`\`\`\n${message}\n\`\`\`` : '';
-        if (!seconds && !minutes && !hours) return await interaction.reply({ content: 'Please provide a time to wait for.', ephemeral: true });
+        if (!seconds && !minutes && !hours) return await interaction.reply({ content: 'Please provide a time to wait for.', flags: MessageFlags.Ephemeral });
 
         timer = seconds + (minutes * 60) + (hours * 3600);
 

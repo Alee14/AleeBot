@@ -1,14 +1,13 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { MessageFlags, SlashCommandBuilder } from 'discord.js';
 import { inspect } from 'util';
 import { userWhitelist } from '../storage/consts.js';
-
 
 export default {
     data: new SlashCommandBuilder()
         .setName('eval')
         .setDescription('Evaluates code'),
     async execute(interaction) {
-        if (!userWhitelist.includes(interaction.user.id)) return await interaction.reply('Nope! You don\'t have permission to use this command.');
+        if (!userWhitelist.includes(interaction.user.id)) return await interaction.reply({ content: 'Nope! You don\'t have permission to use this command.', flags: MessageFlags.Ephemeral });
         await interaction.reply('You have entered evaluation mode. Enter the code for AleeBot to evaluate.\nType in `exit` to exit evaluation mode.');
 
         let evaled;
