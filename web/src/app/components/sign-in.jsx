@@ -8,7 +8,7 @@ export default function SignIn() {
                 await signIn("discord")
             }}
         >
-            <button type="submit">Login with Discord</button>
+            <button type="submit" className="bg-discord-blurple p-3 rounded-md hover:bg-discord-blurple">Login with Discord</button>
         </form>
     )
 }
