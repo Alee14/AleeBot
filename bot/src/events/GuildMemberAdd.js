@@ -24,6 +24,8 @@ export default {
 
         await guildMember.send({ embeds: [logEmbed] });
 
+        // autoban system?
+
         if (autoRole) {
             if (member.guild.id !== serverWhitelist) return;
             const role = member.guild.roles.cache.get(roleWhitelist);

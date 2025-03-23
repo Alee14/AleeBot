@@ -10,7 +10,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
-const rest = new REST().setToken(process.env.token);
+const rest = new REST().setToken(process.env.TOKEN);
 
 // and deploy your commands!
 (async() => {
@@ -19,7 +19,7 @@ const rest = new REST().setToken(process.env.token);
 
         // The put method is used to fully refresh all commands in the guild with the current set
         const data = await rest.put(
-            Routes.applicationCommands(process.env.clientID),
+            Routes.applicationCommands(process.env.CLIENT_ID),
             { body: commands }
         );
 

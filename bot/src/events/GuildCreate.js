@@ -19,7 +19,7 @@ export default {
 
         await guildSettings.create({ guildID: guild.id });
 
-        let statusChannel = guild.client.channels.cache.get(process.env.statusChannelID);
+        let statusChannel = guild.client.channels.cache.get(process.env.STATUS_CHANNEL_ID);
         if (!statusChannel) return;
         await statusChannel.send({ embeds: [logEmbed] });
     }

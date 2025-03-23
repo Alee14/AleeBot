@@ -5,7 +5,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 
 init(client);
 
-client.login(process.env.token).then(() => {
+client.login(process.env.TOKEN).then(() => {
     console.log('[>] Successfully authenticated.');
 }).catch(() => {
     console.log('[X] Login failed. The token that you have put in is invalid.');

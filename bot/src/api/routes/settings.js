@@ -35,7 +35,9 @@ export function settingsRouter(client) {
                     channels.push(channelInfo);
                 });
 
-            res.json(channels);
+            res.json({
+                channels: channels
+            });
         } catch (e) {
             console.error('Error fetching settings:', e);
             res.status(500).send('Internal Server Error');

@@ -42,9 +42,9 @@ export default {
                 )
                 .setColor(abEmbedColour);
 
-            let statusChannel = client.channels.cache.get(process.env.statusChannelID);
+            let statusChannel = client.channels.cache.get(process.env.STATUS_CHANNEL_ID);
             if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-            await statusChannel.send({ embeds: [readyEmbed]});
+            await statusChannel.send({ embeds: [readyEmbed] });
         }
 
         setInterval(function() {

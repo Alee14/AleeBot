@@ -74,8 +74,8 @@ export const apiServer = (client) => {
     });
 
     // Start the server
-    app.listen(process.env.port, () => {
-        console.log(`[i] Starting API at http://localhost:${process.env.port}`);
+    app.listen(process.env.PORT, () => {
+        console.log(`[i] Starting API at http://localhost:${process.env.PORT}`);
     });
 };
 
