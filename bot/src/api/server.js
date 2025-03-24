@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs';
 
 import { quoteRouter } from './routes/quotes.js';
 import { settingsRouter } from './routes/settings.js';
+import { authRouter, verifyToken } from './routes/auth.js';
 
 const app = express();
 
@@ -15,11 +16,13 @@ export const apiServer = (client) => {
 
     app.use('/api', quoteRouter);
     app.use('/api', settingsRouter(client));
+    app.use('/api', authRouter());
 
     app.get('/api/version', (req, res) => {
         const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
         res.json({
-            version: version
+            api_version: '1.0',
+            ab_version: version
         });
 
     });
@@ -30,7 +33,7 @@ export const apiServer = (client) => {
         });
     });
 
-    app.get('/api/servers', (req, res) => {
+    app.get('/api/servers', verifyToken, (req, res) => {
         const guildsInfo = [];
 
         if (client.guilds.cache.size === 0) {
@@ -52,7 +55,7 @@ export const apiServer = (client) => {
 
     });
 
-    app.post('/api/leave', (req, res) => {
+    app.post('/api/leave', verifyToken, (req, res) => {
         const { id } = req.body;
         let guild = client.guilds.cache.get(id);
 

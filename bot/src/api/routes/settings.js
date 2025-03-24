@@ -1,11 +1,12 @@
 import { ChannelType } from 'discord.js';
 import { Router } from 'express';
 import { guildSettings } from '../../models/guild-settings.js';
+import { verifyToken } from './auth.js';
 
 export function settingsRouter(client) {
     const router = Router();
 
-    router.get('/settings/guild/:id', async (req, res) => {
+    router.get('/settings/guild/:id', verifyToken, async (req, res) => {
         try {
             const settings = await guildSettings.findOne({ where: { guildID: req.params.id } });
 
@@ -19,7 +20,6 @@ export function settingsRouter(client) {
                     const channelInfo = {
                         name: channel.name,
                         id: channel.id,
-                        position: channel.position,
                         category: channel.parent ? channel.parent.name : 'No Category'
                     };
 
@@ -42,9 +42,10 @@ export function settingsRouter(client) {
         }
     });
 
-    router.post('/settings/guild', async (req, res) => {
+    router.post('/settings/guild/:id', verifyToken, async (req, res) => {
         try {
-            const { guildID, ...newSettings } = req.body;
+            const guildID = req.params.id;
+            const { ...newSettings } = req.body;
             const [updated] = await guildSettings.update(newSettings, { where: { guildID: guildID } });
             if (updated) {
                 const updatedSettings = await guildSettings.findOne({ where: { guildID: guildID } });

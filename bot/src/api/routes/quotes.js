@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { pendingQuote, quote as newQuote } from '../../models/quote.js';
+import { verifyToken } from './auth.js';
 
 export const quoteRouter = Router();
 
-quoteRouter.get('/quotes/pending', async (req, res) => {
+quoteRouter.get('/quotes/pending', verifyToken, async (req, res) => {
     try {
         const quotes = await pendingQuote.findAll();
         res.json(quotes);
@@ -13,7 +14,7 @@ quoteRouter.get('/quotes/pending', async (req, res) => {
     }
 });
 
-quoteRouter.post('/quotes/add', async (req, res) => {
+quoteRouter.post('/quotes/add', verifyToken, async (req, res) => {
     const { author, authorImage, quote, year, submitterID } = req.body;
     try {
         await newQuote.create({
@@ -30,7 +31,7 @@ quoteRouter.post('/quotes/add', async (req, res) => {
     }
 });
 
-quoteRouter.post('/quotes/approve', async (req, res) => {
+quoteRouter.post('/quotes/approve', verifyToken, async (req, res) => {
     const { id } = req.body;
     try {
         const quote = await pendingQuote.findByPk(id);
@@ -53,7 +54,7 @@ quoteRouter.post('/quotes/approve', async (req, res) => {
     }
 });
 
-quoteRouter.post('/quotes/reject', async (req, res) => {
+quoteRouter.post('/quotes/reject', verifyToken, async (req, res) => {
     const { id } = req.body;
     try {
         const quote = await pendingQuote.findByPk(id);
