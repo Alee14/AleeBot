@@ -8,7 +8,7 @@ export default async function Home() {
     if (!session) redirect("/");
 
     return (
-        <div>
+        <>
             <nav className="bg-gray-900 text-white">
                 <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
                     <div className="flex items-center">
@@ -21,7 +21,19 @@ export default async function Home() {
                     </div>
                 </div>
             </nav>
-            <Guilds session={session} />
-        </div>
+            <div className="flex">
+                <div>
+                    <div>Settings</div>
+                    <Guilds session={session} />
+                </div>
+                <div>
+                    <h1 className="text-2xl">Logging</h1>
+                    <h2>Channel 1</h2>
+                    <h2>Channel 2</h2>
+                    <h1 className="text-2xl">Quote of the Day</h1>
+                    <h1 className="text-2xl">LLM Chatbot</h1>
+                </div>
+            </div>
+        </>
     )
 }

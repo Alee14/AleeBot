@@ -5,21 +5,11 @@ import { guildSettings } from '../../models/guild-settings.js';
 export function settingsRouter(client) {
     const router = Router();
 
-    router.get('/settings/guild', async (req, res) => {
-        try {
-            const { guildID } = req.body;
-            if (!guildID) return res.status(400).send('Guild ID not provided');
-            const settings = await guildSettings.findOne({ where: { guildID: guildID } });
-            res.json(settings);
-        } catch (e) {
-            console.error('Error fetching settings:', e);
-            res.status(500).send('Internal Server Error');
-        }
-    });
-
     router.get('/settings/guild/:id', async (req, res) => {
         try {
             const settings = await guildSettings.findOne({ where: { guildID: req.params.id } });
+
+            if (!settings) return res.sendStatus(404);
 
             let channels = [];
 
@@ -29,6 +19,7 @@ export function settingsRouter(client) {
                     const channelInfo = {
                         name: channel.name,
                         id: channel.id,
+                        position: channel.position,
                         category: channel.parent ? channel.parent.name : 'No Category'
                     };
 
@@ -36,6 +27,13 @@ export function settingsRouter(client) {
                 });
 
             res.json({
+                settings: settings,
+                guild: [
+                    {
+                        name: client.guilds.cache.get(settings.guildID).name,
+                        id: settings.guildID
+                    }
+                ],
                 channels: channels
             });
         } catch (e) {

@@ -4,13 +4,6 @@ import Discord from "next-auth/providers/discord"
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [Discord({
         authorization: {
-            profile(profile) {
-                return {
-                    id: profile.id,
-                    name: profile.username,
-                    image: profile.image_url
-                }
-            },
             url: "https://discord.com/api/oauth2/authorize",
             params: { scope: "identify guilds" },
         }
