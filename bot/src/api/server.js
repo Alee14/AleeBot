@@ -22,7 +22,8 @@ export const apiServer = (client) => {
         const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
         res.json({
             ab_version: version,
-            api_version: '1.1'
+            api_version: '1.1',
+            client_id: client.user.id
         });
 
     });
@@ -69,7 +70,7 @@ export const apiServer = (client) => {
 
         } catch (error) {
             console.error('Error leaving server:', error);
-            res.status(500).res.json({
+            res.status(500).json({
                 guild: guild.name,
                 left: false
             });

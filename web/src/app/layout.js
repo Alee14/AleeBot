@@ -1,5 +1,6 @@
 import { Exo_2, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/context/middleware";
 
 const exoSans = Exo_2({
   variable: "--font-exo-sans",
@@ -22,7 +23,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${exoSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
+      <AuthProvider>
         {children}
+      </AuthProvider>
       </body>
     </html>
   );
