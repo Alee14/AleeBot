@@ -6,6 +6,7 @@ export default {
         .setName('settings')
         .setDescription('Settings for AleeBot.')
         .setContexts(0)
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('set')
@@ -38,7 +39,10 @@ export default {
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageGuild) &&
             !interaction.member.permissions.has(PermissionFlagsBits.Administrator) &&
             interaction.user.id !== interaction.guild.ownerId) return await interaction.reply({ content: 'You do not have the permission to manage this guild.', flags: MessageFlags.Ephemeral });
+
         const guildSetting = await guildSettings.findOne({ where: { guildID: interaction.guild.id } });
+        if (!guildSetting) await guildSettings.create({ guildID: interaction.guild.id });
+
         if (interaction.options.getSubcommand() === 'clear') {
             await guildSettings.update({
                 logChannelID: null,
@@ -55,9 +59,6 @@ export default {
             .setDescription('Settings for this guild.')
             .setColor(abEmbedColour);
 
-        if (!guildSetting) await guildSettings.create({ guildID: interaction.guild.id });
-
-
         // Handle clearing settings
         if (areAllSettingsEmpty(interaction)) {
             guildEmbed.addFields(
@@ -71,6 +72,7 @@ export default {
         }
 
         // Process each setting type
+        guildEmbed.setDescription('Updated this setting.');
         await updateChannelSetting(interaction, guildEmbed, 'log', 'logChannelID', 'Logging');
         await updateChannelSetting(interaction, guildEmbed, 'suggestion', 'suggestionsChannelID', 'Suggestions');
         await updateChannelSetting(interaction, guildEmbed, 'qotd', 'qotdChannelID', 'QOTD Channel');

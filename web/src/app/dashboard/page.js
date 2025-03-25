@@ -1,39 +1,44 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import SignOut from "@/app/components/sign-out";
-import Guilds from "@/app/components/Guilds";
+import Navbar from "@/app/components/Navbar";
 
-export default async function Home() {
-    const session = await auth();
-    if (!session) redirect("/");
-
+export default function Dashboard() {
     return (
         <>
-            <nav className="bg-gray-900 text-white">
-                <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
-                    <div className="flex items-center">
-                        <h1 className="text-xl font-medium">AleeBot</h1>
+           <Navbar />
+            <div className="flex flex-col gap-4 p-12">
+                <h1 className="text-3xl">Guilds</h1>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 1</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span> {/* Add an "are you sure prompt" */}
                     </div>
-
-                    <div className="flex items-center space-x-4">
-                        <p className="text-sm md:text-base">Welcome {session.user?.username}!</p>
-                        <SignOut />
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 2</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span>
                     </div>
-                </div>
-            </nav>
-            <div className="flex">
-                <div>
-                    <div>Settings</div>
-                    <Guilds session={session} />
-                </div>
-                <div>
-                    <h1 className="text-2xl">Logging</h1>
-                    <h2>Channel 1</h2>
-                    <h2>Channel 2</h2>
-                    <h1 className="text-2xl">Quote of the Day</h1>
-                    <h1 className="text-2xl">LLM Chatbot</h1>
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 3</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span>
+                    </div>
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 4</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span>
+                    </div>
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 5</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span>
+                    </div>
+                    <div className="p-4 bg-gray-900 rounded-md">
+                        <h2 className="text-lg font-medium">Server 6</h2>
+                        <p>ID: 23893249843983489 - Members: 30</p>
+                        <span>Leave</span>
+                    </div>
                 </div>
             </div>
         </>
-    )
+    );
 }

@@ -21,8 +21,8 @@ export const apiServer = (client) => {
     app.get('/api/version', (req, res) => {
         const { version } = JSON.parse(readFileSync('./package.json', 'utf-8'));
         res.json({
-            api_version: '1.0',
-            ab_version: version
+            ab_version: version,
+            api_version: '1.1'
         });
 
     });

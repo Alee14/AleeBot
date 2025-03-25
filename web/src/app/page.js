@@ -1,19 +1,33 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+export default function Home() {
 
-export default async function Home() {
-  const session = await auth();
-  if (session) redirect("/dashboard");
-    return (
-    <>
-      <main className="flex justify-center items-center h-screen">
-        <form className="flex flex-col gap-4 w-80">
-          <input for='username' type='text' placeholder='Username' />
-          <input for='password' type='password' placeholder='Password' />
-          <input for='api' type='url' placeholder='API URL' />
-          <input type="submit" value="Login" />
+  return (
+      <main className="flex flex-col space-y-5 justify-center items-center h-screen">
+          <h1 className="text-4xl font-medium">AleeBot</h1>
+          <form className="flex flex-col gap-4 w-80">
+              <input
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  required
+              />
+              <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  required
+              />
+              <input
+                  name="apiUrl"
+                  type="url"
+                  placeholder="API URL"
+                  required
+              />
+              <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded"
+              >Login
+              </button>
         </form>
       </main>
-    </>
   );
 }

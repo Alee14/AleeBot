@@ -10,7 +10,7 @@ quoteRouter.get('/quotes/pending', verifyToken, async (req, res) => {
         res.json(quotes);
     } catch (error) {
         console.error('Error fetching quotes:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send({ message: 'Internal Server Error' });
     }
 });
 
@@ -24,10 +24,10 @@ quoteRouter.post('/quotes/add', verifyToken, async (req, res) => {
             year: year,
             submitter: submitterID
         });
-        res.status(200).send('Added a new quote');
+        res.status(200).send({ message: 'Added a new quote' });
     } catch (error) {
         console.error('Something went wrong:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send({ message: 'Internal Server Error' });
     }
 });
 
@@ -44,13 +44,13 @@ quoteRouter.post('/quotes/approve', verifyToken, async (req, res) => {
                 submitter: quote.submitterID
             });
             await pendingQuote.destroy({ where: { id } });
-            res.status(200).send('Quote approved');
+            res.status(200).send({ message: 'Quote approved' });
         } else {
-            res.status(404).send('Quote not found');
+            res.status(404).send({ message: 'Quote not found' });
         }
     } catch (error) {
         console.error('Error approving quote:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send({ message: 'Internal Server Error' });
     }
 });
 
@@ -60,12 +60,12 @@ quoteRouter.post('/quotes/reject', verifyToken, async (req, res) => {
         const quote = await pendingQuote.findByPk(id);
         if (quote) {
             await pendingQuote.destroy({ where: { id } });
-            res.status(200).send('Quote rejected');
+            res.status(200).send({ message: 'Quote rejected' });
         } else {
-            res.status(404).send('Quote not found');
+            res.status(404).send({ message: 'Quote not found' });
         }
     } catch (error) {
         console.error('Error rejecting quote:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send({ message: 'Internal Server Error' });
     }
 });

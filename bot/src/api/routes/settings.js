@@ -6,7 +6,7 @@ import { verifyToken } from './auth.js';
 export function settingsRouter(client) {
     const router = Router();
 
-    router.get('/settings/guild/:id', verifyToken, async (req, res) => {
+    router.get('/settings/guilds/:id', verifyToken, async (req, res) => {
         try {
             const settings = await guildSettings.findOne({ where: { guildID: req.params.id } });
 
@@ -38,11 +38,11 @@ export function settingsRouter(client) {
             });
         } catch (e) {
             console.error('Error fetching settings:', e);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send({ message: 'Internal Server Error' });
         }
     });
 
-    router.post('/settings/guild/:id', verifyToken, async (req, res) => {
+    router.post('/settings/guilds/:id', verifyToken, async (req, res) => {
         try {
             const guildID = req.params.id;
             const { ...newSettings } = req.body;
@@ -51,11 +51,11 @@ export function settingsRouter(client) {
                 const updatedSettings = await guildSettings.findOne({ where: { guildID: guildID } });
                 res.json(updatedSettings);
             } else {
-                res.status(404).send('Settings not found');
+                res.status(404).send({ message: 'Settings not found' });
             }
         } catch (e) {
             console.error('Error updating settings:', e);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send({ message: 'Internal Server Error' });
         }
     });
 

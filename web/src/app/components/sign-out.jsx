@@ -1,14 +1,5 @@
-import { signOut } from "@/lib/auth"
-
 export default function SignOut() {
     return (
-        <form
-            action={async () => {
-                "use server"
-                await signOut("discord")
-            }}
-        >
-            <button type="submit">Log out</button>
-        </form>
+        <button type="submit" className="py-2 px-4 rounded-md text-md bg-red-700 hover:bg-red-500">Sign out</button>
     )
 }

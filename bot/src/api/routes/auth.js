@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Check if required environment variables are set
-const requiredEnvVars = ['JWT_SECRET', 'AUTH_USERNAME', 'AUTH_PASSWORD_HASH'];
+const requiredEnvVars = ['JWT_SECRET', 'API_USERNAME', 'API_PASSWORD_HASH'];
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
 if (missingVars.length > 0) {
     console.error(`Missing required environment variables: ${missingVars.join(', ')}`);
@@ -22,18 +22,18 @@ export function authRouter() {
             const { username, password } = req.body;
 
             if (!username || !password) {
-                return res.status(400).json({ error: 'Username and password are required' });
+                return res.status(400).json({ message: 'Username and password are required' });
             }
 
             // Check against environment variables
             if (username !== process.env.API_USERNAME) {
-                return res.status(401).json({ error: 'Invalid credentials' });
+                return res.status(401).json({ message: 'Invalid credentials' });
             }
 
             // Verify password
             const isPasswordValid = await bcrypt.compare(password, process.env.API_PASSWORD_HASH);
             if (!isPasswordValid) {
-                return res.status(401).json({ error: 'Invalid credentials' });
+                return res.status(401).json({ message: 'Invalid credentials' });
             }
 
             // Generate JWT token
@@ -46,7 +46,7 @@ export function authRouter() {
             res.json({ token });
         } catch (error) {
             console.error('Login error:', error);
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error' });
         }
     });
 
@@ -58,7 +58,7 @@ export function verifyToken(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ error: 'No token provided' });
+        return res.status(401).json({ message: 'Unauthorized' });
     }
 
     const token = authHeader.split(' ')[1];
@@ -68,6 +68,6 @@ export function verifyToken(req, res, next) {
         req.user = decoded;
         next();
     } catch {
-        return res.status(403).json({ error: 'Invalid or expired token' });
+        return res.status(403).json({ message: 'Invalid or expired token' });
     }
 }
