@@ -1,0 +1,14 @@
+services:
+  aleebot:
+    image: aleebot
+    volumes:
+      - ./database.db:/bot/database.db
+      - ./.env:/bot/.env
+    ports:
+      - "3010:3010"
+  web:
+    image: aleebot-web
+    links:
+      - "aleebot:aleebot"
+    ports:
+      - "3000:3000"
