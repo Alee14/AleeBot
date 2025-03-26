@@ -2,12 +2,8 @@ FROM oven/bun:latest
 
 WORKDIR /bot
 
-COPY package.json ./
-
-COPY bun.lockb ./
+COPY . .
 
 RUN bun install
-
-COPY . .
 
 ENTRYPOINT ["bun", "start"]

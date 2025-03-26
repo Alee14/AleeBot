@@ -10,7 +10,10 @@ export function settingsRouter(client) {
         try {
             const settings = await guildSettings.findOne({ where: { guildID: req.params.id } });
 
-            if (!settings) return res.sendStatus(404);
+            if (!settings) {
+                await guildSettings.create({ guildID: req.params.id });
+                return res.status(200).send({ message: 'Added new guild' });
+            }
 
             let channels = [];
 

@@ -1,5 +1,4 @@
 export const abEmbedColour = '#0066a6';
-export const readyMsg = false;
 export const ollamaGlobal = true;
 export const ollamaModel = 'aleebot-deepseek';
 export const featureSuggestChannel = '427495678390960148';

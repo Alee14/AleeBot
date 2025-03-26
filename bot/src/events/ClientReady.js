@@ -2,8 +2,8 @@ import { EmbedBuilder, Events, version } from 'discord.js';
 import { readFileSync } from 'node:fs';
 
 import { activities } from '../storage/activities.js';
-import { readyMsg, abEmbedColour } from '../storage/consts.js';
-// import { QuoteOfTheDay } from '../plugins/qotd.js';
+import { abEmbedColour } from '../storage/consts.js';
+import { QuoteOfTheDay } from '../plugins/qotd.js';
 const { version: abVersion } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 function botActivity(client) {
@@ -29,9 +29,9 @@ export default {
         console.log(`[i] Running version ${abVersion} | Serving in ${client.guilds.cache.size} guilds`);
 
         await botActivity(client);
-        //await QuoteOfTheDay(client);
+        await QuoteOfTheDay(client);
 
-        if (readyMsg) {
+        if (process.env.NODE_ENV !== 'development') {
             const readyEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot Status', iconURL: client.user.avatarURL() })
                 .setDescription('AleeBot has started')
