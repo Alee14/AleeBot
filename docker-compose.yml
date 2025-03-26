@@ -1,6 +1,7 @@
 services:
   aleebot:
     image: aleebot
+    hostname: aleebot
     volumes:
       - ./database.db:/bot/database.db
       - ./.env:/bot/.env

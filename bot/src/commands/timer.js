@@ -35,7 +35,7 @@ export default {
             const date = new Date();
             date.setSeconds(date.getSeconds() + timer);
             const timeString = time(date, TimestampStyles.RelativeTime);
-            await interaction.reply(`Timer set! Will remind you ${timeString}`);
+            await interaction.reply(`Timer set! Will remind you ${timeString}.`);
         }
 
         setTimeout(async function(){
