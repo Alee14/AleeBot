@@ -22,11 +22,11 @@ jobs:
           - service: bot
             context: ./bot
             dockerfile: ./bot/Dockerfile
-            image-name: ${{ github.repository }}-bot
+            image-name: ${{ github.repository }}
           - service: web
             context: ./web
             dockerfile: ./web/Dockerfile
-            image-name: ${{ github.repository }}-web
+            image-name: ${{ github.repository }}/web
     
     permissions:
       contents: read
