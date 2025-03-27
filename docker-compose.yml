@@ -1,15 +1,16 @@
 services:
-  aleebot:
-    image: aleebot
-    hostname: aleebot
+  bot:
+    image: ghcr.io/alee14/aleebot:4.0
+    hostname: bot
+    restart: unless-stopped
     volumes:
       - ./database.db:/bot/database.db
       - ./.env:/bot/.env
     ports:
       - "3010:3010"
   web:
-    image: aleebot-web
-    links:
-      - "aleebot:aleebot"
+    image: ghcr.io/alee14/aleebot/web:4.0
+    hostname: web
+    restart: unless-stopped
     ports:
       - "3000:3000"
