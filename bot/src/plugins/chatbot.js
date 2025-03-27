@@ -1,7 +1,8 @@
-import { ollamaGlobal, ollamaModel } from '../storage/consts.js';
+import { ollamaGlobal } from '../storage/consts.js';
 import { ollama } from '../utils/ollama.js';
 import { AttachmentBuilder } from 'discord.js';
 import { guildSettings } from '../models/guild-settings.js';
+import 'dotenv/config';
 
 export async function ChatBot(msg, args) {
     const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
@@ -13,7 +14,7 @@ export async function ChatBot(msg, args) {
         const loadingMessage = await msg.reply('Thinking...');
 
         const response = await ollama.chat({
-            model: ollamaModel,
+            model: process.env.OLLAMA_MODEL,
             messages: [{ role: 'user', content: args }],
         });
 

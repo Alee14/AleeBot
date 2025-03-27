@@ -1,6 +1,5 @@
 export const abEmbedColour = '#0066a6';
 export const ollamaGlobal = true;
-export const ollamaModel = 'aleebot-deepseek';
 export const featureSuggestChannel = '427495678390960148';
 export const userWhitelist = ['242775871059001344'];
 

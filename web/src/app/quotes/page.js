@@ -86,64 +86,60 @@ export default function Quotes() {
     };
 
     const handleApproveQuote = async (id) => {
-        if (window.confirm('Are you sure you want to approve this quote?')) {
-            try {
-                const response = await fetchWithAuth('/api/quotes/approve', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id })
-                });
+        try {
+            const response = await fetchWithAuth('/api/quotes/approve', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id })
+            });
 
-                if (!response.ok) {
-                    throw new Error('Failed to approve quote');
-                }
-
-                setMessage({
-                    type: 'success',
-                    text: 'Quote approved successfully'
-                });
-
-                // Refresh quotes
-                fetchPendingQuotes();
-            } catch (err) {
-                setMessage({
-                    type: 'error',
-                    text: err.message
-                });
+            if (!response.ok) {
+                throw new Error('Failed to approve quote');
             }
+
+            setMessage({
+                type: 'success',
+                text: 'Quote approved successfully'
+            });
+
+            // Refresh quotes
+            fetchPendingQuotes();
+        } catch (err) {
+            setMessage({
+                type: 'error',
+                text: err.message
+            });
         }
     };
 
     const handleRejectQuote = async (id) => {
-        if (window.confirm('Are you sure you want to reject this quote?')) {
-            try {
-                const response = await fetchWithAuth('/api/quotes/reject', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id })
-                });
+        try {
+            const response = await fetchWithAuth('/api/quotes/reject', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id })
+            });
 
-                if (!response.ok) {
-                    throw new Error('Failed to reject quote');
-                }
-
-                setMessage({
-                    type: 'success',
-                    text: 'Quote rejected successfully'
-                });
-
-                // Refresh quotes
-                fetchPendingQuotes();
-            } catch (err) {
-                setMessage({
-                    type: 'error',
-                    text: err.message
-                });
+            if (!response.ok) {
+                throw new Error('Failed to reject quote');
             }
+
+            setMessage({
+                type: 'success',
+                text: 'Quote rejected successfully'
+            });
+
+            // Refresh quotes
+            fetchPendingQuotes();
+        } catch (err) {
+            setMessage({
+                type: 'error',
+                text: err.message
+            });
         }
     };
 
