@@ -5,8 +5,6 @@ import { autoRole, serverWhitelist, roleWhitelist } from '../storage/consts.js';
 export default {
     name: Events.GuildMemberAdd,
     async execute(member) {
-        if (member.id === member.client.user.id) return;
-
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
             if (!guildSetting || !guildSetting.logChannelID) return;

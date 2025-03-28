@@ -4,8 +4,6 @@ import { guildSettings } from '../models/guild-settings.js';
 export default {
     name: Events.GuildMemberRemove,
     async execute(member) {
-        if (member.id === member.client.user.id) return;
-
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
             if (!guildSetting || !guildSetting.logChannelID) return;

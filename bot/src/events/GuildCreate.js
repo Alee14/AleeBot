@@ -7,7 +7,8 @@ export default {
     async execute(guild) {
         try {
             console.log(`[i] New guild joined: ${guild.name} (${guild.id}). This guild has ${guild.memberCount} members!`);
-            await guildSettings.create({ guildID: guild.id });
+            const guildSetting = await guildSettings.findOne({ where: { guildID: guild.id } });
+            if (!guildSetting) await guildSettings.create({ guildID: guild.id });
 
             const logEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot', iconURL: guild.client.user.avatarURL() })
