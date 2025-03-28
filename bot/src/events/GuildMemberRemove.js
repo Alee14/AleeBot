@@ -4,22 +4,28 @@ import { guildSettings } from '../models/guild-settings.js';
 export default {
     name: Events.GuildMemberRemove,
     async execute(member) {
-        const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
-        if (!guildSetting || !guildSetting.logChannelID) return;
+        if (member.id === member.client.user.id) return;
 
-        const logEmbed = new EmbedBuilder()
-            .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
-            .setDescription('A user has left this server.')
-            .addFields(
-                { name: 'Username: ', value: `${member.user.username}`, inline: true },
-                { name: 'User ID: ', value: `${member.id}`, inline: true },
-            )
-            .setColor('#ec2727')
-            .setTimestamp();
+        try {
+            const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
+            if (!guildSetting || !guildSetting.logChannelID) return;
 
-        let guildMember = member.client.channels.cache.get(guildSetting.logChannelID);
-        if (!guildMember) return;
+            const logEmbed = new EmbedBuilder()
+                .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
+                .setDescription('A user has left this server.')
+                .addFields(
+                    { name: 'Username: ', value: `${member.user.username}`, inline: true },
+                    { name: 'User ID: ', value: `${member.id}`, inline: true },
+                )
+                .setColor('#ec2727')
+                .setTimestamp();
 
-        await guildMember.send({ embeds: [logEmbed] });
+            let guildMember = member.client.channels.cache.get(guildSetting.logChannelID);
+            if (!guildMember) return;
+
+            await guildMember.send({ embeds: [logEmbed] });
+        } catch (e) {
+            console.error(e);
+        }
     }
 };
