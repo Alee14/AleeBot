@@ -24,7 +24,7 @@ export default {
 
             await guildMember.send({ embeds: [logEmbed] });
         } catch (e) {
-          console.error(e);
+            console.error(e);
         }
     }
 };

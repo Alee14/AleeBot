@@ -1,5 +1,6 @@
 export const abEmbedColour = '#0066a6';
 export const ollamaGlobal = true;
+export const enableAnalytics = true;
 export const featureSuggestChannel = '427495678390960148';
 export const userWhitelist = ['242775871059001344'];
 

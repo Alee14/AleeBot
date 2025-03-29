@@ -1,4 +1,5 @@
 import { Events, MessageFlags } from 'discord.js';
+import { Analytics } from '../plugins/analytics.js';
 
 function error(e) {
     return `Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`js\n${e.stack}\`\`\``;
@@ -14,6 +15,8 @@ export default {
         if (!command) return;
 
         try {
+            console.log(`[i] ${interaction.user.username} has executed ${command.data.name}`);
+            await Analytics(command, interaction);
             await command.execute(interaction);
         } catch (e) {
             console.error(e);

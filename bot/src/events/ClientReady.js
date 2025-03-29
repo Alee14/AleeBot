@@ -28,28 +28,32 @@ export default {
         console.log(`[i] Bot ID: ${client.user.id}`);
         console.log(`[i] Running version ${abVersion} | Serving in ${client.guilds.cache.size} guilds`);
 
-        await botActivity(client);
-        await QuoteOfTheDay(client);
+        try {
+            await botActivity(client);
+            await QuoteOfTheDay(client);
 
-        if (process.env.NODE_ENV !== 'development') {
-            const readyEmbed = new EmbedBuilder()
-                .setAuthor({ name: 'AleeBot Status', iconURL: client.user.avatarURL() })
-                .setDescription('AleeBot has started')
-                .addFields(
-                    { name: 'Version', value: `${abVersion}`, inline: true },
-                    { name: 'Node.JS Version', value: `${process.versions.node}`, inline: true },
-                    { name: 'Discord.JS Version', value: `${version}`, inline: true }
-                )
-                .setColor(abEmbedColour);
+            if (process.env.NODE_ENV !== 'development') {
+                const readyEmbed = new EmbedBuilder()
+                    .setAuthor({name: 'AleeBot Status', iconURL: client.user.avatarURL()})
+                    .setDescription('AleeBot has started')
+                    .addFields(
+                        {name: 'Version', value: `${abVersion}`, inline: true},
+                        {name: 'Node.JS Version', value: `${process.versions.node}`, inline: true},
+                        {name: 'Discord.JS Version', value: `${version}`, inline: true}
+                    )
+                    .setColor(abEmbedColour);
 
-            let statusChannel = client.channels.cache.get(process.env.STATUS_CHANNEL_ID);
-            if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
-            await statusChannel.send({ embeds: [readyEmbed] });
+                let statusChannel = client.channels.cache.get(process.env.STATUS_CHANNEL_ID);
+                if (!statusChannel) return console.error('The status channel does not exist! Skipping.');
+                await statusChannel.send({embeds: [readyEmbed]});
+            }
+
+            setInterval(function () {
+                botActivity(client);
+            }, 200000);
+
+        } catch (e) {
+            console.error(e);
         }
-
-        setInterval(function() {
-            botActivity(client);
-        }, 200000);
-
     }
 };
