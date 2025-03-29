@@ -43,8 +43,7 @@ export default {
 
                 await editMessage.send({
                     embeds: [logEmbed],
-                    files: [attachment],
-                    content: 'Message content was too long to display in an embed.'
+                    files: [attachment]
                 });
             }
         } catch (e) {

@@ -15,7 +15,7 @@ export default {
         if (!command) return;
 
         try {
-            console.log(`[i] ${interaction.user.username} has executed ${command.data.name}`);
+            console.log(`[i] ${interaction.user.username} has executed ${command.data.name} at ${interaction.guild.name}`);
             await Analytics(command, interaction);
             await command.execute(interaction);
         } catch (e) {
