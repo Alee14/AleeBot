@@ -23,7 +23,7 @@ export const activities = [
     { name: 'Dag dag!', type: 4 },
     { name: 'Developed by Andrew Lee', type: 4 },
     { name: 'When will 2.13 release?', type: 4 },
-    { name: 'Alert Irruption !!!', type: 4},
+    { name: 'Alert Irruption !!!', type: 4 },
     { name: 'when', type: 4 },
     { name: 'Frying Shrimpbot', type: 4 },
     { name: 'RADIATION BABY', type: 4 },

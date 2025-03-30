@@ -13,7 +13,7 @@ export default {
                 .setDescription('This user got unbanned from this server.')
                 .addFields(
                     { name: 'User:', value: `${ban.user.username}` },
-                    { name: 'User ID:', value: `${ban.user.id}`}
+                    { name: 'User ID:', value: `${ban.user.id}` }
                 )
                 .setColor('#ff021b')
                 .setTimestamp();

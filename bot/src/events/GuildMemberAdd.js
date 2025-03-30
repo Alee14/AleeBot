@@ -15,7 +15,7 @@ export default {
                 .addFields(
                     { name: 'Username: ', value: `${member.user}`, inline: true },
                     { name: 'User ID: ', value: `${member.id}`, inline: true },
-                    { name: 'Created At: ', value: `${member.user.createdAt.toUTCString()}`}
+                    { name: 'Created At: ', value: `${member.user.createdAt.toUTCString()}` }
                 )
                 .setColor('#4bff31')
                 .setTimestamp();

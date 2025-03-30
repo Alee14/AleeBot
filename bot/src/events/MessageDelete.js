@@ -1,4 +1,4 @@
-import {AttachmentBuilder, EmbedBuilder, Events} from 'discord.js';
+import { AttachmentBuilder, EmbedBuilder, Events } from 'discord.js';
 import { guildSettings } from '../db/models/guild-settings.js';
 
 export default {

@@ -18,9 +18,9 @@ export default {
             .setDescription('User Information')
             .setThumbnail(user.avatarURL())
             .addFields(
-                { name: 'Names', value: `**Display Name:**  ${member.displayName}\n**Username:**  ${user.username}`},
+                { name: 'Names', value: `**Display Name:**  ${member.displayName}\n**Username:**  ${user.username}` },
                 { name: 'Identity', value: `**User ID:** ${user.id}` },
-                { name: 'Create and Join Times', value: `**Created At:**  ${user.createdAt.toUTCString()}\n**Joined Guild At:**  ${member.joinedAt.toUTCString()}`}
+                { name: 'Create and Join Times', value: `**Created At:**  ${user.createdAt.toUTCString()}\n**Joined Guild At:**  ${member.joinedAt.toUTCString()}` }
             )
             .setColor(abEmbedColour);
         return await interaction.reply({ embeds: [userEmbed] });

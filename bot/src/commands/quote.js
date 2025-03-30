@@ -152,7 +152,7 @@ export default {
 
                 return await interaction.reply({ embeds: [quoteEmbed] });
             } else {
-                return await interaction.reply({ content: 'Cannot find quote. Specify the correct quote ID.', flags: MessageFlags.Ephemeral});
+                return await interaction.reply({ content: 'Cannot find quote. Specify the correct quote ID.', flags: MessageFlags.Ephemeral });
             }
         }
     }

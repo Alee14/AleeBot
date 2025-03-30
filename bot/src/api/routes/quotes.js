@@ -45,10 +45,10 @@ export function quoteRouter(client) {
                     submitter: quote.submitterID
                 });
 
-                await pendingQuote.destroy({ where: {id} });
+                await pendingQuote.destroy({ where: { id } });
                 res.status(200).send({ message: 'Quote approved' });
             } else {
-                res.status(404).send({ message: 'Quote not found '});
+                res.status(404).send({ message: 'Quote not found ' });
             }
         } catch (error) {
             console.error('Error approving quote:', error);
@@ -61,7 +61,7 @@ export function quoteRouter(client) {
         try {
             const quote = await pendingQuote.findByPk(id);
             if (quote) {
-                await pendingQuote.destroy({ where: {id} });
+                await pendingQuote.destroy({ where: { id } });
 
                 if (!req.body.silent) {
                     client.users.fetch(quote.submitterID).then((user) => {

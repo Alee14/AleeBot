@@ -20,7 +20,7 @@ export default {
                 .setDescription('This user got banned from this server.')
                 .addFields(
                     { name: 'User:', value: `${ban.user.username}` },
-                    { name: 'User ID:', value: `${ban.user.id}`},
+                    { name: 'User ID:', value: `${ban.user.id}` },
                     { name: 'Reason:', value: `${banEntry.reason || 'No reason provided'}` }
                 )
                 .setColor('#ff021b')
