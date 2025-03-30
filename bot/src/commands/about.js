@@ -23,12 +23,13 @@ export default {
                 { name: 'License', value: 'GNU General Public License v3.0' },
                 { name: 'Contributors', value:
                         '- <@297201585090723841> (Uptime command from 2.x)\n' +
-                        '- <@236279900728721409> (Eval command from 2.x)' }
+                        '- <@236279900728721409> (Eval command from 2.x)'
+                }
             )
             .setFooter({ text: '© Copyright 2017-2025 Andrew Lee & contributors' })
             .setColor(abEmbedColour);
 
-        let Buttons = new ActionRowBuilder()
+        let aboutButtons = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Link)
@@ -37,13 +38,13 @@ export default {
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Link)
                     .setLabel('Invite AleeBot')
-                    .setURL('https://discord.com/oauth2/authorize?client_id=282547024547545109'),
+                    .setURL(`https://discord.com/oauth2/authorize?client_id=${interaction.client.user.id}`),
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Link)
                     .setLabel('Join Andrew Lee Projects')
                     .setURL('https://discord.gg/EFhRDqG')
             );
 
-        return await interaction.reply({ embeds: [aboutEmbed], components: [Buttons] });
+        return await interaction.reply({ embeds: [aboutEmbed], components: [aboutButtons] });
     }
 };

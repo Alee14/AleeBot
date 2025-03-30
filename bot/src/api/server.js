@@ -14,7 +14,7 @@ export const apiServer = (client) => {
     app.use(cors()); // Allow cross-origin requests
     app.use(express.json());
 
-    app.use('/api', quoteRouter);
+    app.use('/api', quoteRouter(client));
     app.use('/api', settingsRouter(client));
     app.use('/api', authRouter());
 

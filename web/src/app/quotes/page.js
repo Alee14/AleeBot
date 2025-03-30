@@ -9,6 +9,8 @@ export default function Quotes() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
+    const [rejectReason, setRejectReason] = useState('');
+    const [quoteToReject, setQuoteToReject] = useState(null);
     const [formData, setFormData] = useState({
         author: '',
         authorImage: '',
@@ -16,6 +18,7 @@ export default function Quotes() {
         year: '',
         submitterID: ''
     });
+    const [silentReject, setSilentReject] = useState(false);
 
     useEffect(() => {
         fetchPendingQuotes();
@@ -114,14 +117,28 @@ export default function Quotes() {
         }
     };
 
-    const handleRejectQuote = async (id) => {
+    const openRejectModal = (id) => {
+        setQuoteToReject(id);
+        setRejectReason('');
+    };
+
+    const closeRejectModal = () => {
+        setQuoteToReject(null);
+        setRejectReason('');
+    };
+
+    const handleRejectQuote = async () => {
         try {
             const response = await fetchWithAuth('/api/quotes/reject', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ id })
+                body: JSON.stringify({
+                    id: quoteToReject,
+                    reason: rejectReason,
+                    silent: silentReject
+                })
             });
 
             if (!response.ok) {
@@ -132,6 +149,9 @@ export default function Quotes() {
                 type: 'success',
                 text: 'Quote rejected successfully'
             });
+
+            // Close modal
+            closeRejectModal();
 
             // Refresh quotes
             fetchPendingQuotes();
@@ -202,7 +222,6 @@ export default function Quotes() {
                     </div>
                 )}
 
-
                 <h1 className="text-3xl">Pending Quotes</h1>
 
                 {loading && <p>Loading quotes...</p>}
@@ -228,7 +247,7 @@ export default function Quotes() {
                                     Approve
                                 </button>
                                 <button
-                                    onClick={() => handleRejectQuote(quote.id)}
+                                    onClick={() => openRejectModal(quote.id)}
                                     className="bg-red-600 hover:bg-red-500 text-white py-1 px-3 rounded"
                                 >
                                     Reject
@@ -237,6 +256,46 @@ export default function Quotes() {
                         </Card>
                     ))}
                 </div>
+
+                {/* Rejection Modal */}
+                {quoteToReject && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+                        <div className="bg-gray-800 p-6 rounded-lg w-full max-w-md">
+                            <h2 className="text-xl mb-4">Reject Quote</h2>
+                            <textarea
+                                className="w-full p-2 bg-gray-700 rounded mb-4"
+                                placeholder="Reason for rejection (optional)"
+                                value={rejectReason}
+                                onChange={(e) => setRejectReason(e.target.value)}
+                                rows="4"
+                            />
+                            <div className="flex items-center mb-4">
+                                <input
+                                    type="checkbox"
+                                    id="silentReject"
+                                    checked={silentReject}
+                                    onChange={(e) => setSilentReject(e.target.checked)}
+                                    className="mr-2"
+                                />
+                                <label htmlFor="silentReject">Reject silently (don&#39;t notify user)</label>
+                            </div>
+                            <div className="flex justify-end gap-3">
+                                <button
+                                    onClick={closeRejectModal}
+                                    className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleRejectQuote}
+                                    className="bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded"
+                                >
+                                    Reject
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );

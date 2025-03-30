@@ -50,6 +50,7 @@ export default {
                 .setCustomId('authorImage')
                 .setLabel('Submit the image of the author')
                 .setMaxLength(100)
+                .setMinLength(4)
                 .setPlaceholder('Image URL (512x512) or (128x128)')
                 .setStyle(TextInputStyle.Short);
 
@@ -57,6 +58,7 @@ export default {
                 .setCustomId('quote')
                 .setLabel('Enter the quote')
                 .setMaxLength(200)
+                .setMinLength(5)
                 .setPlaceholder('Quote')
                 .setStyle(TextInputStyle.Paragraph);
 
@@ -84,6 +86,29 @@ export default {
                     const authorImage = modalInteraction.fields.getTextInputValue('authorImage');
                     const quote = modalInteraction.fields.getTextInputValue('quote');
                     const year = modalInteraction.fields.getTextInputValue('year');
+
+                    try {
+                        new URL(authorImage);
+                    } catch {
+                        return modalInteraction.reply({
+                            content: 'Error: Author image must be a valid URL.',
+                            flags: MessageFlags.Ephemeral
+                        });
+                    }
+
+                    if (!authorImage.match(/\.(jpeg|jpg|png|webp)$/i)) {
+                        return modalInteraction.reply({
+                            content: 'Error: Author image URL must end with a valid image extension (jpeg, jpg, png, webp).',
+                            flags: MessageFlags.Ephemeral
+                        });
+                    }
+
+                    if (isNaN(year) || year.trim() === '' || !Number.isInteger(Number(year))) {
+                        return modalInteraction.reply({
+                            content: 'Error: Year must be a number.',
+                            flags: MessageFlags.Ephemeral
+                        });
+                    }
 
                     await pendingQuote.create({
                         author: author,
