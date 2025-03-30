@@ -1,4 +1,4 @@
-import { commandUsages } from '../models/command-usages.js';
+import { commandUsages } from '../db/models/command-usages.js';
 import { enableAnalytics } from '../storage/consts.js';
 
 export async function Analytics(command, interaction) {

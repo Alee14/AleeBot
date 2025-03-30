@@ -1,7 +1,7 @@
 import { ollamaGlobal } from '../storage/consts.js';
 import { ollama } from '../utils/ollama.js';
 import { AttachmentBuilder } from 'discord.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 import 'dotenv/config';
 
 export async function ChatBot(msg, args) {

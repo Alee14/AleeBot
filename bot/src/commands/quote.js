@@ -6,7 +6,7 @@ import {
     TextInputBuilder,
     TextInputStyle, ActionRowBuilder
 } from 'discord.js';
-import { pendingQuote, quote as quoteDB } from '../models/quote.js';
+import { pendingQuote, quote as quoteDB } from '../db/models/quote.js';
 import { abEmbedColour } from '../storage/consts.js';
 // import { setTimeout as wait } from 'node:timers/promises';
 //

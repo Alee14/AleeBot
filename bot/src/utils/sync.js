@@ -1,6 +1,6 @@
-import { quote, pendingQuote } from '../models/quote.js';
-import { guildSettings } from '../models/guild-settings.js';
-import { commandUsages } from '../models/command-usages.js';
+import { quote, pendingQuote } from '../db/models/quote.js';
+import { guildSettings } from '../db/models/guild-settings.js';
+import { commandUsages } from '../db/models/command-usages.js';
 
 export function syncDB() {
     quote.sync().then(() => {

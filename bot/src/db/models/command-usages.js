@@ -1,5 +1,5 @@
 import { INTEGER, STRING } from 'sequelize';
-import { sequelize } from '../utils/sequelize.js';
+import { sequelize } from '../../utils/sequelize.js';
 
 export const commandUsages = sequelize.define('command-usages', {
     id: {

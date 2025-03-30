@@ -1,7 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { commandUsages } from '../models/command-usages.js';
+import { commandUsages } from '../db/models/command-usages.js';
 import { abEmbedColour } from '../storage/consts.js';
-import { quote } from '../models/quote.js';
+import { quote } from '../db/models/quote.js';
 
 export default {
     data: new SlashCommandBuilder()

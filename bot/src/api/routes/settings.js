@@ -1,6 +1,6 @@
 import { ChannelType } from 'discord.js';
 import { Router } from 'express';
-import { guildSettings } from '../../models/guild-settings.js';
+import { guildSettings } from '../../db/models/guild-settings.js';
 import { verifyToken } from './auth.js';
 
 export function settingsRouter(client) {

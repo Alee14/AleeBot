@@ -1,5 +1,5 @@
 import { INTEGER, STRING, TEXT } from 'sequelize';
-import { sequelize } from '../utils/sequelize.js';
+import { sequelize } from '../../utils/sequelize.js';
 
 export const quote = sequelize.define('quotes', {
     id: {

@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import { abEmbedColour } from '../storage/consts.js';
-import { quote as quoteDB } from '../models/quote.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { quote as quoteDB } from '../db/models/quote.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 import { schedule } from 'node-cron';
 
 export function QuoteOfTheDay(client) {

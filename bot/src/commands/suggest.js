@@ -8,7 +8,7 @@ import {
     EmbedBuilder
 } from 'discord.js';
 import { abEmbedColour, featureSuggestChannel } from '../storage/consts.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 
 export default {
     data: new SlashCommandBuilder()

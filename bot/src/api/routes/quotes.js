@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { pendingQuote, quote as newQuote } from '../../models/quote.js';
+import { pendingQuote, quote as newQuote } from '../../db/models/quote.js';
 import { verifyToken } from './auth.js';
 
 export function quoteRouter(client) {

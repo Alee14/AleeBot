@@ -1,5 +1,5 @@
 import { EmbedBuilder, Events } from 'discord.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 import { autoRole, serverWhitelist, roleWhitelist } from '../storage/consts.js';
 
 export default {

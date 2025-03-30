@@ -1,5 +1,5 @@
 import { PermissionFlagsBits, SlashCommandBuilder, MessageFlags, EmbedBuilder } from 'discord.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 import { abEmbedColour } from '../storage/consts.js';
 export default {
     data: new SlashCommandBuilder()

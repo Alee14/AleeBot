@@ -1,5 +1,5 @@
 import { EmbedBuilder, Events } from 'discord.js';
-import { guildSettings } from '../models/guild-settings.js';
+import { guildSettings } from '../db/models/guild-settings.js';
 
 export default {
     name: Events.GuildMemberUpdate,
@@ -7,7 +7,6 @@ export default {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
             if (!guildSetting || !guildSetting.logChannelID) return;
-            if (!member.nickname || member.nickname === newMember.nickname) return;
 
             const logEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })

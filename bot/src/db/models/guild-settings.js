@@ -1,5 +1,5 @@
 import { INTEGER, STRING, BOOLEAN } from 'sequelize';
-import { sequelize } from '../utils/sequelize.js';
+import { sequelize } from '../../utils/sequelize.js';
 
 export const guildSettings = sequelize.define('guild-settings', {
     id: {
