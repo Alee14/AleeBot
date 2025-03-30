@@ -32,6 +32,24 @@ export default {
             await botActivity(client);
             await QuoteOfTheDay(client);
 
+            await client.guilds.cache.forEach(guild => {
+                let threadCount = 0;
+
+                guild.channels.cache.forEach(channel => {
+                    if (channel.threads) {
+                        threadCount += channel.threads.cache.size;
+                        channel.threads.cache.forEach(thread => {
+                            if (!thread.members.cache.has(client.user.id)) {
+                                thread.join()
+                                    .catch(error => console.error(`[X] Failed to join thread ${thread.name}:`, error));
+                            }
+                        });
+                    }
+                });
+
+                console.log(`[>] Processed threads in guild: ${guild.name} | ${threadCount} Threads`);
+            });
+
             if (process.env.NODE_ENV !== 'development') {
                 const readyEmbed = new EmbedBuilder()
                     .setAuthor({name: 'AleeBot Status', iconURL: client.user.avatarURL()})

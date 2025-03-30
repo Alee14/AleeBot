@@ -7,6 +7,7 @@ Created by Andrew Lee
   </a><a href="https://discord.gg/EFhRDqG"><img src="https://img.shields.io/discord/243022206437687296.svg?colorB=7289DA&label=discord" alt="Discord Badge"> </a>
 
 # What features does AleeBot have?
+- Moderation Logging
 - Quotes
 - LLM Chatbot
 - other stuff soon:tm:
