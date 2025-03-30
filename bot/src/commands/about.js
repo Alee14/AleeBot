@@ -3,7 +3,9 @@ import {
     ButtonBuilder,
     EmbedBuilder,
     SlashCommandBuilder,
-    ButtonStyle
+    ButtonStyle,
+    PermissionFlagsBits,
+    OAuth2Scopes
 } from 'discord.js';
 import { readFileSync } from 'node:fs';
 import { abEmbedColour } from '../storage/consts.js';
@@ -15,6 +17,18 @@ export default {
         .setName('about')
         .setDescription('Information about this bot.'),
     async execute(interaction) {
+        const botInvite = interaction.client.generateInvite({
+            permissions: [
+                PermissionFlagsBits.EmbedLinks,
+                PermissionFlagsBits.SendMessages,
+                PermissionFlagsBits.ManageMessages,
+                PermissionFlagsBits.ViewAuditLog,
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.AddReactions
+            ],
+            scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands]
+        });
+
         const aboutEmbed = new EmbedBuilder()
             .setAuthor({ name: `AleeBot ${version}`, iconURL: interaction.client.user.avatarURL() })
             .addFields(
@@ -38,7 +52,7 @@ export default {
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Link)
                     .setLabel('Invite AleeBot')
-                    .setURL(`https://discord.com/oauth2/authorize?client_id=${interaction.client.user.id}`),
+                    .setURL(botInvite),
                 new ButtonBuilder()
                     .setStyle(ButtonStyle.Link)
                     .setLabel('Join Andrew Lee Projects')

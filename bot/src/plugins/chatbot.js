@@ -9,10 +9,9 @@ export async function ChatBot(msg, args) {
 
     if (!guildSetting.ollamaEnabled) return;
     if (!ollamaGlobal) return msg.reply('Sorry, the LLM chatbot feature has been turned off.');
+    const loadingMessage = await msg.reply('Thinking...');
 
     try {
-        const loadingMessage = await msg.reply('Thinking...');
-
         const response = await ollama.chat({
             model: process.env.OLLAMA_MODEL,
             messages: [{ role: 'user', content: args }],
@@ -29,6 +28,6 @@ export async function ChatBot(msg, args) {
 
     } catch (err) {
         console.error(err);
-        await msg.reply(`Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`${err.stack}\`\`\``);
+        await loadingMessage.edit(`Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`${err.stack}\`\`\``);
     }
 }
