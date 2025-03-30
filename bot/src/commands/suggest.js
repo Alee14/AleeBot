@@ -54,7 +54,8 @@ export default {
                             .addFields({ name: 'Suggestion Content', value: feature })
                             .setColor(abEmbedColour)
                             .setFooter({ text: `Sending from ${modalInteraction.guild.name}`, iconURL: modalInteraction.guild.iconURL() })
-                    ] });
+                    ]
+                    });
 
                     return await modalInteraction.reply({ content: 'Your suggestion has been sent.', flags: MessageFlags.Ephemeral });
                 })

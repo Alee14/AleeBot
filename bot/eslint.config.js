@@ -21,7 +21,7 @@ export default [
             '@stylistic/js/semi-style': ['error', 'last'],
             '@stylistic/js/semi': ['error', 'always'],
             '@stylistic/js/indent': ['error', 4],
-            'object-curly-spacing': ['error', 'always'],
+            '@stylistic/js/object-curly-spacing': ['error', 'always'],
             'require-await': 'error'
         }
     },
