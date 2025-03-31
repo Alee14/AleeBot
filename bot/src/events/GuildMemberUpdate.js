@@ -5,6 +5,7 @@ export default {
     name: Events.GuildMemberUpdate,
     async execute(member, newMember) {
         try {
+            if (member.nickname === newMember.nickname) return;
             const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
             if (!guildSetting || !guildSetting.logChannelID) return;
 
