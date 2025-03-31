@@ -1,12 +1,12 @@
-FROM oven/bun:latest
+FROM node:latest
 
 WORKDIR /bot
 
-COPY bun.lockb .
+COPY yarn.lock .
 COPY package.json .
 
-RUN bun install
+RUN yarn install
 
 COPY . .
 
-ENTRYPOINT ["bun", "start"]
+ENTRYPOINT ["yarn", "start"]
