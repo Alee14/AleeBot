@@ -20,11 +20,10 @@ export default {
         const botInvite = interaction.client.generateInvite({
             permissions: [
                 PermissionFlagsBits.EmbedLinks,
-                PermissionFlagsBits.SendMessages,
                 PermissionFlagsBits.ManageMessages,
                 PermissionFlagsBits.ViewAuditLog,
-                PermissionFlagsBits.ViewChannel,
-                PermissionFlagsBits.AddReactions
+                PermissionFlagsBits.AddReactions,
+                PermissionFlagsBits.AttachFiles,
             ],
             scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands]
         });
