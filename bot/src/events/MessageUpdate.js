@@ -6,7 +6,7 @@ export default {
     async execute(msg, newmsg) {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
-            if (!msg.guild || !guildSetting || !guildSetting.logChannelID) return;
+            if (!msg.guild || !guildSetting || !guildSetting.messageLogChannelID) return;
             if (msg.content === newmsg.content) return;
 
             const useEmbedFields = msg.content.length <= 1024 &&
@@ -26,7 +26,7 @@ export default {
                 );
             }
 
-            let editMessage = msg.client.channels.cache.get(guildSetting.logChannelID);
+            let editMessage = msg.client.channels.cache.get(guildSetting.messageLogChannelID);
             if (!editMessage) return;
 
             if (useEmbedFields) {

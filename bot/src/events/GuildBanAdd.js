@@ -6,7 +6,7 @@ export default {
     async execute(ban) {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: ban.guild.id } });
-            if (!guildSetting || !guildSetting.logChannelID) return;
+            if (!guildSetting || !guildSetting.memberLogChannelID) return;
 
             const banLog = await ban.guild.fetchAuditLogs({
                 type: AuditLogEvent.MemberBanAdd,
@@ -26,7 +26,7 @@ export default {
                 .setColor('#ff021b')
                 .setTimestamp();
 
-            let banMessage = ban.guild.client.channels.cache.get(guildSetting.logChannelID);
+            let banMessage = ban.guild.client.channels.cache.get(guildSetting.memberLogChannelID);
             if (!banMessage) return;
 
             await banMessage.send({ embeds: [logEmbed] });

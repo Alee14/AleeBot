@@ -13,8 +13,16 @@ export default {
                 .setDescription('Sets the settings for this guild.')
                 .addChannelOption(option =>
                     option
-                        .setName('log')
-                        .setDescription('Log channel.'))
+                        .setName('memberlog')
+                        .setDescription('Member Log channel.'))
+                .addChannelOption(option =>
+                    option
+                        .setName('messagelog')
+                        .setDescription('Message Log channel.'))
+                .addChannelOption(option =>
+                    option
+                        .setName('warnlog')
+                        .setDescription('Warn Log channel.'))
                 .addChannelOption(option =>
                     option
                         .setName('suggestion')
@@ -45,7 +53,9 @@ export default {
 
         if (interaction.options.getSubcommand() === 'clear') {
             await guildSettings.update({
-                logChannelID: null,
+                memberLogChannelID: null,
+                messageLogChannelID: null,
+                warnLogChannelID: null,
                 suggestionsChannelID: null,
                 qotdChannelID: null,
                 qotdToggle: null,
@@ -62,7 +72,9 @@ export default {
         // Handle clearing settings
         if (areAllSettingsEmpty(interaction)) {
             guildEmbed.addFields(
-                { name: 'Logging', value: guildSetting?.logChannelID ? `<#${guildSetting.logChannelID}>` : 'N/A', inline: true },
+                { name: 'Member Log', value: guildSetting?.memberLogChannelID ? `<#${guildSetting.memberLogChannelID}>` : 'N/A', inline: true },
+                { name: 'Message Log', value: guildSetting?.messageLogChannelID ? `<#${guildSetting.messageLogChannelID}>` : 'N/A', inline: true },
+                { name: 'Warn Log', value: guildSetting?.warnLogChannelID ? `<#${guildSetting.warnLogChannelID}>` : 'N/A', inline: true },
                 { name: 'Suggestions', value: guildSetting?.suggestionsChannelID ? `<#${guildSetting.suggestionsChannelID}>` : 'N/A', inline: true },
                 { name: 'QOTD Channel', value: guildSetting?.qotdChannelID ? `<#${guildSetting.qotdChannelID}>` : 'N/A', inline: true },
                 { name: 'LLM Chatbot', value: guildSetting?.ollamaEnabled ? 'Enabled' : 'Disabled', inline: true },
@@ -73,7 +85,9 @@ export default {
 
         // Process each setting type
         guildEmbed.setDescription('Updated this setting.');
-        await updateChannelSetting(interaction, guildEmbed, 'log', 'logChannelID', 'Logging');
+        await updateChannelSetting(interaction, guildEmbed, 'memberlog', 'memberLogChannelID', 'Member Log');
+        await updateChannelSetting(interaction, guildEmbed, 'messagelog', 'messageLogChannelID', 'Message Log');
+        await updateChannelSetting(interaction, guildEmbed, 'warnlog', 'warnLogChannelID', 'Warn Log');
         await updateChannelSetting(interaction, guildEmbed, 'suggestion', 'suggestionsChannelID', 'Suggestions');
         await updateChannelSetting(interaction, guildEmbed, 'qotd', 'qotdChannelID', 'QOTD Channel');
         await updateBooleanSetting(interaction, guildEmbed, 'qotdtoggle', 'qotdToggle', 'Quote of the Day');

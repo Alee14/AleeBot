@@ -8,7 +8,7 @@ export default {
             if (!msg.content) return;
 
             const guildSetting = await guildSettings.findOne({ where: { guildID: msg.guild.id } });
-            if (!guildSetting || !guildSetting.logChannelID) return;
+            if (!guildSetting || !guildSetting.messageLogChannelID) return;
 
             const useEmbedFields = msg.content.length <= 1024;
 
@@ -23,7 +23,7 @@ export default {
                 logEmbed.addFields({ name: 'Deleted Message: ', value: `\`\`\`\n${msg.content}\n\`\`\`` });
             }
 
-            let deleteMessage = msg.client.channels.cache.get(guildSetting.logChannelID);
+            let deleteMessage = msg.client.channels.cache.get(guildSetting.messageLogChannelID);
             if (!deleteMessage) return;
 
             if (useEmbedFields) {

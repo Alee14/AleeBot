@@ -6,7 +6,7 @@ export default {
     async execute(ban) {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: ban.guild.id } });
-            if (!guildSetting || !guildSetting.logChannelID) return;
+            if (!guildSetting || !guildSetting.memberLogChannelID) return;
 
             const logEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot Logging', iconURL: ban.guild.client.user.avatarURL() })
@@ -18,7 +18,7 @@ export default {
                 .setColor('#ff021b')
                 .setTimestamp();
 
-            let banMessage = ban.guild.client.channels.cache.get(guildSetting.logChannelID);
+            let banMessage = ban.guild.client.channels.cache.get(guildSetting.memberLogChannelID);
             if (!banMessage) return;
 
             await banMessage.send({ embeds: [logEmbed] });

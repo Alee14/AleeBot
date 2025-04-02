@@ -6,7 +6,7 @@ export default {
     async execute(msg, channel) {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: channel.guild.id } });
-            if (!guildSetting || !guildSetting.logChannelID) return;
+            if (!guildSetting || !guildSetting.messageLogChannelID) return;
 
             const logEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot Logging', iconURL: channel.client.user.avatarURL() })
@@ -26,7 +26,7 @@ export default {
             const messageContent = messages.join('\n');
             const attachment = new AttachmentBuilder(Buffer.from(messageContent, 'utf-8'), { name: 'messages.txt' });
 
-            let deleteMessage = channel.client.channels.cache.get(guildSetting.logChannelID);
+            let deleteMessage = channel.client.channels.cache.get(guildSetting.messageLogChannelID);
             if (!deleteMessage) return;
 
             await deleteMessage.send({ embeds: [logEmbed], files: [attachment] });

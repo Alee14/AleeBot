@@ -7,7 +7,7 @@ export default {
     async execute(member) {
         try {
             const guildSetting = await guildSettings.findOne({ where: { guildID: member.guild.id } });
-            if (!guildSetting || !guildSetting.logChannelID) return;
+            if (!guildSetting || !guildSetting.memberLogChannelID) return;
 
             const logEmbed = new EmbedBuilder()
                 .setAuthor({ name: 'AleeBot Logging', iconURL: member.client.user.avatarURL() })
@@ -20,7 +20,7 @@ export default {
                 .setColor('#4bff31')
                 .setTimestamp();
 
-            let guildMember = member.client.channels.cache.get(guildSetting.logChannelID);
+            let guildMember = member.client.channels.cache.get(guildSetting.memberLogChannelID);
             if (!guildMember) return;
 
             await guildMember.send({ embeds: [logEmbed] });

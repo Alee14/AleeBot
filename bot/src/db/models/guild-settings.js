@@ -11,7 +11,15 @@ export const guildSettings = sequelize.define('guild-settings', {
         type: STRING,
         allowNull: false
     },
-    logChannelID: {
+    memberLogChannelID: {
+        type: STRING,
+        allowNull: true
+    },
+    messageLogChannelID: {
+        type: STRING,
+        allowNull: true
+    },
+    warnLogChannelID: {
         type: STRING,
         allowNull: true
     },
