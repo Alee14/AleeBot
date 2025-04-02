@@ -1,8 +1,6 @@
 name: Docker
 
 on:
-  schedule:
-    - cron: '39 0 * * *'
   push:
     branches: [ "master", "beta" ]
     tags: [ 'v*.*.*' ]
