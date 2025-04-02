@@ -38,7 +38,7 @@ export default {
                 .addBooleanOption(option =>
                     option
                         .setName('llmtoggle')
-                        .setDescription('Toggle LLM Chatbot.')))
+                        .setDescription('Toggle LLM (Ollama) Chatbot.')))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('clear')

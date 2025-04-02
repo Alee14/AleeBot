@@ -1,6 +1,7 @@
 import { ollamaGlobal } from '../storage/consts.js';
 import { ollama } from '../utils/ollama.js';
 import { AttachmentBuilder } from 'discord.js';
+import { error } from '../storage/functions.js';
 import { guildSettings } from '../db/models/guild-settings.js';
 import 'dotenv/config';
 
@@ -28,6 +29,6 @@ export async function ChatBot(msg, args) {
 
     } catch (err) {
         console.error(err);
-        await loadingMessage.edit(`Something went wrong. [Submit an issue at the AleeBot repository.](<https://github.com/Alee14/AleeBot/issues>)\nMessage:\n\`\`\`${err.stack}\`\`\``);
+        await loadingMessage.edit(error(err.stack));
     }
 }

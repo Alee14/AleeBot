@@ -1,6 +1,7 @@
 import { INTEGER, STRING, BOOLEAN } from 'sequelize';
 import { sequelize } from '../../utils/sequelize.js';
 
+// potentially rename the table to settings-guilds to stay consistent
 export const guildSettings = sequelize.define('guild-settings', {
     id: {
         type: INTEGER,

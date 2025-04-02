@@ -1,0 +1,11 @@
+{
+  "name": "AleeBot",
+  "subprojects": [
+    {
+      "name": "AleeBot",
+      "type": "i18next",
+      "path": "/bot/src/translations/{lang}/translation.json",
+      "baseLang": "en"
+    }
+  ]
+}

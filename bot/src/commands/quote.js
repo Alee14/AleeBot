@@ -8,6 +8,7 @@ import {
 } from 'discord.js';
 import { pendingQuote, quote as quoteDB } from '../db/models/quote.js';
 import { abEmbedColour } from '../storage/consts.js';
+import { blacklistCheck } from '../storage/functions.js';
 // import { setTimeout as wait } from 'node:timers/promises';
 //
 // let setupMessage = 'Welcome to the AleeBot Quote Setup!\n';
@@ -35,6 +36,9 @@ export default {
                 .setDescription('Got a quote? Add it here!')),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === 'add') {
+            const isBlacklisted = await blacklistCheck(interaction);
+            if (isBlacklisted) return;
+
             const modal = new ModalBuilder()
                 .setCustomId(`newQuote-${interaction.user.id}`)
                 .setTitle('New Quote for AleeBot');

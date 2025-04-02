@@ -9,6 +9,7 @@ import {
 } from 'discord.js';
 import { abEmbedColour, featureSuggestChannel } from '../storage/consts.js';
 import { guildSettings } from '../db/models/guild-settings.js';
+import { blacklistCheck } from '../storage/functions.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -24,6 +25,9 @@ export default {
                 .setDescription('Suggest something for this server.')),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === 'feature') {
+            const isBlacklisted = await blacklistCheck(interaction);
+            if (isBlacklisted) return;
+
             const modal = new ModalBuilder()
                 .setCustomId(`suggest-${interaction.user.id}`)
                 .setTitle('Suggest a feature for AleeBot');
